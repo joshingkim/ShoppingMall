@@ -7,5 +7,10 @@
 	<insert id="insert">
 		INSERT INTO category (item_name, item_category) VALUES (#{item_name}, #{item_category})
 	</insert>
-
+	<select id="getAmount" resultType="Integer">
+		SELECT COUNT(item_name) FROM category
+	</select>
+	<select id="list" resultType="kr.co.domain.CategoryVO">
+		SELECT * FROM category ORDER BY item_category ASC
+	</select>
 </mapper>

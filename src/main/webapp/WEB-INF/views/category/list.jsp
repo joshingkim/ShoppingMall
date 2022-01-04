@@ -18,28 +18,20 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="/category/insert" method="post">
-		아이템명 : <input name="item_name" maxlength="25"><br> 
-		카테고리명 : <input name="item_category" maxlength="20"><br> 
-		<input type="submit" value="등록 완료">
-	</form>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("input[type='submit']").click(function(event) {
-				event.preventDefault();
-				var item_name = $("[name='item_name']").val();
-				if (item_name == '') {
-					$("[name='item_name']").focus();
-					return;
-				}
-				var item_category = $("[name='item_category']").val();
-				if (item_category == '') {
-					$("[name='item_category']").focus();
-					return;
-				}
-				$("form").submit();
-			});
-		});
-	</script>
+	<table>
+		<thead>
+			<th>카테고리명</th>
+			<th>아이템명</th>
+		</thead>
+		<tbody>
+			<c:forEach items="${pt.list}" var="vo">
+				<tr>
+					<td>${vo.item_name}</td>
+					<td>${vo.item_category}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<jsp:include page="page.jsp" />
 </body>
 </html>
