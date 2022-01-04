@@ -1,0 +1,32 @@
+package kr.co.service;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.repository.SearchDAO;
+
+@Service
+public class SearchServiceImpl implements SearchService {
+
+	@Autowired
+	private SearchDAO sDao;
+
+	@Override
+	public void insert(Map<String, Object> map) {
+		sDao.insert(map);
+		
+	}
+
+	@Override
+	public void searchlist(Map<String, Object> map) {
+		sDao.searchlist(map);
+		
+	}
+
+
+
+
+	
+}

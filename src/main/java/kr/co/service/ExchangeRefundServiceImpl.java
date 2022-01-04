@@ -5,27 +5,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.domain.ExchangeRefundVO;
+import kr.co.repository.ExchangeRefundDAO;
 
 @Service
 public class ExchangeRefundServiceImpl implements ExchangeRefundService {
 
 	@Autowired
-	private SqlSession sqlSesion;
-	private String NS = "kr.co.exchangeRefund";
-	
+	private ExchangeRefundDAO exDao;
+	@Autowired
+//	private OrderDAO oDao;
 
-	
-		@Override
-	public OrderVO insertui(int order_no) {
-		sqlSesion.selectOne(NS + ".checkorder", order_no);
-
-		@Override
+	@Override
 	public void insert(ExchangeRefundVO exvo) {
-		sqlSesion.insert(NS + ".insert", exvo);
+		exDao.insert(exvo);
 		
 	}
-	
-	
+
+//	@Override
+//	public OrderVO insertui(int order_no) {
+//		return oDao.checkorder(order_no);
+//	}
 	
 	
 	

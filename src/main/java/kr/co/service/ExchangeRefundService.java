@@ -6,6 +6,6 @@ public interface ExchangeRefundService {
 
 	void insert(ExchangeRefundVO exvo);
 
-	OrderVO insertui(int order_no);
+//	OrderVO insertui(int order_no);
 
 }

@@ -19,13 +19,13 @@ public class ExchangeRefundController {
 	private ExchangeRefundService exService;
 	
 	@Autowired
-	private OrderService oService;
+//	private OrderService oService;
 	
 	@RequestMapping(value="/insertui{order_no}", method=RequestMethod.GET)
 	public String insertui(@PathVariable("order_no")int order_no, Model model) {
 		
-		OrderVO ovo = oService.checkorder(order_no);
-		model.addAttribute("ovo", ovo);
+//		OrderVO ovo = oService.checkorder(order_no);
+//		model.addAttribute("ovo", ovo);
 		
 		return "/insert{order_no}";
 	}
