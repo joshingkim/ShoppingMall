@@ -47,5 +47,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 		
 		sqlSession.update(NS+".update", vo);
 	}
+
+	@Override
+	public void delete(String item_name) {
+		sqlSession.delete(NS+".delete", item_name);
+	}
 	
 }

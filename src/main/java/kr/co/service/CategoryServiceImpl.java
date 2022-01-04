@@ -42,5 +42,10 @@ public class CategoryServiceImpl implements CategoryService {
 	public void update(CategoryVO vo) {
 		cDao.update(vo);
 	}
+
+	@Override
+	public void delete(String item_name) {
+		cDao.delete(item_name);
+	}
 	
 }

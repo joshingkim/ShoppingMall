@@ -13,4 +13,6 @@ public interface CategoryService {
 
 	void update(CategoryVO vo);
 
+	void delete(String item_name);
+
 }
