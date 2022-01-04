@@ -19,8 +19,8 @@
 </head>
 <body>
 	<form action="/category/insert" method="post">
-		아이템명 : <input name="item_name" maxlength="25"><br> 
 		카테고리명 : <input name="item_category" maxlength="20"><br> 
+		아이템명 : <input name="item_name" maxlength="25"><br> 
 		<input type="submit" value="등록 완료">
 	</form>
 	<script type="text/javascript">

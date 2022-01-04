@@ -31,5 +31,16 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		return pt;
 	}
+
+	@Override
+	public CategoryVO updateUI(String item_name) {
+		// TODO Auto-generated method stub
+		return cDao.updateUI(item_name);
+	}
+
+	@Override
+	public void update(CategoryVO vo) {
+		cDao.update(vo);
+	}
 	
 }

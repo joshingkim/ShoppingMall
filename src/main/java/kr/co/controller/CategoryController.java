@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.CategoryVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.PageTO;
 import kr.co.service.CategoryService;
 
@@ -49,5 +50,21 @@ public class CategoryController {
 		pt = cService.list(pt);
 		
 		model.addAttribute("pt", pt);
+	}
+	
+	@RequestMapping(value = "/update/{item_name}", method = RequestMethod.GET)
+	public String updateUI(@PathVariable("item_name") String item_name, Model model) {
+		CategoryVO vo = cService.updateUI(item_name);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/category/update";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(CategoryVO vo) {
+		cService.update(vo);
+		
+		return "redirect:/category/list/";
 	}
 }

@@ -18,22 +18,28 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<table>
-		<thead>
-			<th>카테고리명</th>
-			<th>아이템명</th>
-			<th></th>
-		</thead>
-		<tbody>
-			<c:forEach items="${pt.list}" var="vo">
-				<tr>
-					<td>${vo.item_category}</td>
-					<td>${vo.item_name}</td>
-					<td><a href="/category/update/${vo.item_name}">수정</a>/<a href="/category/delete/${vo.item_name}">삭제</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<jsp:include page="page.jsp" />
+	<form action="/category/update" method="post">
+		카테고리명 : <input name="item_category" maxlength="20" value="${vo.item_category}"><br> 
+		아이템명 : <input name="item_name" maxlength="25" value="${vo.item_name}"><br>
+		<input type="submit" value="등록 완료">
+	</form>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input[type='submit']").click(function(event) {
+				event.preventDefault();
+				var item_name = $("[name='item_name']").val();
+				if (item_name == '') {
+					$("[name='item_name']").focus();
+					return;
+				}
+				var item_category = $("[name='item_category']").val();
+				if (item_category == '') {
+					$("[name='item_category']").focus();
+					return;
+				}
+				$("form").submit();
+			});
+		});
+	</script>
 </body>
 </html>
