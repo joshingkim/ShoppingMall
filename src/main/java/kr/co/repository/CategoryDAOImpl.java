@@ -35,5 +35,17 @@ public class CategoryDAOImpl implements CategoryDAO {
 		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
 		return sqlSession.selectList(NS+".list", null, rbs);
 	}
+
+	@Override
+	public CategoryVO updateUI(String item_name) {
+
+		return sqlSession.selectOne(NS+".updateUI", item_name);
+	}
+
+	@Override
+	public void update(CategoryVO vo) {
+		
+		sqlSession.update(NS+".update", vo);
+	}
 	
 }

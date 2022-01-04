@@ -33,3 +33,5 @@ CREATE TABLE category(
 	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
 )
 SELECT * FROM category
+
+SELECT * FROM category WHERE item_name = '세이코 남성 오토 메탈 시계(SNKA05)'

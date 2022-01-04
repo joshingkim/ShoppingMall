@@ -9,4 +9,8 @@ public interface CategoryService {
 
 	PageTO<CategoryVO> list(PageTO<CategoryVO> pt);
 
+	CategoryVO updateUI(String item_name);
+
+	void update(CategoryVO vo);
+
 }
