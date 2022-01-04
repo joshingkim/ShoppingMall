@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.CategoryVO;
-import kr.co.domain.MemberVO;
 import kr.co.domain.PageTO;
 import kr.co.service.CategoryService;
 
