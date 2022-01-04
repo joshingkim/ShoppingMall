@@ -17,4 +17,6 @@ public interface CategoryDAO {
 
 	void update(CategoryVO vo);
 
+	void delete(String item_name);
+
 }

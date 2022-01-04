@@ -53,6 +53,7 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/update/{item_name}", method = RequestMethod.GET)
 	public String updateUI(@PathVariable("item_name") String item_name, Model model) {
+		
 		CategoryVO vo = cService.updateUI(item_name);
 		
 		model.addAttribute("vo", vo);
@@ -66,4 +67,12 @@ public class CategoryController {
 		
 		return "redirect:/category/list/";
 	}
+	
+	@RequestMapping(value = "/delete/{item_name}", method = RequestMethod.GET)
+	public String delete(@PathVariable("item_name") String item_name) {
+		cService.delete(item_name);
+		
+		return "redirect:/category/list/";
+	}
+	
 }
