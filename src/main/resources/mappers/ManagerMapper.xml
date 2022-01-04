@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.manager">
+
+	<insert id="insert">
+		INSERT INTO manager (manager_id, manager_pw, manager_name, manager_email, manager_phone, manager_code)
+		VALUES
+		(#{manager_id}, #{manager_pw}, #{manager_name}, #{manager_email}, #{manager_phone}, #{manager_code})
+	</insert>
+
+	
+	
+	<select id="login" resultType="kr.co.domain.ManagerVO">
+		SELECT manager_id, manager_name, manager_code FROM manager 
+		WHERE manager_id = #{manager_id} AND manager_pw = #{manager_pw}
+	</select>
+	
+	
+	
+	
+</mapper>
