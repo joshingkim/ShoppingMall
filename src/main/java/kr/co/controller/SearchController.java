@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,12 +31,11 @@ public class SearchController {
 		map.put("keyword", keyword);
 		sService.insert(map);
 	}
-	@RequestMapping(value="/searchlist/{item_category}/{keyword}", method = RequestMethod.GET)
-	public void searchlist(@PathVariable("item_category")String item_category, @PathVariable("keyword")String keyword) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("item_category", item_category);
-		map.put("keyword", keyword);
-		sService.searchlist(map);
+	@RequestMapping(value="/list/{item_category}/{keyword}", method = RequestMethod.GET)
+	public void list(SearchVO svo, Model model) {
+		
+		svo = sService.list(svo);
+		model.addAttribute("svo", svo);
 	}
 	
 }

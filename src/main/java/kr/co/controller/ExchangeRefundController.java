@@ -18,7 +18,7 @@ public class ExchangeRefundController {
 	@Autowired
 	private ExchangeRefundService exService;
 	
-	@Autowired
+//	@Autowired
 //	private OrderService oService;
 	
 	@RequestMapping(value="/insertui{order_no}", method=RequestMethod.GET)
