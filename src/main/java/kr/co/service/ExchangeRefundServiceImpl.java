@@ -1,6 +1,5 @@
 package kr.co.service;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ public class ExchangeRefundServiceImpl implements ExchangeRefundService {
 
 	@Autowired
 	private ExchangeRefundDAO exDao;
-	@Autowired
+//	@Autowired
 //	private OrderDAO oDao;
 
 	@Override

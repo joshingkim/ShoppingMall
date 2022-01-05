@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.domain.SearchVO;
 import kr.co.repository.SearchDAO;
 
 @Service
@@ -20,10 +21,12 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public void searchlist(Map<String, Object> map) {
-		sDao.searchlist(map);
+	public SearchVO list(SearchVO svo) {
+		return sDao.list(svo);
+	
 		
 	}
+
 
 
 
