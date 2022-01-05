@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.item">
+	<insert id="insert">
+		INSERT INTO item
+		(item_no,item_name,item_category,item_size,item_color,item_price,discount_percentage,item_amount)
+		VALUES
+		(seq_item_no.NEXTVAL,#{item_name},#{item_category},#{item_size},#{item_color},#{item_price},#{discount_percentage},#{item_amount})
+		<selectKey order="AFTER" keyProperty="item_no"
+			resultType="Integer">
+			SELECT seq_item_no.CURRVAL FROM dual
+		</selectKey>
+	</insert>
+</mapper>
