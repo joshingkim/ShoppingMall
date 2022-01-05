@@ -14,6 +14,7 @@ CREATE TABLE item(
 
 CREATE SEQUENCE seq_item_no
 
+select * from item
 
 CREATE TABLE item_file(
 	file_no NUMBER,
