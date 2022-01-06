@@ -17,4 +17,10 @@
 	<select id="read" resultType="kr.co.domain.ItemVO">
 		SELECT * FROM item WHERE item_no = #{item_no}
 	</select>
+	<select id="updateUI" resultType="kr.co.domain.ItemVO">
+		SELECT * FROM item WHERE item_no = #{item_no}
+	</select>
+	<update id="update">
+		UPDATE item SET item_size=#{item_size},item_color=#{item_color},item_price=#{item_price},discount_percentage=#{discount_percentage},item_amount=#{item_amount} WHERE item_no=#{item_no}
+	</update>
 </mapper>

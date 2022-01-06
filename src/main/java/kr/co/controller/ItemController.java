@@ -34,10 +34,26 @@ public class ItemController {
 	@RequestMapping(value = "/read/{item_no}", method = RequestMethod.GET)
 	public String read(@PathVariable("item_no") String item_no, Model model) {
 		ItemVO vo = iService.read(item_no);
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return "item/read";
 	}
 
+	@RequestMapping(value = "/update/{item_no}", method = RequestMethod.GET)
+	public String updateUI(@PathVariable("item_no") String item_no, Model model) {
+		ItemVO vo = iService.updateUI(item_no);
+		
+		model.addAttribute("vo", vo);
+		
+		return "item/update";
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(ItemVO vo) {
+
+		iService.update(vo);
+
+		return "redirect:/item/read/" + vo.getItem_no();
+	}
 }
