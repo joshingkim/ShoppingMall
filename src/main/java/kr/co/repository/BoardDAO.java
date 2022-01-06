@@ -12,4 +12,6 @@ public interface BoardDAO {
 
 	BoardVO updateUI(int board_no);
 
+	void update(BoardVO vo);
+
 }
