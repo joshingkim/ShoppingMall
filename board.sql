@@ -58,7 +58,7 @@ UPDATE board SET board_viewcnt = board_viewcnt+1 WHERE board_no = 5
 INSERT INTO board (board_no,item_no,board_title, board_content) VALUES(seq_board_no.NEXTVAL,1,'a','a')
 
 
-
+SELECT * FROM board WHERE board_no = 103
 
 
 

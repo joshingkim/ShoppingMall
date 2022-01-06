@@ -10,5 +10,7 @@ public interface BoardService {
 
 	BoardVO updateUI(int board_no);
 
+	void update(BoardVO vo);
+
 	
 }

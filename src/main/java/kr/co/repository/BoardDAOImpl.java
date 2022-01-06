@@ -39,4 +39,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(NS+".updateUI",board_no);
 	}
 
+	@Override
+	public void update(BoardVO vo) {
+		sqlSession.update(NS+".update",vo);
+		
+	}
+
 }

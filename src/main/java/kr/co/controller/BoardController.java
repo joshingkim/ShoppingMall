@@ -22,6 +22,18 @@ public class BoardController {
 		
 	
 	
+	
+	@RequestMapping(value = "/update/{board_no}/{curPage}", method = RequestMethod.POST)
+	public String update(@PathVariable("board_no") int board_no, 
+						@PathVariable("curPage") int curPage, 
+						BoardVO vo) {
+		vo.setBoard_no(board_no);
+		
+		bService.update(vo);
+		
+		return "redirect:/board/read/"+board_no+"/"+curPage;
+	}
+	
 	@RequestMapping(value = "/updateui/{board_no}/{curPage}", method = RequestMethod.GET)
 	public String updateui(@PathVariable("board_no") int board_no, 
 							@PathVariable("curPage") int curPage, 
