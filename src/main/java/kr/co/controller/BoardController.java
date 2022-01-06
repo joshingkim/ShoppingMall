@@ -22,6 +22,21 @@ public class BoardController {
 		
 	
 	
+	@RequestMapping(value = "/updateui/{board_no}/{curPage}", method = RequestMethod.GET)
+	public String updateui(@PathVariable("board_no") int board_no, 
+							@PathVariable("curPage") int curPage, 
+							Model model) {
+		
+		BoardVO vo = bService.updateUI(board_no);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("curPage", curPage);
+		
+		
+		return "board/update";
+	}
+	
+	
 	@RequestMapping(value = "/read/{board_no}/{curPage}", method = RequestMethod.GET)
 	public String read(@PathVariable("board_no") int board_no,
 			@PathVariable("curPage") int curPage, Model model) {

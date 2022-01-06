@@ -27,6 +27,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bDao.read(board_no);
 	}
+
+	@Override
+	public BoardVO updateUI(int board_no) {
+		// TODO Auto-generated method stub
+		return bDao.updateUI(board_no);
+	}
 	
 	
 	

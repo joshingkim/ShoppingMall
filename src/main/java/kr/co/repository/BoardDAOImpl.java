@@ -33,4 +33,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(NS+".read",board_no);
 	}
 
+	@Override
+	public BoardVO updateUI(int board_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".updateUI",board_no);
+	}
+
 }
