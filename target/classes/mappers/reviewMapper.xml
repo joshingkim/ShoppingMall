@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.review">
+
+	<insert id="insert">
+		INSERT INTO review (review_no, board_no, member_id, review_content ,review_grade) VALUES (seq_board_review_no.NEXTVAL, #{board_no}, #{member_id}, #{review_content}, #{review_grade})
+		
+	</insert>
+
+
+
+
+
+</mapper>
