@@ -10,4 +10,6 @@ public interface BoardDAO {
 
 	BoardVO read(int board_no);
 
+	BoardVO updateUI(int board_no);
+
 }
