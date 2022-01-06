@@ -7,4 +7,6 @@ public interface ItemService {
 
 	void insert(ItemVO vo);
 
+	ItemVO read(String item_no);
+
 }
