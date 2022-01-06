@@ -22,7 +22,7 @@
 
 		<div class="col-md-3 text-end">
 			<a class="btn btn-outline-primary" href="/member/loginUI">로그인</a> 
-			<a class="btn btn-outline-primary" href="#">회원가입</a>
+			<a class="btn btn-outline-primary" href="/member/insert">회원가입</a>
 		</div>
 	</header>
 </div>
