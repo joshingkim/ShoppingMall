@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
+import kr.co.domain.PageTO;
 import kr.co.service.ItemService;
 
 @Controller
@@ -55,5 +56,24 @@ public class ItemController {
 		iService.update(vo);
 
 		return "redirect:/item/read/" + vo.getItem_no();
+	}
+	
+	@RequestMapping(value = "/list/{curPage}", method = RequestMethod.GET)
+	public String list(@PathVariable("curPage") int curPage, PageTO<ItemVO> pt, Model model) {
+		
+		pt.setCurPage(curPage);
+		
+		pt = iService.list(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "item/list";
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public void list(PageTO<ItemVO> pt, Model model) {
+		pt = iService.list(pt);
+		
+		model.addAttribute("pt", pt);
 	}
 }

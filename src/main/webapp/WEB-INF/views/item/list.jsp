@@ -14,15 +14,34 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	아이템 넘버 : ${vo.item_no}<br>
-	아이템 명 : ${vo.item_name}<br>
-	카테고리 명 : ${vo.item_category}<br>
-	아이템 사이즈 : ${vo.item_size}<br>
-	아이템 컬러 : ${vo.item_color}<br>
-	아이템 가격 : ${vo.item_price}<br>
-	할인률 : ${vo.discount_percentage}<br>
-	아이템 재고 수량 : ${vo.item_amount}<br>
-	아이템 등록일 : ${vo.item_regdate}<br>
-	<a href="/item/update/${vo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a href="/item/delete/${vo.item_no}">삭제</a>
+	<table>
+		<thead>
+			<th>아이템 넘버</th>
+			<th>아이템 명</th>
+			<th>카테고리 명</th>
+			<th>아이템 사이즈</th>
+			<th>아이템 컬러</th>
+			<th>아이템 가격</th>
+			<th>할인률</th>
+			<th>아이템 재고 수량</th>
+			<th>아이템 등록일</th>
+		</thead>
+		<tbody>
+			<c:forEach items="${pt.list}" var="vo">
+				<tr>
+					<td>${vo.item_no}</td>
+					<td>${vo.item_name}</td>
+					<td>${vo.item_category}</td>
+					<td>${vo.item_size}</td>
+					<td>${vo.item_color}</td>
+					<td>${vo.item_price}</td>
+					<td>${vo.discount_percentage}</td>
+					<td>${vo.item_amount}</td>
+					<td>${vo.item_regdate}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<jsp:include page="page.jsp" />
 </body>
 </html>
