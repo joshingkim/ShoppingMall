@@ -23,4 +23,10 @@
 	<update id="update">
 		UPDATE item SET item_size=#{item_size},item_color=#{item_color},item_price=#{item_price},discount_percentage=#{discount_percentage},item_amount=#{item_amount} WHERE item_no=#{item_no}
 	</update>
+	<select id="getAmount" resultType="Integer">
+		SELECT COUNT(item_no) FROM item
+	</select>
+	<select id="list" resultType="kr.co.domain.ItemVO">
+		SELECT * FROM item ORDER BY item_regdate ASC
+	</select>
 </mapper>

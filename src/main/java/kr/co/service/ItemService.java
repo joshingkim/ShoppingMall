@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import kr.co.domain.ItemVO;
+import kr.co.domain.PageTO;
 
 public interface ItemService {
 
@@ -11,5 +12,7 @@ public interface ItemService {
 	ItemVO updateUI(String item_no);
 
 	void update(ItemVO vo);
+
+	PageTO<ItemVO> list(PageTO<ItemVO> pt);
 
 }
