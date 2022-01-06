@@ -9,4 +9,8 @@ public interface ItemDAO {
 
 	ItemVO read(String item_no);
 
+	ItemVO updateUI(String item_no);
+
+	void update(ItemVO vo);
+
 }

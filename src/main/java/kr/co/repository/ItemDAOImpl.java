@@ -25,5 +25,16 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+".read", item_no);
 	}
+
+	@Override
+	public ItemVO updateUI(String item_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".updateUI", item_no);
+	}
+
+	@Override
+	public void update(ItemVO vo) {
+		sqlSession.update(NS+".update", vo);
+	}
 	
 }
