@@ -7,4 +7,6 @@ public interface ItemDAO {
 
 	void insert(ItemVO vo);
 
+	ItemVO read(String item_no);
+
 }

@@ -14,4 +14,7 @@
 			SELECT seq_item_no.CURRVAL FROM dual
 		</selectKey>
 	</insert>
+	<select id="read" resultType="kr.co.domain.ItemVO">
+		SELECT * FROM item WHERE item_no = #{item_no}
+	</select>
 </mapper>
