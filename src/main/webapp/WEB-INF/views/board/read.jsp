@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="/resources/js/test.js" type="text/javascript"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -30,8 +30,31 @@ board_viewcnt : ${vo.board_viewcnt }
 <button class="updateui">수정 화면</button> 
 <button class="delete">삭제</button> 
 <button>목록</button> 
-<button id="btn_replyui_show">댓글화면</button><br>
+<button id="btn_reviewui_show">댓글화면</button><br>
 
+<div id="reviewContainer">
+	작성자: <input id="member_id"><br>
+	리뷰: <input id="review_content"><br>
+평점 : <select id="review_grade">
+
+<option value="5" selected>5점</option>
+
+<option value="4">4점</option>
+
+<option value="3">3점</option>
+
+<option value="2">2점</option>
+
+<option value="1">1점</option>
+
+</select><br>
+	<button id="btn_review_input">리뷰 완료</button>	
+</div>
+
+
+<div id="replies" class="mt-5">
+
+</div>
 
 
 
@@ -41,9 +64,71 @@ var board_no = ${vo.board_no};
 $(document).ready(function(){
 	
 	
+
+	
+	
+	$("#btn_review_input").click(function() {
+		var member_id = $("#member_id").val();
+		var review_content = $("#review_content").val();
+		var review_grade = $("#review_grade").val();
+		
+		if(member_id == ''){
+			$("#member_id").focus();
+			return;
+		}
+		
+		if(review_content == ''){
+			$("#review_content").focus();
+			return;
+		}
+		
+		if (review_grade == '') {
+			$("review_grade").focus();
+			return;
+		}
+	
+		
+		$.ajax({
+			type : "post",
+			url : "/replies",
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : "text",
+			data : JSON.stringify({
+				board_no : board_no,
+				member_id : member_id,
+				review_content : review_content,
+				review_grade : review_grade
+			}), 	
+			success : function(result) {
+				if(result=="SUCCESS"){
+					$("#member_id").val("");
+					$("#review_content").val("");
+					$("#review_grade").val("");
+					$("#reviewContainer").hide();
+					
+					getAllReplies(board_no, $("#replies"));
+					
+				}
+				
+			}
+		});
+		
+		
+	});
+	
+	$("#btn_reviewui_show").click(function() {
+		$("#reviewContainer").toggle();
+	});
+
 	$("body").on("click", ".updateui", function() {
 		location.assign("/board/updateui/${vo.board_no}/${curPage}");
 	});
+	
+	
+	
 	
 	
 });

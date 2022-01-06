@@ -13,11 +13,11 @@ CREATE TABLE board(
 
 CREATE SEQUENCE seq_board_no
 
-리뷰테이블
 CREATE TABLE review(
 	review_no NUMBER,
 	board_no NUMBER NOT NULL,
 	member_id VARCHAR2(15) NOT NULL,
+	review_content VARCHAR2(100) NOT NULL,
 	review_regdate DATE DEFAULT SYSDATE,
 	review_updatedate DATE DEFAULT SYSDATE,
 	review_grade NUMBER DEFAULT 5,
@@ -25,6 +25,7 @@ CREATE TABLE review(
 	CONSTRAINT fk_board_review_board_no FOREIGN KEY(board_no) REFERENCES board(board_no) ON DELETE CASCADE,
 	CONSTRAINT fk_board_review_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
+
 
 CREATE SEQUENCE seq_board_review_no
 
@@ -60,5 +61,24 @@ INSERT INTO board (board_no,item_no,board_title, board_content) VALUES(seq_board
 
 SELECT * FROM board WHERE board_no = 103
 
+select * from member
+
+select * from review
+
+INSERT INTO review (review_no, board_no, member_id, review_content,review_grade) 
+		VALUES
+		(seq_board_review_no.NEXTVAL, '105', 'm001', '123','2')
+		
+		
+
+		
+
+CREATE TABLE member(
+	member_id VARCHAR2(15),
+	CONSTRAINT pk_member_id PRIMARY KEY(member_id)
+)
+
+		
+	INSERT INTO member (member_id) VALUES ('m001')
 
 

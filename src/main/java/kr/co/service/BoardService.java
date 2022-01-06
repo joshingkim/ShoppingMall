@@ -12,5 +12,7 @@ public interface BoardService {
 
 	void update(BoardVO vo);
 
+	void increaseViewcnt(int board_no);
+
 	
 }

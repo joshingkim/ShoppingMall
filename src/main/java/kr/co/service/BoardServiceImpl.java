@@ -23,8 +23,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVO read(int board_no) {
 		
-		bDao.increaseViewcnt(board_no);
-		
 		return bDao.read(board_no);
 	}
 
@@ -38,6 +36,12 @@ public class BoardServiceImpl implements BoardService{
 	public void update(BoardVO vo) {
 		bDao.update(vo);
 		
+	}
+
+	@Override
+	public void increaseViewcnt(int board_no) {
+		
+		bDao.increaseViewcnt(board_no);
 	}
 	
 	
