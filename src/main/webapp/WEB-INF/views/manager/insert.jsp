@@ -90,6 +90,7 @@ manager_code: <input type="hidden" name="manager_code" value=1>
 			}
 			
 		})		
+		
 	});
 </script>
 
