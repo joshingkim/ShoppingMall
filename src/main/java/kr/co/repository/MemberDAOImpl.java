@@ -28,4 +28,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(NS+".idcheck", member_id);
 	}
 
+	@Override
+	public MemberVO read(String member_id) {
+		return sqlSession.selectOne(NS+".read", member_id);
+	}
+
 }
