@@ -10,8 +10,25 @@
 		
 	</insert>
 
+	<select id="getAmountReplyByBno" resultType="Integer">
+		SELECT COUNT(review_no) FROM review WHERE board_no = #{board_no}
+	</select>
+
+	<select id="getRepliesPage" resultType="kr.co.domain.ReviewVO">
+		SELECT * FROM review WHERE board_no = #{board_no} ORDER BY review_no DESC
+	</select>
 
 
 
+	<select id="getAllReplies" resultType="kr.co.domain.ReviewVO">
+		SELECT * FROM review WHERE board_no = #{board_no} ORDER BY review_no DESC
+	</select>
+	
+		<update id="updateReview">
+		UPDATE review SET review_content = #{review_content}, review_regdate = SYSDATE 
+		WHERE review_no = #{review_no}
+	</update>
+	
+	
 
 </mapper>

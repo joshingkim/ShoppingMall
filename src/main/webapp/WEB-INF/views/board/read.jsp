@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="/resources/js/file.js" type="text/javascript"></script>
+  <script src="/resources/js/board.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -58,13 +58,57 @@ board_viewcnt : ${vo.board_viewcnt }
 
 
 
+
 <script type="text/javascript">
 var board_no = ${vo.board_no};
 
 $(document).ready(function(){
 	
 	
-
+	
+	
+	
+	getRepliesPage(board_no, 1, $("#replies"));
+	
+	
+	$("#replies").on("click", ".reply_page_left", function(event) {
+		event.preventDefault();
+		var curPage = $(this).attr("href");
+		
+		if(curPage > 1){
+			
+			getRepliesPage(board_no, --curPage, $("#replies"));
+		}
+		
+		
+	});
+	
+	$("#replies").on("click", ".reply_page_right", function(event) {
+		event.preventDefault();
+		var curPage = $(this).attr("href");
+		var totalPage = $(this).attr("data-totalPage");
+		
+		
+		
+		if(curPage < totalPage){
+			
+			getRepliesPage(board_no, ++curPage, $("#replies"));
+		}
+		
+		
+	});
+	
+	
+	$("#replies").on("click", ".reply_page_no", function() {
+		var curPage = $(this).text();
+		
+		getRepliesPage(board_no, curPage, $("#replies"));
+	});
+	
+	
+	
+	
+	
 	
 	
 	$("#btn_review_input").click(function() {

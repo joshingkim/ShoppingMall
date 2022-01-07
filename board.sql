@@ -80,5 +80,24 @@ CREATE TABLE member(
 
 		
 	INSERT INTO member (member_id) VALUES ('m001')
+	
+	
+			SELECT COUNT(review_no) FROM review WHERE board_no = 4
+
+			
+			SELECT * FROM review WHERE board_no = 113 ORDER BY review_no DESC
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
 
