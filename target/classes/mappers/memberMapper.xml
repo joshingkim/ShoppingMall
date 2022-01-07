@@ -10,7 +10,9 @@
 
 
 
-
+<select id="read" resultType="kr.co.domain.MemberVO">
+	SELECT * FROM member WHERE member_id = #{member_id}
+</select>
 
 <select id="idcheck" resultType="kr.co.domain.MemberVO">
 	SELECT * FROM member WHERE member_id = #{member_id}

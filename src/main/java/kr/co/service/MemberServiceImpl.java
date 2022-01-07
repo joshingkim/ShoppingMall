@@ -23,4 +23,9 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.idcheck(member_id);
 	}
 
+	@Override
+	public MemberVO read(String member_id) {
+		return mDao.read(member_id);
+	}
+
 }

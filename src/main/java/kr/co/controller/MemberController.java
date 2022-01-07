@@ -3,6 +3,8 @@ package kr.co.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +39,15 @@ public class MemberController {
 	public String insert(MemberVO vo) {
 		mService.insertMember(vo);
 		return "redirect:/member/read/"+vo.getMember_id();
+	}
+	
+	@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
+	public String read(@PathVariable("member_id") String member_id, Model model) {
+		MemberVO vo = mService.read(member_id);
+		
+		model.addAttribute("vo", vo);
+		return "member/read";
+	
 	}
 	
 
