@@ -16,6 +16,8 @@
 </head>
 <body>
 
+<jsp:include page="../header.jsp" />
+
 <form action="/member/insert" method="post">
 아이디: <input name="member_id" maxlength="15" required><button id="idcheck">중복검사</button><p id="idCheckResult"></p>
 비밀번호: <input name="member_pw" type="password" maxlength="15" required><br>
@@ -27,6 +29,8 @@ Email: <input name="member_email" type="email" required><br>
 전화번호: <input name="member_phone_number" maxlength="11" placeholder="숫자만입력하세요" required><br>
 <input type="submit" value="회원 등록">
 </form>
+
+<jsp:include page="../footer.jsp" />
 
 <script type="text/javascript">
 document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
