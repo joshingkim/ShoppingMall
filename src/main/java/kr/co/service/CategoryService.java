@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.List;
+
 import kr.co.domain.CategoryVO;
 import kr.co.domain.PageTO;
 
@@ -14,5 +16,9 @@ public interface CategoryService {
 	void update(CategoryVO vo);
 
 	void delete(String item_name);
+	
+	List<CategoryVO> categorylist();
+
+	List<CategoryVO> item_name_list(String item_category);
 
 }

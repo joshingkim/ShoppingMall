@@ -19,4 +19,8 @@ public interface CategoryDAO {
 
 	void delete(String item_name);
 
+	List<CategoryVO> categorylist();
+
+	List<CategoryVO> item_name_list(String item_category);
+	
 }

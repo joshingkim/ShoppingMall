@@ -30,7 +30,7 @@
 			<c:forEach items="${pt.list}" var="vo">
 				<tr>
 					<td>${vo.item_no}</td>
-					<td>${vo.item_name}</td>
+					<td><a href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.item_category}</td>
 					<td>${vo.item_size}</td>
 					<td>${vo.item_color}</td>

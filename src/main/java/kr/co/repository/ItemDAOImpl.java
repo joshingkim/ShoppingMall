@@ -52,5 +52,11 @@ public class ItemDAOImpl implements ItemDAO {
 		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
 		return sqlSession.selectList(NS+".list", null, rbs);
 	}
-	
+
+	@Override
+	public void delete(String item_no) {
+		sqlSession.delete(NS+".delete", item_no);
+	}
+
+
 }

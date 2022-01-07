@@ -33,7 +33,9 @@ CREATE TABLE category(
 	item_category VARCHAR2(60) NOT NULL,
 	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
 )
-INSERT INTO category (item_name, item_category) VALUES('kimchi','kimchi')
+INSERT INTO category (item_name, item_category) VALUES('제이에스티나 제이블랑(JJPJNQ9AF509SR420)','목걸이')
 SELECT * FROM category
 
 SELECT * FROM category WHERE item_name = '세이코 남성 오토 메탈 시계(SNKA05)'
+
+SELECT item_category FROM category group by item_category
