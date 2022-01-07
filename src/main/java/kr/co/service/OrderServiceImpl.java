@@ -21,4 +21,10 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	@Override
+	public OrderVO detail(int order_no) {
+		
+		return oDao.detail(order_no);
+	}
+
 }

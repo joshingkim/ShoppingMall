@@ -19,6 +19,11 @@ public class OrderDAOImpl implements OrderDAO{
 	public void insert(OrderVO vo) {
 		sqlSession.insert(NS+".insert", vo);
 	}
+
+	@Override
+	public OrderVO detail(int order_no) {
+		return sqlSession.selectOne(NS+".detail", order_no);
+	}
 	
 	
 	
