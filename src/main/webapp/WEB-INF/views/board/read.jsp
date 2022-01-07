@@ -56,7 +56,39 @@ board_viewcnt : ${vo.board_viewcnt }
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+            
+        <h5 class="modal-title" id="staticBackdropLabel">
 
+        <span id="sp_reviewui_review_no">11</span>
+        
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p id="sp_reviewui_member_id">홍길동</p>
+      	
+      	<div class="form-group">
+      		<input class="form-control" id="div_reviewui_review_content" value="안녕하세요.">
+      	</div>
+      	
+      	
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_reviewui_update">댓글 수정 완료</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script type="text/javascript">
@@ -108,6 +140,53 @@ $(document).ready(function(){
 	
 	
 	
+	
+	
+	
+	
+	$("#btn_reviewui_update").click(function() {
+		var review_no = $("#sp_reviewui_review_no").text();
+		var review_content = $("#div_reviewui_review_content").val();
+	
+		$.ajax({
+			type : "put",
+			url : "/replies/"+review_no,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "PUT"
+			},
+			dataType : "text",
+			data : JSON.stringify({
+				review_content : review_content
+			}), 
+			success : function(result) {
+				if(result == "SUCCESS"){
+					alert("수정되었습니다.");
+					getAllReplies(board_no, $("#replies"));
+				}
+			}
+		});
+	});
+	
+	
+	
+	
+	
+	
+	$("#replies").on("click", ".btn_review_updateui_form", function() {
+		
+		var review_no = $(this).attr("data-review_no");
+		$("#sp_reviewui_review_no").text(review_no);
+		
+		var member_id = $(this).attr("data-member_id");
+		$("#sp_reviewui_member_id").text(member_id);
+			
+		var review_content = $(this).prev("p").text();
+		$("#div_reviewui_review_content").val(review_content);
+		
+		
+		$("#staticBackdrop").modal("show");
+	});
 	
 	
 	

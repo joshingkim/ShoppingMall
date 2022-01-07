@@ -42,8 +42,9 @@ public class ReviewController {
 		 ResponseEntity<String> entity = null;
 		
 		try {
-			  String board_content = (String) map.get("board_content");
-			  ReviewVO rvo = new ReviewVO(review_no, 0, null, board_content, null, null, 0);
+			  String review_content = (String) map.get("review_content");
+			
+			  ReviewVO rvo = new ReviewVO(review_no, 0, null, review_content, null, null, 0);
 			
 			rService.updateReview(rvo);
 			
