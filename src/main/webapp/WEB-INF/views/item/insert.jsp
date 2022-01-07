@@ -15,27 +15,60 @@
 </head>
 <body>
 	<form action="/item/insert" method="post">
-		카테고리 명 : <input name="item_category" maxlength="20"><br> 
-		아이템 명 : <input name="item_name" maxlength="25"><br>
+		카테고리 명 :
+		<select id="item_category" name="item_category" >
+			<option>선택하세요</option>
+			<c:forEach items="${list}" var="list">
+				<option>${list.item_category}</option>
+			</c:forEach>
+		</select><br>
+		아이템 명 : 
+		<select id="item_name" name="item_name" >
+			<option>선택하세요</option>
+		</select><br>
 		아이템 사이즈 : <input name="item_size" maxlength="10"><br>
 		아이템 컬러 : <input name="item_color" maxlength="10"><br>
 		아이템 가격 : <input name="item_price"><br>
-		할인률 : <input name="discount_percentage"><br>
+		할인률 : <input name="discount_percentage">%<br>
 		아이템 재고 수량 : <input name="item_amount"><br>
  		<input type="submit" value="등록 완료">
 	</form>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$("select[name=item_category]").change(function() {
+				var item_category = $(this).val();
+				$.ajax({
+					type : "get",
+					url : "/category/item_name_list",
+					dataType : "text",
+					data : {
+						"item_category" : item_category
+					},
+					success : function(data) {
+						$("#item_name").html("");
+						data = JSON.parse(data);
+						$("#item_name").append("<option>선택하세요</option>");
+						for(var i=0; i<data.length; i++){
+							var obj = data[i];
+							var msg = "<option>"+obj.item_name+"</option>";
+							$("#item_name").append(msg);
+						}
+					}
+					
+				});
+			});
+			
+			
 			$("input[type='submit']").click(function(event) {
 				event.preventDefault();
 				
 				var item_category = $("[name='item_category']").val();
-				if (item_category == '') {
+				if (item_category == '선택하세요') {
 					$("[name='item_category']").focus();
 					return;
 				}
 				var item_name = $("[name='item_name']").val();
-				if (item_name == '') {
+				if (item_name == '선택하세요') {
 					$("[name='item_name']").focus();
 					return;
 				}

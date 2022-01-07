@@ -20,9 +20,21 @@
 	아이템 사이즈 : ${vo.item_size}<br>
 	아이템 컬러 : ${vo.item_color}<br>
 	아이템 가격 : ${vo.item_price}<br>
-	할인률 : ${vo.discount_percentage}<br>
+	할인률 : ${vo.discount_percentage}%<br>
 	아이템 재고 수량 : ${vo.item_amount}<br>
 	아이템 등록일 : ${vo.item_regdate}<br>
-	<a href="/item/update/${vo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a href="/item/delete/${vo.item_no}">삭제</a>
+	<a href="/item/update/${vo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#delete').click(function() { 
+			var result = confirm('삭제 하시겠습니까?'); 
+			if(result) { 
+				location.assign("/item/delete/${vo.item_no}");
+			}else{ 
+				
+			} 
+		}); 
+	});
+</script>
 </body>
 </html>

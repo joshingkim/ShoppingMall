@@ -29,4 +29,7 @@
 	<select id="list" resultType="kr.co.domain.ItemVO">
 		SELECT * FROM item ORDER BY item_regdate ASC
 	</select>
+	<delete id="delete">
+		DELETE FROM item WHERE item_no = #{item_no}
+	</delete>
 </mapper>

@@ -53,4 +53,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 		sqlSession.delete(NS+".delete", item_name);
 	}
 	
+	@Override
+	public List<CategoryVO> categorylist() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+".categorylist");
+	}
+
+	@Override
+	public List<CategoryVO> item_name_list(String item_category) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+".item_name_list", item_category);
+	}
+	
 }

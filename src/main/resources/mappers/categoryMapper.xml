@@ -22,4 +22,10 @@
 	<delete id="delete">
 		DELETE FROM category WHERE item_name = #{item_name}
 	</delete>
+	<select id="categorylist" resultType="kr.co.domain.CategoryVO">
+		SELECT item_category FROM category group by item_category
+	</select>
+	<select id="item_name_list" resultType="kr.co.domain.CategoryVO">
+		SELECT item_name  FROM category WHERE item_category = #{item_category}
+	</select>
 </mapper>

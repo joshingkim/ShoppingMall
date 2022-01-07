@@ -50,4 +50,11 @@ public class ItemServiceImpl implements ItemService {
 		return pt;
 	}
 
+	@Override
+	public void delete(String item_no) {
+		iDao.delete(item_no);
+	}
+
+
+
 }

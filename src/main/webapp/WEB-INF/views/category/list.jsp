@@ -29,11 +29,24 @@
 				<tr>
 					<td>${vo.item_category}</td>
 					<td>${vo.item_name}</td>
-					<td><a href="/category/update/${vo.item_name}">수정</a>/<a href="/category/delete/${vo.item_name}">삭제</a></td>
+					<td><a href="/category/update/${vo.item_name}">수정</a>/<a class="category_delete" href="/category/delete/${vo.item_name}">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<jsp:include page="page.jsp" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.category_delete').click(function() { 
+			var result = confirm('삭제 하시겠습니까?'); 
+			if(result) { 
+				var link = $(this).href;
+				location.assign(link);
+			} else { 
+				event.preventDefault();
+			} 
+		}); 
+	});
+</script>
 </body>
 </html>

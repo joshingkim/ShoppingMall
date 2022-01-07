@@ -20,4 +20,8 @@ public interface ItemDAO {
 
 	List<ItemVO> list(PageTO<ItemVO> pt);
 
+	void delete(String item_no);
+
+	
+
 }
