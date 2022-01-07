@@ -11,7 +11,7 @@ CREATE TABLE item(
 	CONSTRAINT pk_item_no PRIMARY KEY(item_no),
 	CONSTRAINT fk_item_name FOREIGN KEY(item_name) REFERENCES category(item_name) ON DELETE CASCADE
 )
-
+INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) VALUES(1,'kimchi','kimchi','small','red',15000, 15, 15)
 CREATE SEQUENCE seq_item_no
 
 select * from item
@@ -33,6 +33,7 @@ CREATE TABLE category(
 	item_category VARCHAR2(60) NOT NULL,
 	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
 )
+INSERT INTO category (item_name, item_category) VALUES('kimchi','kimchi')
 SELECT * FROM category
 
 SELECT * FROM category WHERE item_name = '세이코 남성 오토 메탈 시계(SNKA05)'
