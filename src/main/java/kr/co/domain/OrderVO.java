@@ -14,20 +14,52 @@ public class OrderVO implements Serializable{
 	private int order_no;
 	private String member_id;
 	private int item_no;
+	private int cart_no;
 	private int order_quantity;
 	private int order_price;
 	private Date order_date;
+	private String order_email;
+	private String order_name;
+	private int order_phone_number;
+	private String order_address;
+	private String order_detail_address;
 	
 	public OrderVO() {}
+	
+	
 
-	public OrderVO(int order_no, String member_id, int item_no, int order_quantity, int order_price, Date order_date) {
+	public OrderVO(int order_no, String member_id, int item_no, int cart_no, int order_quantity, int order_price,
+			Date order_date, String order_email, String order_name, int order_phone_number, String order_address,
+			String order_detail_address) {
+		super();
 		this.order_no = order_no;
 		this.member_id = member_id;
 		this.item_no = item_no;
+		this.cart_no = cart_no;
 		this.order_quantity = order_quantity;
 		this.order_price = order_price;
 		this.order_date = order_date;
+		this.order_email = order_email;
+		this.order_name = order_name;
+		this.order_phone_number = order_phone_number;
+		this.order_address = order_address;
+		this.order_detail_address = order_detail_address;
 	}
+
+
+	
+
+	public int getCart_no() {
+		return cart_no;
+	}
+
+
+
+	public void setCart_no(int cart_no) {
+		this.cart_no = cart_no;
+	}
+
+
 
 	public int getOrder_no() {
 		return order_no;
@@ -86,6 +118,46 @@ public class OrderVO implements Serializable{
 		return Objects.hash(item_no, member_id);
 	}
 
+	public String getOrder_email() {
+		return order_email;
+	}
+
+	public void setOrder_email(String order_email) {
+		this.order_email = order_email;
+	}
+
+	public String getOrder_name() {
+		return order_name;
+	}
+
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+
+	public int getOrder_phone_number() {
+		return order_phone_number;
+	}
+
+	public void setOrder_phone_number(int order_phone_number) {
+		this.order_phone_number = order_phone_number;
+	}
+
+	public String getOrder_address() {
+		return order_address;
+	}
+
+	public void setOrder_address(String order_address) {
+		this.order_address = order_address;
+	}
+
+	public String getOrder_detail_address() {
+		return order_detail_address;
+	}
+
+	public void setOrder_detail_address(String order_detail_address) {
+		this.order_detail_address = order_detail_address;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -98,12 +170,20 @@ public class OrderVO implements Serializable{
 		return item_no == other.item_no && Objects.equals(member_id, other.member_id);
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "OrderVO [order_no=" + order_no + ", member_id=" + member_id + ", item_no=" + item_no
-				+ ", order_quantity=" + order_quantity + ", order_price=" + order_price + ", order_date=" + order_date
-				+ "]";
+		return "OrderVO [order_no=" + order_no + ", member_id=" + member_id + ", item_no=" + item_no + ", cart_no="
+				+ cart_no + ", order_quantity=" + order_quantity + ", order_price=" + order_price + ", order_date="
+				+ order_date + ", order_email=" + order_email + ", order_name=" + order_name + ", order_phone_number="
+				+ order_phone_number + ", order_address=" + order_address + ", order_detail_address="
+				+ order_detail_address + "]";
 	}
+
+	
+
+	
 	
 
 }

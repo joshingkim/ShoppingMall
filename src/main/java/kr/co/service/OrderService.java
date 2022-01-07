@@ -6,4 +6,6 @@ public interface OrderService {
 
 	public void insert(OrderVO vo);
 
+	public OrderVO detail(int order_no);
+
 }
