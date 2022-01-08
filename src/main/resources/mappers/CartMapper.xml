@@ -8,7 +8,7 @@
 	<insert id="insert">
 		INSERT INTO cart(cart_no, member_id, item_no, cart_quantity, cart_price, money) 
 		VALUES
-		(seq_cart_no.NEXTVAL, #{member_id), #{item_no}, #{cart_quantity}, #{cart_price}, #{money}
+		(seq_cart_no.NEXTVAL, #{member_id}, #{item_no}, #{cart_quantity}, #{cart_price}, #{money})
 	</insert>
 
 	<select id="countCart">
