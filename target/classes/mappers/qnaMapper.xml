@@ -14,5 +14,13 @@
 		</selectKey>
 
 	</insert>
+	
+	<select id="list" resultType="kr.co.domain.QnaVO">
+	SELECT * FROM qna
+	</select>
+	
+	<update id="answer">
+	UPDATE qna SET qna_answer = #{qna_answer}, qna_repStep = qna_repStep+1 WHERE qna_no = #{qna_no}
+	</update>
 
 </mapper>

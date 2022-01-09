@@ -14,6 +14,7 @@ public class QnaVO implements Serializable {
 	private String qna_content;
 	private String qna_regdate;
 	private String qna_updatedate;
+	private String qna_answer;
 	private int qna_repRoot;
 	private int qna_repStep;
 	private int qna_repIndent;
@@ -22,7 +23,7 @@ public class QnaVO implements Serializable {
 	}
 
 	public QnaVO(int qna_no, int board_no, String member_id, String qna_title, String qna_content, String qna_regdate,
-			String qna_updatedate, int qna_repRoot, int qna_repStep, int qna_repIndent) {
+			String qna_updatedate, String qna_answer, int qna_repRoot, int qna_repStep, int qna_repIndent) {
 		super();
 		this.qna_no = qna_no;
 		this.board_no = board_no;
@@ -31,6 +32,7 @@ public class QnaVO implements Serializable {
 		this.qna_content = qna_content;
 		this.qna_regdate = qna_regdate;
 		this.qna_updatedate = qna_updatedate;
+		this.qna_answer = qna_answer;
 		this.qna_repRoot = qna_repRoot;
 		this.qna_repStep = qna_repStep;
 		this.qna_repIndent = qna_repIndent;
@@ -92,6 +94,14 @@ public class QnaVO implements Serializable {
 		this.qna_updatedate = qna_updatedate;
 	}
 
+	public String getQna_answer() {
+		return qna_answer;
+	}
+
+	public void setQna_answer(String qna_answer) {
+		this.qna_answer = qna_answer;
+	}
+
 	public int getQna_repRoot() {
 		return qna_repRoot;
 	}
@@ -108,21 +118,16 @@ public class QnaVO implements Serializable {
 		this.qna_repStep = qna_repStep;
 	}
 
-	public int getQna_replndent() {
+	public int getQna_repIndent() {
 		return qna_repIndent;
 	}
 
-	public void setQna_replndent(int qna_replndent) {
-		this.qna_repIndent = qna_replndent;
+	public void setQna_repIndent(int qna_repIndent) {
+		this.qna_repIndent = qna_repIndent;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(board_no, member_id, qna_no);
 	}
 
 	@Override
