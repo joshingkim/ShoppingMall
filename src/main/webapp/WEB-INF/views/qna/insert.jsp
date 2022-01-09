@@ -17,9 +17,9 @@
 <h1>상품문의</h1>
 <form action="/qna/insert" method="POST">
 게시글 번호: <input name="board_no"><br>
-문의아이디 : <input name="member_id"><br>
+작성자 : <input name="member_id"><br>
 제목 : <input name="qna_title" maxlength="100"><br>
-문의 내용 : <textarea name="qna_content" rows="5" maxlength="300"></textarea><br>
+내용 : <textarea name="qna_content" rows="5" maxlength="300"></textarea><br>
 <input type="submit" value="문의하기">
 </form>
 
