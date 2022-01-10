@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.ManagerVO;
 import kr.co.domain.OrderVO;
@@ -29,7 +29,7 @@ public class ManagerServiceImpl implements ManagerService {
 		return mDAO.list();
 	}
 
-
+	
 	@Override 
 	 public List<Object> saleRank() {
 	 
@@ -41,5 +41,11 @@ public class ManagerServiceImpl implements ManagerService {
 	public List<Object> daySale() {
 		return mDAO.daySale();
 	}
+
+	
+	  @Override public List<Object> likeRank() {
+	 
+	 return mDAO.likeRank(); }
+	 
 
 }

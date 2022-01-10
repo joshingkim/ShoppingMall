@@ -41,6 +41,12 @@ public class ManagerDAOImpl implements ManagerDAO{
 			return sqlSession.selectList(NS+".daySale");
 		}
 
+		
+		  @Override public List<Object> likeRank() {
+		  
+		 return sqlSession.selectList(NS+".likeRank"); }
+		 
+
 	
 	
 

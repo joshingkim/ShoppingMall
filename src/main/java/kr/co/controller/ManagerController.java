@@ -39,6 +39,7 @@ public class ManagerController {
 		List<OrderVO> list = mService.list();
 		 List<Object> saleRank = mService.saleRank();
 		 List<Object> daySale =  mService.daySale();
+		  List<Object> likeRank = mService.likeRank();
 		
 			String list1 = new ObjectMapper().writeValueAsString(list);
 			model.addAttribute("list1", list1);
@@ -50,10 +51,17 @@ public class ManagerController {
 		
 			String daySale1 = new ObjectMapper().writeValueAsString(daySale);
 			model.addAttribute("daySale1", daySale1);
+			
+			
+			  String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
+			  model.addAttribute("likeRank1", likeRank1);
+			 
 
-		model.addAttribute("list", list);
-		model.addAttribute("saleRank", saleRank);
-		model.addAttribute("daySale", daySale);
+			/*
+			 * model.addAttribute("list", list); 
+			 * model.addAttribute("saleRank", saleRank);
+			 * model.addAttribute("daySale", daySale);
+			 */
 	
 		
 		
