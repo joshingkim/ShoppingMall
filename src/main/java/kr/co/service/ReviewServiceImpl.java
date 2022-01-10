@@ -45,4 +45,9 @@ public class ReviewServiceImpl implements ReviewService {
 		rDao.updateReview(rvo);		
 	}
 
+	@Override
+	public void deleteReview(int review_no) {
+		rDao.deleteReview(review_no);
+	}
+
 }

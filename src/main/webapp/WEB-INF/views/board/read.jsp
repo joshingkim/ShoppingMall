@@ -75,6 +75,7 @@ board_viewcnt : ${vo.board_viewcnt }
       <div class="modal-body">
       	<p id="sp_reviewui_member_id">홍길동</p>
       	
+      	
       	<div class="form-group">
       		<input class="form-control" id="div_reviewui_review_content" value="안녕하세요.">
       	</div>
@@ -141,13 +142,34 @@ $(document).ready(function(){
 	
 	
 	
-	
+	$("#replies").on("click", ".btn_review_delete", function() {
+		var review_no = $(this).attr("data-review_no");
+		
+		$.ajax({
+			type : "delete",
+			url : "/replies/"+review_no,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "DELETE"
+			},
+			dataType : "text",
+			success : function(result) {
+				if(result == "SUCCESS"){
+					alert("삭제되었습니다.");
+					getAllReplies(board_no, $("#replies"));
+				}
+			}
+		});
+		
+	});
 	
 	
 	$("#btn_reviewui_update").click(function() {
 		var review_no = $("#sp_reviewui_review_no").text();
 		var review_content = $("#div_reviewui_review_content").val();
-	
+		
+
+		
 		$.ajax({
 			type : "put",
 			url : "/replies/"+review_no,
@@ -157,7 +179,8 @@ $(document).ready(function(){
 			},
 			dataType : "text",
 			data : JSON.stringify({
-				review_content : review_content
+				review_content : review_content,
+				
 			}), 
 			success : function(result) {
 				if(result == "SUCCESS"){
@@ -180,10 +203,15 @@ $(document).ready(function(){
 		
 		var member_id = $(this).attr("data-member_id");
 		$("#sp_reviewui_member_id").text(member_id);
-			
-		var review_content = $(this).prev("p").text();
-		$("#div_reviewui_review_content").val(review_content);
 		
+		var review_grade = $(this).prev(".review_grade").text();
+		$("#div_reviewui_review_grade").val(review_grade);
+		
+		var review_content = $(this).prev(".review_content").text();
+		$("#div_reviewui_review_content").val(review_content);
+	
+		console.log(review_content);
+		console.log(review_grade);
 		
 		$("#staticBackdrop").modal("show");
 	});

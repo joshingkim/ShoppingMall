@@ -18,4 +18,6 @@ public interface ReviewDAO {
 
 	void updateReview(ReviewVO rvo);
 
+	void deleteReview(int review_no);
+
 }

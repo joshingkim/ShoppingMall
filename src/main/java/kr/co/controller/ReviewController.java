@@ -30,7 +30,21 @@ public class ReviewController {
 	
 	
 	
-	
+	@RequestMapping(value = "{review_no}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteReview(@PathVariable("review_no") int review_no){
+		ResponseEntity<String> entity = null;
+		try {
+			
+			rService.deleteReview(review_no);
+			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 	
 	
@@ -43,6 +57,9 @@ public class ReviewController {
 		
 		try {
 			  String review_content = (String) map.get("review_content");
+			 
+			  
+
 			
 			  ReviewVO rvo = new ReviewVO(review_no, 0, null, review_content, null, null, 0);
 			

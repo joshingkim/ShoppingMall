@@ -62,4 +62,10 @@ RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
 		
 	}
 
+
+	@Override
+	public void deleteReview(int review_no) {
+		sqlSession.delete(NS+".deleteReview", review_no);		
+	}
+
 }
