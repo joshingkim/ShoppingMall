@@ -88,8 +88,6 @@ CREATE TABLE member(
 			SELECT * FROM review WHERE board_no = 113 ORDER BY review_no DESC
 			
 			
-UPDATE review SET review_content = 1234, review_regdate = SYSDATE 
-WHERE review_no = 45
 			
 			
 			

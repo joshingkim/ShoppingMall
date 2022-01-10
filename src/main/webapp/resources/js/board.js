@@ -96,8 +96,8 @@ function replyform(member_id, review_updatedate, review_content, review_grade , 
 					      </div>
 
 					      <div class="card-body">
-							<p class="card-text">평점: ${review_grade}점</p>
-					         <p class="card-text">${review_content}</p>
+							<p class="card-text review_grade">평점: ${review_grade}점</p>
+					         <p class="card-text review_content">${review_content}</p>
 							 
 
 					         <a data-member_id="${member_id}" data-review_no="${review_no}" href="#" class="btn btn-warning btn-sm btn_review_updateui_form">수정</a> 
