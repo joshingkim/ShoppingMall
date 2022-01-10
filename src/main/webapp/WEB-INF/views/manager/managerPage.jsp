@@ -33,10 +33,17 @@ var date = new Date();
  var saleRank1 = ${saleRank1};
  var daySale1 = ${daySale1};
  var likeRank1 = ${likeRank1};
+ var getName1 = ${getName1};
+ var keywordRank1 = ${keywordRank1};
+
 console.log(list1);
 console.log(saleRank1);
 console.log(daySale1);
 console.log(likeRank1);
+console.log(getName1);
+console.log(keywordRank1);
+
+
 
 for(var i = 0, result = [] ; i < 50 ; i++){
  result.push({ "title" : daySale1[i].ORDERPRICE + "원", "start" : daySale1[i].ORDERDATE});
@@ -168,45 +175,13 @@ calendar.render();
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          연령대별 구매1위 품목
+          인기검색어 순위
         </button>
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">연령대</th>
-      <th scope="col">품목</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">10~20대</th>
-      <td>제품1</td>
-
-    </tr>
-    <tr>
-      <th scope="row">20~30대</th>
-      <td>제품2</td>
-    </tr>
-    <tr>
-      <th scope="row">30~40대</th>
-      <td>제품3</td>
-    </tr>
-     <tr>
-      <th scope="row">40~50대</th>
-      <td>제품4</td>
-    </tr>
-     <tr>
-      <th scope="row">50~60대</th>
-      <td>제품5</td>
-    </tr>
-    
-    
-  </tbody>
-</table>
+      <canvas id="myChart6"></canvas>
       </div>
     </div>
   </div>
@@ -228,12 +203,12 @@ const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
         labels: [
-        	(saleRank1[0].ITEM_NO + '번 제품'), 
-        		(saleRank1[1].ITEM_NO + '번 제품'),
-        		(saleRank1[2].ITEM_NO + '번 제품'),
-        		(saleRank1[3].ITEM_NO + '번 제품'),
-        		(saleRank1[4].ITEM_NO + '번 제품'),
-        		(saleRank1[5].ITEM_NO + '번 제품')
+        	(getName1[saleRank1[0].ITEM_NO -1].ITEM_NAME), 
+        	(getName1[saleRank1[1].ITEM_NO -1].ITEM_NAME), 
+        	(getName1[saleRank1[2].ITEM_NO -1].ITEM_NAME), 
+        	(getName1[saleRank1[3].ITEM_NO -1].ITEM_NAME), 
+        	(getName1[saleRank1[4].ITEM_NO -1].ITEM_NAME), 
+        	(getName1[saleRank1[5].ITEM_NO -1].ITEM_NAME), 
         		],
         datasets: [{
             label: (date.getMonth()+1 + '월 판매량 순위'),
@@ -272,12 +247,12 @@ const myChart5 = new Chart(ctx5, {
     type: 'doughnut',
     data: {
         labels: [ 
-        	(likeRank1[0].ITEM_NO + '번 제품'), 
-        	(likeRank1[1].ITEM_NO + '번 제품'), 
-        	(likeRank1[2].ITEM_NO + '번 제품'), 
-        	(likeRank1[3].ITEM_NO + '번 제품'), 
-        	(likeRank1[4].ITEM_NO + '번 제품'), 
-        	(likeRank1[5].ITEM_NO + '번 제품')
+        	(getName1[likeRank1[0].ITEM_NO -1].ITEM_NAME ), 
+        	(getName1[likeRank1[1].ITEM_NO -1].ITEM_NAME ), 
+        	(getName1[likeRank1[2].ITEM_NO -1].ITEM_NAME ), 
+        	(getName1[likeRank1[3].ITEM_NO -1].ITEM_NAME ), 
+        	(getName1[likeRank1[4].ITEM_NO -1].ITEM_NAME ), 
+        	(getName1[likeRank1[5].ITEM_NO -1].ITEM_NAME )
         	],
         datasets: [{
             label: '총 찜 횟수',
@@ -318,7 +293,57 @@ const myChart5 = new Chart(ctx5, {
 });
 </script>
 
-
+<script>
+const ctx6 = document.getElementById('myChart6').getContext('2d');
+const myChart6 = new Chart(ctx6, {
+    type: 'polarArea',
+    data: {
+        labels: [ 
+        	("1위 " + keywordRank1[0].KEYWORD), 
+        	("2위 " + keywordRank1[1].KEYWORD), 
+        	("3위 " + keywordRank1[2].KEYWORD), 
+        	("4위 " + keywordRank1[3].KEYWORD), 
+        	("5위 " + keywordRank1[4].KEYWORD), 
+        	("6위 " + keywordRank1[5].KEYWORD)
+        	],
+        datasets: [{
+            label: '총 찜 횟수',
+            data: [
+            	(keywordRank1[0].COUNTKEYWORD), 
+            	(keywordRank1[1].COUNTKEYWORD), 
+            	(keywordRank1[2].COUNTKEYWORD), 
+            	(keywordRank1[3].COUNTKEYWORD), 
+            	(keywordRank1[4].COUNTKEYWORD), 
+            	(keywordRank1[5].COUNTKEYWORD)
+            	],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
 
 
 

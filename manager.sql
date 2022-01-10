@@ -17,16 +17,14 @@ CREATE TABLE package(
    order_quantity NUMBER NOT NULL,
    order_price NUMBER NOT NULL,
    order_date DATE DEFAULT SYSDATE,
-   order_email VARCHAR2(30) NOT NULL,
-   order_name VARCHAR2(25) NOT NULL,
-   order_phone_number NUMBER NOT NULL,
-   order_address VARCHAR2(120) NOT NULL,
-   order_detail_address VARCHAR2(50) NOT NULL,
-   CONSTRAINT pk_package_order_no PRIMARY KEY(order_no),
-   CONSTRAINT fk_package_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE,
-   CONSTRAINT fk_package_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE,
-   CONSTRAINT fk_package_cart_no FOREIGN KEY(cart_no) REFERENCES cart(cart_no) ON DELETE CASCADE
+   order_email VARCHAR2(30) ,
+   order_name VARCHAR2(25) ,
+   order_phone_number NUMBER ,
+   order_address VARCHAR2(120) ,
+   order_detail_address VARCHAR2(50) ,
+   CONSTRAINT pk_package_order_no PRIMARY KEY(order_no)
 )
+DROP TABLE package
 
 ALTER TABLE package ADD CONSTRAINT fk_order_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE
 
@@ -70,6 +68,36 @@ CREATE TABLE likeitem(
 	CONSTRAINT fk_like_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE
 )
 
+CREATE TABLE member(
+   member_id VARCHAR2(15),
+   member_pw VARCHAR2(15) NOT NULL,
+   member_name VARCHAR2(25) NOT NULL,
+   member_birthday DATE NOT NULL,
+   member_email VARCHAR2(30) NOT NULL,
+   member_address VARCHAR2(120) NOT NULL,
+   member_detail_address VARCHAR2(50) NOT NULL,
+   member_phone_number NUMBER NOT NULL,
+   member_regdate DATE DEFAULT SYSDATE,
+   member_updatedate DATE DEFAULT SYSDATE,
+   CONSTRAINT pk_member_id PRIMARY KEY(member_id)
+)
+
+CREATE TABLE search(
+	search_no NUMBER,
+	member_id VARCHAR2(15) NOT NULL,
+	item_category VARCHAR2(30) NOT NULL,
+	keyword VARCHAR2(60) NOT NULL,
+	search_date DATE DEFAULT SYSDATE,
+	CONSTRAINT pk_search_no PRIMARY KEY(search_no),
+	CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
+)
+
+
+INSERT INTO search (search_no, member_id, item_category, keyword) 
+values (22, 'm006', 'kimchi', '딸기김치')
+
+INSERT INTO member (member_id, member_pw, member_name, member_birthday, member_email, member_address, member_detail_address, member_phone_number)
+VALUES ('m006', '1111', '구매자', '1984-07-08', 'qwerty@naver.com', 'asd', 'asd', 12341234)
 
 
 INSERT INTO likeitem (like_no, item_no, member_id) VALUES (12, 6, 'moo1')
@@ -78,7 +106,30 @@ INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item
 VALUES(6,'옥수수김치','kimchi','small','red',15000, 15, 15)
 
 INSERT INTO package (order_no, member_id, item_no, order_quantity, order_price) values
-(25, 'lmao', 5, 35, 4500)
+(17, 'm005', 4, 2, 4500)
+
+
+
+
+
+
+	SELECT count(keyword), keyword FROM search
+	GROUP BY keyword
+		ORDER BY count(keyword) DESC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
