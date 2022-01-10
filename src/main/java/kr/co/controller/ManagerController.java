@@ -40,7 +40,15 @@ public class ManagerController {
 		 List<Object> saleRank = mService.saleRank();
 		 List<Object> daySale =  mService.daySale();
 		  List<Object> likeRank = mService.likeRank();
-		
+		  List<Object> getName = mService.getName();
+		  List<Object> keywordRank = mService.keywordRank();
+		  
+		  String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
+			model.addAttribute("keywordRank1",keywordRank1);
+		  
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+		  
 			String list1 = new ObjectMapper().writeValueAsString(list);
 			model.addAttribute("list1", list1);
 		
@@ -56,7 +64,7 @@ public class ManagerController {
 			  String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
 			  model.addAttribute("likeRank1", likeRank1);
 			 
-
+			  
 			/*
 			 * model.addAttribute("list", list); 
 			 * model.addAttribute("saleRank", saleRank);

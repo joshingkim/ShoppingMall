@@ -19,14 +19,15 @@
 	</select>
 
 	<select id="saleRank" resultType="Map">
-		SELECT sum(order_quantity) as ORDERQUNTITY, item_no, TO_CHAR(order_date,
-		'MM') as ORDERDATE FROM package GROUP BY item_no, TO_CHAR(order_date,
-		'MM') ORDER BY sum(order_quantity) DESC
+		SELECT sum(order_quantity) as ORDERQUNTITY, item_no, 
+		TO_CHAR(order_date,'MM') as ORDERDATE 
+		FROM package GROUP BY item_no, TO_CHAR(order_date,'MM') 
+		ORDER BY sum(order_quantity) DESC
 	</select>
 
 	<select id="daySale" resultType="Map">
-		SELECT sum(order_price) as
-		ORDERPRICE, TO_CHAR(order_date, 'YYYY-MM-DD') as ORDERDATE FROM
+		SELECT TO_CHAR(sum(order_price), 'FM999,999,999') as ORDERPRICE, 
+		TO_CHAR(order_date, 'YYYY-MM-DD') as ORDERDATE FROM
 		package group by TO_CHAR(order_date, 'YYYY-MM-DD') ORDER BY
 		TO_CHAR(order_date, 'YYYY-MM-DD') ASC
 	</select>
@@ -37,10 +38,17 @@
 		ORDER BY count(item_no) DESC
 	</select>
 
+	<select id="getName" resultType="Map">
+		SELECT item_name, item_no FROM item
+	</select>
 
+	<select id="keywordRank" resultType="Map">
+		SELECT count(keyword) as COUNTKEYWORD, keyword FROM search
+	GROUP BY keyword
+		ORDER BY count(keyword) DESC
+	</select>
 
-
-
+	
 
 
 

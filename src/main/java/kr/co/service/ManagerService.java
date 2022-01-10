@@ -16,8 +16,13 @@ public interface ManagerService {
 
 	 List<Object> daySale();
 
-		 List<Object> likeRank(); 
+		 List<Object> likeRank();
 
+		List<Object> getName();
+
+		List<Object> keywordRank();
+
+		
 	
 	
 

@@ -45,7 +45,20 @@ public class ManagerDAOImpl implements ManagerDAO{
 		  @Override public List<Object> likeRank() {
 		  
 		 return sqlSession.selectList(NS+".likeRank"); }
-		 
+
+		@Override
+		public List<Object> getName() {
+			
+			return sqlSession.selectList(NS+".getName");
+		}
+
+		@Override
+		public List<Object> keywordRank() {
+		
+			return sqlSession.selectList(NS+".keywordRank");
+		}
+
+	
 
 	
 	
