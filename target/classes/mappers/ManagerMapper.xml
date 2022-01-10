@@ -12,6 +12,23 @@
 	</insert>
 
 	
+	<select id="list" resultType="kr.co.domain.OrderVO">
+		SELECT * FROM package
+	</select>
+	
+	<select id="saleRank" resultType="Map">
+	SELECT sum(order_quantity) as ORDERQUNTITY, item_no, TO_CHAR(order_date, 'MM') as ORDERDATE FROM package GROUP BY item_no, TO_CHAR(order_date, 'MM')  ORDER BY sum(order_quantity) DESC
+	</select>
+	
+	<select id="daySale" resultType="Map">
+SELECT sum(order_price) as ORDERPRICE, TO_CHAR(order_date, 'YYYY-MM-DD') as ORDERDATE FROM package group by TO_CHAR(order_date, 'YYYY-MM-DD') ORDER BY TO_CHAR(order_date, 'YYYY-MM-DD')  ASC
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	
 	
