@@ -19,6 +19,8 @@ public interface ManagerDAO {
 	 
 	 List<Object> daySale();
 
+	 List<Object> likeRank();
+
 	
 
 

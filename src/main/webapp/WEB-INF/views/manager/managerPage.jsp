@@ -27,13 +27,16 @@
     
     
 <script>
+var date = new Date();
     
  var list1 = ${list1};
  var saleRank1 = ${saleRank1};
  var daySale1 = ${daySale1};
+ var likeRank1 = ${likeRank1};
 console.log(list1);
 console.log(saleRank1);
 console.log(daySale1);
+console.log(likeRank1);
 
 for(var i = 0, result = [] ; i < 50 ; i++){
  result.push({ "title" : daySale1[i].ORDERPRICE + "원", "start" : daySale1[i].ORDERDATE});
@@ -119,37 +122,58 @@ calendar.render();
 <body>
 
 
-
+ <h3>경영자용페이지</h3>
 <div class="container">
-   <h3>경영자용페이지</h3><br><br>
+  
    
    
-   
+   <br><div id="calendar-container">
+<div id='calendar'></div> 
+</div>	
+ 
 
 
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">이번달 판매량 순위</a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">인기(찜) 순위</button>
- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">연령대별 판매량1위 품목</button>
-</p>
-<div class="row">
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample4">
-      <div class="card card-body">
-       <canvas height="300" id="myChart4"></canvas>
+
+   	<br><div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          이번달 판매량 순위
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+      <canvas id="myChart4"></canvas>
       </div>
     </div>
   </div>
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample5">
-      <div class="card card-body">
-      <canvas id="myChart5"></canvas>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          인기(찜) 순위
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <canvas id="myChart5"></canvas>
       </div>
     </div>
   </div>
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample6">
-      <div class="card card-body">
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          연령대별 구매1위 품목
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
         <table class="table">
   <thead>
     <tr>
@@ -183,15 +207,12 @@ calendar.render();
     
   </tbody>
 </table>
-   	   		</div>
-  		  </div>
-  	   </div>
-   	</div>
-   	
-   	<br><div id="calendar-container">
-<div id='calendar'></div> 
-</div>	<br><br>
- </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>  	
+   	<br><br><br>
 
 
 
@@ -206,20 +227,24 @@ const ctx4 = document.getElementById('myChart4').getContext('2d');
 const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: [(saleRank1[0].ITEM_NO + '번 제품'), 
+        labels: [
+        	(saleRank1[0].ITEM_NO + '번 제품'), 
         		(saleRank1[1].ITEM_NO + '번 제품'),
         		(saleRank1[2].ITEM_NO + '번 제품'),
         		(saleRank1[3].ITEM_NO + '번 제품'),
         		(saleRank1[4].ITEM_NO + '번 제품'),
-        		(saleRank1[5].ITEM_NO + '번 제품')],
+        		(saleRank1[5].ITEM_NO + '번 제품')
+        		],
         datasets: [{
-            label: (saleRank1[0].ORDERDATE + '월 판매량 순위'),
-            data: [(saleRank1[0].ORDERQUNTITY), 
+            label: (date.getMonth()+1 + '월 판매량 순위'),
+            data: [
+            	(saleRank1[0].ORDERQUNTITY), 
         		(saleRank1[1].ORDERQUNTITY),
         		(saleRank1[2].ORDERQUNTITY),
         		(saleRank1[3].ORDERQUNTITY),
         		(saleRank1[4].ORDERQUNTITY),
-        		(saleRank1[5].ORDERQUNTITY)],
+        		(saleRank1[5].ORDERQUNTITY)
+        		],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
                
@@ -246,10 +271,24 @@ const ctx5 = document.getElementById('myChart5').getContext('2d');
 const myChart5 = new Chart(ctx5, {
     type: 'doughnut',
     data: {
-        labels: ['제품1', '제품2', '제품3', '제품4', '제품5', '제품6'],
+        labels: [ 
+        	(likeRank1[0].ITEM_NO + '번 제품'), 
+        	(likeRank1[1].ITEM_NO + '번 제품'), 
+        	(likeRank1[2].ITEM_NO + '번 제품'), 
+        	(likeRank1[3].ITEM_NO + '번 제품'), 
+        	(likeRank1[4].ITEM_NO + '번 제품'), 
+        	(likeRank1[5].ITEM_NO + '번 제품')
+        	],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '총 찜 횟수',
+            data: [
+            	(likeRank1[0].SUMITEMNO ), 
+            	(likeRank1[1].SUMITEMNO ), 
+            	(likeRank1[2].SUMITEMNO ), 
+            	(likeRank1[3].SUMITEMNO ), 
+            	(likeRank1[4].SUMITEMNO ), 
+            	(likeRank1[5].SUMITEMNO )
+            	],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
