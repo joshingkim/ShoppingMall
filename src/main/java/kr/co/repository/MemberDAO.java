@@ -10,6 +10,10 @@ public interface MemberDAO {
 	public MemberVO idcheck(String member_id);
 	//회원정보 자세히 보기
 	public MemberVO read(String member_id);
+	//회원 정보 수정 화면 
+	public MemberVO updateUI(String member_id);
+	//회원 정보 수정
+	public void update(MemberVO vo);
 	
 	
 
