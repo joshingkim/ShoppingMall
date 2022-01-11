@@ -18,7 +18,7 @@ select * from item
 
 CREATE TABLE item_file(
 	file_no NUMBER,
-	file_name VARCHAR2(60) NOT NULL,
+	file_name VARCHAR2(200) NOT NULL,
 	item_no NUMBER NOT NULL,
 	file_regdate DATE DEFAULT SYSDATE,
 	CONSTRAINT pk_file_no PRIMARY KEY(file_no),
@@ -27,6 +27,9 @@ CREATE TABLE item_file(
 
 CREATE SEQUENCE seq_file_no
 
+select file_name FROM item_file WHERE item_no = 27 ORDER BY file_regdate
+select * from item_file
+ALTER TABLE item_file MODIFY file_name VARCHAR2(200)
 
 CREATE TABLE category(
 	item_name VARCHAR2(60),

@@ -9,10 +9,22 @@
 <title>Insert title here</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
+<style type="text/css">
+	.fileDrop{
+		width: 100%;
+		height: 200px;
+		border: 1px solid red;
+		margin-top: 20px;
+	}
+</style>
 <body>
 	<form action="/item/insert" method="post">
 		카테고리 명 :
@@ -33,7 +45,15 @@
 		아이템 재고 수량 : <input name="item_amount"><br>
  		<input type="submit" value="등록 완료">
 	</form>
+	
+	<div class="fileDrop">
+	</div>
+	
+	<div class="uploadedList row">
+	</div>
+	
 	<script type="text/javascript">
+	var objFormData = {};
 		$(document).ready(function() {
 			$("select[name=item_category]").change(function() {
 				var item_category = $(this).val();
@@ -58,6 +78,48 @@
 				});
 			});
 			
+			$(".fileDrop").on("dragenter dragover", function(event) {
+				event.preventDefault();
+			});
+			
+			$(".fileDrop").on("drop", function(event) {
+				event.preventDefault();
+				var files = event.originalEvent.dataTransfer.files;
+				var file = files[0];
+				var formData = new FormData();
+				formData.append("file", file);
+				$.ajax({
+					type : "post",
+					url : "/file/upload",
+					dataType : "text",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(filename) {
+						var msg = uploadedItem(filename);
+						$(".uploadedList").append(msg);
+						
+						$.ajax({
+							type : "post",
+							url : "/file/deletefile",
+							dataType : "text",
+							data : {
+								"filename" : filename
+							},
+							success : function(result) {
+								objFormData[filename] = formData;
+							}
+						});
+					}
+				});
+				
+			});
+			
+			$(".uploadedList").on("click",".deleteitem", function() {
+				$(this).parent().parent().remove();
+				var filename = $(this).attr("data-filename");
+				delete objFormData[filename];
+			});
 			
 			$("input[type='submit']").click(function(event) {
 				event.preventDefault();
@@ -97,8 +159,30 @@
 					$("[name='item_amount']").focus();
 					return;
 				}
+				
+				for(filename in objFormData){
+					var msg = insertFile(filename);
+					$("form").prepend(msg);
+				}
+				
+				for(filename in objFormData){
+					var formData = objFormData[filename];
+					formData.append("filename", filename)
+					$.ajax({
+						type : "post",
+						url : "/file/upload2",
+						dataType : "text",
+						data : formData,
+						processData : false,
+						contentType : false,
+						success : function(filename) {
+						}
+					});
+				}
+				
 				$("form").submit();
 			});
+			
 		});
 	</script>
 </body>
