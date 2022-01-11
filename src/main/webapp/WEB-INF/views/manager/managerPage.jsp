@@ -35,6 +35,7 @@ var date = new Date();
  var likeRank1 = ${likeRank1};
  var getName1 = ${getName1};
  var keywordRank1 = ${keywordRank1};
+ var ageRank1 = ${ageRank1};
 
 console.log(list1);
 console.log(saleRank1);
@@ -42,7 +43,7 @@ console.log(daySale1);
 console.log(likeRank1);
 console.log(getName1);
 console.log(keywordRank1);
-
+console.log(ageRank1);
 
 
 for(var i = 0, result = [] ; i < 50 ; i++){
@@ -129,29 +130,47 @@ calendar.render();
 <body>
 
 
- <h3>경영자용페이지</h3>
-<div class="container">
-  
-   
-   
-   <br><div id="calendar-container">
-<div id='calendar'></div> 
-</div>	
  
+ 
+<div class="container">
+
+  
+<br>
 
 
 
-   	<br><div class="accordion" id="accordionExample">
+<br><br>	
+
+
+
+
+  <div class="accordion" id="accordionExample" >
+  <div class="card">
+    <div class="card-header" id="heading">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+          매출
+        </button>
+      </h2>
+    </div>
+    <div id="collapse" class="collapse show" aria-labelledby="heading" data-parent="#accordionExample">
+      <div class="card-body">
+    <div id="calendar-container "><div id='calendar' ></div> </div>
+      </div>
+    </div>
+  </div>
+  
+  
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           이번달 판매량 순위
         </button>
       </h2>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
       <canvas id="myChart4"></canvas>
       </div>
@@ -185,9 +204,39 @@ calendar.render();
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="card-header" id="headingfour">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+          연령대별 인원 수
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
+      <div class="card-body">
+      <canvas id="myChart7"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingfive">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+          카테고리별 판매1위 품목
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
+      <div class="card-body">
+    
+      </div>
+    </div>
+  </div>
 </div>
-</div>  	
-   	<br><br><br>
+</div>
+   	<br><br>
 
 
 
@@ -203,12 +252,12 @@ const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
         labels: [
-        	(getName1[saleRank1[0].ITEM_NO -1].ITEM_NAME), 
-        	(getName1[saleRank1[1].ITEM_NO -1].ITEM_NAME), 
-        	(getName1[saleRank1[2].ITEM_NO -1].ITEM_NAME), 
-        	(getName1[saleRank1[3].ITEM_NO -1].ITEM_NAME), 
-        	(getName1[saleRank1[4].ITEM_NO -1].ITEM_NAME), 
-        	(getName1[saleRank1[5].ITEM_NO -1].ITEM_NAME), 
+        	("1위 " + getName1[saleRank1[0].ITEM_NO -1].ITEM_NAME), 
+        	("2위 " + getName1[saleRank1[1].ITEM_NO -1].ITEM_NAME), 
+        	("3위 " + getName1[saleRank1[2].ITEM_NO -1].ITEM_NAME), 
+        	("4위 " + getName1[saleRank1[3].ITEM_NO -1].ITEM_NAME), 
+        	("5위 " + getName1[saleRank1[4].ITEM_NO -1].ITEM_NAME), 
+        	("6위 " + getName1[saleRank1[5].ITEM_NO -1].ITEM_NAME), 
         		],
         datasets: [{
             label: (date.getMonth()+1 + '월 판매량 순위'),
@@ -218,7 +267,7 @@ const myChart4 = new Chart(ctx4, {
         		(saleRank1[2].ORDERQUNTITY),
         		(saleRank1[3].ORDERQUNTITY),
         		(saleRank1[4].ORDERQUNTITY),
-        		(saleRank1[5].ORDERQUNTITY)
+        		(saleRank1[5].ORDERQUNTITY),
         		],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
@@ -247,12 +296,12 @@ const myChart5 = new Chart(ctx5, {
     type: 'doughnut',
     data: {
         labels: [ 
-        	(getName1[likeRank1[0].ITEM_NO -1].ITEM_NAME ), 
-        	(getName1[likeRank1[1].ITEM_NO -1].ITEM_NAME ), 
-        	(getName1[likeRank1[2].ITEM_NO -1].ITEM_NAME ), 
-        	(getName1[likeRank1[3].ITEM_NO -1].ITEM_NAME ), 
-        	(getName1[likeRank1[4].ITEM_NO -1].ITEM_NAME ), 
-        	(getName1[likeRank1[5].ITEM_NO -1].ITEM_NAME )
+        	("1위 " + getName1[likeRank1[0].ITEM_NO -1].ITEM_NAME ), 
+        	("2위 " + getName1[likeRank1[1].ITEM_NO -1].ITEM_NAME ), 
+        	("3위 " + getName1[likeRank1[2].ITEM_NO -1].ITEM_NAME ), 
+        	("4위 " + getName1[likeRank1[3].ITEM_NO -1].ITEM_NAME ), 
+        	("5위 " + getName1[likeRank1[4].ITEM_NO -1].ITEM_NAME ), 
+        	("6위 " + getName1[likeRank1[5].ITEM_NO -1].ITEM_NAME ),
         	],
         datasets: [{
             label: '총 찜 횟수',
@@ -262,7 +311,7 @@ const myChart5 = new Chart(ctx5, {
             	(likeRank1[2].SUMITEMNO ), 
             	(likeRank1[3].SUMITEMNO ), 
             	(likeRank1[4].SUMITEMNO ), 
-            	(likeRank1[5].SUMITEMNO )
+            	(likeRank1[5].SUMITEMNO ),
             	],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -304,7 +353,7 @@ const myChart6 = new Chart(ctx6, {
         	("3위 " + keywordRank1[2].KEYWORD), 
         	("4위 " + keywordRank1[3].KEYWORD), 
         	("5위 " + keywordRank1[4].KEYWORD), 
-        	("6위 " + keywordRank1[5].KEYWORD)
+        	("6위 " + keywordRank1[5].KEYWORD),
         	],
         datasets: [{
             label: '총 찜 횟수',
@@ -314,7 +363,7 @@ const myChart6 = new Chart(ctx6, {
             	(keywordRank1[2].COUNTKEYWORD), 
             	(keywordRank1[3].COUNTKEYWORD), 
             	(keywordRank1[4].COUNTKEYWORD), 
-            	(keywordRank1[5].COUNTKEYWORD)
+            	(keywordRank1[5].COUNTKEYWORD),
             	],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -345,7 +394,57 @@ const myChart6 = new Chart(ctx6, {
 });
 </script>
 
-
+<script>
+const ctx7 = document.getElementById('myChart7').getContext('2d');
+const myChart7 = new Chart(ctx7, {
+    type: 'bar',
+    data: {
+        labels: [ 
+        	("00년생~09년생 " ), 
+        	("90년생~99년생 " ), 
+        	("80년생~89년생 " ), 
+        	("70년생~79년생 " ), 
+        	("60년생~69년생 " ), 
+        	("50년생~59년생 " ),
+        	],
+        datasets: [{
+            label: '인원수',
+            data: [
+            	(ageRank1[0].COUNTPEOPLE ), 
+            	(ageRank1[1].COUNTPEOPLE ), 
+            	(ageRank1[2].COUNTPEOPLE ), 
+            	(ageRank1[3].COUNTPEOPLE ), 
+            	(ageRank1[4].COUNTPEOPLE ), 
+            	(ageRank1[5].COUNTPEOPLE ),
+            	],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
 
 
 

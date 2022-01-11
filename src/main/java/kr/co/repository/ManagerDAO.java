@@ -25,6 +25,19 @@ public interface ManagerDAO {
 
 	List<Object> keywordRank();
 
+	ManagerVO idcheck(String manager_id);
+
+	List<OrderVO> managerList();
+
+	void updateCode(ManagerVO vo);
+
+	void managerDelete(ManagerVO vo);
+
+	ManagerVO read(String manager_id);
+
+	List<Object> ageRank();
+
+
 
 
 	

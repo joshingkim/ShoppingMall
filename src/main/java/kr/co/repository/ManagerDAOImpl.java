@@ -58,6 +58,42 @@ public class ManagerDAOImpl implements ManagerDAO{
 			return sqlSession.selectList(NS+".keywordRank");
 		}
 
+		@Override
+		public ManagerVO idcheck(String manager_id) {
+			
+			return sqlSession.selectOne(NS+".idcheck", manager_id);
+		}
+
+		@Override
+		public List<OrderVO> managerList() {
+			
+			return sqlSession.selectList(NS+".managerList");
+		}
+
+		@Override
+		public void updateCode(ManagerVO vo) {
+			sqlSession.update(NS+".updateCode", vo);
+			
+		}
+
+		@Override
+		public void managerDelete(ManagerVO vo) {
+			sqlSession.delete(NS+".managerDelete", vo);
+		}
+
+		@Override
+		public ManagerVO read(String manager_id) {
+			
+			return sqlSession.selectOne(NS+".read", manager_id);
+		}
+
+		@Override
+		public List<Object> ageRank() {
+			
+			return sqlSession.selectList(NS+".ageRank");
+		}
+
+	
 	
 
 	

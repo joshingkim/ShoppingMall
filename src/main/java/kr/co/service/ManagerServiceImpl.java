@@ -59,6 +59,41 @@ public class ManagerServiceImpl implements ManagerService {
 		return mDAO.keywordRank();
 	}
 
+	@Override
+	public ManagerVO idcheck(String manager_id) {
+		
+		return mDAO.idcheck(manager_id);
+	}
+
+	@Override
+	public List<OrderVO> managerList() {
+		
+		return mDAO.managerList();
+	}
+
+	@Override
+	public void updateCode(ManagerVO vo) {
+		mDAO.updateCode(vo);
+		
+	}
+
+	@Override
+	public void managerDelete(ManagerVO vo) {
+		mDAO.managerDelete(vo);
+	}
+
+	@Override
+	public ManagerVO read(String manager_id) {
+		
+		return mDAO.read(manager_id);
+	}
+
+	@Override
+	public List<Object> ageRank() {
+		
+		return mDAO.ageRank();
+	}
+
 
 
 }

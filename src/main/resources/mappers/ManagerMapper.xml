@@ -13,7 +13,10 @@
 		#{manager_phone}, #{manager_code})
 	</insert>
 
-
+	<select id="managerList" resultType="kr.co.domain.ManagerVO">
+		SELECT * FROM manager WHERE NOT manager_id IN ('employee') ORDER BY manager_code ASC
+	</select>
+	
 	<select id="list" resultType="kr.co.domain.OrderVO">
 		SELECT * FROM package
 	</select>
@@ -48,8 +51,29 @@
 		ORDER BY count(keyword) DESC
 	</select>
 
-	
+	<select id="idcheck" resultType="kr.co.domain.ManagerVO">
+		SELECT * FROM manager WHERE manager_id = #{manager_id}
+	</select>
 
+	<select id="updateCode">
+		UPDATE manager SET manager_code = #{manager_code} WHERE manager_id = #{manager_id}
+	</select>
+
+	<delete id="managerDelete">
+		DELETE FROM manager WHERE manager_id = #{manager_id} AND manager_pw = #{manager_pw}
+	</delete>
+
+	<select id="read" resultType="kr.co.domain.ManagerVO">
+		SELECT * FROM manager WHERE manager_id = #{manager_id}
+	</select>
+
+	<select id="ageRank" resultType="Map">
+		SELECT COUNT(TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)) AS COUNTPEOPLE,
+		TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) AS  AGE 
+		FROM member 
+		GROUP BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)
+		ORDER BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) DESC
+	</select>
 
 
 </mapper>
