@@ -45,6 +45,7 @@
 		아이템 재고 수량 : <input name="item_amount"><br>
  		<input type="submit" value="등록 완료">
 	</form>
+			
 	
 	<div class="fileDrop">
 	</div>

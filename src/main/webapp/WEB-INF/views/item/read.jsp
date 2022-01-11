@@ -13,8 +13,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/file.js" type="text/javascript"></script>
+<style type="text/css">
+	img{
+		width: 400px;
+  		height: 400px;
+	}
+</style>
 </head>
 <body>
+	<div class="uploadedList row"></div>
 	아이템 넘버 : ${vo.item_no}<br>
 	아이템 명 : ${vo.item_name}<br>
 	카테고리 명 : ${vo.item_category}<br>
@@ -24,7 +31,6 @@
 	할인률 : ${vo.discount_percentage}%<br>
 	아이템 재고 수량 : ${vo.item_amount}<br>
 	아이템 등록일 : ${vo.item_regdate}<br>
-	<div class="uploadedList row"></div>
 	<a href="/item/update/${vo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
 <script type="text/javascript">
 var item_no = ${vo.item_no};

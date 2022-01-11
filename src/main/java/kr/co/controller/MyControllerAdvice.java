@@ -53,7 +53,7 @@ public class MyControllerAdvice {
 	
 	@ExceptionHandler(Exception.class)
 	public ModelAndView error(Exception e, HttpServletRequest request) {
-		
+		e.printStackTrace();
 		String uri = request.getRequestURI();
 		
 		StackTraceElement[] arr = e.getStackTrace();

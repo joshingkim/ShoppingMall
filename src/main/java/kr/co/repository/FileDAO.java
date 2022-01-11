@@ -9,4 +9,8 @@ public interface FileDAO {
 
 	void insert(Map<String, Object> map);
 
+	int insertNdb(Map<String, Object> map);
+
+	int deleteFileByFilename(String file_name);
+
 }

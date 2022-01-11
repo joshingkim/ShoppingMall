@@ -12,6 +12,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
+<style type="text/css">
+	.fileDrop{
+		width: 100%;
+		height: 200px;
+		border: 1px solid red;
+		margin-top: 20px;
+	}
+</style>
 </head>
 <body>
 	<form action="/item/update" method="post">
@@ -25,8 +34,73 @@
 		아이템 재고 수량 : <input name="item_amount" value="${vo.item_amount}"><br>
  		<input type="submit" value="수정 완료">
 	</form>
+	<div class="fileDrop"></div>
+	<div class="uploadedList row"></div>
+	
 	<script type="text/javascript">
+		var item_no = ${vo.item_no};
+		var objFormData = {};
+		
 		$(document).ready(function() {
+			
+			$.getJSON("/file/getFile/"+item_no, function(data) {
+				for(var i=0; i<data.length; i++){
+					var item = uploadedItem(data[i]);
+					$(".uploadedList").append(item);
+				}
+			});
+			
+			$(".fileDrop").on("dragenter dragover", function(event) {
+				event.preventDefault();
+			});
+			
+			$(".fileDrop").on("drop", function(event) {
+				event.preventDefault();
+				var files = event.originalEvent.dataTransfer.files;
+				var file = files[0];
+				var formData = new FormData();
+				formData.append("file", file);
+				$.ajax({
+					type : "post",
+					url : "/file/upload",
+					dataType : "text",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(filename) {
+						var item = uploadedItem(filename);
+						$(".uploadedList").append(item);
+						$.ajax({
+							type : "post",
+							url : "/file/deletefile",
+							dataType : "text",
+							data : {
+								"filename" : filename
+							},
+							success : function(result) {
+								objFormData[filename] = formData;
+								
+							}
+						});
+
+					}
+				});
+				
+			});
+			
+			$(".uploadedList").on("click",".deleteitem", function() {
+				var isDelete = confirm("삭제됩니다.\n 삭제 하시겠습니까");
+				
+				if(!isDelete){
+					return;
+				}
+				
+				var filename = $(this).attr("data-filename");
+				var msg = deleteFile(filename);
+				$("form").append(msg);
+				$(this).parent().parent().remove();
+			});
+			
 			$("input[type='submit']").click(function(event) {
 				event.preventDefault();
 				
@@ -65,9 +139,47 @@
 					$("[name='item_amount']").focus();
 					return;
 				}
+				
+				for(filename in objFormData){
+					var msg = insertFile(filename);
+					$("form").prepend(msg);
+				}
+				
+				for(filename in objFormData){
+					var formData = objFormData[filename];
+					formData.append("filename", filename)
+					$.ajax({
+						type : "post",
+						url : "/file/uploadNdb/"+item_no,
+						dataType : "text",
+						data : formData,
+						processData : false,
+						contentType : false,
+						success : function(filename) {
+						}
+					});
+				}
+				var arrDeletedItem = $(this).nextAll(".deletefiles");
+				for(var i=0; i<arrDeletedItem.length; i++){
+					var filename = $(arrDeletedItem[i]).val();
+					$.ajax({
+						type : "post",
+						url : "/file/deletefileNdb",
+						dataType : "text",
+						data : {
+							filename : filename
+						},
+						success : function(result) {
+							if(result == "SUCCESS"){
+							}else{
+								alert("삭제 실패");
+							}
+						}
+					});
+				}
 				$("form").submit();
 			});
 		});
-	</script>
+</script>
 </body>
 </html>

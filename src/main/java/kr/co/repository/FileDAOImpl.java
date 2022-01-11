@@ -25,4 +25,16 @@ public class FileDAOImpl implements FileDAO {
 		sqlSession.insert(NS+".insert", map);
 	}
 
+	@Override
+	public int insertNdb(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NS+".insert", map);
+	}
+
+	@Override
+	public int deleteFileByFilename(String file_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NS+".deleteFileByFilename", file_name);
+	}
+
 }

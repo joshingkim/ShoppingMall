@@ -16,19 +16,23 @@
 <body>
 	<table>
 		<thead>
-			<th>아이템 넘버</th>
-			<th>아이템 명</th>
-			<th>카테고리 명</th>
-			<th>아이템 사이즈</th>
-			<th>아이템 컬러</th>
-			<th>아이템 가격</th>
-			<th>할인률</th>
-			<th>아이템 재고 수량</th>
-			<th>아이템 등록일</th>
+			<tr>
+				<th>사진</th>
+				<th>아이템 넘버</th>
+				<th>아이템 명</th>
+				<th>카테고리 명</th>
+				<th>아이템 사이즈</th>
+				<th>아이템 컬러</th>
+				<th>아이템 가격</th>
+				<th>할인률</th>
+				<th>아이템 재고 수량</th>
+				<th>아이템 등록일</th>
+			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${pt.list}" var="vo">
 				<tr>
+					<td><div class="uploadedList"></div></td>
 					<td>${vo.item_no}</td>
 					<td><a href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.item_category}</td>

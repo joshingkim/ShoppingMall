@@ -11,4 +11,7 @@
 	<insert id="insert">
 		INSERT INTO item_file (file_no, file_name, item_no) VALUES (seq_file_no.NEXTVAL, #{file_name}, #{item_no})
 	</insert>
+	<delete id="deleteFileByFilename">
+		DELETE FROM item_file WHERE file_name = #{file_name}
+	</delete>
 </mapper>
