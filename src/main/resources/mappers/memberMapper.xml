@@ -5,23 +5,39 @@
 
 <mapper namespace="kr.co.member">
 
-
-
-
-
-
-<select id="read" resultType="kr.co.domain.MemberVO">
-	SELECT * FROM member WHERE member_id = #{member_id}
-</select>
-
-<select id="idcheck" resultType="kr.co.domain.MemberVO">
-	SELECT * FROM member WHERE member_id = #{member_id}
-</select>
-
 <insert id="insertMember">
 	INSERT INTO member (member_id, member_pw, member_name, member_birthday, member_email, member_address, member_detail_address, member_phone_number) 
   	VALUES 
   	(#{member_id}, #{member_pw}, #{member_name}, #{member_birthday}, #{member_email}, #{member_address}, #{member_detail_address}, #{member_phone_number})
 </insert>
+
+<select id="idcheck" resultType="kr.co.domain.MemberVO">
+	SELECT * FROM member WHERE member_id = #{member_id}
+</select>
+
+<select id="read" resultType="kr.co.domain.MemberVO">
+	SELECT * FROM member WHERE member_id = #{member_id}
+</select>
+
+<select id="updateUI" resultType="kr.co.domain.MemberVO">
+		SELECT * FROM member WHERE member_id = #{member_id}
+</select>
+
+<update id="update">
+		UPDATE member SET member_id = #{member_id}, member_email = #{member_email}, member_address = #{member_address}, 
+		member_detail_address = #{member_detail_address}, member_phone_number = #{member_phone_number}, member_updatedate = sysdate 
+		WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+</update>
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

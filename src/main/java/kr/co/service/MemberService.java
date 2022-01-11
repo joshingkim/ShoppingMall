@@ -10,4 +10,8 @@ public interface MemberService {
 
 	public MemberVO read(String member_id);
 
+	public MemberVO updateUI(String member_id);
+
+	public void update(MemberVO vo);
+
 }

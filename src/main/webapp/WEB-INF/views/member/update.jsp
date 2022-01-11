@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>회원 정보 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,15 +18,15 @@
 
 <jsp:include page="../header.jsp" />
 
-<form action="/member/insert" method="post">
-아이디: <input name="member_id" maxlength="15" required><button id="idcheck">중복검사</button><p id="idCheckResult"></p>
+<form action="/member/update" method="post">
+아이디: <input readonly name="member_id" value="${vo.member_id}"> <br>
 비밀번호: <input name="member_pw" type="password" maxlength="15" required><br>
-이름: <input name="member_name" maxlength="10" required ><br>
-생년월일: <input name="member_birthday" type="date" required><br> 
-Email: <input name="member_email01" id="member_email01" type="text" required>
-	   <input name="member_email02" id="member_email02" value="직접입력">
-	   <input name="member_email" type="hidden" id="member_email">
-	<select id="member_email03" name="member_email">
+이름: <input readonly name="member_name" maxlength="10" value="${vo.member_name}" required ><br>
+생년월일: <input readonly value="${fn:substring(vo.member_birthday, 0, 10)}" required><br> 
+Email: <input name="member_email01" id="member_email01" type="text" value="${fn:substringBefore(vo.member_email, '@')}" required>
+	   <input name="member_email02" id="member_email02" placeholder="@부터 입력해주세요" value="${fn:substringAfter(vo.member_email, '@')}" value="email을 선택 해 주세요" required>
+	   <input name="member_email" id="member_email">
+	<select id="member_email03" name="member_email03">
 		<option selected>선택하세요</option>
 		<option value="@naver.com" >@naver.com</option> 
 		<option value="@hanmail.net">@hanmail.net</option>
@@ -34,10 +34,10 @@ Email: <input name="member_email01" id="member_email01" type="text" required>
 		<option value="@gmail.com">@gmail.com</option>
 		<option value="direct">직접입력</option>
 	</select> <br>
-주소: <input id="member_address" name="member_address" placeholder="클릭시주소검색이뜹니다"><br>
-상세주소: <input id="member_detail_address" name="member_detail_address" maxlength="10" required><br>
-전화번호: <input name="member_phone_number" maxlength="11" placeholder="숫자만입력하세요" required><br>
-<input type="submit" value="회원 등록">
+주소: <input id="member_address" name="member_address" value="${vo.member_address}" placeholder="클릭시주소검색이뜹니다"><br>
+상세주소: <input id="member_detail_address" name="member_detail_address" maxlength="10" value="${vo.member_detail_address}" required><br>
+전화번호: <input name="member_phone_number" maxlength="11" value="${vo.member_phone_number}" placeholder="숫자만입력하세요" required><br>
+<input type="submit" value="정보 수정 완료">
 </form>
 
 <jsp:include page="../footer.jsp" />
@@ -54,7 +54,7 @@ document.getElementById("member_address").addEventListener("click", function(){ 
 });
 
 $(document).ready(function() {
-	//주소 선택에 관한 ajax문
+	//주소 선택에 관한 ajax문	
 	$("#idcheck").click(function(event) {
 		event.preventDefault();
 		
@@ -77,19 +77,39 @@ $(document).ready(function() {
 		}		
 	})	
 	
-	$("#member_email").hide();
+	//비밀번호를 입력하지 않으면 안바뀌게 하는 코드
+	$("input[type='submit']").click(function(event) {
+		event.preventDefault();		
+		var pw = $("[name='member_pw']").val();		
+		if(pw==''){
+			alert("비밀번호를 입력 해 주세요");
+			return;
+		}		
+		$("form").submit();
+	});
+	
+	
+	
+	/* $("#member_email").hide(); */
+	var member_email01 = $("[name='member_email01']").val();
+	var member_email02 = $("[name='member_email02']").val();	 
+	
 	$("#member_email03").change(function(){
 		$("#member_email03 option:selected").each(function () {
-			var member_email01 = $("[name='member_email01']").val();
-			var member_email02 = $("[name='member_email02']").val();
+			member_email01 = $("[name='member_email01']").val();
+			member_email02 = $("[name='member_email02']").val();
 			$("[name='member_email']").val(member_email01 + member_email02);
 		});
 	});	
 	
+	member_email01 = $("[name='member_email01']").val();
+	member_email02 = $("[name='member_email02']").val();
+	$("[name='member_email']").val(member_email01+"@"+ member_email02);	
 	
 });
 
-//email 설정에 관한 함수
+
+//email을 바꾼 설정에 관한 함수
 $("#member_email03").change(function(){
 	$("#member_email03 option:selected").each(function () {
 			if($(this).val()== 'direct'){//직접 입력 하는 경우 
@@ -101,7 +121,6 @@ $("#member_email03").change(function(){
 			}
 	});	
 });
-
 </script>
 
 </body>

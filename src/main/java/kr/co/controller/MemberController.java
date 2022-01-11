@@ -46,8 +46,20 @@ public class MemberController {
 		MemberVO vo = mService.read(member_id);
 		
 		model.addAttribute("vo", vo);
-		return "member/read";
+		return "member/read";	
+	}
 	
+	@RequestMapping(value = "/update/{member_id}", method = RequestMethod.GET)
+	public String updateUI(@PathVariable("member_id") String member_id, Model model) {
+		MemberVO vo = mService.updateUI(member_id);
+		model.addAttribute("vo", vo);		
+		return "/member/update";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(MemberVO vo) {
+		mService.update(vo);		
+		return "redirect:/member/read/"+vo.getMember_id();
 	}
 	
 

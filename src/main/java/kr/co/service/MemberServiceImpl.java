@@ -28,4 +28,14 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.read(member_id);
 	}
 
+	@Override
+	public MemberVO updateUI(String member_id) {
+		return mDao.updateUI(member_id);
+	}
+
+	@Override
+	public void update(MemberVO vo) {
+		mDao.update(vo);		
+	}
+
 }
