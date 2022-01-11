@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.domain.SearchVO;
 
 @Repository
 public class SearchDAOImpl implements SearchDAO{
@@ -16,15 +15,15 @@ public class SearchDAOImpl implements SearchDAO{
 	private String NS = "kr.co.search";
 	
 	@Override
-	public void insert(Map<String, Object> map) {
-		sqlSession.insert(NS +".insert", map);
+	public void search(Map<String, Object> map) {
+		sqlSession.insert(NS +".search", map);
 	}
 
-	@Override
-	public SearchVO list(SearchVO svo) {
-		return sqlSession.selectOne(NS + ".list", svo);
-		
-	}
+//	@Override
+//	public SearchVO list(SearchVO svo) {
+//		return sqlSession.selectOne(NS + ".list", svo);
+//		
+//	}
 
 		
 	
