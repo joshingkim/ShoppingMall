@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,6 +43,10 @@ public class ManagerController {
 		  List<Object> likeRank = mService.likeRank();
 		  List<Object> getName = mService.getName();
 		  List<Object> keywordRank = mService.keywordRank();
+		  List<Object> ageRank = mService.ageRank();
+		  
+		  String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
+			model.addAttribute("ageRank1",ageRank1);
 		  
 		  String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
 			model.addAttribute("keywordRank1",keywordRank1);
@@ -84,21 +89,56 @@ public class ManagerController {
 	public String insert(ManagerVO vo) {
 		mService.insert(vo);
 		
-		return "redirect:/manager/managerPage";
+		return "redirect:/manager/managerList";
 	}
 	
 	
-	
+	@RequestMapping(value = "/idcheck", 
+			method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String idcheck(String manager_id) {
+		ManagerVO vo = mService.idcheck(manager_id);
 		
+		if(vo == null) {
+			return "사용 가능";
+		}else {
+			return "사용불가";
+		}
+	}
 		
+	@RequestMapping(value = "/managerList", method = RequestMethod.GET)
+	public void list(Model model) {
+		List<OrderVO> managerList = mService.managerList();
 		
+		model.addAttribute("managerList", managerList);
+	}	
 		
+	@RequestMapping(value = "/updateCode/{manager_id}", method = RequestMethod.POST)
+	public String updateCode(ManagerVO vo) {
+		mService.updateCode(vo);
 		
+		return "redirect:/manager/read/" + vo.getManager_id();
+	}	
 		
+	@RequestMapping(value = "/managerDelete", method = RequestMethod.POST)
+	public String delete(ManagerVO vo) {
+		mService.managerDelete(vo);
 		
+		return "redirect:/manager/managerList";
+	}	
 		
+	@RequestMapping(value = "/read/{manager_id}", method = RequestMethod.GET)
+	public String read(@PathVariable("manager_id") String manager_id, Model model) {
 		
+		ManagerVO vo = mService.read(manager_id);
 		
+		model.addAttribute("vo", vo);
+		
+		return "/manager/read";
+		
+	}
+		
+
 		
 		
 		

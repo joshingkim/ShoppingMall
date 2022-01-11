@@ -4,10 +4,10 @@ CREATE TABLE manager(
 	manager_name VARCHAR2(25) NOT NULL,
 	manager_email VARCHAR2(30) NOT NULL,
 	manager_phone NUMBER NOT NULL,
-	manager_code NUMBER NOT NULL,
+	manager_code INT NOT NULL,
 	CONSTRAINT pk_manager_id PRIMARY KEY(manager_id)
 )
-
+DROP TABLE manager
 
 CREATE TABLE package(
    order_no NUMBER,
@@ -24,7 +24,11 @@ CREATE TABLE package(
    order_detail_address VARCHAR2(50) ,
    CONSTRAINT pk_package_order_no PRIMARY KEY(order_no)
 )
-DROP TABLE package
+CREATE TABLE category(
+	item_name VARCHAR2(60),
+	item_category VARCHAR2(60) NOT NULL,
+	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
+)
 
 ALTER TABLE package ADD CONSTRAINT fk_order_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE
 
@@ -45,8 +49,10 @@ CREATE TABLE item(
 CREATE TABLE category(
 	item_name VARCHAR2(60),
 	item_category VARCHAR2(60) NOT NULL,
-	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
+	CONSTRAINT pk_category_item_category PRIMARY KEY(item_category),
+	CONSTRAINT pk_category_item_name FOREIGN KEY(item_name) REFERENCES item(item_name)
 )
+DROP TABLE category
 
 CREATE TABLE cart(
 	cart_no NUMBER,
@@ -92,30 +98,24 @@ CREATE TABLE search(
 	CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
 
+INSERT INTO category (item_category) VALUES ('kimchi')
+
+INSERT INTO manager VALUES ('employee', 1111, '경영자', 'employee', 11111111, 1)
 
 INSERT INTO search (search_no, member_id, item_category, keyword) 
-values (22, 'm006', 'kimchi', '딸기김치')
+values (23, 'm006', '고기', '고기')
 
 INSERT INTO member (member_id, member_pw, member_name, member_birthday, member_email, member_address, member_detail_address, member_phone_number)
-VALUES ('m006', '1111', '구매자', '1984-07-08', 'qwerty@naver.com', 'asd', 'asd', 12341234)
+VALUES ('m010', '1111', '구매자', '1954-07-08', 'qwerty@naver.com', 'asd', 'asd', 12341234)
 
 
 INSERT INTO likeitem (like_no, item_no, member_id) VALUES (12, 6, 'moo1')
 
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) 
-VALUES(6,'옥수수김치','kimchi','small','red',15000, 15, 15)
+VALUES(10,'닭고기','고기','small','red',15000, 15, 15)
 
 INSERT INTO package (order_no, member_id, item_no, order_quantity, order_price) values
-(17, 'm005', 4, 2, 4500)
-
-
-
-
-
-
-	SELECT count(keyword), keyword FROM search
-	GROUP BY keyword
-		ORDER BY count(keyword) DESC
+(20, 'm005', 9, 2, 4500)
 
 
 
@@ -125,6 +125,11 @@ INSERT INTO package (order_no, member_id, item_no, order_quantity, order_price) 
 
 
 
+SELECT COUNT(TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)) AS COUNTPEOPLE,
+TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) AS  AGE 
+FROM member 
+GROUP BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)
+ORDER BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) DESC
 
 
 

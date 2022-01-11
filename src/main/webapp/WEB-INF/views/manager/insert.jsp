@@ -21,13 +21,15 @@ manager_pw: <input name="manager_pw" type="password"><br>
 manager_name: <input name="manager_name"><br>
 manager_phone: <input type="number" name="manager_phone"> <br>
 manager_email: <input type="email" name="manager_email"><br>
-manager_code: <input type="hidden" name="manager_code" value=1>
-<input type="submit" value="관리자 등록">
+manager_code: <input type="hidden" name="manager_code" value=-1>
+<input type="submit"  value="관리자 가입요청">
 </form>
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		
+		
 		
 		$("input[type='submit']").click(function(event) {
 			event.preventDefault();
@@ -92,6 +94,16 @@ manager_code: <input type="hidden" name="manager_code" value=1>
 		})		
 		
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 
