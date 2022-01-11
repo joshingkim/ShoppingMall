@@ -32,4 +32,7 @@
 	<delete id="delete">
 		DELETE FROM item WHERE item_no = #{item_no}
 	</delete>
+	<select id="searchitem" resultType="kr.co.domain.ItemVO">
+      SELECT * FROM item WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
+   </select>
 </mapper>

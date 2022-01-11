@@ -22,6 +22,6 @@ public interface ItemDAO {
 
 	void delete(String item_no);
 
-	
+	List<ItemVO> searchitem(Map<String, Object> map);
 
 }
