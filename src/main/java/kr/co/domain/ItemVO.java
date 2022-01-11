@@ -18,6 +18,8 @@ public class ItemVO implements Serializable{
 	private int discount_percentage;
 	private int item_amount;
 	private String item_regdate;
+	private String[] insertfiles;
+	private String[] deletefiles;
 	
 	public ItemVO() {
 		// TODO Auto-generated constructor stub
@@ -35,6 +37,23 @@ public class ItemVO implements Serializable{
 		this.discount_percentage = discount_percentage;
 		this.item_amount = item_amount;
 		this.item_regdate = item_regdate;
+	}
+	
+	public ItemVO(int item_no, String item_name, String item_category, String item_size, String item_color,
+			int item_price, int discount_percentage, int item_amount, String item_regdate, String[] insertfiles,
+			String[] deletefiles) {
+		super();
+		this.item_no = item_no;
+		this.item_name = item_name;
+		this.item_category = item_category;
+		this.item_size = item_size;
+		this.item_color = item_color;
+		this.item_price = item_price;
+		this.discount_percentage = discount_percentage;
+		this.item_amount = item_amount;
+		this.item_regdate = item_regdate;
+		this.insertfiles = insertfiles;
+		this.deletefiles = deletefiles;
 	}
 
 	public int getItem_no() {
@@ -111,6 +130,22 @@ public class ItemVO implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String[] getInsertfiles() {
+		return insertfiles;
+	}
+
+	public void setInsertfiles(String[] insertfiles) {
+		this.insertfiles = insertfiles;
+	}
+
+	public String[] getDeletefiles() {
+		return deletefiles;
+	}
+
+	public void setDeletefiles(String[] deletefiles) {
+		this.deletefiles = deletefiles;
 	}
 
 	@Override
