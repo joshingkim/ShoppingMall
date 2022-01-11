@@ -1,14 +1,16 @@
 package kr.co.service;
 
+import java.util.List;
 import java.util.Map;
 
-import kr.co.domain.SearchVO;
+import kr.co.domain.ItemVO;
+
 
 public interface SearchService {
 
-	void insert(Map<String, Object> map);
+	List<ItemVO> search(Map<String, Object> map);
 
-	SearchVO list(SearchVO svo);
+//	SearchVO list(SearchVO svo);
 
 
 

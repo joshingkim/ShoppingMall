@@ -6,9 +6,9 @@ import kr.co.domain.SearchVO;
 
 public interface SearchDAO {
 
-	void insert(Map<String, Object> map);
+	void search(Map<String, Object> map);
 
-	SearchVO list(SearchVO svo);
+//	SearchVO list(SearchVO svo);
 
 
 

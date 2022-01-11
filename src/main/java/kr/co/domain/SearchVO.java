@@ -24,47 +24,49 @@ public class SearchVO implements Serializable {
 		this.search_date = search_date;
 	}
 
-	int getSearch_no() {
+	
+
+	public int getSearch_no() {
 		return search_no;
 	}
 
-	void setSearch_no(int search_no) {
+	public void setSearch_no(int search_no) {
 		this.search_no = search_no;
 	}
 
-	String getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
 
-	void setMember_id(String member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 
-	String getItem_category() {
+	public String getItem_category() {
 		return item_category;
 	}
 
-	void setItem_category(String item_category) {
+	public void setItem_category(String item_category) {
 		this.item_category = item_category;
 	}
 
-	String getKeyword() {
+	public String getKeyword() {
 		return keyword;
 	}
 
-	void setKeyword(String keyword) {
+	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 
-	String getSearch_date() {
+	public String getSearch_date() {
 		return search_date;
 	}
 
-	void setSearch_date(String search_date) {
+	public void setSearch_date(String search_date) {
 		this.search_date = search_date;
 	}
 
-	static long getSerialversionuid() {
+	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 

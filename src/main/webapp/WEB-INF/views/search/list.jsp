@@ -16,7 +16,7 @@
 <body>
 <h1>Search페이지입니다.</h1>
 
-<c:forEach items="${svo}" var="search">
+<c:forEach items="${list}" var="search">
 아이디 : ${search.member_id}
 카테고리 : ${search.item_category}
 검색어 : ${search.keyword}

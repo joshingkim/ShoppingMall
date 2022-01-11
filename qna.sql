@@ -90,6 +90,7 @@ CREATE TABLE item(
 	CONSTRAINT fk_item_name FOREIGN KEY(item_name) REFERENCES category(item_name) ON DELETE CASCADE
 )
 
+
 CREATE SEQUENCE seq_item_no
 
 파일 테이블
@@ -233,11 +234,14 @@ CREATE SEQUENCE seq_order_detail_no
 CREATE TABLE search(
 	search_no NUMBER,
 	member_id VARCHAR2(15) NOT NULL,
-	item_category VARHCHAR2(30) NOT NULL,
+	item_category VARCHAR2(30) NOT NULL,
 	keyword VARCHAR2(60) NOT NULL,
-	search_date DEFAULT SYSDATE,
+	search_date DATE DEFAULT SYSDATE,
 	CONSTRAINT pk_search_no PRIMARY KEY(search_no),
 	CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
+SELECT * FROM search
 
+SELECT * FROM item WHERE item_category = 'kimchi' AND UPPER(item_name) LIKE '%' || UPPER('kimchi') || '%'
+SELECT * FROM item WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
 CREATE SEQUENCE seq_search_no
