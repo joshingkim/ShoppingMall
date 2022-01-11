@@ -38,7 +38,7 @@
 				$("#item_category1 option:selected").each(function () {
 						if($(this).val()== 'direct'){ 
 							$("#item_category").show();
-							$("#item_category").val('');                     
+							$("#item_category").val('');       
 						}else{
 							$("#item_category").hide();
 							$("#item_category").val($(this).text()); 

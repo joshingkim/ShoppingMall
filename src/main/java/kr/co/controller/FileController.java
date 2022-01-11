@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -56,7 +58,7 @@ public class FileController {
 		return entity;
 	}
 	@RequestMapping(value = "/upload2", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> uploadAjax2(MultipartHttpServletRequest request) {
+	public ResponseEntity<String> upload2(MultipartHttpServletRequest request) {
 		ResponseEntity<String> entity = null;
 
 		try {
@@ -188,4 +190,77 @@ public class FileController {
 
 		return entity;
 	}
+	
+	@RequestMapping(value = "/deletefileNdb", method = RequestMethod.POST)
+	public ResponseEntity<String> deletefileNdb(String filename) {
+		ResponseEntity<String> entity = null;
+		String uploadpath = ctx.getRealPath(this.uploadpath);
+		filename.replace('/', File.separatorChar);
+		
+		try {
+			
+			int result = fService.deleteFileByFilename(filename);
+			
+			if(result == 0) {
+				entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+				return entity;
+			}
+			
+			String formatName = UploadUtils.getFormatName(filename);
+			MediaType mType = UploadUtils.getMediaType(formatName);
+			if(mType != null) {
+				String originalImageFilename = UploadUtils.getOriginalImageFilename(filename);
+				File f2 = new File(uploadpath, originalImageFilename);
+				f2.delete();
+			}
+			File f = new File(uploadpath, filename);
+			f.delete();
+			
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/uploadNdb/{item_no}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> uploadajaxNdb(MultipartHttpServletRequest request, @PathVariable("item_no") int item_no) {
+		ResponseEntity<String> entity = null;
+
+		try {
+			MultipartFile file = request.getFile("file");
+			String filename = request.getParameter("filename");
+			String uploadpath = ctx.getRealPath(this.uploadpath);
+			
+			String uploadedFilename = UploadUtils.uploadFile2(file, filename, uploadpath);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("item_no", item_no);
+			map.put("file_name", uploadedFilename);
+			int result = fService.insertNdb(map);
+			
+			if(result==0) {
+				String formatName = UploadUtils.getFormatName(uploadedFilename);
+				MediaType mType = UploadUtils.getMediaType(formatName);
+				if(mType != null) {
+					String originalImageFilename = UploadUtils.getOriginalImageFilename(uploadedFilename);
+					File f2 = new File(uploadpath, originalImageFilename);
+					f2.delete();
+					Thread.sleep(10);
+				}
+				File f = new File(uploadpath, uploadedFilename);
+				f.delete();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+				return entity;
+			}
+			
+			entity = new ResponseEntity<String>(uploadedFilename, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 }
