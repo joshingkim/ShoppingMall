@@ -168,7 +168,7 @@ public class ItemVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ItemVO [item_no=" + item_no + ", item_name=" + item_name + "]";
+		return "{'item_no':" + item_no + ", 'item_name':'" + item_name + "'}";
 	}
 	
 	

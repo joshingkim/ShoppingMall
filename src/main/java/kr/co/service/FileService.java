@@ -11,4 +11,6 @@ public interface FileService {
 
 	int deleteFileByFilename(String file_name);
 
+	List<String> getFileAndItem_No(int item_no);
+
 }

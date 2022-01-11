@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -148,6 +147,24 @@ public class FileController {
 		return entity;
 	}
 	
+	@RequestMapping(value = "/getFile/{item_no}/{item_name}",method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getFile2(@PathVariable("item_no") int item_no,@PathVariable("item_name") String item_name) {
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<String> list = fService.getFile(item_no);
+			map.put("list", list);
+			map.put("item_no", item_no);
+			map.put("item_name", item_name);
+			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	@RequestMapping(value = "/downloadorshow", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> downloadorshow(String linkurl) {
 		ResponseEntity<byte[]> entity = null;

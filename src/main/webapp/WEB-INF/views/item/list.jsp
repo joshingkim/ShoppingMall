@@ -12,12 +12,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
 <body>
 	<table>
 		<thead>
 			<tr>
-				<th>사진</th>
 				<th>아이템 넘버</th>
 				<th>아이템 명</th>
 				<th>카테고리 명</th>
@@ -32,7 +32,6 @@
 		<tbody>
 			<c:forEach items="${pt.list}" var="vo">
 				<tr>
-					<td><div class="uploadedList"></div></td>
 					<td>${vo.item_no}</td>
 					<td><a href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.item_category}</td>
@@ -46,6 +45,28 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<td><div class="uploadedList row"></div></td>
 	<jsp:include page="page.jsp" />
+<script type="text/javascript">
+$(document).ready(function(){
+	var vo = "${pt.list}";
+	var arr = eval(vo);
+	
+	for (var i=0; i<arr.length; i++){
+		
+		var item_no = arr[i].item_no;
+		var item_name = arr[i].item_name;
+		
+		$.getJSON("/file/getFile/"+item_no+"/"+item_name, function(data) {
+			var name = data["item_name"];
+			var no= data["item_no"];
+			var arr = data["list"];
+			var item = uploadedItemForlist(arr[0],no,name);
+			$(".uploadedList").append(item);
+
+		});
+	}
+});		
+</script>
 </body>
 </html>

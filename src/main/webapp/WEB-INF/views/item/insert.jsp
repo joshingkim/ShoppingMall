@@ -161,6 +161,7 @@
 					return;
 				}
 				
+				
 				for(filename in objFormData){
 					var msg = insertFile(filename);
 					$("form").prepend(msg);
@@ -181,6 +182,11 @@
 					});
 				}
 				
+				if($('div').children('img').length == 0){
+					alert("파일을 첨부하세요");
+					return;
+				}
+					
 				$("form").submit();
 			});
 			

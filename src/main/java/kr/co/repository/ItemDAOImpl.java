@@ -58,5 +58,8 @@ public class ItemDAOImpl implements ItemDAO {
 		sqlSession.delete(NS+".delete", item_no);
 	}
 
-
+//	@Override
+//	   public List<ItemVO> searchitem(Map<String, Object> map) {
+//	      return sqlSession.selectList(NS + ".searchitem", map);
+//	   }
 }
