@@ -22,7 +22,7 @@ manager_name: <input name="manager_name"><br>
 manager_phone: <input type="number" name="manager_phone"> <br>
 manager_email: <input type="email" name="manager_email"><br>
 manager_code: <input type="hidden" name="manager_code" value=-1>
-<input type="submit"  value="관리자 가입요청">
+<input type="submit"  value="관리자로 가입 요청">
 </form>
 
 <script type="text/javascript">
@@ -58,6 +58,7 @@ manager_code: <input type="hidden" name="manager_code" value=-1>
 			}
 			
 			$("form").submit();
+			
 		});
 		
 		

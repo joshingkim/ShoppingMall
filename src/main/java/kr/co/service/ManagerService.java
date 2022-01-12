@@ -34,6 +34,8 @@ public interface ManagerService {
 
 		List<Object> ageRank();
 
+		List<Object> categoryRank();
+
 		
 	
 	

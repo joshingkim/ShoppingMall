@@ -36,7 +36,8 @@ var date = new Date();
  var getName1 = ${getName1};
  var keywordRank1 = ${keywordRank1};
  var ageRank1 = ${ageRank1};
-
+ var categoryRank1 = ${categoryRank1};
+ 
 console.log(list1);
 console.log(saleRank1);
 console.log(daySale1);
@@ -44,7 +45,7 @@ console.log(likeRank1);
 console.log(getName1);
 console.log(keywordRank1);
 console.log(ageRank1);
-
+console.log(categoryRank1);
 
 for(var i = 0, result = [] ; i < 50 ; i++){
  result.push({ "title" : daySale1[i].ORDERPRICE + "원", "start" : daySale1[i].ORDERDATE});
@@ -230,7 +231,25 @@ calendar.render();
 
     <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
       <div class="card-body">
-    
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">카테고리명</th>
+      <th scope="col">제품명</th>
+      <th scope="col">판매량</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+			<c:forEach items="${categoryRank}" var="vo">
+				<tr>
+					<td>${vo.CATEGORY}</td>
+					<td>${vo.ITEMNAME}</td>
+					<td>${vo.COUNTSELL}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+</table>
       </div>
     </div>
   </div>

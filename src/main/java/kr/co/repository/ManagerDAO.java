@@ -37,6 +37,8 @@ public interface ManagerDAO {
 
 	List<Object> ageRank();
 
+	List<Object> categoryRank();
+
 
 
 
