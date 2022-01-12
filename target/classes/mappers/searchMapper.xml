@@ -13,4 +13,8 @@ VALUES (seq_search_no.NEXTVAL, #{member_id}, #{item_category}, #{keyword})
 <select id="searchlist" resultType="kr.co.domain.SearchVO">
 SELECT * FROM search WHERE item_category = #{item_category} AND UPPER(keyword) LIKE '%' ||UPPER(#{keyword})|| '%'
 </select>
+
+<select id="rankinglist" resultType="kr.co.domain.SearchVO">
+SELECT RANK() OVER(ORDER BY COUNT(*)) Rank, keyword FROM search GROUP BY keyword
+</select>
 </mapper>

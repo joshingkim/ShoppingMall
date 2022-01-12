@@ -10,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link href="stylesheet.css" media="screen" rel="stylesheet" type="text/css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -91,12 +90,7 @@ body {
 
 				<div id="roll">
 					<ul>
-						<ol>
-							<li><a href="#">모두들</a></li> <!-- 관련검색어/ 롤링할 데이터 입력공간 -->
-							<li><a href="#">고생이</a></li>
-							<li><a href="#">많아요</a></li>
-							<li><a href="#">화이팅</a></li>
-							<li><a href="#">힘내요</a></li>
+						<ol class="ranklist">
 						</ol>
 					</ul>
 				</div>
@@ -107,20 +101,36 @@ body {
 
 	<jsp:include page="footer.jsp" />
 	<script type="text/javascript">
+	$(document).ready(function(){
+	
+	$.getJSON("search/rankinglist", function(result){
+		for(var i =0; i<10;i++){
+			var list = result[i];
+			
+			var pre = "<li><a href='#'>";
+			var sur = "</a></li>";
+			$(".ranklist").append(pre+list.keyword+sur);
+			rolltext();
+		}
+	});
+	
+	function rolltext(){
 		$(function() {
 			var count = $('#rolling li').length;
 			var height = $('#rolling li').height();
 
 			function step(index) {
-				$('#rolling ol').delay(2000).animate({
+				$('#rolling ol').delay(100).animate({
 					top : -height * index,
-				}, 500, function() {
+				}, 300, function() {
 					step((index + 1) % count);
 				});
 			}
 
 			step(1);
 		});
+	}
+	});
 	</script>
 </body>
 </html>

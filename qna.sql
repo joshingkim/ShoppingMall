@@ -242,6 +242,8 @@ CREATE TABLE search(
 )
 SELECT * FROM search
 
+SELECT COUNT(*), keyword FROM search GROUP BY keyword 
+SELECT DENSE_RANK() OVER(ORDER BY COUNT(*)) 검색랭킹, keyword FROM search GROUP BY keyword
 SELECT * FROM item WHERE item_category = 'kimchi' AND UPPER(item_name) LIKE '%' || UPPER('kimchi') || '%'
 SELECT * FROM item WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
 CREATE SEQUENCE seq_search_no
