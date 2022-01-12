@@ -7,12 +7,15 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.ItemVO;
+import kr.co.domain.SearchVO;
 import kr.co.service.ItemService;
 import kr.co.service.SearchService;
 
@@ -22,6 +25,23 @@ public class SearchController {
 
 	@Autowired
 	private SearchService sService;
+	
+	@RequestMapping(value="/rankinglist", method = RequestMethod.GET)
+	public ResponseEntity<List<SearchVO>> rankinglist() {
+		ResponseEntity<List<SearchVO>> entity = null;
+		
+		
+		try {
+			List<SearchVO> rankinglist = sService.rankinglist();
+			entity = new ResponseEntity<List<SearchVO>>(rankinglist,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<SearchVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
 	
 	@RequestMapping(value="/search", method = RequestMethod.GET)
 	public void search(String member_id,String item_category,String keyword, HttpSession session, Model model) {
