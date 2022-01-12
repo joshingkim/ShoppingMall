@@ -44,6 +44,12 @@ public class ManagerController {
 		  List<Object> getName = mService.getName();
 		  List<Object> keywordRank = mService.keywordRank();
 		  List<Object> ageRank = mService.ageRank();
+		  List<Object> categoryRank = mService.categoryRank();
+		  
+		  model.addAttribute("categoryRank", categoryRank);
+		  
+		  String categoryRank1 = new ObjectMapper().writeValueAsString(categoryRank);
+			model.addAttribute("categoryRank1",categoryRank1);
 		  
 		  String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
 			model.addAttribute("ageRank1",ageRank1);
@@ -79,6 +85,13 @@ public class ManagerController {
 		
 		
 	}
+	
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String main() {
+		return "manager/main";
+	}
+	
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public void insertUI() {

@@ -47,11 +47,10 @@ CREATE TABLE item(
 )
 
 CREATE TABLE category(
-	item_name VARCHAR2(60),
-	item_category VARCHAR2(60) NOT NULL,
-	CONSTRAINT pk_category_item_category PRIMARY KEY(item_category),
-	CONSTRAINT pk_category_item_name FOREIGN KEY(item_name) REFERENCES item(item_name)
+	item_name VARCHAR2(60) PRIMARY KEY,
+	item_category VARCHAR2(60) NOT NULL
 )
+
 DROP TABLE category
 
 CREATE TABLE cart(
@@ -98,7 +97,7 @@ CREATE TABLE search(
 	CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
 
-INSERT INTO category (item_category) VALUES ('kimchi')
+INSERT INTO category VALUES ('해파리', '수산물')
 
 INSERT INTO manager VALUES ('employee', 1111, '경영자', 'employee', 11111111, 1)
 
@@ -112,30 +111,23 @@ VALUES ('m010', '1111', '구매자', '1954-07-08', 'qwerty@naver.com', 'asd', 'a
 INSERT INTO likeitem (like_no, item_no, member_id) VALUES (12, 6, 'moo1')
 
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) 
-VALUES(10,'닭고기','고기','small','red',15000, 15, 15)
+VALUES(15,'채소1','채소','small','red',15000, 15, 15)
 
 INSERT INTO package (order_no, member_id, item_no, order_quantity, order_price) values
-(20, 'm005', 9, 2, 4500)
+(24, 'm005', 14, 2, 4500)
 
 
 
 
 
 
-
-
-
-SELECT COUNT(TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)) AS COUNTPEOPLE,
-TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) AS  AGE 
-FROM member 
-GROUP BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)
-ORDER BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) DESC
-
-
-
-
-
-
-
-
+SELECT * FROM ( 
+SELECT ROW_NUMBER() OVER(PARTITION BY CATEGORY ORDER BY COUNTSELL DESC) AS RNUM, COUNTSELL, ITEMNAME, CATEGORY
+FROM
+(SELECT count(package.item_no) AS COUNTSELL,
+item.item_category AS CATEGORY, item.item_name AS ITEMNAME
+FROM package FULL OUTER JOIN item ON package.item_no = item.item_no
+GROUP BY item.item_category, item.item_name
+ORDER BY CATEGORY ASC, COUNTSELL DESC)
+WHERE COUNTSELL != 0) A WHERE A.RNUM = 1
 

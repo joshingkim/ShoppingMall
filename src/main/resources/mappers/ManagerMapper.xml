@@ -74,6 +74,25 @@
 		GROUP BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10)
 		ORDER BY TRUNC(TO_CHAR(member_birthday, 'YYYY')/10) DESC
 	</select>
+	
+	
+	<select id="categoryRank" resultType="Map">
+		SELECT * FROM ( 
+		SELECT ROW_NUMBER() OVER(PARTITION BY CATEGORY ORDER BY COUNTSELL DESC) AS RNUM, COUNTSELL, ITEMNAME, CATEGORY
+		FROM
+		(SELECT count(package.item_no) AS COUNTSELL,
+		item.item_category AS CATEGORY, item.item_name AS ITEMNAME
+		FROM package FULL OUTER JOIN item ON package.item_no = item.item_no
+		GROUP BY item.item_category, item.item_name
+		ORDER BY CATEGORY ASC, COUNTSELL DESC)
+		WHERE COUNTSELL != 0) A WHERE A.RNUM = 1
+	</select>
+	
+	
+	
+	
+	
+	
 
 
 </mapper>

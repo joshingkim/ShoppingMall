@@ -94,6 +94,12 @@ public class ManagerServiceImpl implements ManagerService {
 		return mDAO.ageRank();
 	}
 
+	@Override
+	public List<Object> categoryRank() {
+		
+		return mDAO.categoryRank();
+	}
+
 
 
 }

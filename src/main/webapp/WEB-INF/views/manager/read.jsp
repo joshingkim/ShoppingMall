@@ -42,19 +42,21 @@
 					${vo.manager_code } &nbsp;&nbsp;
 					
 					
-					
+					<div class="form-row align-items-center">
 					<form action="/manager/updateCode/${vo.manager_id}" method="post">
-  		<div class="form-row align-items-center">
-    
-    
+  		
     <input type="submit" id="changeRole" name="changeRole" class="btn btn-warning btn-sm" value="승인">
     
-    
-    </div> 
 </form>
-  
-  
-  	
+  &nbsp; &nbsp;
+  <form action="/manager/managerDelete" method="post">
+  		<input type="hidden" name="manager_pw" value="${vo.manager_pw }">
+  		<input type="hidden" name="manager_id" value="${vo.manager_id }">
+  		<input type="submit" class="btn btn-danger btn-sm" value="탈퇴">
+  		
+  		
+  </form>
+  	</div> 
 
     
 
