@@ -14,7 +14,7 @@ public class MemberVO implements Serializable{
 	private String member_email;
 	private String member_address;
 	private String member_detail_address;
-	private int member_phone_number;
+	private String member_phone_number;
 	private String member_regdate;
 	private String member_updatedate;
 	
@@ -22,7 +22,7 @@ public class MemberVO implements Serializable{
 	}
 	
 	public MemberVO(String member_id, String member_pw, String member_name, String member_birthday, String member_email,
-			String member_address, String member_detail_address, int member_phone_number) {
+			String member_address, String member_detail_address, String member_phone_number) {
 		super();
 		this.member_id = member_id;
 		this.member_pw = member_pw;
@@ -35,7 +35,7 @@ public class MemberVO implements Serializable{
 	}
 
 	public MemberVO(String member_id, String member_pw, String member_name, String member_birthday, String member_email,
-			String member_address, String member_detail_address, int member_phone_number, String member_regdate,
+			String member_address, String member_detail_address, String member_phone_number, String member_regdate,
 			String member_updatedate) {
 		super();
 		this.member_id = member_id;
@@ -107,10 +107,10 @@ public class MemberVO implements Serializable{
 	}
 
 	
-	public int getMember_phone_number() {
+	public String getMember_phone_number() {
 		return member_phone_number;
 	}
-	public void setMember_phone_number(int member_phone_number) {
+	public void setMember_phone_number(String member_phone_number) {
 		this.member_phone_number = member_phone_number;
 	}
 

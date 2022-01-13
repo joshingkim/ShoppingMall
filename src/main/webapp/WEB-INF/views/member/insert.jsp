@@ -23,10 +23,9 @@
 비밀번호: <input name="member_pw" type="password" maxlength="15" required><br>
 이름: <input name="member_name" maxlength="10" required ><br>
 생년월일: <input name="member_birthday" type="date" required><br> 
-Email: <input name="member_email01" id="member_email01" type="text" required>
-	   <input name="member_email02" id="member_email02" value="직접입력">
-	   <input name="member_email" type="hidden" id="member_email">
-	<select id="member_email03" name="member_email">
+Email: <input name="member_email01" id="member_email01" type="text" required><br>
+	   <input name="member_email" id="member_email" type="hidden">
+	<select name="member_email02" id="member_email02">
 		<option selected>선택하세요</option>
 		<option value="@naver.com" >@naver.com</option> 
 		<option value="@hanmail.net">@hanmail.net</option>
@@ -36,7 +35,7 @@ Email: <input name="member_email01" id="member_email01" type="text" required>
 	</select> <br>
 주소: <input id="member_address" name="member_address" placeholder="클릭시주소검색이뜹니다"><br>
 상세주소: <input id="member_detail_address" name="member_detail_address" maxlength="10" required><br>
-전화번호: <input name="member_phone_number" maxlength="11" placeholder="숫자만입력하세요" required><br>
+전화번호: <input name="member_phone_number" maxlength="13" placeholder="-를 넣어주세요" required><br>
 <input type="submit" value="회원 등록">
 </form>
 
@@ -75,31 +74,18 @@ $(document).ready(function() {
 				}
 			});
 		}		
-	})	
+	})
 	
-	$("#member_email").hide();
-	$("#member_email03").change(function(){
-		$("#member_email03 option:selected").each(function () {
-			var member_email01 = $("[name='member_email01']").val();
-			var member_email02 = $("[name='member_email02']").val();
-			$("[name='member_email']").val(member_email01 + member_email02);
-		});
-	});	
+	//submit 버튼 클릭 이벤트
+	$("input[type='submit']").click(function(event) {
+	 	event.preventDefault();	 	 	
+		var member_email01 = $("[name='member_email01']").val();
+		var member_email02 = $("[name='member_email02']").val();
+		$("[name='member_email']").val(member_email01 + member_email02);
+		$("form").submit();
+	});
 	
 	
-});
-
-//email 설정에 관한 함수
-$("#member_email03").change(function(){
-	$("#member_email03 option:selected").each(function () {
-			if($(this).val()== 'direct'){//직접 입력 하는 경우 
-				 $("#member_email02").val(''); //값 초기화
-				 $("#member_email02").attr("disabled",false); //활성화
-			}else{					
-				$("#member_email02").val($(this).text()); //선택값 입력
-				$("#member_email02").attr("disabled",true); //비활성화  
-			}
-	});	
 });
 
 </script>

@@ -19,6 +19,7 @@ public class MemberController {
 	@Inject
 	private MemberService mService;
 	
+	
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String idcheck(String member_id) {
@@ -60,6 +61,12 @@ public class MemberController {
 	public String update(MemberVO vo) {
 		mService.update(vo);		
 		return "redirect:/member/read/"+vo.getMember_id();
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(MemberVO vo) {
+		mService.delete(vo);		
+		return "redirect:../";
 	}
 	
 
