@@ -115,7 +115,7 @@ INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item
 VALUES(15,'채소1','채소','small','red',15000, 15, 15)
 
 INSERT INTO package (order_no, member_id, item_no, order_quantity, order_price) values
-(24, 'm005', 14, 2, 4500)
+(26, 'm001', 15, 2, 6300)
 
 
 

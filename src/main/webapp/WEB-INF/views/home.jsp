@@ -16,121 +16,74 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<style type="text/css">
-body {
-    font-size: 12px;
-    margin: 0;
-}
 
-#rolling {
-    margin: 20px;
-    padding: 10px;
-}
-
-#roll a {
-    color: black;
-    text-decoration: none;
-}
-
-#roll a:hover {
-    text-decoration: underline;
-}
-
-#roll {
-    overflow: hidden;
-    width: 160px;
-    height: 20px;
-    margin: 0;
-}
-
-
-#roll ul {
-    position: relative;
-    margin: 0;
-}
-
-#roll ol {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-#roll li {
-    height: 20px;
-    line-height: 20px;
-}
-</style>
 </head>
 <body>
+
 	<jsp:include page="header.jsp" />
-	<div class="container">
-		<h1 align="center">다판다</h1>
-		<div class="search" align="right">
-			<form action="/search/search" method="get" name="q">
-				ID:<input name="member_id"> <select name="item_category">
-					<option value="all">전체</option>
-					<option value="watches">시계</option>
-					<option value="necklaces">목걸이</option>
-					<option value="rings">반지</option>
-					<option value="braclets">팔찌</option>
-					<option value="hairpins">머리핀</option>
-					<option value="earings">귀걸이</option>
-				</select> <input id="search" name="keyword" placeholder="검색 할 상품명을 입력해주세요!">
-				<button class="btn_search_btn">
-					<span href="javascript:void(0)" class="btn_search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-					</svg></span>
-				</button>
-			</form>
-			<br>
-			<div id="rolling">
 
-				<div id="roll">
-					<ul>
-						<ol class="ranklist">
-						</ol>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="sidebar.jsp" />
+	<div class="container ">
+	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+       <img src="/resources/img/manager01.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/img/manager02.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/img/manager03.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div><br>
+
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">
+    <div class="card">
+      <img src="/resources/img/manager04.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img src="/resources/img/manager05.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img src="/resources/img/manager06.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img src="/resources/img/manager08.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-	<jsp:include page="footer.jsp" />
-	<script type="text/javascript">
-	$(document).ready(function(){
+
+</div>
+		
+
+
+	<jsp:include page="../views/manager/managerFooter.jsp" />
 	
-	$.getJSON("search/rankinglist", function(result){
-		for(var i =0; i<10;i++){
-			var list = result[i];
-			
-			var pre = "<li><a href='#'>";
-			var sur = "</a></li>";
-			$(".ranklist").append(pre+list.keyword+sur);
-			rolltext();
-		}
-	});
-	
-	function rolltext(){
-		$(function() {
-			var count = $('#rolling li').length;
-			var height = $('#rolling li').height();
-
-			function step(index) {
-				$('#rolling ol').delay(100).animate({
-					top : -height * index,
-				}, 300, function() {
-					step((index + 1) % count);
-				});
-			}
-
-			step(1);
-		});
-	}
-	});
-	</script>
 </body>
 </html>

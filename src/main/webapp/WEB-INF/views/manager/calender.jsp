@@ -119,7 +119,7 @@ calendar.render();
 
 <title>매출 달력</title>
 </head>
-<body><br>
+<body>
 <jsp:include page="../manager/managerHeader.jsp" />
 <br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
