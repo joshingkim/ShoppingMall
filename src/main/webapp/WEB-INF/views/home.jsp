@@ -36,7 +36,7 @@
       <img src="/resources/img/manager03.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
-</div><br>
+</div><br><br><br><br><br>
 
 <div class="row row-cols-1 row-cols-md-2">
   <div class="col mb-4">
