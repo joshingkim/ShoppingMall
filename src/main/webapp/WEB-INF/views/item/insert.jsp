@@ -27,6 +27,7 @@
 </style>
 <body>
 	<form action="/item/insert" method="post">
+		제목 :<input name="board_title"> <br>
 		카테고리 명 :
 		<select id="item_category" name="item_category" >
 			<option>선택하세요</option>
@@ -43,6 +44,8 @@
 		아이템 가격 : <input name="item_price"><br>
 		할인률 : <input name="discount_percentage">%<br>
 		아이템 재고 수량 : <input name="item_amount"><br>
+		내용 :<br>
+		<textarea rows="10" name="board_content"></textarea> <br>
  		<input type="submit" value="등록 완료">
 	</form>
 			
@@ -161,6 +164,17 @@
 					return;
 				}
 				
+				var board_title = $("[name='board_title']").val();
+				if(board_title == ''){
+					$("[name='board_title']").focus();
+					return;
+				}
+				
+				var board_content = $("[name='board_content']").val();
+				if(board_content == ''){
+					 $("[name='board_content']").focus();
+					return;
+				}
 				
 				for(filename in objFormData){
 					var msg = insertFile(filename);

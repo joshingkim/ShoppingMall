@@ -14,8 +14,11 @@ CREATE TABLE item(
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) VALUES(1,'kimchi','kimchi','small','red',15000, 15, 15)
 CREATE SEQUENCE seq_item_no
 
+drop table qna
 select * from item
+select * from review
 
+delete from item where item_no = 34
 CREATE TABLE item_file(
 	file_no NUMBER,
 	file_name VARCHAR2(200) NOT NULL,

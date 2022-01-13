@@ -19,5 +19,7 @@ public interface BoardService {
 
 	List<QnaVO> Qnalist(int board_no);
 
-	
+	int selectBoard_no(int item_no);
+
+	int selectItem_no(int board_no);
 }

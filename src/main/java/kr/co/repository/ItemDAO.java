@@ -10,9 +10,9 @@ public interface ItemDAO {
 
 	void insert(ItemVO vo);
 
-	ItemVO read(String item_no);
+	ItemVO read(int item_no);
 
-	ItemVO updateUI(String item_no);
+	ItemVO updateUI(int item_no);
 
 	void update(ItemVO vo);
 
@@ -20,7 +20,7 @@ public interface ItemDAO {
 
 	List<ItemVO> list(PageTO<ItemVO> pt);
 
-	void delete(String item_no);
+	void delete(int item_no);
 
 //	List<ItemVO> searchitem(Map<String, Object> map);
 

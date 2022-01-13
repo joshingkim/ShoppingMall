@@ -17,7 +17,7 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void insert(QnaVO qvo) {
 		qDao.insert(qvo);
-		
+
 	}
 
 	@Override
@@ -28,8 +28,7 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void answer(QnaVO vo) {
 		qDao.answer(vo);
-		
+
 	}
-	
-	
+
 }

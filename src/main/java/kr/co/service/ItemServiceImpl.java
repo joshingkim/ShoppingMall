@@ -9,9 +9,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.BoardVO;
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
+import kr.co.repository.BoardDAO;
 import kr.co.repository.FileDAO;
 import kr.co.repository.ItemDAO;
 
@@ -24,13 +26,20 @@ public class ItemServiceImpl implements ItemService {
 	@Inject
 	private FileDAO fDao;
 	
+	@Inject
+	private BoardDAO bDao;
+	
 	@Transactional
 	@Override
-	public void insert(ItemVO vo) {
-		iDao.insert(vo);
+	public void insert(ItemVO ivo, BoardVO bvo) {
+		iDao.insert(ivo);
 		
-		String[] arr = vo.getInsertfiles();
-		int item_no = vo.getItem_no();
+		bvo.setItem_no(ivo.getItem_no());
+		
+		bDao.insert(bvo);
+		
+		String[] arr = ivo.getInsertfiles();
+		int item_no = ivo.getItem_no();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("item_no", item_no);
@@ -40,16 +49,16 @@ public class ItemServiceImpl implements ItemService {
 				fDao.insert(map);
 			}
 		}
+		
 	}
-
 	@Override
-	public ItemVO read(String item_no) {
+	public ItemVO read(int item_no) {
 		// TODO Auto-generated method stub
 		return iDao.read(item_no);
 	}
 
 	@Override
-	public ItemVO updateUI(String item_no) {
+	public ItemVO updateUI(int item_no) {
 		// TODO Auto-generated method stub
 		return iDao.updateUI(item_no);
 	}
@@ -71,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void delete(String item_no) {
+	public void delete(int item_no) {
 		iDao.delete(item_no);
 	}
 

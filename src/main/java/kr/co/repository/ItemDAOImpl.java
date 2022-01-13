@@ -25,13 +25,13 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public ItemVO read(String item_no) {
+	public ItemVO read(int item_no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+".read", item_no);
 	}
 
 	@Override
-	public ItemVO updateUI(String item_no) {
+	public ItemVO updateUI(int item_no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+".updateUI", item_no);
 	}
@@ -54,7 +54,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public void delete(String item_no) {
+	public void delete(int item_no) {
 		sqlSession.delete(NS+".delete", item_no);
 	}
 

@@ -6,33 +6,40 @@
 <mapper namespace="kr.co.review">
 
 	<insert id="insert">
-		INSERT INTO review (review_no, board_no, member_id, review_content ,review_grade) VALUES (seq_board_review_no.NEXTVAL, #{board_no}, #{member_id}, #{review_content}, #{review_grade})
-		
+		INSERT INTO review (review_no, board_no, member_id,
+		review_content ,review_grade) VALUES (seq_board_review_no.NEXTVAL,
+		#{board_no}, #{member_id}, #{review_content}, #{review_grade})
+		<selectKey order="AFTER" keyProperty="review_no" resultType="Integer">
+			SELECT seq_board_review_no.CURRVAL FROM dual
+		</selectKey>
 	</insert>
 
 	<select id="getAmountReplyByBno" resultType="Integer">
-		SELECT COUNT(review_no) FROM review WHERE board_no = #{board_no}
+		SELECT
+		COUNT(review_no) FROM review WHERE board_no = #{board_no}
 	</select>
 
 	<select id="getRepliesPage" resultType="kr.co.domain.ReviewVO">
-		SELECT * FROM review WHERE board_no = #{board_no} ORDER BY review_no DESC
+		SELECT * FROM review
+		WHERE board_no = #{board_no} ORDER BY review_no DESC
 	</select>
-
-
 
 	<select id="getAllReplies" resultType="kr.co.domain.ReviewVO">
-		SELECT * FROM review WHERE board_no = #{board_no} ORDER BY review_no DESC
+		SELECT * FROM review WHERE
+		board_no = #{board_no} ORDER BY review_no DESC
 	</select>
-	
-		<update id="updateReview">
-		UPDATE review SET review_content = #{review_content}, review_regdate = SYSDATE ,review_grade = #{review_grade}
-		WHERE review_no = #{review_no}
+
+	<update id="updateReview">
+		UPDATE review SET review_content = #{review_content},
+		review_regdate = SYSDATE ,review_grade = #{review_grade}
+		WHERE
+		review_no = #{review_no}
 	</update>
-	
-	
-		<delete id="deleteReview">
+
+
+	<delete id="deleteReview">
 		DELETE FROM review WHERE review_no = #{review_no}
 	</delete>
-	
+
 
 </mapper>

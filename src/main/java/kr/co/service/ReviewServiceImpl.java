@@ -13,7 +13,7 @@ import kr.co.repository.ReviewDAO;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-	
+
 	@Inject
 	private ReviewDAO rDao;
 
@@ -27,22 +27,22 @@ public class ReviewServiceImpl implements ReviewService {
 	public PageTO<ReviewVO> getRepliesPage(PageTO<ReviewVO> pt, int board_no) {
 		int amount = rDao.getAmountReplyByBno(board_no);
 		pt.setAmount(amount);
-		
+
 		List<ReviewVO> list = rDao.getRepliesPage(pt, board_no);
 		pt.setList(list);
-				
+
 		return pt;
 	}
 
 	@Override
 	public List<ReviewVO> getAllReplies(int board_no) {
-		
+
 		return rDao.getAllReplies(board_no);
 	}
 
 	@Override
 	public void updateReview(ReviewVO rvo) {
-		rDao.updateReview(rvo);		
+		rDao.updateReview(rvo);
 	}
 
 	@Override

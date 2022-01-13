@@ -24,10 +24,6 @@ public class BoardController {
 
 	@Inject
 	private BoardService bService;
-
-
-	
-	
 	
 	@RequestMapping(value = "/update/{board_no}/{curPage}", method = RequestMethod.POST)
 	public String update(@PathVariable("board_no") int board_no, 
@@ -73,6 +69,9 @@ public class BoardController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("curPage", curPage);
 		
+		List<QnaVO> qvo = bService.Qnalist(board_no);
+		model.addAttribute("qvo", qvo);	
+		
 		return "board/read";
 	}
 	
@@ -83,11 +82,7 @@ public class BoardController {
 		BoardVO vo = bService.read(board_no);
 		
 		List<QnaVO> qvo = bService.Qnalist(board_no);
-		model.addAttribute("qvo", qvo);
-		System.out.println(board_no);
-		System.out.println(qvo);
-		System.out.println(vo);
-		
+		model.addAttribute("qvo", qvo);		
 		model.addAttribute("vo",vo);
 		model.addAttribute("curPage", 1);
 		return "board/read";
