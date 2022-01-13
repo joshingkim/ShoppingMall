@@ -12,18 +12,78 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  
 </head>
 <body>
-<form action="/manager/insert" method="post">
-manager_id: <input name="manager_id"><button id="idcheck">중복검사</button><br>
-<p id="idCheckResult"></p>
-manager_pw: <input name="manager_pw" type="password"><br>
-manager_name: <input name="manager_name"><br>
-manager_phone: <input type="number" name="manager_phone"> <br>
-manager_email: <input type="email" name="manager_email"><br>
-manager_code: <input type="hidden" name="manager_code" value=-1>
-<input type="submit"  value="관리자로 가입 요청">
+<jsp:include page="../manager/managerHeader.jsp" />
+
+
+
+
+
+
+
+
+
+<div class="container" >
+
+        <br><br><h4 class="mb-3">DAPAN&DA 관리자 등록</h4>
+        <form action="/manager/insert" method="post">
+          <div class="col-sm-8 row">
+            <div class="col-sm-8">
+              <label for="name" class="form-label">아이디 </label> <button id="idcheck" class="btn btn-info btn-sm">중복검사</button> <p id="idCheckResult"></p>
+              <input type="text"  name="manager_id" class="form-control"  placeholder="id">
+         	</div>
+         
+               
+              
+              </div>
+            
+
+            <div class="col-8">
+              <label for="username" class="form-label">비밀번호</label>
+              <div class="input-group has-validation">
+               
+                <input type="password" class="form-control" name="manager_pw" placeholder="password">
+              
+              </div>
+            </div>
+
+            <div class="col-8">
+              <label for="email" class="form-label">이름 </label>
+              <input type="email" class="form-control" name="manager_name" placeholder="name">
+              
+            </div>
+
+            <div class="col-8">
+              <label for="address" class="form-label">핸드폰 번호</label>
+              <input type="tel" class="form-control" name="manager_phone" placeholder="- 제외하고 숫자만">
+              
+            </div>
+
+            <div class="col-8">
+              <label for="address2" class="form-label">이메일</label>
+              <input type="email" class="form-control" name="manager_email" placeholder="you@examplpe.com">
+            </div>
+            <input type="hidden" name="manager_code" value=-1>
 </form>
+            
+
+          <br> <input type="submit" class="btn btn-success"  value="관리자로 가입 요청">
+
+           
+
+          <hr class="my-4">
+</div>
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
 
@@ -114,6 +174,6 @@ manager_code: <input type="hidden" name="manager_code" value=-1>
 
 
 
-
+<jsp:include page="../manager/managerFooter.jsp" />
 </body>
 </html>

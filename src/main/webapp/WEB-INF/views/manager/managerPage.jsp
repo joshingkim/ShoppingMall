@@ -129,6 +129,18 @@ calendar.render();
 <title>경영자용 페이지</title>
 </head>
 <body>
+<jsp:include page="../manager/managerHeader.jsp" />
+
+<jsp:include page="../manager/managerSidebar.jsp"/>
+
+
+
+
+
+
+
+
+
 
 
  
@@ -149,7 +161,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="heading">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
           매출
         </button>
       </h2>
@@ -165,7 +177,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           이번달 판매량 순위
         </button>
       </h2>
@@ -180,7 +192,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           인기(찜) 순위
         </button>
       </h2>
@@ -194,7 +206,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
           인기검색어 순위
         </button>
       </h2>
@@ -208,7 +220,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="headingfour">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
           연령대별 인원 수
         </button>
       </h2>
@@ -223,7 +235,7 @@ calendar.render();
   <div class="card">
     <div class="card-header" id="headingfive">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
           카테고리별 판매1위 품목
         </button>
       </h2>
@@ -466,6 +478,6 @@ const myChart7 = new Chart(ctx7, {
 </script>
 
 
-
+<jsp:include page="../manager/managerFooter.jsp" />
 </body>
 </html>
