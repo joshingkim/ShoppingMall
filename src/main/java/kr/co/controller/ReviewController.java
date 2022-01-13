@@ -58,10 +58,14 @@ public class ReviewController {
 		try {
 			  String review_content = (String) map.get("review_content");
 			 
+			  int review_grade = Integer.parseInt(String.valueOf(map.get("review_grade")));
 			  
-
+			 
+			  
+			  System.out.println(review_content);
+			  System.out.println(review_grade);
 			
-			  ReviewVO rvo = new ReviewVO(review_no, 0, null, review_content, null, null, 0);
+			  ReviewVO rvo = new ReviewVO(review_no, 0, null, review_content, null, null, review_grade);
 			
 			rService.updateReview(rvo);
 			

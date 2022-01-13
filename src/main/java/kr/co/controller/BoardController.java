@@ -1,8 +1,11 @@
 package kr.co.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.BoardVO;
+import kr.co.domain.QnaVO;
 import kr.co.service.BoardService;
+import kr.co.service.QnaService;
 
 @Controller
 @RequestMapping("board")
@@ -20,7 +25,7 @@ public class BoardController {
 	@Inject
 	private BoardService bService;
 
-		
+
 	
 	
 	
@@ -76,6 +81,12 @@ public class BoardController {
 	public String read(@PathVariable("board_no") int board_no, Model model) {
 	
 		BoardVO vo = bService.read(board_no);
+		
+		List<QnaVO> qvo = bService.Qnalist(board_no);
+		model.addAttribute("qvo", qvo);
+		System.out.println(board_no);
+		System.out.println(qvo);
+		System.out.println(vo);
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("curPage", 1);

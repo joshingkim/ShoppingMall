@@ -40,7 +40,7 @@ CREATE TABLE qna(
 	qna_updatedate DATE DEFAULT SYSDATE,
 	qna_repRoot NUMBER,
 	qna_repStep NUMBER,
-	qna_replndent NUMBER,
+	qna_repIndent NUMBER,
 	CONSTRAINT pk_board_qna_no PRIMARY KEY(qna_no),
 	CONSTRAINT fk_board_qna_board_no FOREIGN KEY(board_no) REFERENCES board(board_no) ON DELETE CASCADE,
 	CONSTRAINT fk_board_qna_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
@@ -49,8 +49,9 @@ CREATE TABLE qna(
 CREATE SEQUENCE seq_board_qna_no
 
 
-
 select * from BOARD
+
+select * from qna
 
 
 SELECT * FROM board WHERE board_no = 1
@@ -87,16 +88,18 @@ CREATE TABLE member(
 			
 			SELECT * FROM review WHERE board_no = 113 ORDER BY review_no DESC
 			
+																									
+			
+INSERT INTO qna (qna_no, board_no, member_id, qna_title, qna_content, qna_repRoot, qna_repStep, qna_repIndent)
+		VALUES(seq_board_qna_no.NEXTVAL, '109', 'm001', '1234', '12345', seq_board_qna_no.CURRVAL, '0', '0')
 			
 			
+ALTER TABLE qna ADD qna_answer VARCHAR2(150)
 			
 			
+	SELECT * FROM qna		
 			
 			
-			
-			
-			
-			
-			
+SELECT * FROM qna WHERE board_no = 109	
 
 

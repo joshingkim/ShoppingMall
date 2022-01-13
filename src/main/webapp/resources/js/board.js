@@ -29,7 +29,7 @@ function getRepliesPage(board_no, curPage, el){
 		
 		
 		var strPage = `
-		<nav aria-label="Page navigation example">
+		<nav aria-label="Page navigation example" id="review_view_nav">
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link reply_page_left" href="${data['curPage']}" aria-label="Previous">
@@ -87,7 +87,7 @@ function getAllReplies(board_no, el){
 function replyform(member_id, review_updatedate, review_content, review_grade , review_no){
 	
 	var msg = `
-						   <div class="card">
+						   <div id="review_view" class="card" >
 
 					      <div class="clearfix card-header">
 
@@ -96,7 +96,7 @@ function replyform(member_id, review_updatedate, review_content, review_grade , 
 					      </div>
 
 					      <div class="card-body">
-							<p class="card-text review_grade">평점: ${review_grade}점</p>
+							<p class="card-text review_grade"> 평점 : ${review_grade}</p>
 					         <p class="card-text review_content">${review_content}</p>
 							 
 
