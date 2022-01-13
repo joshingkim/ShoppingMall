@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
-
+import com.sun.org.glassfish.gmbal.ParameterNames;
 
 import kr.co.domain.ManagerVO;
 import kr.co.domain.OrderVO;
@@ -37,58 +37,128 @@ public class ManagerController {
 	
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public void forManager(Model model) throws JsonProcessingException {
-		List<OrderVO> list = mService.list();
-		 List<Object> saleRank = mService.saleRank();
-		 List<Object> daySale =  mService.daySale();
-		  List<Object> likeRank = mService.likeRank();
+		
+	
+		 
 		  List<Object> getName = mService.getName();
-		  List<Object> keywordRank = mService.keywordRank();
-		  List<Object> ageRank = mService.ageRank();
-		  List<Object> categoryRank = mService.categoryRank();
-		  
-		  model.addAttribute("categoryRank", categoryRank);
-		  
-		  String categoryRank1 = new ObjectMapper().writeValueAsString(categoryRank);
-			model.addAttribute("categoryRank1",categoryRank1);
-		  
-		  String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
-			model.addAttribute("ageRank1",ageRank1);
-		  
-		  String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
-			model.addAttribute("keywordRank1",keywordRank1);
-		  
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
 			model.addAttribute("getName1",getName1);
 		  
+			List<OrderVO> list = mService.list();
 			String list1 = new ObjectMapper().writeValueAsString(list);
 			model.addAttribute("list1", list1);
 		
-		
-			String saleRank1 = new ObjectMapper().writeValueAsString(saleRank);
-			model.addAttribute("saleRank1", saleRank1);
-		
-		
+			 List<Object> daySale =  mService.daySale();
 			String daySale1 = new ObjectMapper().writeValueAsString(daySale);
 			model.addAttribute("daySale1", daySale1);
 			
-			
-			  String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
-			  model.addAttribute("likeRank1", likeRank1);
-			 
+			List<Object> saleRank = mService.saleRank();
+			String saleRank1 = new ObjectMapper().writeValueAsString(saleRank);
+			model.addAttribute("saleRank1", saleRank1);
 			  
-			/*
-			 * model.addAttribute("list", list); 
-			 * model.addAttribute("saleRank", saleRank);
-			 * model.addAttribute("daySale", daySale);
-			 */
-	
+			List<Object> likeRank = mService.likeRank();
+			String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
+			  model.addAttribute("likeRank1", likeRank1);
 		
+			  List<Object> keywordRank = mService.keywordRank();
+				String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
+				model.addAttribute("keywordRank1",keywordRank1);
+				
+				List<Object> ageRank = mService.ageRank();
+				String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
+				model.addAttribute("ageRank1",ageRank1);
+				
+				List<Object> categoryRank = mService.categoryRank();
+				model.addAttribute("categoryRank", categoryRank);
+				String categoryRank1 = new ObjectMapper().writeValueAsString(categoryRank);
+				model.addAttribute("categoryRank1",categoryRank1);
+	}
+	
+	@RequestMapping(value = "/calender", method = RequestMethod.GET)
+	public void manager1(Model model) throws JsonProcessingException {
+		List<Object> daySale =  mService.daySale();
+		String daySale1 = new ObjectMapper().writeValueAsString(daySale);
+		model.addAttribute("daySale1", daySale1);
+		 List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	@RequestMapping(value = "/saleRank", method = RequestMethod.GET)
+	public void manager2(Model model) throws JsonProcessingException {
+		List<Object> saleRank = mService.saleRank();
+		String saleRank1 = new ObjectMapper().writeValueAsString(saleRank);
+		model.addAttribute("saleRank1", saleRank1);
+		 List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	@RequestMapping(value = "/likeRank", method = RequestMethod.GET)
+	public void manager3(Model model) throws JsonProcessingException {
+		 List<Object> likeRank = mService.likeRank();
+		String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
+		  model.addAttribute("likeRank1", likeRank1);
+		  List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	@RequestMapping(value = "/keywordRank", method = RequestMethod.GET)
+	public void manager4(Model model) throws JsonProcessingException {
+		List<Object> keywordRank = mService.keywordRank();
+		String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
+		model.addAttribute("keywordRank1",keywordRank1);
+		 List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	@RequestMapping(value = "/ageRank", method = RequestMethod.GET)
+	public void manager5(Model model) throws JsonProcessingException {
+		List<Object> ageRank = mService.ageRank();
+		String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
+		model.addAttribute("ageRank1",ageRank1);
+		 List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	@RequestMapping(value = "/categoryRank", method = RequestMethod.GET)
+	public void manager6(Model model) throws JsonProcessingException {
+		List<Object> categoryRank = mService.categoryRank();
+		model.addAttribute("categoryRank", categoryRank);
+		String categoryRank1 = new ObjectMapper().writeValueAsString(categoryRank);
+		model.addAttribute("categoryRank1",categoryRank1);
+		 List<Object> getName = mService.getName();
+		    String getName1 = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getName1",getName1);
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	public void manager() {
+		
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String main() {
+		return "manager/main";
+	}
+	
+	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public void main2() {
 		
 	}
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main() {
+	@RequestMapping(value = "/main/{manager_id}", method = RequestMethod.GET)
+	public String main1(@PathVariable("manager_id") String manager_id, Model model) {
+		ManagerVO vo = mService.read(manager_id);
+		model.addAttribute("vo", vo);
 		return "manager/main";
 	}
 	
@@ -102,7 +172,7 @@ public class ManagerController {
 	public String insert(ManagerVO vo) {
 		mService.insert(vo);
 		
-		return "redirect:/manager/managerList";
+		return "redirect:/manager/main/"+vo.getManager_id();
 	}
 	
 	
@@ -113,9 +183,9 @@ public class ManagerController {
 		ManagerVO vo = mService.idcheck(manager_id);
 		
 		if(vo == null) {
-			return "사용 가능";
+			return "사용 가능한 아이디입니다.";
 		}else {
-			return "사용불가";
+			return "중복된 아이디입니다.";
 		}
 	}
 		

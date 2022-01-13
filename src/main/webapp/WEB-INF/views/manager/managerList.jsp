@@ -17,6 +17,8 @@
 <title>경영자리스트</title>
 </head>
 <body>
+<jsp:include page="../manager/managerHeader.jsp" />
+
 <div class="container mt-5">
 <table class="table">
   <thead>
@@ -31,7 +33,11 @@
   <tbody>
 			<c:forEach items="${managerList}" var="vo">
 				<tr>
-					<td><a href="/manager/read/${vo.manager_id}">${vo.manager_id}</a></td>
+					<td>${vo.manager_id}
+					<c:if test="${vo.manager_code == -1 }">
+					<a href="/manager/read/${vo.manager_id}" class="badge badge-info">승인 요청!</a>
+					</c:if>
+					</td>
 					<td>${vo.manager_name}</td>
 					<td>${vo.manager_email}</td>
 					<td>${vo.manager_phone}</td>
@@ -58,7 +64,7 @@
 
 
 
-
+<jsp:include page="../manager/managerFooter.jsp" />
 
 
 
