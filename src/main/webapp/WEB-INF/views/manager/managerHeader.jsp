@@ -17,7 +17,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">DAPAN&DA</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
