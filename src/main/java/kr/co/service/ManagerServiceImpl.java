@@ -100,6 +100,12 @@ public class ManagerServiceImpl implements ManagerService {
 		return mDAO.categoryRank();
 	}
 
+	@Override
+	public ManagerVO managerLogin(ManagerVO vo) {
+		
+		return mDAO.managerLogin(vo);
+	}
+
 
 
 }

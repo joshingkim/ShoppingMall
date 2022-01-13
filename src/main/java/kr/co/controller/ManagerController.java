@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -172,7 +174,7 @@ public class ManagerController {
 	public String insert(ManagerVO vo) {
 		mService.insert(vo);
 		
-		return "redirect:/manager/main/"+vo.getManager_id();
+		return "redirect:/manager/main";
 	}
 	
 	
@@ -222,12 +224,48 @@ public class ManagerController {
 	}
 		
 
-		
-		
-		
-		
-		
-		
+		@RequestMapping(value = "/managerLogin", method = RequestMethod.POST)
+		public String login(HttpSession session, ManagerVO vo) {
+			String returnURL ="";
+	        if ( session.getAttribute("managerLogin") !=null ){
+	         
+	            session.removeAttribute("managerLogin"); 
+	        }
+	      
+	        ManagerVO mVo = mService.managerLogin(vo);
+	         
+	        if ( vo !=null ){ 
+	            session.setAttribute("managerLogin", vo); 
+	            returnURL ="redirect:/manager/main/"+ mVo.getManager_id(); 
+	        }else {
+	            returnURL ="redirect:/manager/login"; 
+	        }
+	         
+	        return returnURL; 
+	    }
+	 
+
+	    @RequestMapping(value="/logout")
+	    public String logout(HttpSession session) {
+	        session.invalidate(); 
+	        return "redirect:/manager/main"; 
+	    }
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+		@RequestMapping(value = "/managerLogin", method = RequestMethod.GET)
+		public void login1() {
+			
+		}
+	
 	}
 	
 

@@ -99,6 +99,12 @@ public class ManagerDAOImpl implements ManagerDAO{
 			return sqlSession.selectList(NS+".categoryRank");
 		}
 
+		@Override
+		public ManagerVO managerLogin(ManagerVO vo) {
+			
+			return sqlSession.selectOne(NS+".managerLogin", vo);
+		}
+
 	
 	
 

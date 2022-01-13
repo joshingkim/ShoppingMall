@@ -36,6 +36,8 @@ public interface ManagerService {
 
 		List<Object> categoryRank();
 
+		ManagerVO managerLogin(ManagerVO vo);
+
 		
 	
 	

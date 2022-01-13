@@ -89,7 +89,9 @@
 	</select>
 	
 	
-	
+	<select id="managerLogin" resultType="kr.co.domain.ManagerVO">
+	 SELECT * FROM manager WHERE manager_id = #{manager_id} AND manager_pw = #{manager_pw}
+	</select>
 	
 	
 	

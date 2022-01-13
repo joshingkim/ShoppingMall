@@ -39,6 +39,8 @@ public interface ManagerDAO {
 
 	List<Object> categoryRank();
 
+	ManagerVO managerLogin(ManagerVO vo);
+
 
 
 
