@@ -38,4 +38,9 @@ public class MemberServiceImpl implements MemberService {
 		mDao.update(vo);		
 	}
 
+	@Override
+	public void delete(MemberVO vo) {
+		mDao.delete(vo);
+	}
+
 }

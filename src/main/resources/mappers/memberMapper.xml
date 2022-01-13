@@ -29,7 +29,9 @@
 		WHERE member_id = #{member_id} AND member_pw = #{member_pw}
 </update>
 
-
+<delete id="delete">
+	DELETE FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+</delete>
 
 
 

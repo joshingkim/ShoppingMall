@@ -23,10 +23,9 @@
 비밀번호: <input name="member_pw" type="password" maxlength="15" required><br>
 이름: <input readonly name="member_name" maxlength="10" value="${vo.member_name}" required ><br>
 생년월일: <input readonly value="${fn:substring(vo.member_birthday, 0, 10)}" required><br> 
-Email: <input name="member_email01" id="member_email01" type="text" value="${fn:substringBefore(vo.member_email, '@')}" required>
-	   <input name="member_email02" id="member_email02" placeholder="@부터 입력해주세요" value="${fn:substringAfter(vo.member_email, '@')}" value="email을 선택 해 주세요" required>
-	   <input name="member_email" id="member_email">
-	<select id="member_email03" name="member_email03">
+Email: <input name="member_email01" id="member_email01" type="text" value="${fn:substringBefore(vo.member_email, '@')}" required><br>
+	   <input name="member_email" id="member_email" type="hidden">
+	<select name="member_email02" id="member_email02">
 		<option selected>선택하세요</option>
 		<option value="@naver.com" >@naver.com</option> 
 		<option value="@hanmail.net">@hanmail.net</option>
@@ -43,6 +42,13 @@ Email: <input name="member_email01" id="member_email01" type="text" value="${fn:
 <jsp:include page="../footer.jsp" />
 
 <script type="text/javascript">
+
+//이메일만 주출받는 코드
+var member_email = "${vo.member_email}";
+var arr = member_email.split("@");
+$("select").val("@" + arr[1]);
+
+
 document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
     //카카오 지도 발생
     new daum.Postcode({
@@ -77,50 +83,29 @@ $(document).ready(function() {
 		}		
 	})	
 	
-	//비밀번호를 입력하지 않으면 안바뀌게 하는 코드
+	
 	$("input[type='submit']").click(function(event) {
 		event.preventDefault();		
+		//비밀번호를 입력하지 않으면 안바뀌게 하는 코드
 		var pw = $("[name='member_pw']").val();		
 		if(pw==''){
 			alert("비밀번호를 입력 해 주세요");
 			return;
 		}		
+		
+		//이메일정보 받아서 합쳐주는 코드
+		var member_email01 = $("[name='member_email01']").val();
+		var member_email02 = $("[name='member_email02']").val();
+		$("[name='member_email']").val(member_email01 + member_email02);		
+		
 		$("form").submit();
 	});
 	
 	
 	
-	/* $("#member_email").hide(); */
-	var member_email01 = $("[name='member_email01']").val();
-	var member_email02 = $("[name='member_email02']").val();	 
-	
-	$("#member_email03").change(function(){
-		$("#member_email03 option:selected").each(function () {
-			member_email01 = $("[name='member_email01']").val();
-			member_email02 = $("[name='member_email02']").val();
-			$("[name='member_email']").val(member_email01 + member_email02);
-		});
-	});	
-	
-	member_email01 = $("[name='member_email01']").val();
-	member_email02 = $("[name='member_email02']").val();
-	$("[name='member_email']").val(member_email01+"@"+ member_email02);	
 	
 });
 
-
-//email을 바꾼 설정에 관한 함수
-$("#member_email03").change(function(){
-	$("#member_email03 option:selected").each(function () {
-			if($(this).val()== 'direct'){//직접 입력 하는 경우 
-				 $("#member_email02").val(''); //값 초기화
-				 $("#member_email02").attr("disabled",false); //활성화
-			}else{					
-				$("#member_email02").val($(this).text()); //선택값 입력
-				$("#member_email02").attr("disabled",true); //비활성화  
-			}
-	});	
-});
 </script>
 
 </body>

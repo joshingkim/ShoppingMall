@@ -14,6 +14,8 @@ public interface MemberDAO {
 	public MemberVO updateUI(String member_id);
 	//회원 정보 수정
 	public void update(MemberVO vo);
+	//회원 탈퇴
+	public void delete(MemberVO vo);
 	
 	
 
