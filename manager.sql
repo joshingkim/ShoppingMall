@@ -8,6 +8,7 @@ CREATE TABLE manager(
 	CONSTRAINT pk_manager_id PRIMARY KEY(manager_id)
 )
 DROP TABLE manager
+SELECT * FROM manager
 
 CREATE TABLE package(
    order_no NUMBER,

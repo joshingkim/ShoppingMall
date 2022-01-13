@@ -32,18 +32,21 @@
         <a class="nav-link" href="/">메인 Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/manager/managerPage">전체 통계</a>
+     <a class="nav-link" href="/manager/managerList">관리자 리스트</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/manager/managerList">관리자 리스트</a>
+        
+        <c:if test="${managerLogin.manager_id == 'employee' }">
+        <a class="nav-link" href="/manager/managerPage">전체 통계</a>
+        </c:if>
       </li>
-      
-      
     </ul>
   </div>
 </nav>
 
-
+<nav class="navbar navbar-info sticky-top bg-info flex-md-nowrap p-0 shadow">
+  <span class="navbar-brand mx-3 h3">${managerLogin.manager_id } 님, 환영합니다.</span>
+</nav>
 
 
 

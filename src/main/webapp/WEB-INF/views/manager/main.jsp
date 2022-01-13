@@ -25,12 +25,25 @@
   <h1 class="display-4">DAPAN&DA</h1>
   <p class="lead">여기는 관리자, 경영자를 위한 페이지입니다.</p>
   <hr class="my-4">
-  <p>아래 메뉴 중 선택하십시오.</p>
+  
+  <p><c:if test="${managerLogin != null }">${managerLogin.manager_id} 님, 환영합니다.</c:if> 아래 메뉴 중 선택하십시오.</p>
+  
   <a class="btn btn-light btn-lg" href="/" role="button">Home 바로가기</a> &nbsp; &nbsp;
-  <a class="btn btn-light btn-lg" href="#" role="button">관리자/경영자 로그인</a> &nbsp; &nbsp;
+  
+  <c:if test="${managerLogin == null }">
+  <a class="btn btn-light btn-lg" href="/manager/managerLogin" role="button">관리자/경영자 로그인</a> &nbsp; &nbsp;
   <a class="btn btn-light btn-lg" href="/manager/insert" role="button">관리자 등록하기</a> &nbsp; &nbsp;
+  </c:if>
+  
+  <c:if test="${managerLogin != null }">
+  <a class="btn btn-light btn-lg" href="/manager/logout" role="button">로그아웃</a> &nbsp; &nbsp;
   <a class="btn btn-light btn-lg" href="/manager/managerList" role="button">관리자 리스트</a> &nbsp; &nbsp;
+  
+  </c:if>
+  
+  <c:if test="${managerLogin.manager_id == 'employee'}">
   <a class="btn btn-light btn-lg" href="/manager/managerPage" role="button">통계</a> &nbsp; &nbsp;
+  </c:if>
 </div>
 
 
