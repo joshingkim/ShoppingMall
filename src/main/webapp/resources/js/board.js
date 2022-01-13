@@ -1,18 +1,6 @@
 /**
  * 
  */
-function File(){
-
-}
-
-
-
-
-
-
-
-
-
 
 function getRepliesPage(board_no, curPage, el){
 	el.html("");
@@ -27,7 +15,6 @@ function getRepliesPage(board_no, curPage, el){
 			el.append(msg);
 		}
 		
-		
 		var strPage = `
 		<nav aria-label="Page navigation example" id="review_view_nav">
   <ul class="pagination">
@@ -39,12 +26,10 @@ function getRepliesPage(board_no, curPage, el){
 		
 		`;
 		
-		
 		for(var i = data.beginPageNum; i < data.endPageNum+1; i++){
 			var activeOr = data.curPage == i?"active":"";
 			strPage += `<li class="page-item ${activeOr}"><a class="page-link reply_page_no" href="#">${i}</a></li>`;
 		}
-		
 		
 		strPage +=`
 		    <li class="page-item">
@@ -61,11 +46,6 @@ function getRepliesPage(board_no, curPage, el){
 	});
 }
 
-
-
-
-
-
 function getAllReplies(board_no, el){
 	el.html("");
 	
@@ -81,8 +61,6 @@ function getAllReplies(board_no, el){
 		
 	});
 }
-
-
 
 function replyform(member_id, review_updatedate, review_content, review_grade , review_no){
 	
@@ -110,11 +88,3 @@ function replyform(member_id, review_updatedate, review_content, review_grade , 
 					return msg;
 	
 }
-
-
-
-
-
-
-
-

@@ -33,6 +33,17 @@ function getImageUrl(filename) {
 	return url;
 }
 
+function getImageUrl2(filename) {
+	var url = "";
+	if (checkImageFile(filename)) {
+		filename = getLinkUrl(filename);
+		url = "/file/displayfile?filename=" + filename;
+	} else {
+		url = "/resources/img/general_file.png"
+	}
+	return url;
+}
+
 function getLinkUrl(filename) {
 	if (checkImageFile(filename)) {
 		var prefix = filename.substring(0, 12);
@@ -69,7 +80,7 @@ function uploadedItemForRead(filename){
 	var originalFilename = getOriginalFilename(filename);
 	var msg =`
 		<div class="uploadeditem col-sm-3">
-			<img src="${getImageUrl(filename)}">
+			<img src="${getImageUrl2(filename)}">
 			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}">${originalFilename}</a></p>
 		</div>
 	`;

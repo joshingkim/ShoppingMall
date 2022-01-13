@@ -37,10 +37,4 @@ public class FileDAOImpl implements FileDAO {
 		return sqlSession.delete(NS+".deleteFileByFilename", file_name);
 	}
 
-	@Override
-	public List<String> getFileAndItem_No(int item_no) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NS+".getFileAndItem_No", item_no);
-	}
-
 }

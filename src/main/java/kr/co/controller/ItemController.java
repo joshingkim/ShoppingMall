@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.domain.BoardVO;
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
+import kr.co.domain.QnaVO;
+import kr.co.service.BoardService;
 import kr.co.service.CategoryService;
 import kr.co.service.ItemService;
 
@@ -26,6 +29,8 @@ public class ItemController {
 	private ItemService iService;
 	@Inject
 	private CategoryService cService;
+	@Inject 
+	private BoardService bService;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public void insertUI(Model model) {
@@ -36,25 +41,35 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(ItemVO vo) {
+	public String insert(ItemVO ivo, BoardVO bvo) {
 
-		iService.insert(vo);
+		iService.insert(ivo,bvo);
 		
 		
-		return "redirect:/item/read/" + vo.getItem_no();
+		return "redirect:/item/read/" + ivo.getItem_no();
 	}
 
 	@RequestMapping(value = "/read/{item_no}", method = RequestMethod.GET)
-	public String read(@PathVariable("item_no") String item_no, Model model) {
-		ItemVO vo = iService.read(item_no);
+	public String read(@PathVariable("item_no") int item_no, Model model) {
+		ItemVO ivo = iService.read(item_no);
 		
-		model.addAttribute("vo", vo);
+		model.addAttribute("ivo", ivo);
+		
+		int board_no = bService.selectBoard_no(item_no);
+		
+		BoardVO vo = bService.read(board_no);
+		
+		model.addAttribute("vo",vo);
+		model.addAttribute("curPage", 1);
 
+		List<QnaVO> qvo = bService.Qnalist(board_no);
+		model.addAttribute("qvo", qvo);	
+		
 		return "item/read";
 	}
 
 	@RequestMapping(value = "/update/{item_no}", method = RequestMethod.GET)
-	public String updateUI(@PathVariable("item_no") String item_no, Model model) {
+	public String updateUI(@PathVariable("item_no") int item_no, Model model) {
 		ItemVO vo = iService.updateUI(item_no);
 		
 		model.addAttribute("vo", vo);
@@ -89,7 +104,7 @@ public class ItemController {
 		model.addAttribute("pt", pt);
 	}
 	@RequestMapping(value = "/delete/{item_no}", method = RequestMethod.GET)
-	public String delete(@PathVariable("item_no") String item_no) {
+	public String delete(@PathVariable("item_no") int item_no) {
 		
 		iService.delete(item_no);
 		

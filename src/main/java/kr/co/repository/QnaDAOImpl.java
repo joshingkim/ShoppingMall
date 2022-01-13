@@ -10,25 +10,26 @@ import kr.co.domain.QnaVO;
 
 @Repository
 public class QnaDAOImpl implements QnaDAO {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 	private String NS = "kr.co.qna";
+
 	@Override
 	public void insert(QnaVO qvo) {
 		sqlSession.insert(NS + ".insert", qvo);
-		
+
 	}
+
 	@Override
 	public List<QnaVO> list() {
 		return sqlSession.selectList(NS + ".list");
 	}
+
 	@Override
 	public void answer(QnaVO vo) {
 		sqlSession.update(NS + ".answer", vo);
-		
+
 	}
-	
-	
 
 }

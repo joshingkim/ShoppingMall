@@ -2,6 +2,8 @@ package kr.co.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.QnaVO;
+import kr.co.service.BoardService;
 import kr.co.service.QnaService;
 
 @Controller
@@ -19,10 +22,12 @@ public class QnaController {
 	@Autowired
 	private QnaService qService;
 	
+	@Inject
+	private BoardService bService;
+	
 	@RequestMapping(value="/answer", method=RequestMethod.POST)
 	public String answer(QnaVO vo) {
 		qService.answer(vo);
-		System.out.println(vo);
 		return "redirect:/qna/list";
 		
 	}
@@ -34,8 +39,10 @@ public class QnaController {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(QnaVO qvo) {
 		qService.insert(qvo);
-		System.out.println(qvo);
-		return "redirect:/board/read/"+qvo.getBoard_no();
+		
+		int item_no = bService.selectItem_no(qvo.getBoard_no());
+		
+		return "redirect:/item/read/"+item_no;
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

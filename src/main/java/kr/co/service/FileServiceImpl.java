@@ -31,11 +31,5 @@ public class FileServiceImpl implements FileService {
 		// TODO Auto-generated method stub
 		return fDao.deleteFileByFilename(file_name);
 	}
-
-	@Override
-	public List<String> getFileAndItem_No(int item_no) {
-		// TODO Auto-generated method stub
-		return fDao.getFileAndItem_No(item_no);
-	}
 	
 }

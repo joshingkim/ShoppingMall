@@ -77,13 +77,11 @@ public class FileController {
 	public ResponseEntity<byte[]> displayfile(String filename) {
 		ResponseEntity<byte[]> entity = null;
 		InputStream in = null;
-
 		try {
 			HttpHeaders headers = new HttpHeaders();
 
 			String uploadpath = ctx.getRealPath(this.uploadpath);
 			in = new FileInputStream(new File(uploadpath, filename));
-
 			String formatName = UploadUtils.getFormatName(filename);
 			MediaType mType = UploadUtils.getMediaType(formatName);
 

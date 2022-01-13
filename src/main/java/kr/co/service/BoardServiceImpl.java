@@ -53,6 +53,17 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.Qnalist(board_no);
 	}
 	
+	@Override
+	public int selectBoard_no(int item_no) {
+		// TODO Auto-generated method stub
+		return bDao.selectBoard_no(item_no);
+	}
+
+	@Override
+	public int selectItem_no(int board_no) {
+		// TODO Auto-generated method stub
+		return bDao.selectItem_no(board_no);
+	}
 	
 	
 }
