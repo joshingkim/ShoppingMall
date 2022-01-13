@@ -25,7 +25,7 @@
 	</select>
 	
 		<update id="updateReview">
-		UPDATE review SET review_content = #{review_content}, review_regdate = SYSDATE 
+		UPDATE review SET review_content = #{review_content}, review_regdate = SYSDATE ,review_grade = #{review_grade}
 		WHERE review_no = #{review_no}
 	</update>
 	

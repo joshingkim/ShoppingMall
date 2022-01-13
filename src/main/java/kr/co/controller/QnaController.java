@@ -35,7 +35,7 @@ public class QnaController {
 	public String insert(QnaVO qvo) {
 		qService.insert(qvo);
 		System.out.println(qvo);
-		return "redirect:/qna/list";
+		return "redirect:/board/read/"+qvo.getBoard_no();
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

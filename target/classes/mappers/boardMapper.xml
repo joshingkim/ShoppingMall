@@ -25,6 +25,8 @@ SELECT * FROM board WHERE board_no = #{board_no}
 	<select id="updateUI" resultType="kr.co.domain.BoardVO">
 		SELECT * FROM board WHERE board_no = #{board_no}
 	</select>
+	
+	
 
 
 <update id="update">
@@ -34,7 +36,9 @@ SELECT * FROM board WHERE board_no = #{board_no}
 	
 	</update>
 
-
+<select id="Qnalist" resultType="kr.co.domain.QnaVO">
+SELECT * FROM qna WHERE board_no = #{board_no}
+</select>
 
 
 

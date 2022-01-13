@@ -28,7 +28,11 @@ display : none;
 </style>
 <body>
 
-<h3>QnA</h3>
+
+<div id="div1"><h3>QnA</h3></div>
+
+<jsp:include page="../qna/insert.jsp" />
+
 <table>
 <thead>
 <tr>
@@ -37,6 +41,8 @@ display : none;
 <th>작성자</th>
 <th>작성일자</th>
 </tr>
+
+
 </thead>
 <tbody>
 <c:forEach items="${qvo}" var="qna">

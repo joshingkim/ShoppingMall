@@ -13,10 +13,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/board.js" type="text/javascript"></script>
+  <style type="text/css">
+  div, ul, li {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding:0;margin:0}
+a {text-decoration:none;}
+
+.quickmenu {position:absolute;width:200px;top:35%;margin-top:-50px;right:10px;background:#fff;}
+.quickmenu ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
+.quickmenu ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
+.quickmenu ul li a {position:relative;float:left;width:100%;height:30px;line-height:30px;text-align:center;color:#999;font-size:9.5pt;}
+.quickmenu ul li a:hover {color:#000;}
+.quickmenu ul li:last-child {border-bottom:0;}
+
+.content {position:relative;min-height:1000px;}
+  </style>
+  
 </head>
 <body>
 
-보드리드
+
+보드리드 <br>
 
 board_no : ${vo.board_no} <br>
 item_no : ${vo.item_no } <br>
@@ -24,37 +39,61 @@ board_title : ${vo.board_title } <br>
 board_content : ${vo.board_content} <br>
 board_regdate : ${vo.board_regdate } <br>
 board_updatedate : ${vo.board_updatedate } <br>
-board_viewcnt : ${vo.board_viewcnt }
+board_viewcnt : ${vo.board_viewcnt } <br>
 
 
 <button class="updateui">수정 화면</button> 
 <button class="delete">삭제</button> 
 <button>목록</button> 
-<button id="btn_reviewui_show">댓글화면</button><br>
+<!-- <button id="btn_reviewui_show">댓글화면</button> -->
 
-<div id="reviewContainer">
+<div class="quickmenu">
+  <ul>
+    <li><button id="btn1">div1로 이동</button></li>
+    <li><a href="#">1:1문의</a></li>
+    <li><a href="#">후기</a></li>
+  </ul>
+</div>
+
+
+
+<br>
+<jsp:include page="../review/list.jsp" />
+
+<div id="reviewContainer" style="display: none">
 	작성자: <input id="member_id"><br>
 	리뷰: <input id="review_content"><br>
 평점 : <select id="review_grade">
 
-<option value="5" selected>5점</option>
+<option value=5 selected>5점</option>
 
-<option value="4">4점</option>
+<option value=4>4점</option>
 
-<option value="3">3점</option>
+<option value=3>3점</option>
 
-<option value="2">2점</option>
+<option value=2>2점</option>
 
-<option value="1">1점</option>
+<option value=1>1점</option>
 
 </select><br>
 	<button id="btn_review_input">리뷰 완료</button>	
 </div>
 
 
+
+
+
 <div id="replies" class="mt-5">
 
 </div>
+
+<br>
+
+
+
+
+<jsp:include page="../qna/list.jsp" />
+
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -76,6 +115,22 @@ board_viewcnt : ${vo.board_viewcnt }
       	<p id="sp_reviewui_member_id">홍길동</p>
       	
       	
+      	<div>
+      		평점 : <select id="div_reviewui_review_grade">
+
+	<option value=5>5점</option>
+
+	<option value=4>4점</option>
+
+	<option value=3>3점</option>
+
+	<option value=2>2점</option>
+
+	<option value=1>1점</option>
+
+	</select><br>
+      	</div>
+      	
       	<div class="form-group">
       		<input class="form-control" id="div_reviewui_review_content" value="안녕하세요.">
       	</div>
@@ -85,11 +140,33 @@ board_viewcnt : ${vo.board_viewcnt }
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_reviewui_update">댓글 수정 완료</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_reviewui_update">리뷰 수정 완료</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+
+		$('#btn1').click(function(){
+
+			var offset = $('#div1').offset(); //선택한 태그의 위치를 반환
+
+                //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+	        $('html').animate({scrollTop : offset.top}, 400);
+
+		});
+
+	});
+
+</script>
 
 
 <script type="text/javascript">
@@ -97,182 +174,17 @@ var board_no = ${vo.board_no};
 
 $(document).ready(function(){
 	
-	
-	
-	
-	
-	getRepliesPage(board_no, 1, $("#replies"));
-	
-	
-	$("#replies").on("click", ".reply_page_left", function(event) {
-		event.preventDefault();
-		var curPage = $(this).attr("href");
-		
-		if(curPage > 1){
-			
-			getRepliesPage(board_no, --curPage, $("#replies"));
-		}
-		
-		
-	});
-	
-	$("#replies").on("click", ".reply_page_right", function(event) {
-		event.preventDefault();
-		var curPage = $(this).attr("href");
-		var totalPage = $(this).attr("data-totalPage");
-		
-		
-		
-		if(curPage < totalPage){
-			
-			getRepliesPage(board_no, ++curPage, $("#replies"));
-		}
-		
-		
-	});
-	
-	
-	$("#replies").on("click", ".reply_page_no", function() {
-		var curPage = $(this).text();
-		
-		getRepliesPage(board_no, curPage, $("#replies"));
-	});
-	
-	
-	
-	
-	
-	$("#replies").on("click", ".btn_review_delete", function() {
-		var review_no = $(this).attr("data-review_no");
-		
-		$.ajax({
-			type : "delete",
-			url : "/replies/"+review_no,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "DELETE"
-			},
-			dataType : "text",
-			success : function(result) {
-				if(result == "SUCCESS"){
-					alert("삭제되었습니다.");
-					getAllReplies(board_no, $("#replies"));
-				}
-			}
+	$(document).ready(function(){
+		  var currentPosition = parseInt($(".quickmenu").css("top"));
+		  $(window).scroll(function() {
+		    var position = $(window).scrollTop(); 
+		    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+		  });
 		});
-		
-	});
 	
 	
-	$("#btn_reviewui_update").click(function() {
-		var review_no = $("#sp_reviewui_review_no").text();
-		var review_content = $("#div_reviewui_review_content").val();
-		
+	
 
-		
-		$.ajax({
-			type : "put",
-			url : "/replies/"+review_no,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "PUT"
-			},
-			dataType : "text",
-			data : JSON.stringify({
-				review_content : review_content,
-				
-			}), 
-			success : function(result) {
-				if(result == "SUCCESS"){
-					alert("수정되었습니다.");
-					getAllReplies(board_no, $("#replies"));
-				}
-			}
-		});
-	});
-	
-	
-	
-	
-	
-	
-	$("#replies").on("click", ".btn_review_updateui_form", function() {
-		
-		var review_no = $(this).attr("data-review_no");
-		$("#sp_reviewui_review_no").text(review_no);
-		
-		var member_id = $(this).attr("data-member_id");
-		$("#sp_reviewui_member_id").text(member_id);
-		
-		var review_grade = $(this).prev(".review_grade").text();
-		$("#div_reviewui_review_grade").val(review_grade);
-		
-		var review_content = $(this).prev(".review_content").text();
-		$("#div_reviewui_review_content").val(review_content);
-	
-		console.log(review_content);
-		console.log(review_grade);
-		
-		$("#staticBackdrop").modal("show");
-	});
-	
-	
-	
-	$("#btn_review_input").click(function() {
-		var member_id = $("#member_id").val();
-		var review_content = $("#review_content").val();
-		var review_grade = $("#review_grade").val();
-		
-		if(member_id == ''){
-			$("#member_id").focus();
-			return;
-		}
-		
-		if(review_content == ''){
-			$("#review_content").focus();
-			return;
-		}
-		
-		if (review_grade == '') {
-			$("review_grade").focus();
-			return;
-		}
-	
-		
-		$.ajax({
-			type : "post",
-			url : "/replies",
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : "text",
-			data : JSON.stringify({
-				board_no : board_no,
-				member_id : member_id,
-				review_content : review_content,
-				review_grade : review_grade
-			}), 	
-			success : function(result) {
-				if(result=="SUCCESS"){
-					$("#member_id").val("");
-					$("#review_content").val("");
-					$("#review_grade").val("");
-					$("#reviewContainer").hide();
-					
-					getAllReplies(board_no, $("#replies"));
-					
-				}
-				
-			}
-		});
-		
-		
-	});
-	
-	$("#btn_reviewui_show").click(function() {
-		$("#reviewContainer").toggle();
-	});
 
 	$("body").on("click", ".updateui", function() {
 		location.assign("/board/updateui/${vo.board_no}/${curPage}");
