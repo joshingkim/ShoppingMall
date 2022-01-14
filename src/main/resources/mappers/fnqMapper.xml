@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.fnq">
+	
+	<insert id="insert">
+		INSERT INTO fnq(fnq_no, manager_id, fnq_title, fnq_content) VALUES
+		((SELECT NVL2(MAX(fnq_no), MAX(fnq_no)+1, 1) FROM fnq), #{manager_id},
+		#{fnq_title}, #{fnq_content})
+		
+		
+		<selectKey order="AFTER" keyProperty="fnq_no" resultType="Integer">
+			 SELECT MAX(fnq_no) FROM fnq
+		</selectKey>
+	</insert>
+
+
+
+
+
+	<select id="read" resultType="kr.co.domain.FnqVO">
+		SELECT * FROM fnq WHERE fnq_no = #{fnq_no}
+	</select>
+
+
+	<select id="updateUI" resultType="kr.co.domain.FnqVO">
+		SELECT * FROM fnq WHERE fnq_no = #{fnq_no}
+	</select>
+
+	<update id="update">
+		UPDATE fnq SET fnq_title = #{fnq_title}, content = #{fnq_content}, updatedate=SYSDATE
+		WHERE fnq_no = #{fnq_no}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM fnq WHERE fnq_no = #{fnq_no}
+	</delete>
+
+	<update id="increaseViewcnt">
+		UPDATE fnq SET fnq_viewcnt = fnq_viewcnt+1 WHERE fnq_no = #{fnq_no}
+	</update>
+
+	<select id="list" resultType="kr.co.domain.FnqVO">
+		SELECT * FROM fnq ORDER BY fnq_no DESC
+	</select>
+
+	<select id="getAmount" resultType="Integer">
+		SELECT COUNT(fnq_no) FROM fnq
+	</select>
+
+
+
+</mapper>

@@ -47,8 +47,8 @@ console.log(keywordRank1);
 console.log(ageRank1);
 console.log(categoryRank1);
 
-for(var i = 0, result = [] ; i < 50 ; i++){
- result.push({ "title" : daySale1[i].ORDERPRICE + "원", "start" : daySale1[i].ORDERDATE});
+for(var i = 0, cresult = [] ; i < 50 ; i++){
+ cresult.push({ "title" : daySale1[i].ORDERPRICE + "원", "start" : daySale1[i].ORDERDATE});
 };                      
 
 
@@ -102,7 +102,7 @@ calendar.unselect()
 	
 
 	
-events: result
+events: cresult
 
  
  
