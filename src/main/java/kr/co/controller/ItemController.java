@@ -1,6 +1,9 @@
 package kr.co.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,6 +22,7 @@ import kr.co.domain.PageTO;
 import kr.co.domain.QnaVO;
 import kr.co.service.BoardService;
 import kr.co.service.CategoryService;
+import kr.co.service.FileService;
 import kr.co.service.ItemService;
 
 @Controller
@@ -31,6 +35,8 @@ public class ItemController {
 	private CategoryService cService;
 	@Inject 
 	private BoardService bService;
+	@Inject 
+	private FileService fService;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public void insertUI(Model model) {
@@ -92,6 +98,15 @@ public class ItemController {
 		
 		pt = iService.list(pt);
 		
+		List<ItemVO> list= new ArrayList<ItemVO>();
+		
+		for(int i=0; i<pt.getList().size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String item_name = pt.getList().get(i).getItem_name();
+			String file_name = fService.getFile(item_no).get(0);
+			list.add(new ItemVO(item_no,item_name,file_name));
+		}
+		model.addAttribute("list", list);
 		model.addAttribute("pt", pt);
 		
 		return "item/list";
@@ -99,16 +114,98 @@ public class ItemController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(PageTO<ItemVO> pt, Model model) {
+		pt.setCurPage(1);
+		
 		pt = iService.list(pt);
 		
+		List<ItemVO> list= new ArrayList<ItemVO>();
+		
+		for(int i=0; i<pt.getList().size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String item_name = pt.getList().get(i).getItem_name();
+			String file_name = fService.getFile(item_no).get(0);
+			list.add(new ItemVO(item_no,item_name,file_name));
+		}
+		model.addAttribute("list", list);
 		model.addAttribute("pt", pt);
 	}
+	
+	@RequestMapping(value = "/list/{item_category}/1", method = RequestMethod.GET)
+	public String listbycategory(@PathVariable("item_category") String item_category, PageTO<ItemVO> pt, Model model) {
+		pt.setCurPage(1);
+		
+		pt = iService.listbycategory(pt, item_category);
+		
+		List<ItemVO> list= new ArrayList<ItemVO>();
+		
+		for(int i=0; i<pt.getList().size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String item_name = pt.getList().get(i).getItem_name();
+			String file_name = fService.getFile(item_no).get(0);
+			list.add(new ItemVO(item_no,item_name,file_name));
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("pt", pt);
+		return "item/listbycategory";
+	}
+	
+	@RequestMapping(value = "/list/{item_category}/{curPage}", method = RequestMethod.GET)
+	public String list(@PathVariable("item_category") String item_category, @PathVariable("curPage") int curPage, PageTO<ItemVO> pt, Model model) {
+		
+		pt.setCurPage(curPage);
+		
+		pt = iService.listbycategory(pt, item_category);
+		
+		List<ItemVO> list= new ArrayList<ItemVO>();
+		
+		for(int i=0; i<pt.getList().size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String item_name = pt.getList().get(i).getItem_name();
+			String file_name = fService.getFile(item_no).get(0);
+			list.add(new ItemVO(item_no,item_name,file_name));
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("pt", pt);
+		
+		return "item/listbycategory";
+	}
+	
 	@RequestMapping(value = "/delete/{item_no}", method = RequestMethod.GET)
 	public String delete(@PathVariable("item_no") int item_no) {
 		
 		iService.delete(item_no);
 		
 		return "redirect:/item/list";
+	}
+	@RequestMapping(value = "/getItem_size/{item_name}", method = RequestMethod.GET)
+	public ResponseEntity<List<ItemVO>> getItem_size(@PathVariable("item_name") String item_name, Model model) {
+		ResponseEntity<List<ItemVO>> entity = null;
+
+		try {
+			List<ItemVO> list = iService.getItem_size(item_name);
+			model.addAttribute("list", list);
+			entity = new ResponseEntity<List<ItemVO>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<ItemVO>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
+	@RequestMapping(value = "/getItem_color/{item_name}", method = RequestMethod.GET)
+	public ResponseEntity<List<ItemVO>> getItem_color(@PathVariable("item_name") String item_name, Model model) {
+		ResponseEntity<List<ItemVO>> entity = null;
+
+		try {
+			List<ItemVO> list = iService.getItem_color(item_name);
+			model.addAttribute("list", list);
+			entity = new ResponseEntity<List<ItemVO>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<ItemVO>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
 	}
 
 }

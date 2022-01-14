@@ -196,7 +196,7 @@ border-bottom:0 none;
 	         });
 		
 	
-	$.getJSON("search/rankinglist", function(result){
+	$.getJSON("/search/rankinglist", function(result){
 		for(var i =0; i<10;i++){
 			var list = result[i];
 			

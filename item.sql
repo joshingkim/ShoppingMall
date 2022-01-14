@@ -18,6 +18,26 @@ drop table qna
 select * from item
 select * from review
 
+select item_no from item_file 
+select item_no from item where item_name in (select distinct item_name from (select item_name,item_no from item group by item_name,item_no))
+select distinct item_name from (select item_name,max(item_no) as item_no from item group by item_name)
+
+select item_name,max(item_no) as item_no from item group by item_name
+select max(item_no) as item_no from item where item_name = '카시오 메탈밴드 손목시계(A158WA-1)' group by item_name 
+select max(item_no) as item_no from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' //해당 아이템 넘버를 가진 것 중에 가장 큰 아이템 넘버를 추출
+select file_no from item_file where item_no = (select max(item_no) as item_no from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)') //해당 아이템 넘버를 가진 것 중에 가장 큰 아이템 넘버의 파일 넘버
+select max(item_no) as item_no, item_name from item group by item_name // 아이템 네임을 기준으로 가장 높은 아이템 넘버와 아이템 네임을 조회 
+
+select file_no from item_file where item_no in (select max(item_no) as item_no from item group by item_name)//아이템 네임을 기준으로 파일 정렬
+select * from item where item_no in (select max(item_no) as item_no from item group by item_name) //아이템 네임을 기준으로 아이템 정렬
+select * from (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = '시계'//특정 아이템 카테고리에서 아이템 네임으로 아이템 정렬
+select item_size from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)'
+select upper(item_color) from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' group by upper(item_color)
+select * from item where item_no in (select max(item_no) as item_no from item group by item_name) ORDER BY item_no DESC
+카시오 메탈밴드 손목시계(A158WA-1)
+판도라 주얼리 노티드 하트 반지(198018)
+SELECT COUNT(item_no) FROM (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = '시계'
+select * from (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = '시계'
 delete from item where item_no = 34
 CREATE TABLE item_file(
 	file_no NUMBER,

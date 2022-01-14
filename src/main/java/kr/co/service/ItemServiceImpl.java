@@ -83,6 +83,27 @@ public class ItemServiceImpl implements ItemService {
 	public void delete(int item_no) {
 		iDao.delete(item_no);
 	}
+	@Override
+	public List<ItemVO> getItem_size(String item_name) {
+		// TODO Auto-generated method stub
+		return iDao.getItem_size(item_name);
+	}
+	@Override
+	public List<ItemVO> getItem_color(String item_name) {
+		// TODO Auto-generated method stub
+		return iDao.getItem_color(item_name);
+	}
+
+	@Override
+	public PageTO<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category) {
+		int amount = iDao.getAmountbycategory(item_category);
+		pt.setAmount(amount);
+		
+		List<ItemVO> list = iDao.listbycategory(pt,item_category);
+		pt.setList(list);
+		
+		return pt;
+	}
 
 
 

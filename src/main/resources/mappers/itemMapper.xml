@@ -24,10 +24,10 @@
 		UPDATE item SET item_size=#{item_size},item_color=#{item_color},item_price=#{item_price},discount_percentage=#{discount_percentage},item_amount=#{item_amount} WHERE item_no=#{item_no}
 	</update>
 	<select id="getAmount" resultType="Integer">
-		SELECT COUNT(item_no) FROM item
+		SELECT COUNT(item_no) FROM item where item_no in (select max(item_no) as item_no from item group by item_name) ORDER BY item_no DESC
 	</select>
 	<select id="list" resultType="kr.co.domain.ItemVO">
-		SELECT * FROM item ORDER BY item_regdate ASC
+		select * from item where item_no in (select max(item_no) as item_no from item group by item_name) ORDER BY item_no DESC
 	</select>
 	<delete id="delete">
 		DELETE FROM item WHERE item_no = #{item_no}
@@ -35,4 +35,16 @@
 	<select id="searchitem" resultType="kr.co.domain.ItemVO">
       SELECT * FROM item WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
    </select>
+   <select id="getItem_size" resultType="String">
+		select item_size from item where item_name = #{item_name}
+   </select>
+   <select id="getItem_color" resultType="String">
+      select upper(item_color) from item where item_name = #{item_name} group by upper(item_color)
+   </select>
+   <select id="getAmountbycategory" resultType="Integer">
+		SELECT COUNT(item_no) FROM (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = #{item_category}
+	</select>
+	<select id="listbycategory" resultType="kr.co.domain.ItemVO">
+		select * from (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = #{item_category}
+	</select>
 </mapper>

@@ -25,30 +25,49 @@
 
 	<jsp:include page="../sidebar.jsp" />
 	
-	<div class="row mb-2">
-    <div class="col-md-6">
+	<div class="row mb-2 container">
+    <div class="col-md-10">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><div class="uploadedList row"></div><rect width="100%" height="100%" fill="#55595c"/></svg>
-        </div>
+        <div class="uploadedList row"></div>
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">${ivo.item_no}/${ivo.item_category}</strong>
+          <strong class="d-inline-block mb-2 text-primary">${ivo.item_category}</strong>
           <h3 class="mb-0">${ivo.item_name}</h3>
           <div class="mb-1 text-muted">${ivo.item_regdate}</div>
 			<p class="card-text mb-auto">
-				사이즈 : ${ivo.item_size}<br>
-				색상 : ${ivo.item_color}<br>
+				<select id="item_size" name="item_size" >
+					<option>선택하세요</option>
+				</select><br>
+				<select id="item_color" name="item_color" >
+					<option>선택하세요</option>
+				</select><br>
 				가격 : ${ivo.item_price}<br>
 				할인률 :${ivo.discount_percentage}%<br>
 				<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
 			</p>
         </div>
       </div>
+      </div>
+      <jsp:include page="../board/read.jsp" />
     </div>
-	<jsp:include page="../board/read.jsp" />
+	
 <script type="text/javascript">
 var item_no = ${ivo.item_no};
+var item_name = "${ivo.item_name}";
 	$(document).ready(function(){
+		
+		$.getJSON("/item/getItem_size/"+item_name, function(data) {
+			for(var i=0; i<data.length; i++){
+				var msg = "<option>"+data[i]+"</option>";
+				$("#item_size").append(msg);
+			}
+		});
+		
+		$.getJSON("/item/getItem_color/"+item_name, function(data) {
+			for(var i=0; i<data.length; i++){
+				var msg = "<option>"+data[i]+"</option>";
+				$("#item_color").append(msg);
+			}
+		});
 		
 		$.getJSON("/file/getFile/"+item_no, function(data) {
 			for(var i=0; i<data.length; i++){

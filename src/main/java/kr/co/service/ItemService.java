@@ -21,4 +21,10 @@ public interface ItemService {
 
 	void delete(int item_no);
 
+	List<ItemVO> getItem_size(String item_name);
+
+	List<ItemVO> getItem_color(String item_name);
+
+	PageTO<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category);
+
 }

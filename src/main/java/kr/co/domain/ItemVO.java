@@ -20,6 +20,7 @@ public class ItemVO implements Serializable{
 	private String item_regdate;
 	private String[] insertfiles;
 	private String[] deletefiles;
+	private String file_name;
 	
 	public ItemVO() {
 		// TODO Auto-generated constructor stub
@@ -54,6 +55,21 @@ public class ItemVO implements Serializable{
 		this.item_regdate = item_regdate;
 		this.insertfiles = insertfiles;
 		this.deletefiles = deletefiles;
+	}
+
+	public ItemVO(int item_no, String item_name, String file_name) {
+		super();
+		this.item_no = item_no;
+		this.item_name = item_name;
+		this.file_name = file_name;
+	}
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 
 	public int getItem_no() {
@@ -168,8 +184,7 @@ public class ItemVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "{'item_no':" + item_no + ", 'item_name':'" + item_name + "'}";
+		return "{'item_no':" + item_no + ", 'item_name':'" + item_name + "', 'file_name': '"+file_name+"'}";
 	}
-	
-	
+
 }
