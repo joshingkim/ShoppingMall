@@ -26,6 +26,10 @@
 	}
 </style>
 <body>
+	<img alt="" src="">
+	<jsp:include page="../header.jsp" />
+
+	<jsp:include page="../sidebar.jsp" />
 	<form action="/item/insert" method="post">
 		제목 :<input name="board_title"> <br>
 		카테고리 명 :

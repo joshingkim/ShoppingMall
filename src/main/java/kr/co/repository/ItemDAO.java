@@ -1,6 +1,7 @@
 package kr.co.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
@@ -22,6 +23,6 @@ public interface ItemDAO {
 
 	void delete(int item_no);
 
-//	List<ItemVO> searchitem(Map<String, Object> map);
+	List<ItemVO> searchitem(Map<String, Object> map);
 
 }

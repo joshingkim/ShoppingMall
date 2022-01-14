@@ -15,7 +15,10 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
 <body>
-	<table>
+	<jsp:include page="../header.jsp" />
+
+	<jsp:include page="../sidebar.jsp" />
+<%-- 	<table>
 		<thead>
 			<tr>
 				<th>아이템 넘버</th>
@@ -44,7 +47,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 	<td><div class="uploadedList row"></div></td>
 	<jsp:include page="page.jsp" />
 <script type="text/javascript">

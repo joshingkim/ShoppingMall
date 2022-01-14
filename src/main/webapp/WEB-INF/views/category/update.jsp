@@ -18,6 +18,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
+
+	<jsp:include page="../sidebar.jsp" />
 	<form action="/category/update" method="post">
 		카테고리명 : <input name="item_category" maxlength="20" value="${vo.item_category}"><br> 
 		아이템명 : <input name="item_name" maxlength="25" value="${vo.item_name}"><br>

@@ -15,23 +15,36 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 	img{
-		width: 400px;
-  		height: 400px;
+		width: 250px;
+  		height: 250px;
 	}
 </style>
 </head>
 <body>
-	<div class="uploadedList row"></div>
-	아이템 넘버 : ${ivo.item_no}<br>
-	아이템 명 : ${ivo.item_name}<br>
-	카테고리 명 : ${ivo.item_category}<br>
-	아이템 사이즈 : ${ivo.item_size}<br>
-	아이템 컬러 : ${ivo.item_color}<br>
-	아이템 가격 : ${ivo.item_price}<br>
-	할인률 : ${ivo.discount_percentage}%<br>
-	아이템 재고 수량 : ${ivo.item_amount}<br>
-	아이템 등록일 : ${ivo.item_regdate}<br>
-	<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
+	<jsp:include page="../header.jsp" />
+
+	<jsp:include page="../sidebar.jsp" />
+	
+	<div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><div class="uploadedList row"></div><rect width="100%" height="100%" fill="#55595c"/></svg>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">${ivo.item_no}/${ivo.item_category}</strong>
+          <h3 class="mb-0">${ivo.item_name}</h3>
+          <div class="mb-1 text-muted">${ivo.item_regdate}</div>
+			<p class="card-text mb-auto">
+				사이즈 : ${ivo.item_size}<br>
+				색상 : ${ivo.item_color}<br>
+				가격 : ${ivo.item_price}<br>
+				할인률 :${ivo.discount_percentage}%<br>
+				<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
+			</p>
+        </div>
+      </div>
+    </div>
 	<jsp:include page="../board/read.jsp" />
 <script type="text/javascript">
 var item_no = ${ivo.item_no};

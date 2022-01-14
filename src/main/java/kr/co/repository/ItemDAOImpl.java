@@ -1,6 +1,7 @@
 package kr.co.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -58,8 +59,8 @@ public class ItemDAOImpl implements ItemDAO {
 		sqlSession.delete(NS+".delete", item_no);
 	}
 
-//	@Override
-//	   public List<ItemVO> searchitem(Map<String, Object> map) {
-//	      return sqlSession.selectList(NS + ".searchitem", map);
-//	   }
+	@Override
+	   public List<ItemVO> searchitem(Map<String, Object> map) {
+	      return sqlSession.selectList(NS + ".searchitem", map);
+	   }
 }
