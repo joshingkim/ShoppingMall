@@ -21,8 +21,8 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 
 	@Override
-	public OrderVO detail(int order_no) {
-		return sqlSession.selectOne(NS+".detail", order_no);
+	public OrderVO detail(int order_item_no) {
+		return sqlSession.selectOne(NS+".detail", order_item_no);
 	}
 	
 	
