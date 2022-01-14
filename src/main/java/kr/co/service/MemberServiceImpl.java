@@ -43,4 +43,9 @@ public class MemberServiceImpl implements MemberService {
 		mDao.delete(vo);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) {
+		return mDao.login(vo);
+	}
+
 }

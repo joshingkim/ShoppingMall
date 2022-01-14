@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,23 @@ public class MemberController {
 	@Inject
 	private MemberService mService;
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout(HttpSession session) {
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPost(MemberVO vo, Model model) {
+		MemberVO login = mService.login(vo);
+		
+		model.addAttribute("login", login);	
+
+		return "member/read";
+	}
+	
+	@RequestMapping(value = "/loginUI", method = RequestMethod.GET)
+	public String login() {
+		return "member/login";
+	}
 	
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody

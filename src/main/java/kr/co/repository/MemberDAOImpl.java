@@ -45,8 +45,12 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void delete(MemberVO vo) {
-		sqlSession.delete(NS+".delete", vo);
-		
+		sqlSession.delete(NS+".delete", vo);		
+	}
+
+	@Override
+	public MemberVO login(MemberVO vo) {
+		return sqlSession.selectOne(NS+".login", vo);
 	}
 
 }

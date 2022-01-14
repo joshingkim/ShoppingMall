@@ -16,6 +16,8 @@ public interface MemberDAO {
 	public void update(MemberVO vo);
 	//회원 탈퇴
 	public void delete(MemberVO vo);
+	//로그인
+	public MemberVO login(MemberVO vo);
 	
 	
 

@@ -34,6 +34,9 @@
 </delete>
 
 
+<select id="login" resultType="kr.co.domain.MemberVO">
+	SELECT member_id, member_name FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+</select>
 
 
 

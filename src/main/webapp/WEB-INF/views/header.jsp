@@ -178,8 +178,16 @@ border-bottom:0 none;
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-dark me-2 text-dark">Login</button>
-        <button type="button" class="btn btn-outline-dark text-dark">Sign-up</button>
+        <c:choose>
+          <c:when test="${empty login}">
+            <a class="btn btn-outline-primary" href="/member/loginUI">로그인</a>
+            <a class="btn btn-outline-primary" href="/member/insert">회원가입</a>
+          </c:when>
+          
+          <c:when test="${not empty login}">
+            ${login.member_id} 님, 환영합니다. <a class="btn btn-outline-primary" href="/member/read/${login.member_id}">회원 정보 보기</a> <a class="btn btn-outline-primary" href="/member/logout">로그아웃</a>
+          </c:when>
+        </c:choose>
       </div>
     </header>
     
