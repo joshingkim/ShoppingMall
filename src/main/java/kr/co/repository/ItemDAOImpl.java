@@ -63,4 +63,29 @@ public class ItemDAOImpl implements ItemDAO {
 	   public List<ItemVO> searchitem(Map<String, Object> map) {
 	      return sqlSession.selectList(NS + ".searchitem", map);
 	   }
+
+	@Override
+	public List<ItemVO> getItem_size(String item_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS + ".getItem_size", item_name);
+	}
+
+	@Override
+	public List<ItemVO> getItem_color(String item_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS + ".getItem_color", item_name);
+	}
+
+	@Override
+	public int getAmountbycategory(String item_category) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmountbycategory",item_category);
+	}
+
+	@Override
+	public List<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category) {
+		// TODO Auto-generated method stub
+		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
+		return sqlSession.selectList(NS+".listbycategory", item_category, rbs);
+	}
 }

@@ -30,7 +30,7 @@
 
 
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-						<a class="d-flex align-items-center text-muted" href="item/list"
+						<a class="d-flex align-items-center text-muted" href="/item/list"
 							aria-label="Add a new report"> ALL<span
 							data-feather="plus-circle"></span>
 						</a>

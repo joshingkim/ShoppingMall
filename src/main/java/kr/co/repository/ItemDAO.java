@@ -25,4 +25,12 @@ public interface ItemDAO {
 
 	List<ItemVO> searchitem(Map<String, Object> map);
 
+	List<ItemVO> getItem_size(String item_name);
+
+	List<ItemVO> getItem_color(String item_name);
+
+	int getAmountbycategory(String item_category);
+
+	List<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category);
+
 }
