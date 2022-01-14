@@ -21,35 +21,68 @@
 <body>
 
 
-
-
-
-	<button id="btn_reviewui_show">댓글쓰기</button>
+	<div id="replies" class="mt-5"></div>
 	<br>
 
+	
+
+
+<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="staticBackdropLabel">
+
+						<span id="sp_reviewui_review_no">11</span>
+
+
+					</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="sp_reviewui_member_id">홍길동</p>
+
+
+					<div>
+						평점 : <select id="div_reviewui_review_grade">
+
+							<option value=5>5점</option>
+
+							<option value=4>4점</option>
+
+							<option value=3>3점</option>
+
+							<option value=2>2점</option>
+
+							<option value=1>1점</option>
+
+						</select><br>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" id="div_reviewui_review_content"
+							value="안녕하세요.">
+					</div>
 
 
 
-	<div id="reviewContainer" style="display: none">
-		<input hidden name="board_no" value="${vo.board_no}">
-		작성자: <input name="member_id" id="member_id"><br> 
-		리뷰: <input name="review_content" id="review_content"><br> 
-		평점 : <select name="review_grade" id="review_grade">
-			<option value=5 selected>5점</option>
-			<option value=4>4점</option>
-			<option value=3>3점</option>
-			<option value=2>2점</option>
-			<option value=1>1점</option>
-		</select><br>
-		<button id="btn_review_input">리뷰 완료</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="btn_reviewui_update">리뷰 수정 완료</button>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-
-
-
-
-
 
 	<script type="text/javascript">
 		var board_no = ${vo.board_no};

@@ -25,6 +25,15 @@ public class BoardController {
 	@Inject
 	private BoardService bService;
 	
+	@RequestMapping(value = "reviewinsert/{board_no}" , method = RequestMethod.GET)
+	public String reviewinsert(@PathVariable("board_no") int board_no) {
+	
+		
+		
+		return "board/reviewinsert";
+	}
+
+	
 	@RequestMapping(value = "/update/{board_no}/{curPage}", method = RequestMethod.POST)
 	public String update(@PathVariable("board_no") int board_no, 
 						@PathVariable("curPage") int curPage, 

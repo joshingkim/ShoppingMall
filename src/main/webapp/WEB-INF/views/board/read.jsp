@@ -34,8 +34,8 @@ a {
 	position: absolute;
 	width: 200px;
 	top: 35%;
-	margin-top: -50px;
-	right: 10px;
+	margin-top: -100px;
+	right: 20px;
 	background: #fff;
 }
 
@@ -93,11 +93,8 @@ a {
 	<br> board_viewcnt : ${vo.board_viewcnt }
 	<br>
 
-
+	<input type="button" value="리뷰쓰기"  onclick="nwindow()"/>
 	<button class="updateui">수정 화면</button>
-	<button class="delete">삭제</button>
-	<button>목록</button>
-	<!-- <button id="btn_reviewui_show">댓글화면</button> -->
 
 	<div class="quickmenu">
 		<ul>
@@ -109,20 +106,7 @@ a {
 	<br>
 	<jsp:include page="../review/list.jsp" />
 
-	<div id="reviewContainer" style="display: none">
-		<input hidden name="board_no" value="${vo.board_no}">
-		작성자: <input name="member_id" id="member_id"><br> 
-		리뷰: <input name="review_content" id="review_content"><br> 
-		평점 : 
-		<select name="review_grade" id="review_grade">
-			<option value=5 selected>5점</option>
-			<option value=4>4점</option>
-			<option value=3>3점</option>
-			<option value=2>2점</option>
-			<option value=1>1점</option>
-		</select><br>
-		<button id="btn_review_input">리뷰 완료</button>
-	</div>
+	
 
 	<div id="replies" class="mt-5"></div>
 	<br>
@@ -188,8 +172,6 @@ a {
 
 
 
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<script>
 		$(document).ready(function() {
@@ -211,9 +193,19 @@ a {
 
 
 	<script type="text/javascript">
+	
+	 function nwindow(){
+         var url="../../board/reviewinsert/"+${vo.board_no};
+         window.open(url,"","width=400,height=400,left=600");
+     }
+	
 		var board_no = ${vo.board_no};
 
 		$(document).ready(function() {
+			
+			
+			
+			
 
 			$(document).ready(function() {
 				var currentPosition = parseInt($(".quickmenu").css("top"));
