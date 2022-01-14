@@ -22,12 +22,9 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private ItemDAO iDao;
 
-	@Transactional
 	@Override
 	public List<ItemVO> search(Map<String, Object> map) {
-		sDao.search(map);
-		List<ItemVO> list = new ArrayList<ItemVO>();
-//		List<ItemVO> list = iDao.searchitem(map);
+		List<ItemVO> list = iDao.searchitem(map);
 		return list;
 		
 	}
@@ -37,12 +34,12 @@ public class SearchServiceImpl implements SearchService {
 		return sDao.rankinglist();
 	}
 
-//	@Override
-//	public SearchVO list(SearchVO svo) {
-//		return sDao.list(svo);
-//	
-//		
-//	}
+	@Override
+	public void insert(SearchVO svo) {
+		sDao.insert(svo);
+		
+	}
+
 
 
 

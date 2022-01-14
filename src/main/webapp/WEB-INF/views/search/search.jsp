@@ -15,13 +15,25 @@
 </head>
 <body>
 <h1>Search페이지입니다.</h1>
+<div class="form-itemlist">
+<ul class="wrap-items">
 
-<c:forEach items="${list}" var="search">
-아이디 : ${search.member_id}
-카테고리 : ${search.item_category}
-검색어 : ${search.keyword}
-검색일자 : ${search.search_date}
-</c:forEach>
 
+</ul>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+$.getJSON("/search/search",function(result){
+	for(var i =0; i<result.length;i++){
+		var item = result[i];
+		$(".wrap-items").append("<li class='items'><a id='"+list.item_no+"'>"+item+"</a></li>");
+	}
+});
+
+});
+
+</script>
 </body>
 </html>
