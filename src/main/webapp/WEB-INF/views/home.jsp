@@ -23,6 +23,7 @@
 	<jsp:include page="header.jsp" />
 
 	<jsp:include page="sidebar.jsp" />
+
 	<div class="container ">
 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
