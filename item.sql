@@ -45,3 +45,16 @@ SELECT * FROM category
 SELECT * FROM category WHERE item_name = '세이코 남성 오토 메탈 시계(SNKA05)'
 
 SELECT item_category FROM category group by item_category
+
+CREATE TABLE search(
+search_no NUMBER, 
+member_id VARCHAR2(15), 
+item_category VARCHAR2(30) NOT NULL, 
+keyword VARCHAR2(60) NOT NULL, 
+search_date DATE DEFAULT SYSDATE, 
+CONSTRAINT pk_search_no PRIMARY KEY(search_no), 
+CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
+)
+
+select * from search
+CREATE SEQUENCE seq_search_no

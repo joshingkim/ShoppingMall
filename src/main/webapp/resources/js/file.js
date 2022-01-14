@@ -77,11 +77,9 @@ function deleteFile(filename) {
 }
 
 function uploadedItemForRead(filename){
-	var originalFilename = getOriginalFilename(filename);
 	var msg =`
 		<div class="uploadeditem col-sm-3">
-			<img src="${getImageUrl2(filename)}">
-			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}">${originalFilename}</a></p>
+			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}"><img src="${getImageUrl2(filename)}"></a></p>
 		</div>
 	`;
 	return msg;

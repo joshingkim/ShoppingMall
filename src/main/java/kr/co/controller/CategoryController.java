@@ -94,4 +94,21 @@ public class CategoryController {
 
 		return entity;
 	}
+
+	@RequestMapping(value = "/categorylist", method = RequestMethod.GET)
+	public ResponseEntity<List<CategoryVO>> categorylist(Model model) {
+		ResponseEntity<List<CategoryVO>> entity = null;
+
+		try {
+			List<CategoryVO> list = cService.categorylist();
+			model.addAttribute("list", list);
+			entity = new ResponseEntity<List<CategoryVO>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<CategoryVO>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
+
 }

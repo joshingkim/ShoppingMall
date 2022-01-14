@@ -18,6 +18,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
+
+	<jsp:include page="../sidebar.jsp" />
 	<form action="/category/insert" method="post">
 		카테고리명 : 
 		<select id="item_category1" name="item_category1" >
