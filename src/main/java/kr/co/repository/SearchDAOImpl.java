@@ -19,20 +19,16 @@ public class SearchDAOImpl implements SearchDAO{
 	private String NS = "kr.co.search";
 	
 	@Override
-	public void search(Map<String, Object> map) {
-		sqlSession.insert(NS +".search", map);
-	}
-
-	@Override
 	public List<SearchVO> rankinglist() {
 		return sqlSession.selectList(NS + ".rankinglist");
 	}
 
-//	@Override
-//	public SearchVO list(SearchVO svo) {
-//		return sqlSession.selectOne(NS + ".list", svo);
-//		
-//	}
+	@Override
+	public void insert(SearchVO svo) {
+		sqlSession.insert(NS + ".insert", svo);
+		
+	}
+
 
 		
 	

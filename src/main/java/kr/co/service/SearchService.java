@@ -13,7 +13,8 @@ public interface SearchService {
 
 	List<SearchVO> rankinglist();
 
-//	SearchVO list(SearchVO svo);
+	void insert(SearchVO svo);
+
 
 
 

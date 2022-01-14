@@ -8,12 +8,8 @@ import kr.co.domain.SearchVO;
 
 public interface SearchDAO {
 
-	void search(Map<String, Object> map);
-
 	List<SearchVO> rankinglist();
 
-//	SearchVO list(SearchVO svo);
-
-
+	void insert(SearchVO svo);
 
 }

@@ -5,16 +5,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.search">
-<insert id="search">
-INSERT INTO search (search_no, member_id, item_category, keyword)
-VALUES (seq_search_no.NEXTVAL, #{member_id}, #{item_category}, #{keyword})
-</insert>
+	<insert id="insert">
+		INSERT INTO search (search_no, item_category, keyword)
+		VALUES (seq_search_no.NEXTVAL, #{item_category}, #{keyword})
 
-<select id="searchlist" resultType="kr.co.domain.SearchVO">
-SELECT * FROM search WHERE item_category = #{item_category} AND UPPER(keyword) LIKE '%' ||UPPER(#{keyword})|| '%'
-</select>
+		<selectKey keyProperty="search_no" resultType="Integer"
+			order="AFTER">
+			SELECT seq_search_no.CURRVAL FROM dual
+		</selectKey>
+	</insert>
 
-<select id="rankinglist" resultType="kr.co.domain.SearchVO">
-SELECT RANK() OVER(ORDER BY COUNT(*)) Rank, keyword FROM search GROUP BY keyword
-</select>
+	<select id="searchlist" resultType="kr.co.domain.SearchVO">
+		SELECT * FROM search WHERE item_category = #{item_category} AND
+		UPPER(keyword) LIKE '%' ||UPPER(#{keyword})|| '%'
+	</select>
+
+	<select id="rankinglist" resultType="kr.co.domain.SearchVO">
+		SELECT RANK() OVER(ORDER BY COUNT(*)) Rank, keyword FROM search GROUP BY
+		keyword
+	</select>
 </mapper>

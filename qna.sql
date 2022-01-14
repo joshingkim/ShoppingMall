@@ -90,6 +90,12 @@ CREATE TABLE item(
 	CONSTRAINT fk_item_name FOREIGN KEY(item_name) REFERENCES category(item_name) ON DELETE CASCADE
 )
 
+INSERT INTO item (item_no,item_name,item_category,item_size, item_color, item_price,discount_percentage,item_amount)VALUES (seq_item_no.NEXTVAL, 'watch_casio_no1','watches','big','silver',150000,15,5)
+INSERT INTO item (item_no,item_name,item_category,item_size, item_color, item_price,discount_percentage,item_amount)VALUES (seq_item_no.NEXTVAL, 'watch_casio_no2','watches','big','silver',150000,15,5)
+INSERT INTO item (item_no,item_name,item_category,item_size, item_color, item_price,discount_percentage,item_amount)VALUES (seq_item_no.NEXTVAL, 'watch_casio_no3','watches','big','silver',150000,15,5)
+INSERT INTO item (item_no,item_name,item_category,item_size, item_color, item_price,discount_percentage,item_amount)VALUES (seq_item_no.NEXTVAL, 'watch_casio_no4','watches','big','silver',150000,15,5)
+INSERT INTO item (item_no,item_name,item_category,item_size, item_color, item_price,discount_percentage,item_amount)VALUES (seq_item_no.NEXTVAL, 'watch_casio_no5','watches','big','silver',150000,15,5)
+
 
 CREATE SEQUENCE seq_item_no
 
@@ -111,6 +117,16 @@ CREATE TABLE category(
 	item_category VARCHAR2(60) NOT NULL,
 	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
 )
+
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no1','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no2','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no3','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no4','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no5','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no6','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no7','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no8','watches')
+INSERT INTO category (item_name, item_category) VALUES ('watch_casio_no9','watches')
 
 매니저 테이블
 CREATE TABLE manager(
@@ -233,7 +249,7 @@ CREATE SEQUENCE seq_order_detail_no
 검색 테이블
 CREATE TABLE search(
 	search_no NUMBER,
-	member_id VARCHAR2(15) NOT NULL,
+	member_id VARCHAR2(15),
 	item_category VARCHAR2(30) NOT NULL,
 	keyword VARCHAR2(60) NOT NULL,
 	search_date DATE DEFAULT SYSDATE,
@@ -241,7 +257,10 @@ CREATE TABLE search(
 	CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
 SELECT * FROM search
+ALTER TABLE search DROP CONSTRAINT SYS_C007549 CASCADE
+SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'SEARCH'
 
+insert into search (search_no, member_id, item_category, keyword) VALUES (seq_search_no.NEXTVAL,null,'watches','랭킹3위')
 SELECT COUNT(*), keyword FROM search GROUP BY keyword 
 SELECT DENSE_RANK() OVER(ORDER BY COUNT(*)) 검색랭킹, keyword FROM search GROUP BY keyword
 SELECT * FROM item WHERE item_category = 'kimchi' AND UPPER(item_name) LIKE '%' || UPPER('kimchi') || '%'

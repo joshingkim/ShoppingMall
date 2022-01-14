@@ -63,6 +63,55 @@ body {
     color: white;
 }
 </style>
+<style type="text/css">
+      
+.category-box {
+position : relative;
+width : 90px;
+height : 35px;
+cursor : pointer;
+}
+
+.category-box:after {
+content: '';
+display:block;
+width : 2px;
+height : 100%;
+position : absolute;
+}
+
+.category-box .label {
+display : flex;
+width : inherit;
+height : inherit;
+align-items :center;
+cursor : pointer;
+}
+
+.category-box .menu {
+position : absolute;
+list-style-type : none;
+overflow : hidden;
+transition : .3s ease-in;
+}
+
+.category-box.active .menu {
+max-height : 500px;
+}
+
+.category-box .item {
+transition : .1s;
+}
+
+.category-box .item:hover {
+background : rgb(175,93,93);
+}
+
+.category-box .item:last-child {
+border-bottom:0 none;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <span class="navbar-brand mb-0 h1"><a class="nav-link text-light" href="/">DAPAN&DA</a></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,23 +137,24 @@ body {
     </ul>
    <div id="rolling"><div id="roll" ><ul><ol class="ranklist "></ol></ul></div></div>
   </div>
-    <form class="form-inline my-2 my-lg-0">
-    <div class="input-group mb-3">
-    <div class="input-group-prepend">
-    <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Dropdown</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">watches</a>
-      <a class="dropdown-item" href="#">necklaces</a>
-      <a class="dropdown-item" href="#">rings</a>
-      <a class="dropdown-item" href="#">braclets</a>
-      <a class="dropdown-item" href="#">hairpins</a>
-      <a class="dropdown-item" href="#">earings</a>
+    <form class="form-inline my-2 my-lg-0" action="/search/search">
+    <div class="input-group mb-3 put">
+    <div class="category-box">
+    <button class="btn btn-outline-secondary label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
+    <div class="dropdown-menu menu">
+      <a class="dropdown-item item" href="#">watches</a>
+      <a class="dropdown-item item" href="#">necklaces</a>
+      <a class="dropdown-item item" href="#">rings</a>
+      <a class="dropdown-item item" href="#">braclets</a>
+      <a class="dropdown-item item" href="#">hairpins</a>
+      <a class="dropdown-item item" href="#">earings</a>
       <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">else</a>
+      <a class="dropdown-item item" href="#">else</a>
+
     </div>
   </div>
-      <input class="form-control mr-sm-2 text-light" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0 mr-5 text-light" type="submit">Search</button>
+      <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+      <button id="search_btn" class="btn btn-outline-dark my-2 my-sm-0 btn_search" type="button">Search</button>
       </div>
     </form>
   
@@ -137,6 +187,14 @@ body {
     
     <script type="text/javascript">
 	$(document).ready(function(){
+		
+		
+		 $(".btn_search").click(function(){
+	         var item_category = $(".label").text();
+	         $(".put").append("<input name='item_category' type='hidden' value='"+item_category+"'>");
+	         $("form").submit();
+	         });
+		
 	
 	$.getJSON("search/rankinglist", function(result){
 		for(var i =0; i<10;i++){
@@ -165,6 +223,17 @@ body {
 			step(1);
 		});
 	}
+	
+	const label = document.querySelector('.label');
+	   const items = document.querySelectorAll('.item');
+	   const handleSelect = function(eachitem) {
+	      label.innerHTML = eachitem.textContent;
+	      label.parentNode.classList.remove('active');
+	   }
+	   items.forEach(function(option){
+	      option.addEventListener('click', function(){
+	         handleSelect(option)})
+	   });
 	});
 	
 	
