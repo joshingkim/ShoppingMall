@@ -17,13 +17,43 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../header.jsp"/>
 
-fnq_no: ${vo.fnq_no }<br>
-작성자: ${vo.manager_id }<br>
-제목: ${vo.fnq_title }<br>
-내용: <textarea rows="10" readonly>${vo.fnq_content}</textarea> <br>
+	<jsp:include page="../sidebar.jsp" />
 
 
+
+<div class="container">
+	
+	<form action="/fnq/insert" method="post">
+	<div class="form-group">
+    <label for="put">번호</label>
+    <input type="text" name="fnq_no" class="form-control is-invalid" id="put" value="${vo.fnq_no }" readonly>
+  </div>
+  <div class="form-group">
+    <label for="put1">작성자</label>
+    <input type="text" name="manager_id" class="form-control is-invalid" id="put1" value="${vo.manager_id }" readonly>
+  </div>
+  <div class="form-group">
+    <label for="put2">제목</label>
+    <input type="text" name="fnq_title" class="form-control is-invalid" id="put2" value="${vo.fnq_title }" readonly >
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">내용</label>
+    <textarea class="form-control is-invalid" id="Textarea1" rows="10" readonly>${vo.fnq_content}</textarea>
+  </div>
+</form>
+	
+	</div>
+
+
+
+
+
+
+
+
+	<jsp:include page="../footer.jsp"/>
 
 
 </body>

@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" href="/fnq/list/${pt.curPage>1?pt.curPage-1:1}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>

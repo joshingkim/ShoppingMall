@@ -1,7 +1,11 @@
 package kr.co.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.FnqVO;
 import kr.co.domain.PageTO;
+import kr.co.domain.SearchVO;
 import kr.co.service.FnqService;
+import kr.co.service.SearchService;
 
 @Controller
 @RequestMapping("fnq")
@@ -18,6 +24,15 @@ public class FnqController {
 
 	@Inject
 	private FnqService fService;
+	
+	@Inject
+	private SearchService sService;
+	
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
