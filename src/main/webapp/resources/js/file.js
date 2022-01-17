@@ -87,7 +87,7 @@ function uploadedItemForRead(filename){
 
 function uploadedItemForlist(filename, item_no, item_name){
 	var msg =`
-		<div class="uploadeditem col-sm-3">
+		<div class="uploadeditem col-md-3">
 			<img src="${getImageUrl(filename)}">
 			<p><a href="/item/read/${item_no}">${item_name}</a></p>
 		</div>

@@ -48,8 +48,10 @@
 			</c:forEach>
 		</tbody>
 	</table> --%>
-	<td><div class="uploadedList row"></div></td>
+	<div>
+	<div class="uploadedList row"></div>
 	<jsp:include page="page.jsp" />
+	</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	var vo = "${list}";

@@ -17,7 +17,7 @@
 		SELECT * FROM category WHERE item_name = #{item_name}
 	</select>
 	<update id="update">
-		UPDATE category SET item_name = #{item_name}, item_category = #{item_category} WHERE item_name = #{item_name}
+		UPDATE category SET item_name = #{item_name}, item_category = #{item_category} WHERE item_name = #{ori_item_name}
 	</update>
 	<delete id="delete">
 		DELETE FROM category WHERE item_name = #{item_name}

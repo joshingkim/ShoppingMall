@@ -1,6 +1,7 @@
 package kr.co.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,12 +44,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public void update(CategoryVO vo) {
-		
-		sqlSession.update(NS+".update", vo);
-	}
-
-	@Override
 	public void delete(String item_name) {
 		sqlSession.delete(NS+".delete", item_name);
 	}
@@ -63,6 +58,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<CategoryVO> item_name_list(String item_category) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NS+".item_name_list", item_category);
+	}
+
+	@Override
+	public void update(CategoryVO vo) {
+		sqlSession.update(NS+".update", vo);
 	}
 	
 }

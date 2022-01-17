@@ -33,10 +33,10 @@
 		DELETE FROM item WHERE item_no = #{item_no}
 	</delete>
 	<select id="searchitem" resultType="kr.co.domain.ItemVO">
-      SELECT * FROM item WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
-   </select>
+      SELECT * FROM (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
+	</select>
    <select id="getItem_size" resultType="String">
-		select item_size from item where item_name = #{item_name}
+		select item_size from item where item_name = #{item_name} ORDER BY LPAD(item_size, 21, '0')
    </select>
    <select id="getItem_color" resultType="String">
       select upper(item_color) from item where item_name = #{item_name} group by upper(item_color)
@@ -47,4 +47,7 @@
 	<select id="listbycategory" resultType="kr.co.domain.ItemVO">
 		select * from (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = #{item_category}
 	</select>
+	<select id="getAmountSearch" resultType="Integer">
+      SELECT COUNT(item_no) FROM (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) WHERE item_category = #{item_category} AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
+   </select>
 </mapper>

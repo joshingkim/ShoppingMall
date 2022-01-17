@@ -1,6 +1,7 @@
 package kr.co.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.domain.CategoryVO;
 import kr.co.domain.PageTO;

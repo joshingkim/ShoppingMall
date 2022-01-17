@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,11 +40,6 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void update(CategoryVO vo) {
-		cDao.update(vo);
-	}
-
-	@Override
 	public void delete(String item_name) {
 		cDao.delete(item_name);
 	}
@@ -59,4 +55,11 @@ public class CategoryServiceImpl implements CategoryService {
 		// TODO Auto-generated method stub
 		return cDao.item_name_list(item_category);
 	}
+
+	@Override
+	public void update(CategoryVO vo) {
+		cDao.update(vo);
+	}
+
+
 }
