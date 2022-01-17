@@ -11,6 +11,7 @@ public class CategoryVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String item_name;
 	private String item_category;
+	private String ori_item_name;
 	
 	public CategoryVO() {
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,13 @@ public class CategoryVO implements Serializable{
 		super();
 		this.item_name = item_name;
 		this.item_category = item_category;
+	}
+
+	public CategoryVO(String item_name, String item_category, String ori_item_name) {
+		super();
+		this.item_name = item_name;
+		this.item_category = item_category;
+		this.ori_item_name = ori_item_name;
 	}
 
 	public String getItem_name() {
@@ -45,6 +53,14 @@ public class CategoryVO implements Serializable{
 	@Override
 	public int hashCode() {
 		return Objects.hash(item_category, item_name);
+	}
+	
+	public String getOri_item_name() {
+		return ori_item_name;
+	}
+
+	public void setOri_item_name(String ori_item_name) {
+		this.ori_item_name = ori_item_name;
 	}
 
 	@Override

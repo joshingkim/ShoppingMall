@@ -1,6 +1,6 @@
 CREATE TABLE item(
 	item_no NUMBER,
-	item_name VARCHAR2(60) NOT NULL,
+	item_name VARCHAR2(120) NOT NULL,
 	item_category VARCHAR2(60) NOT NULL,
 	item_size VARCHAR2(21) NOT NULL,
 	item_color VARCHAR2(30) NOT NULL,
@@ -13,6 +13,8 @@ CREATE TABLE item(
 )
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) VALUES(1,'kimchi','kimchi','small','red',15000, 15, 15)
 CREATE SEQUENCE seq_item_no
+ALTER TABLE item MODIFY item_name VARCHAR2(120)
+ALTER TABLE category MODIFY item_name VARCHAR2(120)
 
 drop table qna
 select * from item
@@ -21,7 +23,7 @@ select * from review
 select item_no from item_file 
 select item_no from item where item_name in (select distinct item_name from (select item_name,item_no from item group by item_name,item_no))
 select distinct item_name from (select item_name,max(item_no) as item_no from item group by item_name)
-
+select item_size from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' ORDER BY item_size ASC
 select item_name,max(item_no) as item_no from item group by item_name
 select max(item_no) as item_no from item where item_name = '카시오 메탈밴드 손목시계(A158WA-1)' group by item_name 
 select max(item_no) as item_no from item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' //해당 아이템 넘버를 가진 것 중에 가장 큰 아이템 넘버를 추출
@@ -55,7 +57,7 @@ select * from item_file
 ALTER TABLE item_file MODIFY file_name VARCHAR2(200)
 
 CREATE TABLE category(
-	item_name VARCHAR2(60),
+	item_name VARCHAR2(120),
 	item_category VARCHAR2(60) NOT NULL,
 	CONSTRAINT pk_category_item_name PRIMARY KEY(item_name)
 )
@@ -63,8 +65,9 @@ INSERT INTO category (item_name, item_category) VALUES('제이에스티나 제�
 SELECT * FROM category
 
 SELECT * FROM category WHERE item_name = '세이코 남성 오토 메탈 시계(SNKA05)'
-
+UPDATE category SET item_name = '[MARK-4]PLAIN', item_category = '반지' WHERE item_name = '[MARK-4] PLAIN'
 SELECT item_category FROM category group by item_category
+ [MARK-4] PLAIN                 반지
 
 CREATE TABLE search(
 search_no NUMBER, 
@@ -75,6 +78,7 @@ search_date DATE DEFAULT SYSDATE,
 CONSTRAINT pk_search_no PRIMARY KEY(search_no), 
 CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
-
+select OBJECT_NAME, OBJECT_TYPE from user_objects
 select * from search
+drop table search
 CREATE SEQUENCE seq_search_no

@@ -15,20 +15,20 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 	img{
-		width: 250px;
-  		height: 250px;
+		width: 300px;
+  		height: 300px;
+  		margin: 20px;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
-
 	<jsp:include page="../sidebar.jsp" />
 	
 	<div class="row mb-2 container">
     <div class="col-md-10">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="uploadedList row"></div>
+        <div class="uploadedList"></div>
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">${ivo.item_category}</strong>
           <h3 class="mb-0">${ivo.item_name}</h3>
@@ -42,7 +42,8 @@
 				</select><br>
 				가격 : ${ivo.item_price}<br>
 				할인률 :${ivo.discount_percentage}%<br>
-				<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a>
+				<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a><br>
+				<a href="">찜</a>/<a href="">구매</a>				
 			</p>
         </div>
       </div>

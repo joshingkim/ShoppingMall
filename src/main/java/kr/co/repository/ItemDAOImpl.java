@@ -62,7 +62,29 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	   public List<ItemVO> searchitem(Map<String, Object> map) {
 	      return sqlSession.selectList(NS + ".searchitem", map);
-	   }
+	   }//이건 삭제 하셔야되요!!
+	
+//	@Override
+//	   public int getAmountSearch(SearchPageTO<ItemVO> spt) {
+//	      Map<String, Object> map = new HashMap<String, Object>();
+//	      String item_category = spt.getItem_category();
+//	      String item_name = spt.getKeyword();
+//	      map.put("item_name", item_name);
+//	      map.put("item_category", item_category);
+//	      return sqlSession.selectOne(NS + ".getAmountSearch", map);
+//	   }
+//
+//	   @Override
+//	   public List<ItemVO> searchitem(SearchPageTO<ItemVO> spt) {
+//	      Map<String, Object> map = new HashMap<String, Object>();
+//	      String item_category = spt.getItem_category();
+//	      String item_name = spt.getKeyword();
+//	      map.put("item_name", item_name);
+//	      map.put("item_category", item_category);
+//	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
+//	      return sqlSession.selectList(NS + ".searchitem", map, rbs);
+//	   }
+
 
 	@Override
 	public List<ItemVO> getItem_size(String item_name) {

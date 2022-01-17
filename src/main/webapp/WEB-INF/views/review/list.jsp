@@ -14,8 +14,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/resources/js/board.js" type="text/javascript"></script>
 </head>
 <body>
@@ -34,12 +32,8 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-
 					<h5 class="modal-title" id="staticBackdropLabel">
-
 						<span id="sp_reviewui_review_no">11</span>
-
-
 					</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -48,31 +42,19 @@
 				</div>
 				<div class="modal-body">
 					<p id="sp_reviewui_member_id">홍길동</p>
-
-
 					<div>
 						평점 : <select id="div_reviewui_review_grade">
-
 							<option value=5>5점</option>
-
 							<option value=4>4점</option>
-
 							<option value=3>3점</option>
-
 							<option value=2>2점</option>
-
 							<option value=1>1점</option>
-
 						</select><br>
 					</div>
-
 					<div class="form-group">
 						<input class="form-control" id="div_reviewui_review_content"
 							value="안녕하세요.">
 					</div>
-
-
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

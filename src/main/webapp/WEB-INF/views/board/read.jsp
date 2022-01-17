@@ -84,17 +84,18 @@ a {
 
 </head>
 <body>
-	<br> board_no : ${vo.board_no}
-	<br> item_no : ${vo.item_no }
-	<br> board_title : ${vo.board_title }
-	<br> board_content : ${vo.board_content}
-	<br> board_regdate : ${vo.board_regdate }
-	<br> board_updatedate : ${vo.board_updatedate }
-	<br> board_viewcnt : ${vo.board_viewcnt }
-	<br>
-
-	<input type="button" value="리뷰쓰기"  onclick="nwindow()"/>
-	<button class="updateui">수정 화면</button>
+	<div>
+		board_content : ${vo.board_content} <br>
+		board_regdate : ${vo.board_regdate } <br> 
+		board_updatedate : ${vo.board_updatedate } <br> 
+		board_viewcnt : ${vo.board_viewcnt } <br> 
+		<input type="button" value="리뷰쓰기" onclick="nwindow()" />
+		<button class="updateui">수정 화면</button>
+		<jsp:include page="../review/list.jsp" />
+		<div id="replies" class="mt-5"></div>
+		<br>
+		<jsp:include page="../qna/list.jsp" />
+	</div>
 
 	<div class="quickmenu">
 		<ul>
@@ -104,14 +105,6 @@ a {
 		</ul>
 	</div>
 	<br>
-	<jsp:include page="../review/list.jsp" />
-
-	
-
-	<div id="replies" class="mt-5"></div>
-	<br>
-
-	<jsp:include page="../qna/list.jsp" />
 
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
@@ -120,12 +113,8 @@ a {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-
 					<h5 class="modal-title" id="staticBackdropLabel">
-
 						<span id="sp_reviewui_review_no">11</span>
-
-
 					</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -134,31 +123,19 @@ a {
 				</div>
 				<div class="modal-body">
 					<p id="sp_reviewui_member_id">홍길동</p>
-
-
 					<div>
 						평점 : <select id="div_reviewui_review_grade">
-
 							<option value=5>5점</option>
-
 							<option value=4>4점</option>
-
 							<option value=3>3점</option>
-
 							<option value=2>2점</option>
-
 							<option value=1>1점</option>
-
 						</select><br>
 					</div>
-
 					<div class="form-group">
 						<input class="form-control" id="div_reviewui_review_content"
 							value="안녕하세요.">
 					</div>
-
-
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -169,10 +146,6 @@ a {
 			</div>
 		</div>
 	</div>
-
-
-
-
 	<script>
 		$(document).ready(function() {
 
@@ -190,23 +163,13 @@ a {
 
 		});
 	</script>
-
-
 	<script type="text/javascript">
-	
 	 function nwindow(){
          var url="../../board/reviewinsert/"+${vo.board_no};
          window.open(url,"","width=400,height=400,left=600");
      }
-	
 		var board_no = ${vo.board_no};
-
 		$(document).ready(function() {
-			
-			
-			
-			
-
 			$(document).ready(function() {
 				var currentPosition = parseInt($(".quickmenu").css("top"));
 				$(window).scroll(function() {
@@ -216,7 +179,6 @@ a {
 					}, 1000);
 				});
 			});
-
 			$("body").on("click", ".updateui", function() {
 				location.assign("/board/updateui/${vo.board_no}/${curPage}");
 			});

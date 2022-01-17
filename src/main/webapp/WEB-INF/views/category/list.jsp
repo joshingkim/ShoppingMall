@@ -19,8 +19,8 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
-
 	<jsp:include page="../sidebar.jsp" />
+	<div>
 	<table>
 		<thead>
 			<th>카테고리명</th>
@@ -38,6 +38,7 @@
 		</tbody>
 	</table>
 	<jsp:include page="page.jsp" />
+	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.category_delete').click(function() { 
