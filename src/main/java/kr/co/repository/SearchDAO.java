@@ -10,6 +10,6 @@ public interface SearchDAO {
 
 	List<SearchVO> rankinglist();
 
-	void insert(SearchVO svo);
+	void search(SearchVO svo);
 
 }
