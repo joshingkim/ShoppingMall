@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.ItemVO;
+import kr.co.domain.SearchPageTO;
 import kr.co.domain.SearchVO;
+import kr.co.repository.FileDAO;
 import kr.co.repository.ItemDAO;
 import kr.co.repository.SearchDAO;
 
@@ -21,13 +23,27 @@ public class SearchServiceImpl implements SearchService {
 	
 	@Autowired
 	private ItemDAO iDao;
+	
+	@Autowired
+	private FileDAO fDao;
 
-	@Override
-	public List<ItemVO> search(Map<String, Object> map) {
-		List<ItemVO> list = iDao.searchitem(map);
-		return list;
-		
-	}
+//	@Transactional
+//	@Override
+//	public SearchPageTO<ItemVO> searchlist(SearchPageTO<ItemVO> spt) {
+//		String item_category = spt.getItem_category();
+//		if(item_category.equals("All")) {
+//			int amountAll = iDao.getAmountSearchAll(spt);
+//			List<ItemVO> listAll = iDao.searchitemAll(spt);
+//			spt.setAmount(amountAll);
+//			spt.setList(listAll);
+//		}else {
+//		int amount = iDao.getAmountSearch(spt);
+//		List<ItemVO> list = iDao.searchitem(spt);
+//		spt.setAmount(amount);
+//		spt.setList(list);
+//		}
+//		return spt;
+//	}
 
 	@Override
 	public List<SearchVO> rankinglist() {
@@ -35,15 +51,8 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public void insert(SearchVO svo) {
-		sDao.insert(svo);
-		
+	public void search(SearchVO svo) {
+		sDao.search(svo);
 	}
 
-
-
-
-
-
-	
 }

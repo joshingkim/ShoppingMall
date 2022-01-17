@@ -24,9 +24,8 @@ public class SearchDAOImpl implements SearchDAO{
 	}
 
 	@Override
-	public void insert(SearchVO svo) {
-		sqlSession.insert(NS + ".insert", svo);
-		
+	public void search(SearchVO svo) {
+		sqlSession.insert(NS + ".search", svo);
 	}
 
 
