@@ -1,5 +1,6 @@
 package kr.co.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.co.domain.CartVO;
@@ -11,5 +12,9 @@ public interface CartDAO {
 	int countCart(Map<String, Object> map);
 
 	void update(CartVO vo);
+
+	List<CartVO> readCart(String member_id);
+
+	int sumMoney(String member_id);
 
 }
