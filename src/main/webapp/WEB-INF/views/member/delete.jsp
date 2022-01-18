@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 탈퇴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,26 +18,28 @@
 <jsp:include page="../header.jsp" />
 <jsp:include page="../sidebar.jsp" />
 
-<h1>로그인</h1> 
-
-<form action="/member/login" id="loginfrom" method="post">
-id: <input name="member_id"><br>
-pw: <input type="password" name="member_pw" id="member_pw"><br>
-<input type="submit" value="login" id="login">
-<button id="logncancle"></button>
-</form>
-
+	<h1>회원탈퇴</h1>
+	
+	<form action="/member/delete" name="delete" id="delete" method="post">		
+		비밀번호를 입력 해 주세요 <br>
+		<input type="password" name="member_pw" id="member_pw">
+		<input type="hidden" name="member_id" value="${login.member_id}">
+		<button id="deleteID">탈퇴하기</button> <button id="cencle">취소</button>
+	</form>
+	
 <jsp:include page="../footer.jsp" />
-
+	
 </body>
-<!-- 수정 전
-<script type="text/javascript">
 
-$(document).ready(function() {
-	$("#logncancle").click(function() {
-		location.assign("/");
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#member_pw").focus();
 		
-		$("#login").click(function(event) {
+		$("#cencle").click(function() {
+			location.assign("/");
+		});
+				
+		$("#deleteID").click(function(event) {
 			event.preventDefault();
 			
 			if($("#member_pw").val()==""){
@@ -49,24 +51,25 @@ $(document).ready(function() {
 				url : "/member/passChk",
 				type : "POST",
 				dataType : "json",
-				data : $("#loginfrom").serializeArray(),
+				data : $("#delete").serializeArray(),
 				success: function(data){					
 					if(data==0){
-						alert("아이디 또는 패스워드가 틀렸습니다.");
+						alert("패스워드가 틀렸습니다.");
 						return;
 					}else{
-							$("#loginfrom").submit();
+						if(confirm("회원탈퇴하시겠습니까?")){
+							$("#delete").submit();
 						}						
 					}
 				}
 			})
 		});
 		
+		
+		
 	});
-}); 
-
-</script> -->
-
+		
+		
+		
+</script>
 </html>
-
-

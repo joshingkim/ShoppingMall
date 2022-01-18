@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -37,15 +38,25 @@ public class MemberServiceImpl implements MemberService {
 	public void update(MemberVO vo) {
 		mDao.update(vo);		
 	}
-
+	
 	@Override
 	public void delete(MemberVO vo) {
-		mDao.delete(vo);
+		mDao.delete(vo);		
+	}	
+	
+	@Override public MemberVO deleteUI(String member_id) { 
+		return mDao.deleteUI(member_id); 
 	}
-
+	 
 	@Override
 	public MemberVO login(MemberVO vo) {
 		return mDao.login(vo);
+	}
+
+	@Override
+	public int passChk(MemberVO vo) {
+		int result = mDao.passChk(vo);
+		return result;
 	}
 
 }

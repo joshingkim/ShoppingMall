@@ -42,8 +42,8 @@ CREATE SEQUENCE seq_order_detail_no
 
 주문 테이블 우선 foreign 키 제거하고 테이블 생성
 CREATE TABLE package(
-	order_item_no NUMBER NOT NULL, 각각의상품
-	order_no NUMBER NOT NULL, 전체상품
+	order_item_no NUMBER NOT NULL, 
+	order_no NUMBER NOT NULL,
 	member_id VARCHAR2(15) NOT NULL,
 	item_no NUMBER,
 	cart_no NUMBER,

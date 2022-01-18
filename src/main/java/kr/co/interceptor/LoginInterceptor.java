@@ -26,21 +26,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		Map<String, Object> map = modelAndView.getModel();
-		
+		Map<String, Object> map = modelAndView.getModel();		
 		MemberVO login = (MemberVO) map.get("login");
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("login", login);		
+		session.setAttribute("login", login);	
 		
-		/*
-		 * 원래있던 페이지로 돌아가는 코드 -> 수정 전
-		 * String where = (String) session.getAttribute("where");
-		 * 
-		 * if(where == null) {  }else {
-		 * response.sendRedirect(where); }
-		 */
-		response.sendRedirect("/");
+		
+		 String where = (String) session.getAttribute("where");
+		  
+		 if(where == null) {  
+			 response.sendRedirect("../");
+		 }else {
+			 response.sendRedirect(where); 
+		 }
 	}
 
 }

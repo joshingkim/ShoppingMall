@@ -29,14 +29,23 @@
 		WHERE member_id = #{member_id} AND member_pw = #{member_pw}
 </update>
 
+<select id="login" resultType="kr.co.domain.MemberVO">
+	SELECT member_id, member_name FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+</select>
+
+<select id="deleteUI" resultType="kr.co.domain.MemberVO">
+		SELECT * FROM member WHERE member_id = #{member_id}
+</select>
+
 <delete id="delete">
 	DELETE FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
 </delete>
 
-
-<select id="login" resultType="kr.co.domain.MemberVO">
-	SELECT member_id, member_name FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+<select id="passChk" resultType="int">
+	SELECT COUNT(*) FROM member WHERE member_id = #{member_id} AND member_pw = #{member_pw}
 </select>
+
+
 
 
 

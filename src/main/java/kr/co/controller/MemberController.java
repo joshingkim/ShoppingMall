@@ -21,15 +21,14 @@ public class MemberController {
 	private MemberService mService;
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public void logout(HttpSession session) {
+	public String logout() {
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPost(MemberVO vo, Model model) {
-		MemberVO login = mService.login(vo);
-		
+		MemberVO login = mService.login(vo);		
 		model.addAttribute("login", login);	
-
 		return "member/read";
 	}
 	
@@ -41,8 +40,7 @@ public class MemberController {
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String idcheck(String member_id) {
-		MemberVO vo = mService.idcheck(member_id);
-		
+		MemberVO vo = mService.idcheck(member_id);		
 		if(vo == null) {
 			return "사용이 가능한 아이디 입니다";
 		}else {
@@ -62,8 +60,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
 	public String read(@PathVariable("member_id") String member_id, Model model) {
-		MemberVO vo = mService.read(member_id);
-		
+		MemberVO vo = mService.read(member_id);		
 		model.addAttribute("vo", vo);
 		return "member/read";	
 	}
@@ -81,10 +78,24 @@ public class MemberController {
 		return "redirect:/member/read/"+vo.getMember_id();
 	}
 	
+	 @RequestMapping(value = "/delete/{member_id}", method = RequestMethod.POST)
+	 public String deleteUI(@PathVariable("member_id") String member_id, Model model) { 
+		 MemberVO vo = mService.deleteUI(member_id); 
+		 model.addAttribute("vo", vo); 
+		 return "member/delete"; 
+	}
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(MemberVO vo) {
 		mService.delete(vo);		
-		return "redirect:../";
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/passChk", method = RequestMethod.POST)
+	@ResponseBody
+	public int passChk(MemberVO vo) {
+		int result = mService.passChk(vo);
+		return result;
 	}
 	
 

@@ -59,6 +59,7 @@
 		
 		<interceptor>
          <mapping path="/member/logout"/>
+         <mapping path="/member/delete"/>
          <beans:ref bean="logoutInterceptor"/>
       	</interceptor>
 		

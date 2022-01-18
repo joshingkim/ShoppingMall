@@ -17,6 +17,7 @@ ALTER TABLE item MODIFY item_name VARCHAR2(120)
 ALTER TABLE category MODIFY item_name VARCHAR2(120)
 
 drop table qna
+drop table item
 select * from item
 select * from review
 
