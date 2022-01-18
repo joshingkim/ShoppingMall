@@ -105,6 +105,17 @@ public class ManagerDAOImpl implements ManagerDAO{
 			return sqlSession.selectOne(NS+".managerLogin", vo);
 		}
 
+		@Override
+		public ManagerVO updateUI(String manager_id) {
+			
+			return sqlSession.selectOne(NS+".updateUI", manager_id);
+		}
+
+		@Override
+		public void update(ManagerVO vo) {
+			sqlSession.update(NS+".update", vo);
+		}
+
 	
 	
 

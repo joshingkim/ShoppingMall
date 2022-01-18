@@ -22,7 +22,7 @@
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-	<div class="container mt-5">
+	<div class="container mt-5 bg-light text-dark">
 		<table class="table">
 			<thead>
 				<tr>
@@ -66,15 +66,8 @@
 								</c:if>
 
 
-<c:if test="${managerLogin.manager_id == vo.manager_id || managerLogin.manager_id = 'employee' }">
-	<form action="/manager/update" method="post">
-									<input type="text" name="manager_id" readonly value="${vo.manager_id }"> 
-									<input type="hidden" name="manager_pw" value="${vo.manager_pw }"> 
-									<input type="text" name="manager_name" readonly value="${vo.manager_id }"> 
-									
-									
-									<input type="submit" class="btn btn-danger btn-sm" value="수정완료">
-								</form>
+<c:if test="${vo.manager_code == 0 }">
+	<a href="/manager/update/${vo.manager_id }" class="btn btn-warning btn-sm">수정</a> &nbsp;
 </c:if>
 
 

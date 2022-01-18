@@ -38,11 +38,11 @@ console.log(getName1);
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
 
    
-  <div class="container"><br><canvas id="myChart4"></canvas><br></div>
+  <div class="container bg-light text-dark"><br><canvas id="myChart4"></canvas><br></div>
       
 
 

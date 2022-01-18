@@ -21,8 +21,8 @@
 </head>
 <body >
 <jsp:include page="../manager/managerHeader.jsp" />
-
-<div class="container" >
+<br><br>
+<div class="container bg-light text-dark" >
 
         <br><br><h4 class="mb-3">Please Sign In</h4>
         <form action="/manager/managerLogin" method="post">

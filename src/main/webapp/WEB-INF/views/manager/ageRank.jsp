@@ -41,13 +41,13 @@ var date = new Date();
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
 
 
 
   
-   <div class="container"><br><canvas id="myChart7"></canvas></div>   
+   <div class="container bg-light text-dark"><br><canvas id="myChart7"></canvas></div>   
       
 
 <script>

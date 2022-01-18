@@ -23,11 +23,11 @@
 
  <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block  sidebar collapse">
       <div class="sidebar-sticky pt-3">
       
       
-      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light font-weight-bord">
           <span>Stats Menu</span>
           <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
@@ -35,44 +35,44 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active text-muted" href="/manager/calender">
+            <a class="nav-link active text-light font-weight-bord" href="/manager/calender">
               <span data-feather="home"></span>
              매출 달력 <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="/manager/saleRank">
+            <a class="nav-link text-light font-weight-bord" href="/manager/saleRank">
               <span data-feather="file"></span>
              이달의 판매량 순위
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link text-muted" href="/manager/likeRank">
+            <a class="nav-link text-light font-weight-bord" href="/manager/likeRank">
               <span data-feather="shopping-cart"></span>
               인기(찜) 순위
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="/manager/keywordRank">
+            <a class="nav-link text-light font-weight-bord" href="/manager/keywordRank">
               <span data-feather="users"></span>
               검색어 순위
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="/manager/ageRank">
+            <a class="nav-link text-light font-weight-bord" href="/manager/ageRank">
               <span data-feather="bar-chart-2"></span>
               연령대별 회원 수
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="/manager/categoryRank">
+            <a class="nav-link text-light font-weight-bord" href="/manager/categoryRank">
               <span data-feather="layers"></span>
               카테고리별 판매1위 품목
             </a>
           </li>
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light font-weight-bord">
           <span>Saved reports</span>
           <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
@@ -80,29 +80,24 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
+            <a class="nav-link text-light font-weight-bord" href="/404page">
               <span data-feather="file-text"></span>
-              더미게시판
+              공지사항
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
+            <a class="nav-link text-light font-weight-bord" href="/404page">
               <span data-feather="file-text"></span>
-             더미게시판
+             QnA 게시판
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
+            <a class="nav-link text-light font-weight-bord" href="/fnq/list">
               <span data-feather="file-text"></span>
-              더미게시판
+              자주 묻는 질문
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-              <span data-feather="file-text"></span>
-              더미게시판
-            </a>
-          </li>
+          
         </ul>
       </div>
     </nav>

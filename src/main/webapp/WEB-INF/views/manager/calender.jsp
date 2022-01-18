@@ -121,11 +121,11 @@ calendar.render();
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-<br>
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
   
-<br>
- <div class="container"><br><div id='calendar' ></div><br> </div>
+
+ <div class="container bg-light text-dark"><br><div id='calendar' ></div><br></div>
  
 
 

@@ -251,21 +251,35 @@ public class ManagerController {
 	        return "redirect:/manager/main"; 
 	    }
 
-
-
-			
-			
-			
-			
-			
-			
-			
-			
 		@RequestMapping(value = "/managerLogin", method = RequestMethod.GET)
 		public void login1() {
 			
 		}
 	
+		
+		
+		@RequestMapping(value = "/update/{manager_id}", method = RequestMethod.GET)
+		public String updateUI(@PathVariable("manager_id") String manager_id, Model model) {
+			
+			ManagerVO vo = mService.updateUI(manager_id);
+			
+			model.addAttribute("vo", vo);
+			
+			return "/manager/update";
+		}
+		
+		@RequestMapping(value = "/update", method = RequestMethod.POST)
+		public String update(ManagerVO vo) {
+			mService.update(vo);
+			
+			return "redirect:/manager/read/"+vo.getManager_id();
+		}
+		
+		
+		
+		
+		
+		
 	}
 	
 

@@ -25,8 +25,8 @@
 
 
 
-
-<div class="container" >
+<br><br>
+<div class="container bg-light text-dark" >
 
         <br><br><h4 class="mb-3">DAPAN&DA 관리자 등록</h4>
         <form action="/manager/insert" method="post">
@@ -45,34 +45,34 @@
               <label for="username" class="form-label">비밀번호</label>
               <div class="input-group has-validation">
                
-                <input type="password" class="form-control" name="manager_pw" placeholder="password">
+                <input type="password" class="form-control" name="manager_pw" placeholder="password" required="required">
               
               </div>
             </div>
 
             <div class="col-8">
               <label for="email" class="form-label">이름 </label>
-              <input type="email" class="form-control" name="manager_name" placeholder="name">
+              <input type="email" class="form-control" name="manager_name" placeholder="name" required="required">
               
             </div>
 
             <div class="col-8">
               <label for="address" class="form-label">핸드폰 번호</label>
-              <input type="tel" class="form-control" name="manager_phone" placeholder="- 제외하고 숫자만">
+              <input type="tel" class="form-control" name="manager_phone" placeholder="- 제외하고 숫자만" required="required">
               
             </div>
 
             <div class="col-8">
               <label for="address2" class="form-label">이메일</label>
-              <input type="email" class="form-control" name="manager_email" placeholder="you@examplpe.com">
+              <input type="email" class="form-control" name="manager_email" placeholder="you@examplpe.com" required="required">
             </div>
             <input type="hidden" name="manager_code" value=-1>
-</form>
+
             
 
           <br> <input type="submit" class="btn btn-success"  value="관리자로 가입 요청">
 
-           
+           </form>
 
           <hr class="my-4">
 </div>
@@ -88,6 +88,21 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		
+		
+		
+		
+
+			$("input[type='submit']").click(function() {
+
+				alert("경영자의 승인을 기다리세요.")
+			});
+
+	
+	
+		
+		
+		
 		
 		
 		

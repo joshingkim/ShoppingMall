@@ -38,6 +38,10 @@ public interface ManagerService {
 
 		ManagerVO managerLogin(ManagerVO vo);
 
+		ManagerVO updateUI(String manager_id);
+
+		void update(ManagerVO vo);
+
 		
 	
 	
