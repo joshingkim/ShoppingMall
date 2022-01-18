@@ -104,6 +104,16 @@ public class ItemServiceImpl implements ItemService {
 		
 		return pt;
 	}
+	@Override
+	public PageTO<ItemVO> listofall(PageTO<ItemVO> pt) {
+		int amount = iDao.getAmountOfAll();
+		pt.setAmount(amount);
+		
+		List<ItemVO> list = iDao.listofall(pt);
+		pt.setList(list);
+		
+		return pt;
+	}
 
 
 

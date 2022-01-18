@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Item Insert</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -18,50 +19,79 @@
 <script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
-	.fileDrop{
-		width: 100%;
-		height: 200px;
-		border: 1px solid red;
-		margin-top: 20px;
-	}
+.fileDrop {
+	width: 300px;
+	height: 300px;
+	border: 1px solid red;
+	margin: 20px;
+}
 </style>
 <body>
-	<img alt="" src="">
+
 	<jsp:include page="../header.jsp" />
 
 	<jsp:include page="../sidebar.jsp" />
-	<form action="/item/insert" method="post">
-		제목 :<input name="board_title"> <br>
-		카테고리 명 :
-		<select id="item_category" name="item_category" >
-			<option>선택하세요</option>
-			<c:forEach items="${list}" var="list">
-				<option>${list.item_category}</option>
-			</c:forEach>
-		</select><br>
-		아이템 명 : 
-		<select id="item_name" name="item_name" >
-			<option>선택하세요</option>
-		</select><br>
-		아이템 사이즈 : <input name="item_size" maxlength="10"><br>
-		아이템 컬러 : <input name="item_color" maxlength="10"><br>
-		아이템 가격 : <input name="item_price"><br>
-		할인률 : <input name="discount_percentage">%<br>
-		아이템 재고 수량 : <input name="item_amount"><br>
-		내용 :<br>
-		<textarea rows="10" name="board_content"></textarea> <br>
- 		<input type="submit" value="등록 완료">
-	</form>
-			
-	
-	<div class="fileDrop">
+
+	<div class="row mb-2 container">
+		<div class="col-md-10">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+				<div class="fileDrop"><div style="text-align: center;" class="uploadedList row"></div></div>
+					<div class="col p-4 d-flex flex-column position-static">
+						<p class="card-text mb-auto">
+						<form action="/item/insert" method="post">
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">title</span>
+								<input name="board_title" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">category</span>
+								<select id="item_category" name="item_category" class="form-control">
+								<option>선택하세요</option>
+									<c:forEach items="${list}" var="list">
+									<option>${list.item_category}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">item</span>
+								<select id="item_name" name="item_name" class="form-control">
+									<option>선택하세요</option>
+								</select>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">size</span>
+								<input name="item_size" maxlength="10" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">color</span>
+								<input name="item_color" maxlength="10" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">price</span>
+								<input name="item_price" maxlength="10" class="form-control">
+								<span class="input-group-text">원</span>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">discount</span>
+								<input name="discount_percentage" class="form-control">
+								<span class="input-group-text">%</span>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">Quantity</span>
+								<input name="item_amount" class="form-control">
+								<span class="input-group-text">EA</span>
+							</div>
+							<textarea cols="50" rows="5" name="board_content" placeholder="내용을 입력하세요."></textarea>
+							<br> <input type="submit" value="등록 완료">
+						</form>
+						</p>
+					</div>
+			</div>
+		</div>
 	</div>
-	
-	<div class="uploadedList row">
-	</div>
-	
+<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
-	var objFormData = {};
+		var objFormData = {};
 		$(document).ready(function() {
 			$("select[name=item_category]").change(function() {
 				var item_category = $(this).val();
@@ -76,26 +106,26 @@
 						$("#item_name").html("");
 						data = JSON.parse(data);
 						$("#item_name").append("<option>선택하세요</option>");
-						for(var i=0; i<data.length; i++){
+						for (var i = 0; i < data.length; i++) {
 							var obj = data[i];
-							var msg = "<option>"+obj.item_name+"</option>";
+							var msg = "<option>"+ obj.item_name+"</option>";
 							$("#item_name").append(msg);
 						}
 					}
-					
+
 				});
 			});
-			
-			$(".fileDrop").on("dragenter dragover", function(event) {
+
+			$(".fileDrop").on("dragenter dragover",function(event) {
 				event.preventDefault();
 			});
-			
-			$(".fileDrop").on("drop", function(event) {
+
+			$(".fileDrop").on("drop",function(event) {
 				event.preventDefault();
 				var files = event.originalEvent.dataTransfer.files;
 				var file = files[0];
 				var formData = new FormData();
-				formData.append("file", file);
+				formData.append("file",file);
 				$.ajax({
 					type : "post",
 					url : "/file/upload",
@@ -106,7 +136,7 @@
 					success : function(filename) {
 						var msg = uploadedItem(filename);
 						$(".uploadedList").append(msg);
-						
+
 						$.ajax({
 							type : "post",
 							url : "/file/deletefile",
@@ -120,18 +150,18 @@
 						});
 					}
 				});
-				
+
 			});
-			
-			$(".uploadedList").on("click",".deleteitem", function() {
+
+			$(".uploadedList").on("click",".deleteitem",function() {
 				$(this).parent().parent().remove();
 				var filename = $(this).attr("data-filename");
 				delete objFormData[filename];
 			});
-			
-			$("input[type='submit']").click(function(event) {
-				event.preventDefault();
-				
+
+			$("input[type='submit']").click(
+				function(event) {event.preventDefault();
+
 				var item_category = $("[name='item_category']").val();
 				if (item_category == '선택하세요') {
 					$("[name='item_category']").focus();
@@ -141,7 +171,7 @@
 				if (item_name == '선택하세요') {
 					$("[name='item_name']").focus();
 					return;
-				}
+				}									
 				var item_size = $("[name='item_size']").val();
 				if (item_size == '') {
 					$("[name='item_size']").focus();
@@ -167,27 +197,27 @@
 					$("[name='item_amount']").focus();
 					return;
 				}
-				
+
 				var board_title = $("[name='board_title']").val();
-				if(board_title == ''){
+				if (board_title == '') {
 					$("[name='board_title']").focus();
 					return;
 				}
-				
+
 				var board_content = $("[name='board_content']").val();
-				if(board_content == ''){
-					 $("[name='board_content']").focus();
+				if (board_content == '') {
+					$("[name='board_content']").focus();
 					return;
 				}
-				
-				for(filename in objFormData){
+
+				for (filename in objFormData) {
 					var msg = insertFile(filename);
 					$("form").prepend(msg);
 				}
-				
-				for(filename in objFormData){
+
+				for (filename in objFormData) {
 					var formData = objFormData[filename];
-					formData.append("filename", filename)
+					formData.append("filename",filename)
 					$.ajax({
 						type : "post",
 						url : "/file/upload2",
@@ -199,16 +229,16 @@
 						}
 					});
 				}
-				
-				if($('div').children('img').length == 0){
+
+				if ($('div').children('img').length == 0) {
 					alert("파일을 첨부하세요");
 					return;
 				}
-					
+
 				$("form").submit();
-			});
-			
+			});									
+
 		});
-	</script>
+		</script>
 </body>
 </html>

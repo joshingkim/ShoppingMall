@@ -110,4 +110,36 @@ public class ItemDAOImpl implements ItemDAO {
 		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
 		return sqlSession.selectList(NS+".listbycategory", item_category, rbs);
 	}
+
+
+	@Override
+	public void updatebycategory(ItemVO ivo) {
+		sqlSession.update(NS+".updatebycategory", ivo);
+	}
+
+	@Override
+	public int getAmountOfAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmountOfAll");
+	}
+
+	@Override
+	public List<ItemVO> listofall(PageTO<ItemVO> pt) {
+		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
+		return sqlSession.selectList(NS+".listofall", null, rbs);
+	}
+	
+//	@Override
+//	   public List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt) {
+//	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
+//	      String item_name = spt.getKeyword();
+//	      return sqlSession.selectList(NS + ".searchitemAll", item_name, rbs);
+//	   }
+//
+//	   @Override
+//	   public int getAmountSearchAll(SearchPageTO<ItemVO> spt) {
+//	      String item_name = spt.getKeyword();
+//	      return sqlSession.selectOne(NS + ".getAmountSearchAll", item_name);
+//	   }
+
 }

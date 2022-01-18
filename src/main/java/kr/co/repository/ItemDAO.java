@@ -3,7 +3,6 @@ package kr.co.repository;
 import java.util.List;
 import java.util.Map;
 
-import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
 
@@ -32,5 +31,16 @@ public interface ItemDAO {
 	int getAmountbycategory(String item_category);
 
 	List<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category);
+
+	void updatebycategory(ItemVO ivo);
+
+	int getAmountOfAll();
+
+	List<ItemVO> listofall(PageTO<ItemVO> pt);
+	
+//	List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt);
+//
+//	int getAmountSearchAll(SearchPageTO<ItemVO> spt);
+
 
 }

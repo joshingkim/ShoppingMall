@@ -112,7 +112,7 @@ border-bottom:0 none;
 }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="div1">
   <span class="navbar-brand mb-0 h1"><a class="nav-link text-light" href="/">DAPAN&DA</a></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -165,7 +165,7 @@ border-bottom:0 none;
       
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ml-5">
-        <li><a href="/404page" class="nav-link px-2 link-secondary text-dark">Home</a></li>
+        <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
         <li><a href="/404page" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
         <li><a href="/404page" class="nav-link px-2 link-dark text-danger">좋아요
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">

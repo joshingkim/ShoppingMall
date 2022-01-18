@@ -27,4 +27,6 @@ public interface ItemService {
 
 	PageTO<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category);
 
+	PageTO<ItemVO> listofall(PageTO<ItemVO> pt);
+
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Item Update</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,6 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 	.fileDrop{
-		width: 100%;
 		height: 200px;
 		border: 1px solid red;
 		margin-top: 20px;
@@ -23,20 +22,55 @@
 </style>
 </head>
 <body>
-	<form action="/item/update" method="post">
-		<input hidden name="item_no" value="${vo.item_no}">
-		카테고리 명 : <input name="item_category" maxlength="20" value="${vo.item_category}" readonly="readonly"><br> 
-		아이템 명 : <input name="item_name" maxlength="25" value="${vo.item_name}" readonly="readonly"><br>
-		아이템 사이즈 : <input name="item_size" maxlength="10" value="${vo.item_size}"><br>
-		아이템 컬러 : <input name="item_color" maxlength="10" value="${vo.item_color}"><br>
-		아이템 가격 : <input name="item_price" value="${vo.item_price}"><br>
-		할인률 : <input name="discount_percentage" value="${vo.discount_percentage}"><br>
-		아이템 재고 수량 : <input name="item_amount" value="${vo.item_amount}"><br>
- 		<input type="submit" value="수정 완료">
-	</form>
-	<div class="fileDrop"></div>
-	<div class="uploadedList row"></div>
-	
+<jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
+<div class="row mb-2 container">
+		<div class="col-md-10">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+				<div class="fileDrop"><div style="text-align: center;" class="uploadedList row"></div></div>
+					<div class="col p-4 d-flex flex-column position-static">
+						<p class="card-text mb-auto">
+						<form action="/item/update" method="post">
+							<input hidden name="item_no" value="${vo.item_no}">
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">category</span>
+								<input name="item_category" maxlength="20" value="${vo.item_category}" readonly="readonly" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">item</span>
+								<input name="item_name" value="${vo.item_name}" readonly="readonly" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">size</span>
+								<input name="item_size" maxlength="10" value="${vo.item_size}" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">color</span>
+								<input name="item_color" maxlength="10" value="${vo.item_color}" class="form-control">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">price</span>
+								<input name="item_price" maxlength="10" value="${vo.item_price}" class="form-control">
+								<span class="input-group-text">원</span>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">discount</span>
+								<input name="discount_percentage" value="${vo.discount_percentage}" class="form-control">
+								<span class="input-group-text">%</span>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">Quantity</span>
+								<input name="item_amount" value="${vo.item_amount}" class="form-control">
+								<span class="input-group-text">EA</span>
+							</div>
+							<input type="submit" value="수정 완료">
+						</form>
+						</p>
+					</div>
+			</div>
+		</div>
+	</div>
+<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		var item_no = ${vo.item_no};
 		var objFormData = {};

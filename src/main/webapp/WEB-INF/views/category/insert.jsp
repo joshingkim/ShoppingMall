@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Category Insert</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -31,9 +31,10 @@
 			</c:forEach>
 		</select>
 		<input name="item_category" id="item_category" value="카테고리"><br>
-		아이템명 : <input name="item_name" maxlength="25"><br> 
+		아이템명 : <input name="item_name" maxlength="35"><br> 
 		<input type="submit" value="등록 완료">
 	</form>
+	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#item_category").hide();

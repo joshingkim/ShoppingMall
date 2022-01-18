@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Category Update</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,10 +23,11 @@
 	<jsp:include page="../sidebar.jsp" />
 	<form action="/category/update" method="post">
 		카테고리명 : <input name="item_category" maxlength="20" value="${vo.item_category}"><br> 
-		아이템명 : <input name="item_name" maxlength="25" value="${vo.item_name}"><br>
+		아이템명 : <input name="item_name" maxlength="40" value="${vo.item_name}"><br>
 		<input type="hidden" name="ori_item_name" value="${vo.item_name}">
 		<input type="submit" value="등록 완료">
 	</form>
+	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("input[type='submit']").click(function(event) {
