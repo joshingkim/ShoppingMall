@@ -102,7 +102,7 @@ CREATE SEQUENCE seq_item_no
 파일 테이블
 CREATE TABLE item_file(
 	file_no NUMBER,
-	file_name VARCHAR2(60) NOT NULL,
+	file_name VARCHAR2(120) NOT NULL,
 	item_no NUMBER NOT NULL,
 	file_regdate DATE DEFAULT SYSDATE,
 	CONSTRAINT pk_file_no PRIMARY KEY(file_no),

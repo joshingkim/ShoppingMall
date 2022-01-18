@@ -16,6 +16,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="/resources/js/qna.js" type="text/javascript"></script>
+	
+	
 </head>
 <style>
 .qna_ctnt {
@@ -31,14 +34,15 @@
 }
 </style>
 <body>
-
-
-
-	<div id="div1">
+	<div id="header">
 		<h3>QnA</h3>
 	</div>
-	<jsp:include page="../qna/insert.jsp" />
-
+<%-- 	<jsp:include page="../qna/insert.jsp" /> --%>
+<input id="input_board_no" type="hidden" value="${vo.board_no}">
+<div class="wrap-qna-board">
+	<button type = "button" class='btn_insert' onclick="qnaInsert(); return false;">작성하기</button>
+<div>
+</div>
 	<table>
 		<thead>
 			<tr>
@@ -49,86 +53,92 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${qvo}" var="qna">
-				<tr>
-					<td id="q" class="qno">${qna.qna_no}</td>
-					<td><a href="javascript:void(0)" class="viewcontent">${qna.qna_title}</a></td>
-					<td>${qna.member_id}</td>
-					<td>${qna.qna_regdate}</td>
-				</tr>
-				<tr class="qna_ctnt">
-					<td colspan="6">
-						<p>${qna.qna_content}
-							<button class="btn btn-primary btn_answer">답변달기</button>
-						</p>
-						<div class="answer_show">
-							<form action="/qna/answer" method="POST">
-								<input name="qna_no" type="hidden">
-								<textarea rows="3" name="qna_answer"></textarea>
-								<input type="submit" value="답변">
-							</form>
-						</div>
-					</td>
-				</tr>
-				<tr class="qna_answer">
-					<td>
-						<p>${qna.qna_answer}</p>
-					</td>
-					<td>${qna.qna_updatedate}</td>
-				</tr>
-			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+	var windowObj;
+	function qnaInsert(){
+		         var url="../../qna/insert"; //팝업창 열기
+		         var settings = "width=400,height=400,left=600";
+		         
+		         window.open(url,"QnA작성",settings);
+		     }
+		$(document).ready(function() {
+			
+			qnalist(board_no, 1 ,$("tbody"));
+			
+			$("tbody").on("click", ".qna_page_left", function(event) {
+				event.preventDefault();
+				var curPage = $(this).attr("href");
 
-							$("[type='submit']").click(
-									function() {
-										var clkIdx = $("[type='submit']")
-												.index($(this));
-										var qid = $(".qno").attr("id",
-												"q" + clkIdx);
-										var qno = qid.eq(clkIdx).text();
-										$("[name='qna_no']").val(qno);
-										console.log(qno);
-									});
-							$(".viewcontent")
-									.click(
-											function() {
-												var clkIdx = $(".viewcontent")
-														.index($(this));
-												var qid = $(".qno").attr("id",
-														"q" + clkIdx);
-												var qno = qid.eq(clkIdx).text();
-												console.log(qno);
-												if ($(".qna_ctnt").eq(clkIdx)
-														.css("display") == "none"
-														&& $(".qna_answer").eq(
-																clkIdx).css(
-																"display") == "none") {
-													$(".qna_ctnt").eq(clkIdx)
-															.css("display",
-																	"block");
-													$(".qna_answer").eq(clkIdx)
-															.css("display",
-																	"block");
-												} else {
-													$(".qna_ctnt").eq(clkIdx)
-															.css("display",
-																	"none");
-													$(".qna_answer").eq(clkIdx)
-															.css("display",
-																	"none");
-												}
-												;
-											});
-							$(".btn_answer").click(function() {
-								var btnIdx = $(".btn_answer").index($(this));
-								$(".answer_show").toggle();
-							});
-						});
+				if (curPage > 1) {
+
+					qnalist(board_no, --curPage, $("tbody"));
+				}
+
+			});
+
+			$("tbody").on("click", ".qna_page_right", function(event) {
+				event.preventDefault();
+				var curPage = $(this).attr("href");
+				var totalPage = $(this).attr("data-totalPage");
+
+				if (curPage < totalPage) {
+
+					qnalist(board_no, ++curPage, $("tbody"));
+				}
+
+			});
+
+			$("tbody").on("click", ".qna_page_no", function() {
+				var curPage = $(this).text();
+
+				qnalist(board_no, curPage, $("tbody"));
+			});
+			
+		$("tbody").on("click",".btn_submit",function(event) {
+			event.preventDefault();
+			var instIdx = $(".btn_submit").index($(this));
+			var qna_answer = $("[name='qna_answer']").eq(instIdx).val();
+			var qna_no = $("[name='qna_no']").eq(instIdx).val();
+			var curPage = $(this).text();
+			
+			if(qna_answer == ''){
+				$("[name='qna_answer']").eq(instIdx).focus();
+				return;
+			}
+			$.ajax({
+				type : "post",
+				url : "/qna/answer",
+				dataType : "text",
+				data : {
+					qna_answer : qna_answer,
+					qna_no : qna_no
+				}
+			});
+			qnalist(board_no,curPage,$("tbody"));
+		});
+		
+		$("tbody").on("click",".viewcontent",function() {
+			var clkIdx = $(".viewcontent").index($(this));
+			var qid = $(".qno").attr("id","q" + clkIdx);
+			var qno = qid.eq(clkIdx).text();
+			if ($(".qna_ctnt").eq(clkIdx).css("display") == "none"&& $(".qna_answer").eq(clkIdx).css("display") == "none") {
+				$(".qna_ctnt").eq(clkIdx).css("display","block");
+				$(".qna_answer").eq(clkIdx).css("display","block");
+			} else {
+				$(".qna_ctnt").eq(clkIdx).css("display","none");
+				$(".qna_answer").eq(clkIdx).css("display","none");
+					};
+			});
+		
+		$("tbody").on("click",".btn_answer",function() {
+			var btnIdx = $(".btn_answer").index($(this));
+				$(".answer_show").toggle();
+			});
+		});
+		
 	</script>
 </body>
 </html>
