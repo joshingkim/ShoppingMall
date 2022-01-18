@@ -19,4 +19,6 @@ public interface CartDAO {
 
 	void delete(int cart_no);
 
+	void changeQuantity(CartVO vo);
+
 }
