@@ -16,6 +16,7 @@
 <body>
 
 <jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
 
 아이디 : ${vo.member_id} <br>
 이름 : ${vo.member_name} <br>
@@ -27,25 +28,23 @@ Email : ${vo.member_email} <br>
 가입일 : ${vo.member_regdate} <br>
 회원정보 마지막 수정일 : ${vo.member_updatedate} <br> 
 
-<button>회원 정보 수정</button> <button>회원 탈퇴</button>
+<button id="read">회원 정보 수정</button> <button id="delete">회원 탈퇴</button>
 <form></form>
 
 <jsp:include page="../footer.jsp" />
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("button").eq(0).click(function() {
+		$("#read").click(function() {
 			location.assign("/member/update/${vo.member_id}");
 		});
 		
-		$("button").eq(1).click(function() {
-			var member_pw = prompt("비밀번호를 입력하세요.");			
+		$("#delete").click(function() {	
+			//location.assign("/member/delete/${vo.member_id}");
 			$("form").attr("method", "post");
-			$("form").attr("action", "/member/delete");
-			$("form").append('<input type="passowrd" name="member_pw" value="'+member_pw+'">');
-			$("form").append('<input type="hidden" name="member_id" value="${vo.member_id}">');
+			$("form").attr("action", "/member/delete/${vo.member_id}");
 			$("form").submit();
-		});
+		}); 
 	});
 </script>
 

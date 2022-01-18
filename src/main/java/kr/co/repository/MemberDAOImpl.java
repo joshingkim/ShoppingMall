@@ -1,6 +1,7 @@
 package kr.co.repository;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -41,16 +42,30 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void update(MemberVO vo) {
 		sqlSession.update(NS+".update", vo);
-	}
-
-	@Override
-	public void delete(MemberVO vo) {
-		sqlSession.delete(NS+".delete", vo);		
-	}
-
+	}	
+	
 	@Override
 	public MemberVO login(MemberVO vo) {
 		return sqlSession.selectOne(NS+".login", vo);
 	}
+	
+	@Override public MemberVO deleteUI(String member_id) { 
+		return sqlSession.selectOne(NS + ".deleteUI", member_id); 
+	}
+	
+
+	@Override
+	public void delete(MemberVO vo) {
+		sqlSession.delete(NS+".delete", vo);
+	}
+
+	@Override
+	public int passChk(MemberVO vo) {
+		int result = sqlSession.selectOne(NS+".passChk", vo);
+		return result;
+	}
+	
+
+	
 
 }

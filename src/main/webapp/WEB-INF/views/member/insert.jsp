@@ -17,6 +17,7 @@
 <body>
 
 <jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
 
 <form action="/member/insert" method="post">
 아이디: <input name="member_id" maxlength="15" required><button id="idcheck">중복검사</button><p id="idCheckResult"></p>
