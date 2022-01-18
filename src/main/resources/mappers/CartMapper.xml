@@ -37,7 +37,9 @@ SELECT c.cart_no, c.member_id, i.item_no, m.member_name, i.item_name, c.cart_pri
   				DELETE FROM cart WHERE member_id = #{member_id} AND item_no = #{item_no}
   		</delete>
   		
-  		
+  		<select id="list"  resultType="kr.co.domain.CartVO">
+  				SELECT * FROM cart
+  		</select>
 
 
 </mapper>

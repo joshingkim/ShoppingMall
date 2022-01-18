@@ -21,4 +21,6 @@ public interface CartDAO {
 
 	void changeQuantity(CartVO vo);
 
+	List<CartVO> list(CartVO vo);
+
 }

@@ -34,7 +34,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public List<CartVO> readCart(String member_id) {
-		return sqlSession.selectOne(NS+".readCart", member_id);
+		return sqlSession.selectList(NS+".readCart", member_id);
 	}
 
 	@Override
@@ -50,6 +50,11 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public void changeQuantity(CartVO vo) {
 		sqlSession.selectOne(NS+".changeQuantity", vo);
+	}
+
+	@Override
+	public List<CartVO> list(CartVO vo) {
+		return sqlSession.selectList(NS+".list", vo);
 	}
 	
 }

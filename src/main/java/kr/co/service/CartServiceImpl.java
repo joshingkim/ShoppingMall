@@ -55,4 +55,9 @@ public class CartServiceImpl implements CartService {
 		cDao.changeQuantity(vo);		
 	}
 
+	@Override
+	public List<CartVO> list(CartVO vo) {
+		return cDao.list(vo);
+	}
+
 }

@@ -19,5 +19,7 @@ public interface CartService {
 	void delete(int cart_no);
 
 	void changeQuantity(CartVO vo);
+	
+	List<CartVO> list(CartVO vo);
 
 }
