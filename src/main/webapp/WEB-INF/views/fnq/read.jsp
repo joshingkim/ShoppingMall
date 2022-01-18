@@ -47,7 +47,7 @@
 
 <c:if test="${managerLogin.manager_code == 1 }">
 	<div class="row float-right"><a href="/fnq/updateui/${vo.fnq_no}/${curPage}" class="btn btn-outline-warning btn-sm">수정</a> &nbsp;
-	<form action="/fnq/delete" method="post">
+	<form action="/fnq/delete/${vo.fnq_no}/${curPage}" method="post">
 		<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
 	</form>
 	</div>
