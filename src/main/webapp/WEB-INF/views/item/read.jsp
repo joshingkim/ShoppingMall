@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Item Read</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -42,7 +42,6 @@
 				</select><br>
 				가격 : ${ivo.item_price}<br>
 				할인률 :${ivo.discount_percentage}%<br>
-				<a href="/item/update/${ivo.item_no}">수정</a>/<a href="/item/list">목록</a>/<a id="delete" href="#">삭제</a><br>
 				<a href="">찜</a>/<a href="">구매</a>				
 			</p>
         </div>
@@ -50,7 +49,7 @@
       </div>
       <jsp:include page="../board/read.jsp" />
     </div>
-	
+<jsp:include page="../footer.jsp" />
 <script type="text/javascript">
 var item_no = ${ivo.item_no};
 var item_name = "${ivo.item_name}";
@@ -71,10 +70,10 @@ var item_name = "${ivo.item_name}";
 		});
 		
 		$.getJSON("/file/getFile/"+item_no, function(data) {
-			for(var i=0; i<data.length; i++){
-				var item = uploadedItemForRead(data[i]);
+			/* for(var i=0; i<data.length; i++){ */
+				var item = uploadedItemForRead(data[0]);
 				$(".uploadedList").append(item);
-			}
+			/* } */
 		});
 		
 		$('#delete').click(function() { 

@@ -1,21 +1,27 @@
 package kr.co.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.CategoryVO;
+import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
 import kr.co.repository.CategoryDAO;
+import kr.co.repository.ItemDAO;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
 	@Inject
 	private CategoryDAO cDao;
+	@Inject
+	private ItemDAO iDao;
 
 	@Override
 	public void insert(CategoryVO vo) {
@@ -55,10 +61,20 @@ public class CategoryServiceImpl implements CategoryService {
 		// TODO Auto-generated method stub
 		return cDao.item_name_list(item_category);
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(CategoryVO vo) {
-		cDao.update(vo);
+		cDao.insert(vo);
+		String item_name = vo.getItem_name();
+		String item_category = vo.getItem_category();
+		String ori_item_name = vo.getOri_item_name();
+
+		ItemVO ivo = new ItemVO(item_name, item_category, ori_item_name);
+		
+		iDao.updatebycategory(ivo);
+		
+		cDao.delete(ori_item_name);
 	}
 
 

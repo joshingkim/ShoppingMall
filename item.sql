@@ -20,6 +20,8 @@ drop table qna
 drop table item
 select * from item
 select * from review
+select * from member
+
 
 select item_no from item_file 
 select item_no from item where item_name in (select distinct item_name from (select item_name,item_no from item group by item_name,item_no))
@@ -42,6 +44,7 @@ select * from item where item_no in (select max(item_no) as item_no from item gr
 SELECT COUNT(item_no) FROM (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = '시계'
 select * from (select * from item where item_no in (select max(item_no) as item_no from item group by item_name)) where item_category = '시계'
 delete from item where item_no = 34
+
 CREATE TABLE item_file(
 	file_no NUMBER,
 	file_name VARCHAR2(200) NOT NULL,

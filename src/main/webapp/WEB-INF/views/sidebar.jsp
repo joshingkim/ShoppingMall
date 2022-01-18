@@ -51,6 +51,12 @@
 						<li class="nav-item"><a class="nav-link text-muted" href="/fnq/list">
 								<span data-feather="file-text"></span> 자주 묻는 질문
 						</a></li>
+						<li class="nav-item"><a class="nav-link text-muted" href="/category/list/">
+								<span data-feather="file-text"></span> 카테고리
+						</a></li>
+						<li class="nav-item"><a class="nav-link text-muted" href="/item/listofall/">
+								<span data-feather="file-text"></span> 아이템
+						</a></li>
 						
 					</ul>
 				</div>

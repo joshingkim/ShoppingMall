@@ -175,7 +175,7 @@ public class ItemController {
 		
 		iService.delete(item_no);
 		
-		return "redirect:/item/list";
+		return "redirect:/item/listofall";
 	}
 	@RequestMapping(value = "/getItem_size/{item_name}", method = RequestMethod.GET)
 	public ResponseEntity<List<ItemVO>> getItem_size(@PathVariable("item_name") String item_name, Model model) {
@@ -206,6 +206,27 @@ public class ItemController {
 		}
 
 		return entity;
+	}
+	
+	@RequestMapping(value = "/listofall/{curPage}", method = RequestMethod.GET)
+	public String listofall(@PathVariable("curPage") int curPage, PageTO<ItemVO> pt, Model model) {
+		
+		pt.setCurPage(curPage);
+		
+		pt = iService.listofall(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "item/listofall";
+	}
+	
+	@RequestMapping(value = "/listofall", method = RequestMethod.GET)
+	public void listofall(PageTO<ItemVO> pt, Model model) {
+		pt.setCurPage(1);
+		
+		pt = iService.listofall(pt);
+		
+		model.addAttribute("pt", pt);
 	}
 
 }

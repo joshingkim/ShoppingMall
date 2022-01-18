@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Item List Of All</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
+</head>
+<body>
+	<jsp:include page="../header.jsp" />
+	<jsp:include page="../sidebar.jsp" />
+<div class="container" style=" font-size : small;">
+	<h4>상품 리스트</h4>
+	<a href="/item/insert">상품등록</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">no</th>
+				<th scope="col">아이템</th>
+				<th scope="col">카테고리</th>
+				<th scope="col">사이즈</th>
+				<th scope="col">컬러</th>
+				<th scope="col">가격</th>
+				<th scope="col">할인률</th>
+				<th scope="col">재고 수량</th>
+				<th scope="col">등록일</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${pt.list}" var="vo">
+				<tr>
+					<td scope="row">${vo.item_no}</td>
+					<td><a href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
+					<td>${vo.item_category}</td>
+					<td>${vo.item_size}</td>
+					<td>${vo.item_color}</td>
+					<td>${vo.item_price}</td>
+					<td>${vo.discount_percentage}</td>
+					<td>${vo.item_amount}</td>
+					<td>${vo.item_regdate}</td>
+					<td><a href="/item/update/${vo.item_no}">수정</a>/<a data-item_no="${vo.item_no}" class="delete" href="">삭제</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<jsp:include page="page.jsp" />
+</div>
+<jsp:include page="../footer.jsp" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('.delete').click(function() { 
+			var result = confirm('삭제 하시겠습니까?'); 
+			if(result) { 
+				var item_no = $(this).data("item_no");
+				location.assign("/item/delete/"+item_no);
+			}else{ 
+				
+			} 
+		}); 
+	});
+</script>
+</body>
+</html>
