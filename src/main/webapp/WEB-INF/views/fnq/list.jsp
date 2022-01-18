@@ -45,19 +45,41 @@
 	<jsp:include page="../sidebar.jsp" />
 
 
+<div id="contentWrapper" class="container">
+<table class="table">
+  <thead>
+    <tr>
+     <th scope="col"></th>
+      <th scope="col">공 지 사 항</th>
+      <th scope="col">작성자</th>
+      <th scope="col">조회수</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${pt.list}" var="vo">
+    <tr>
+      <td>${vo.fnq_no}</td>
+      <td><a href="/fnq/read/${vo.fnq_no}/${pt.curPage}" class="text-dark">${vo.fnq_title }</a></td>
+      <td>${vo.manager_id}</td>
+      <td>${vo.fnq_viewcnt}</td>
+    </tr>
+    </c:forEach>
+  </tbody>
+</table>
 
-
-
-
+<jsp:include page="page.jsp"/>
+<c:if test="${managerLogin.manager_code == 1 }">
+<a href="/fnq/insertui" class="btn btn-primary btn-sm float-right">글쓰기</a>
+</c:if>
 <!-- 갈무리 -->
 
-<div id="contentWrapper" class="container">
+
         <div id="content">
             <div class="container bbs-container">
                 <div id="faqWrap">
                     <div class="page-body">
 						<div class="bbs-tit">
-						<h3 >F & Q 게시판</h3><br>
+						<h3 >F & Q </h3><br>
 						</div>
 						
                         

@@ -30,8 +30,8 @@
 	</select>
 
 	<update id="update">
-		UPDATE fnq SET fnq_title = #{fnq_title}, content = #{fnq_content}, updatedate=SYSDATE
-		WHERE fnq_no = #{fnq_no}
+		UPDATE fnq SET fnq_title = #{fnq_title}, fnq_content = #{fnq_content} WHERE fnq_no = #{fnq_no}
+		
 	</update>
 
 	<delete id="delete">

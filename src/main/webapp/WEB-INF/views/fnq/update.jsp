@@ -17,12 +17,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/fnq/update/${vo.fnq_no}/${curPage}" method="post">
-작성자: ${vo.manager_id } <br>
-	제목: <input name="fnq_title" value="${vo.fnq_title}"><br>
-	내용<br>
-	<textarea rows="10" name="fnq_content">${vo.fnq_content}</textarea><br>
-	<input type="submit" value="수정 완료">
+
+
+<jsp:include page="../header.jsp"/>
+
+	<jsp:include page="../sidebar.jsp" />
+	
+	
+	
+	
+	<div class="container">
+	
+	<form action="/fnq/update/${vo.fnq_no}/${curPage}" method="post">
+  <div class="form-group">
+    <label for="put1">작성자</label>
+    <input type="text" name="manager_id" class="form-control " id="put1" value="${vo.manager_id }" readonly>
+  </div>
+  <div class="form-group">
+    <label for="put2">제목</label>
+    <input type="text" name="fnq_title" class="form-control " id="put2" value="${vo.fnq_title }" required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">내용</label>
+    <textarea class="form-control" name="fnq_content" id="Textarea1" rows="10"  required="required">${vo.fnq_content }</textarea>
+  </div>
+  <input type="submit"  class="btn btn-outline-primary btn-sm float-right" value="작성 완료">
 </form>
+	
+	</div>
+	
+		<jsp:include page="../footer.jsp"/>
+
+
+
+
+
 </body>
 </html>

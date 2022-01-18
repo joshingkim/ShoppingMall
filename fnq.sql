@@ -6,9 +6,9 @@ CREATE TABLE fnq(
    fnq_regdate DATE DEFAULT SYSDATE,
    fnq_updatedate DATE DEFAULT SYSDATE,
    fnq_viewcnt NUMBER DEFAULT 0,
-   CONSTRAINT pk__fnq_no PRIMARY KEY(fnq_no),
+   CONSTRAINT pk_fnq_no PRIMARY KEY(fnq_no),
    CONSTRAINT fk_fnq_manager_id FOREIGN KEY(manager_id) REFERENCES manager(manager_id) ON DELETE CASCADE
 )
 DROP TABLE fnq
 select * from fnq
-INSERT INTO fnq (fnq_no, manager_id, fnq_title, fnq_content) VALUES (1, 'm001', '111', '111')
+INSERT INTO fnq (fnq_no, manager_id, fnq_title, fnq_content) VALUES (1, 'm001', '첫번째 공지사항', '공지사항 내용')

@@ -65,10 +65,10 @@
       </div>
 
       <div class="col-2">
-      <h5>This page</h5>
+      <h5></h5>
         <ul class="nav flex-column">
-        <li class="nav-item mb-2">is made by</li>
-          <li class="nav-item mb-2">최현준</li>
+        <li class="nav-item mb-2"></li>
+          <li class="nav-item mb-2"></li>
         </ul>
       </div>
 

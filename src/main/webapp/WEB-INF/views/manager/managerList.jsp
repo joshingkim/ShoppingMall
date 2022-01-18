@@ -34,11 +34,9 @@
 			<c:forEach items="${managerList}" var="vo">
 				<tr>
 					<td>${vo.manager_id}
-					<c:if test="${vo.manager_code == -1&&managerLogin.manager_id == 'employee' }">
-					<a href="/manager/read/${vo.manager_id}" class="badge badge-info">승인 요청!</a>
-					</c:if>
+					
 					<c:if test="${vo.manager_id == managerLogin.manager_id || managerLogin.manager_id == 'employee' }">
-					<a href="/manager/read/${vo.manager_id}" class="badge badge-light">자세히보기</a>
+					<a href="/manager/read/${vo.manager_id}" class="badge badge-info">자세히보기</a>
 					</c:if>
 					
 					</td>
