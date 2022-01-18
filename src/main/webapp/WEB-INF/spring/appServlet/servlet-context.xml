@@ -33,29 +33,39 @@
 	<beans:bean class="java.lang.String" id="uploadpath">
 		<beans:constructor-arg value="/resources/upload"></beans:constructor-arg>
 	</beans:bean>
-<!-- 
+ 
 	<beans:bean id="loginInterceptor" class="kr.co.interceptor.LoginInterceptor">
 	</beans:bean>
 	
 	<beans:bean id="authInterceptor" class="kr.co.interceptor.AuthInterceptor">
-	</beans:bean> -->
+	</beans:bean>
+	
+	<beans:bean id="logoutInterceptor" class="kr.co.interceptor.LogoutInterceptor">
+    </beans:bean> 
 	
 
-<!-- 	<interceptors>
+	<interceptors>
 		<interceptor>
-			<mapping path="/member/loginPost"/>
+			<mapping path="/member/login"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
 		<interceptor>
 			<mapping path="/board/**"/>
 			<exclude-mapping path="/board/list/**"/>
 			<exclude-mapping path="/board/read/**"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
-	</interceptors> -->
+		
+		<interceptor>
+         <mapping path="/member/logout"/>
+         <beans:ref bean="logoutInterceptor"/>
+      	</interceptor>
+		
+	</interceptors>
 
 	<context:component-scan
-		base-package="mytld.mycompany.myapp" />
+		base-package="mytld.mycompany.myapp"/>
 	<context:component-scan
 		base-package="kr.co.controller"></context:component-scan>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.detail">
+
+	<insert id="insert">
+	INSERT INTO order_detail (order_detail_no, member_id, order_no, order_item_no , order_detail_price)
+	VALUES
+	(seq_order_detail_no.NEXTVAL, #{member_id}, #{order_no}, #{order_item_no}, #{order_detail_price})
+	<selectKey order="AFTER" keyProperty="order_detail_no" resultType="Integer">SELECT seq_order_detail_no.CURRVAL FROM dual</selectKey>
+	</insert>
+	
+	<select id="read" resultType="kr.co.domain.OrderDetailVO">
+		SELECT * FROM ORDER_DETAIL WHERE order_detail_no = #{order_detail_no}	
+	</select>
+	
+	<update id="update" >
+		UPDATE order_detail SET order_detail_code=order_detail_code+1, order_update_date=SYSDATE WHERE order_detail_code = #{order_detail_code}
+	</update>
+	
+	
+</mapper>

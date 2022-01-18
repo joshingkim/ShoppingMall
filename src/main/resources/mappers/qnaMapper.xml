@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.qna">
+
+	<insert id="insert">
+		INSERT INTO qna (qna_no, board_no, member_id, qna_title, qna_content,
+		qna_repRoot, qna_repStep, qna_repIndent)
+		VALUES(seq_board_qna_no.NEXTVAL, #{board_no}, #{member_id},
+		#{qna_title}, #{qna_content}, seq_board_qna_no.CURRVAL,
+		#{qna_repStep}, #{qna_repIndent})
+
+		<selectKey order="AFTER" keyProperty="qna_no"
+			resultType="Integer">
+			SELECT seq_board_qna_no.CURRVAL FROM dual
+		</selectKey>
+
+	</insert>
+
+	<select id="list" resultType="kr.co.domain.QnaVO">
+		SELECT * FROM qna
+	</select>
+
+	<update id="answer">
+		UPDATE qna SET qna_answer = #{qna_answer}, qna_repStep = qna_repStep+1 WHERE
+		qna_no = #{qna_no}
+	</update>
+
+</mapper>

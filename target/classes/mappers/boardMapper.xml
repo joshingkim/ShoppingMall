@@ -5,5 +5,45 @@
 
 <mapper namespace="kr.co.board">
 
+	<insert id="insert">
+		INSERT INTO board (board_no,item_no,board_title, board_content) VALUES (seq_board_no.NEXTVAL,#{item_no},#{board_title},#{board_content})
+		<selectKey order="AFTER" keyProperty="board_no" resultType="Integer">
+			SELECT seq_board_no.CURRVAL FROM dual
+		</selectKey>
+	</insert>
 
+	<update id="increaseViewcnt">
+		UPDATE board SET board_viewcnt = board_viewcnt+1 WHERE board_no =
+		#{board_no}
+	</update>
+
+	<select id="read" resultType="kr.co.domain.BoardVO">
+		SELECT * FROM board WHERE board_no = #{board_no}
+	</select>
+
+	<select id="updateUI" resultType="kr.co.domain.BoardVO">
+		SELECT * FROM board WHERE
+		board_no = #{board_no}
+	</select>
+
+	<update id="update">
+		UPDATE board SET
+		item_no = #{item_no}, board_title = #{board_title}, board_content =
+		#{board_content}, board_updatedate=SYSDATE
+		WHERE board_no = #{board_no}
+
+	</update>
+
+	<select id="Qnalist" resultType="kr.co.domain.QnaVO">
+		SELECT * FROM qna WHERE board_no = #{board_no}
+	</select>
+
+	<select id="selectBoard_no" resultType="Integer">
+		SELECT board_no FROM
+		board WHERE item_no = #{item_no}
+	</select>
+	<select id="selectItem_no" resultType="Integer">
+		SELECT item_no FROM
+		board WHERE board_no = #{board_no}
+	</select>
 </mapper>
