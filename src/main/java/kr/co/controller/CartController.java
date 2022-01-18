@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.domain.CartVO;
@@ -22,6 +23,12 @@ public class CartController {
 
 		@Inject
 		private CartService cService;
+		
+		@RequestMapping(value = "/delete", method = RequestMethod.POST)
+		public String delete(@RequestParam int cart_no) {
+			cService.delete(cart_no);
+			return "redirect:/cart/read";
+		}
 		
 		@RequestMapping(value = "/read", method = RequestMethod.GET)
 		public ModelAndView read(/*HttpSession session,*/ String member_id,  ModelAndView mav) {
