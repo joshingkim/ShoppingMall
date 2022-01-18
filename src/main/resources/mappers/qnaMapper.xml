@@ -20,7 +20,11 @@
 	</insert>
 
 	<select id="list" resultType="kr.co.domain.QnaVO">
-		SELECT * FROM qna
+		SELECT * FROM qna WHERE board_no = #{board_no}
+	</select>
+
+	<select id="getAmount" resultType="Integer">
+		SELECT COUNT(*) FROM qna WHERE board_no = #{board_no}
 	</select>
 
 	<update id="answer">
