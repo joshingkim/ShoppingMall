@@ -23,4 +23,6 @@ public interface CartDAO {
 
 	List<CartVO> list(CartVO vo);
 
+	void deleteAll(int cart_no);
+
 }
