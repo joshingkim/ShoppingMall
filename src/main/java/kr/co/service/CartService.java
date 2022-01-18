@@ -16,4 +16,6 @@ public interface CartService {
 
 	int sumMoney(String member_id);
 
+	void delete(int cart_no);
+
 }

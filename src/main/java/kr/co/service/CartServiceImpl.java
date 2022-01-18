@@ -45,4 +45,9 @@ public class CartServiceImpl implements CartService {
 		return cDao.sumMoney(member_id);
 	}
 
+	@Override
+	public void delete(int cart_no) {
+		cDao.delete(cart_no);
+	}
+
 }
