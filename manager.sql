@@ -61,10 +61,14 @@ CREATE TABLE cart(
 	cart_quantity NUMBER NOT NULL,
 	cart_price NUMBER NOT NULL,
 	cart_date DATE DEFAULT SYSDATE,
-	CONSTRAINT pk_cart_cart_no PRIMARY KEY(cart_no),
-	CONSTRAINT fk_cart_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE,
-	CONSTRAINT fk_cart_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE
+	CONSTRAINT pk_cart_cart_no PRIMARY KEY(cart_no)
 )
+drop table cart
+select * from cart
+select * from item
+select * from likeitem
+
+INSERT INTO cart (cart_no, member_id, item_no, cart_quantity, cart_price) VALUES (4, 'm001', 1, 1, 4500)
 
 CREATE TABLE likeitem(
 	like_no NUMBER primary key,
@@ -73,6 +77,7 @@ CREATE TABLE likeitem(
 	like_date DATE DEFAULT SYSDATE,
 	CONSTRAINT fk_like_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE
 )
+
 
 CREATE TABLE member(
    member_id VARCHAR2(15),
