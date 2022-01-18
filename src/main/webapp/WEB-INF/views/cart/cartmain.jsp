@@ -13,6 +13,37 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+body.cart_body {
+	background-color: #f5f5f0;
+	font-size: 13pt;
+	min-width: 1480px;
+	width: 100%;
+	padding: 50px 0;
+}
+
+#frame {
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px 50px;
+	background-color: #ffffff;
+}
+
+#frame2 {
+	border-bottom: solid 1px #e0e0eb;
+	padding-bottom: 10px;
+}
+
+.home {
+	float: right;
+}
+
+input[type="checkbox"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+</style>
 </head>
 <body>
 

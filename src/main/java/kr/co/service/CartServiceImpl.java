@@ -50,4 +50,9 @@ public class CartServiceImpl implements CartService {
 		cDao.delete(cart_no);
 	}
 
+	@Override
+	public void changeQuantity(CartVO vo) {
+		cDao.changeQuantity(vo);		
+	}
+
 }

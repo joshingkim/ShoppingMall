@@ -29,6 +29,19 @@ public class CartController {
 			cService.delete(cart_no);
 			return "redirect:/cart/read";
 		}
+
+		@RequestMapping(value = "/update", method = RequestMethod.POST)
+		public String update(@RequestParam int[] cart_quantity, @RequestParam int[] item_no, HttpSession session) {
+			String member_id = (String) session.getAttribute("member_id");
+			for(int i = 0; i < item_no.length; i++) {
+				CartVO vo = new CartVO();
+				vo.setMember_id(member_id);
+				vo.setCart_quantity(cart_quantity[i]);
+				vo.setItem_no(item_no[i]);
+				cService.changeQuantity(vo);
+			}
+			return "redirect:/cart/read";
+		}
 		
 		@RequestMapping(value = "/read", method = RequestMethod.GET)
 		public ModelAndView read(/*HttpSession session,*/ String member_id,  ModelAndView mav) {
