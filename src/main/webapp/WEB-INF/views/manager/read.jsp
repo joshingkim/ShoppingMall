@@ -48,31 +48,12 @@
 
 							<div class="form-row align-items-center">
 							
-							<c:if test="${vo.manager_code == -1 }">
-								<form action="/manager/updateCode/${vo.manager_id}"
-									method="post">
-									<input type="submit" id="changeRole" name="changeRole"
-										class="btn btn-warning btn-sm" value="승인">
-								</form>&nbsp; &nbsp;
-
-								
-
-								<form action="/manager/managerDelete" method="post">
-									<input type="hidden" name="manager_pw"
-										value="${vo.manager_pw }"> <input type="hidden"
-										name="manager_id" value="${vo.manager_id }"> <input
-										type="submit" class="btn btn-danger btn-sm" value="거부">
-								</form>
-								</c:if>
+							
 
 
-<c:if test="${vo.manager_code == 0 }">
+<c:if test="${vo.manager_id == managerLogin.manager_id || managerLogin.manager_code == 2 }">
 	<a href="/manager/update/${vo.manager_id }" class="btn btn-warning btn-sm">수정</a> &nbsp;
-</c:if>
 
-
-
-								<c:if test="${vo.manager_code == 0 }">
 								<form action="/manager/managerDelete" method="post">
 									<input type="hidden" name="manager_pw"
 										value="${vo.manager_pw }"> <input type="hidden"

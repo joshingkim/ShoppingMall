@@ -66,11 +66,11 @@
               <label for="address2" class="form-label">이메일</label>
               <input type="email" class="form-control" name="manager_email" placeholder="you@examplpe.com" required="required">
             </div>
-            <input type="hidden" name="manager_code" value=-1>
+            <input type="hidden" name="manager_code" value=1>
 
             
 
-          <br> <input type="submit" class="btn btn-success"  value="관리자로 가입 요청">
+          <br> <input type="submit" class="btn btn-success"  value="관리자로 가입">
 
            </form>
 
@@ -95,7 +95,7 @@
 
 			$("input[type='submit']").click(function() {
 
-				alert("경영자의 승인을 기다리세요.")
+				alert("환영합니다.")
 			});
 
 	

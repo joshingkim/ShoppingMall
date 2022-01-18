@@ -100,7 +100,7 @@ CREATE TABLE search(
 
 INSERT INTO category VALUES ('해파리', '수산물')
 
-INSERT INTO manager VALUES ('employee', 1111, '경영자', 'employee', 11111111, 1)
+INSERT INTO manager VALUES ('employee', 1111, '경영자', 'employee', 39309305, 2)
 
 INSERT INTO search (search_no, member_id, item_category, keyword) 
 values (23, 'm006', '고기', '고기')

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -174,7 +175,7 @@ public class ManagerController {
 	public String insert(ManagerVO vo) {
 		mService.insert(vo);
 		
-		return "redirect:/manager/main";
+		return "redirect:/manager/managerLogin";
 	}
 	
 	
@@ -198,12 +199,7 @@ public class ManagerController {
 		model.addAttribute("managerList", managerList);
 	}	
 		
-	@RequestMapping(value = "/updateCode/{manager_id}", method = RequestMethod.POST)
-	public String updateCode(ManagerVO vo) {
-		mService.updateCode(vo);
-		
-		return "redirect:/manager/read/" + vo.getManager_id();
-	}	
+	
 		
 	@RequestMapping(value = "/managerDelete", method = RequestMethod.POST)
 	public String delete(ManagerVO vo) {
@@ -222,26 +218,30 @@ public class ManagerController {
 		return "/manager/read";
 		
 	}
+	
+	
+	@RequestMapping(value = "/managerLogin", method = RequestMethod.GET)
+	public String login() {
+		return "/manager/managerLogin";
+	}
 		
 
 		@RequestMapping(value = "/managerLogin", method = RequestMethod.POST)
-		public String login(HttpSession session, ManagerVO vo) {
-			String returnURL ="";
-	        if ( session.getAttribute("managerLogin") !=null ){
-	         
-	            session.removeAttribute("managerLogin"); 
+		public String login(HttpServletRequest request, ManagerVO vo, RedirectAttributes rttr) {
+			HttpSession session = request.getSession();
+			ManagerVO managerLogin = mService.managerLogin(vo);
+			
+			if(managerLogin == null) {
+	            session.setAttribute("managerLogin", null);
+	            rttr.addFlashAttribute("msg", false);
+	            return "/manager/managerLogin";
+	        } else {
+	            session.setAttribute("managerLogin", managerLogin);
+	            return "redirect:/manager/main/";
 	        }
-	      
-	        ManagerVO mVo = mService.managerLogin(vo);
-	         
-	        if ( vo !=null ){ 
-	            session.setAttribute("managerLogin", vo); 
-	            returnURL ="redirect:/manager/main/"+ mVo.getManager_id(); 
-	        }else {
-	            returnURL ="redirect:/manager/login"; 
-	        }
-	         
-	        return returnURL; 
+
+			
+			
 	    }
 	 
 
@@ -251,10 +251,7 @@ public class ManagerController {
 	        return "redirect:/manager/main"; 
 	    }
 
-		@RequestMapping(value = "/managerLogin", method = RequestMethod.GET)
-		public void login1() {
-			
-		}
+		
 	
 		
 		

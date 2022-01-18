@@ -31,15 +31,15 @@
 	<form action="/fnq/insert" method="post">
   <div class="form-group">
     <label for="put1">작성자</label>
-    <input type="text" name="manager_id" class="form-control is-valid" id="put1" value="${managerLogin.manager_id }" readonly>
+    <input type="text" name="manager_id" class="form-control " id="put1" value="${managerLogin.manager_id }" readonly>
   </div>
   <div class="form-group">
     <label for="put2">제목</label>
-    <input type="text" name="fnq_title" class="form-control is-valid" id="put2" required="required">
+    <input type="text" name="fnq_title" class="form-control " id="put2" required="required">
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">내용</label>
-    <textarea class="form-control is-valid" id="Textarea1" rows="10" required="required"></textarea>
+    <textarea class="form-control " id="Textarea1" rows="10" required="required"></textarea>
   </div>
   <input type="submit" name="fnq_content" class="btn btn-outline-primary" value="작성 완료">
 </form>

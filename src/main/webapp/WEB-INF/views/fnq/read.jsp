@@ -24,25 +24,34 @@
 
 
 <div class="container">
-	
+<a href="/fnq/list" class="btn btn-outline-success btn-sm">리스트로 돌아가기</a>
+	<br><br>
 	<form action="/fnq/insert" method="post">
 	<div class="form-group">
     <label for="put">번호</label>
-    <input type="text" name="fnq_no" class="form-control is-invalid" id="put" value="${vo.fnq_no }" readonly>
+    <input type="text" name="fnq_no" class="form-control is-valid" id="put" value="${vo.fnq_no }" readonly>
   </div>
   <div class="form-group">
     <label for="put1">작성자</label>
-    <input type="text" name="manager_id" class="form-control is-invalid" id="put1" value="${vo.manager_id }" readonly>
+    <input type="text" name="manager_id" class="form-control is-valid" id="put1" value="${vo.manager_id }" readonly>
   </div>
   <div class="form-group">
     <label for="put2">제목</label>
-    <input type="text" name="fnq_title" class="form-control is-invalid" id="put2" value="${vo.fnq_title }" readonly >
+    <input type="text" name="fnq_title" class="form-control is-valid" id="put2" value="${vo.fnq_title }" readonly >
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">내용</label>
-    <textarea class="form-control is-invalid" id="Textarea1" rows="10" readonly>${vo.fnq_content}</textarea>
+    <textarea class="form-control is-valid" id="Textarea1" rows="10" readonly>${vo.fnq_content}</textarea>
   </div>
 </form>
+
+<c:if test="${managerLogin.manager_code == 1 }">
+	<div class="row float-right"><a href="/fnq/updateui/${vo.fnq_no}/${curPage}" class="btn btn-outline-warning btn-sm">수정</a> &nbsp;
+	<form action="/fnq/delete" method="post">
+		<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
+	</form>
+	</div>
+	</c:if>
 	
 	</div>
 

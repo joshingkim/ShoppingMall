@@ -38,10 +38,9 @@
             <div class="col-sm-8">
             
               <label for="manager_pw" class="form-label">비밀번호</label>
-              <div class="input-group has-validation">
-               
+             
                 <input type="password" class="form-control" name="manager_pw" placeholder="password" required="required">
-              </div>
+            
               </div>
             </div>
 
