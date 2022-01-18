@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -32,6 +33,16 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void update(CartVO vo) {
 		cDao.update(vo);
+	}
+
+	@Override
+	public List<CartVO> readCart(String member_id) {
+		 return cDao.readCart(member_id);
+	}
+
+	@Override
+	public int sumMoney(String member_id) {
+		return cDao.sumMoney(member_id);
 	}
 
 }

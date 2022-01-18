@@ -16,12 +16,35 @@
 </head>
 <body>
 
-<button id="cart" class="btn btn-default btn-cart">장바구니</button>
-	<form action="/cart/read">
-		<input type="hidden" name="member_id" value="m001"> <input
-			type="hidden" name="item_no" value="1234"> <input
-			type="submit" value="완료">
-	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>상품명</th>
+				<th scope="col" style="cursor: pointer"><input type="checkbox"
+					class="chk_all" id="chk_all" all></th>
+				<th>가격</th>
+				<th>수량</th>
+				<th>합계</th>
+				<th>주문</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${map.list}" var="cart" varStatus="status">
+				<tr>
+					<td>${status.count}:<c:out value="${cart.item_no}" /></td>
+					<th scope="col" style="cursor: pointer"><input type="checkbox"
+						class="chk_one" id="chk_one" checked></th>
+					<td>${cart.cart_price}</td>
+					<br>
+					<td><input name="cart_quantity1" value="${cart.cart_quantity}"></td>
+					<br>
+					<td>${cart.money}</td>
+					<br>
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 </body>
 
