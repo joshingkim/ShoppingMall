@@ -60,4 +60,9 @@ public class CartServiceImpl implements CartService {
 		return cDao.list(vo);
 	}
 
+	@Override
+	public void deleteAll(int cart_no) {
+		cDao.deleteAll(cart_no);
+	}
+
 }

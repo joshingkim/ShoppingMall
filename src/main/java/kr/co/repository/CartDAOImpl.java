@@ -56,5 +56,11 @@ public class CartDAOImpl implements CartDAO {
 	public List<CartVO> list(CartVO vo) {
 		return sqlSession.selectList(NS+".list", vo);
 	}
+
+	@Override
+	public void deleteAll(int cart_no) {
+		sqlSession.selectOne(NS+".deleteAll", cart_no);
+	}
+	
 	
 }
