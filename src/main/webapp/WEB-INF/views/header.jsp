@@ -123,13 +123,13 @@ border-bottom:0 none;
         <a class="nav-link text-light" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link text-light" href="#">랭킹<span class="sr-only">(current)</span></a>
+        <a class="nav-link text-light" href="/404page">랭킹<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-     <a class="nav-link text-light" href="#">이벤트</a>
+     <a class="nav-link text-light" href="/404page">이벤트</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="#">순위:</a>
+        <a class="nav-link text-light" href="/404page">순위:</a>
       </li>
       <li class="nav-item">
        
@@ -140,7 +140,7 @@ border-bottom:0 none;
     <form class="form-inline my-2 my-lg-0" action="/search/search">
     <div class="input-group mb-3 put">
     <div class="category-box">
-    <button class="btn btn-outline-secondary label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
+    <button class="btn text-light label " type="button" data-toggle="dropdown" aria-expanded="false">category </button>
     <div class="dropdown-menu menu">
       <a class="dropdown-item item" href="#">watches</a>
       <a class="dropdown-item item" href="#">necklaces</a>
@@ -154,7 +154,7 @@ border-bottom:0 none;
     </div>
   </div>
       <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
-      <button id="search_btn" class="btn btn-outline-dark my-2 my-sm-0 btn_search" type="button">Search</button>
+      <button id="search_btn" class="btn text-light my-2 my-sm-0 btn_search mr-5" type="button">Search</button>
       </div>
     </form>
   
@@ -165,15 +165,15 @@ border-bottom:0 none;
       
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ml-5">
-        <li><a href="#" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark text-danger">좋아요
+        <li><a href="/404page" class="nav-link px-2 link-secondary text-dark">Home</a></li>
+        <li><a href="/404page" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
+        <li><a href="/404page" class="nav-link px-2 link-dark text-danger">좋아요
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 </svg>
         <i class="bi bi-heart-fill"></i></a></li>
-        <li><a href="#" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark text-dark">고객센터</a></li>
+        <li><a href="/404page" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+        <li><a href="/404page" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
      
       </ul>
 

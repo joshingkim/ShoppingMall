@@ -56,12 +56,12 @@ var date = new Date();
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
 
 
 
- <div class="container"><br>
+ <div class="container bg-light text-dark"><br>
     <table class="table">
   <thead>
     <tr>

@@ -41,15 +41,15 @@
 <br><br>
 <div class="container">
 <hr>
-  <footer class="py-5">
+  <footer class="py-5 text-light">
     <div class="row">
       <div class="col-2">
-        <h5>Section</h5>
+        <h5></h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
           
         </ul>
       </div>
@@ -58,20 +58,17 @@
         <h5>DAPAN&DA</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" class="nav-link p-0 text-muted">고객센터</a></li>
+          <li class="nav-item mb-2"><a href="/fnq/list" class="nav-link p-0 text-muted">FAQs</a></li>
          
         </ul>
       </div>
 
       <div class="col-2">
-      <h5>Members</h5>
+      <h5>This page</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">김영주 &nbsp;&nbsp; 김종식</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">윤기로 &nbsp;&nbsp; 이정진</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">임동건 &nbsp;&nbsp; 조혜진</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">최현준</a></li>
+        <li class="nav-item mb-2">is made by</li>
+          <li class="nav-item mb-2">최현준</li>
         </ul>
       </div>
 
@@ -87,9 +84,9 @@
     <div class="d-flex justify-content-between py-4 my-4 border-top">
       <p>&copy; 2022 DAPAN&DA, Inc. All rights reserved.</p>
       <ul class="list-unstyled d-flex">
-        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+        <li class="ms-3"><a class="link-light" href="javascript:void(0)"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="javascript:void(0)"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="javascript:void(0)"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
       </ul>
     </div>
   </footer>

@@ -44,13 +44,13 @@ console.log(keywordRank1);
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
 
 
  
  
-    <div class="container"><br>  <canvas id="myChart6"></canvas></div>
+    <div class="container bg-light text-light"><br>  <canvas id="myChart6"></canvas></div>
       
 
 <script>

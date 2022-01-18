@@ -106,6 +106,18 @@ public class ManagerServiceImpl implements ManagerService {
 		return mDAO.managerLogin(vo);
 	}
 
+	@Override
+	public ManagerVO updateUI(String manager_id) {
+		
+		return mDAO.updateUI(manager_id);
+	}
+
+	@Override
+	public void update(ManagerVO vo) {
+		mDAO.update(vo);
+		
+	}
+
 
 
 }

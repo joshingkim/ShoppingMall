@@ -58,10 +58,10 @@ console.log(getName1);
 </head>
 <body>
 <jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 <jsp:include page="../manager/managerSidebar.jsp"/>
 
-       <div class="container"> <br><canvas id="myChart5"></canvas></div>
+       <div class="container bg-light text-dark"> <br><canvas id="myChart5"></canvas></div>
     
 <script>
 const ctx5 = document.getElementById('myChart5').getContext('2d');

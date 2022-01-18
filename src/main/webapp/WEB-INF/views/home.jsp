@@ -28,13 +28,13 @@
 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-       <img src="/resources/img/manager01.jpg" class="d-block w-100" alt="...">
+       <img src="/resources/img/manager00.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="/resources/img/manager02.jpg" class="d-block w-100" alt="...">
+      <img style="height: 550px;" src="/resources/img/manager02.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="/resources/img/manager03.jpg" class="d-block w-100" alt="...">
+      <img src="/resources/img/manager03.png" class="d-block w-100" alt="...">
     </div>
   </div>
 </div><br><br><br><br><br>
@@ -84,7 +84,7 @@
 		
 
 
-	<jsp:include page="../views/manager/managerFooter.jsp" />
+	<jsp:include page="footer.jsp" />
 	
 </body>
 </html>

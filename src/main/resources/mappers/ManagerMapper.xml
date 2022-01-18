@@ -93,8 +93,14 @@
 	 SELECT * FROM manager WHERE manager_id = #{manager_id} AND manager_pw = #{manager_pw}
 	</select>
 	
+	<select id="updateUI" resultType="kr.co.domain.ManagerVO">
+		SELECT * FROM manager WHERE manager_id = #{manager_id}
+	</select>
 	
-	
+	<update id="update">
+		UPDATE manager SET manager_name = #{manager_name}, manager_email = #{manager_email}, manager_phone = #{manager_phone}
+		WHERE manager_id = #{manager_id} 
+	</update>
 
 
 </mapper>
