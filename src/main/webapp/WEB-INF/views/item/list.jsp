@@ -28,6 +28,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var vo = "${list}";
+	console.log(vo);
 	var arr = eval(vo);
 	for (var i=0; i<arr.length; i++){
 		var item_no = arr[i].item_no;

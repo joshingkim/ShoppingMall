@@ -45,6 +45,8 @@ public interface ManagerDAO {
 
 	void update(ManagerVO vo);
 
+	List<Object> monthSale();
+
 
 
 

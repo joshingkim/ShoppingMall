@@ -116,6 +116,12 @@ public class ManagerDAOImpl implements ManagerDAO{
 			sqlSession.update(NS+".update", vo);
 		}
 
+		@Override
+		public List<Object> monthSale() {
+			
+			return sqlSession.selectList(NS+".monthSale");
+		}
+
 	
 	
 

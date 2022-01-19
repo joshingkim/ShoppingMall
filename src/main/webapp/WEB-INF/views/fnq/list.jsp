@@ -78,7 +78,7 @@ $(tr[i]).show();
 
 
 	<div class="container">
-                            <table id="contents" class="table" >
+                            <table id="contents" class="table" style="width: 100%;">
 
 
                                <h4>F&Q 게시판</h4>

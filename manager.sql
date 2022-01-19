@@ -137,3 +137,16 @@ GROUP BY item.item_category, item.item_name
 ORDER BY CATEGORY ASC, COUNTSELL DESC)
 WHERE COUNTSELL != 0) A WHERE A.RNUM = 1
 
+	SELECT TO_CHAR(sum(order_price), 'FM999,999,999') as "총 매출", 
+		TO_CHAR(order_date, 'YYYY-MM') as "이번 달" FROM
+		package 
+		WHERE  TO_CHAR(order_date, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')
+		group by TO_CHAR(order_date, 'YYYY-MM') ORDER BY
+		TO_CHAR(order_date, 'YYYY-MM') ASC  
+	
+		
+		
+		
+		
+		
+		
