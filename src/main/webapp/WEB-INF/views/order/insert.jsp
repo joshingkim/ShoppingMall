@@ -18,62 +18,60 @@
   
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
 <form action="/order/insert/${mvo.member_id}" method="post">
-<h1>주문/결제</h1> <br>
-order_item_no: <input readonly> <br>
-order_no: <input readonly> <br>
+<h1>주문/결제</h1>
 <hr>
 
 <div>
 <h3>회원정보</h3>
 회원아이디: <input name="member_id" id="member_id" value="${mvo.member_id}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
-주문자이름: <input name="member_name" value="${mvo.member_name}" readonly> <br> <!-- 멤버테이블에서 가져옴 -->
-전화번호: <input name="member_phone_number" value="${mvo.member_phone_number}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
+주문자이름: <input  value="${mvo.member_name}" readonly> <br> <!-- 멤버테이블에서 가져옴 -->
+전화번호: <input  value="${mvo.member_phone_number}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
 주문자이메일: <input name="member_email" value="${mvo.member_email}" readonly> <br> <!-- 멤버테이블에서 가져옴 -->
-배송지 주소: <input name="member_address" value="${mvo.member_address}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
-배송지 상세주소: <input name="member_detail_address" value="${mvo.member_detail_address}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
+배송지 주소: <input  value="${mvo.member_address}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
+배송지 상세주소: <input  value="${mvo.member_detail_address}" readonly><br> <!-- 멤버테이블에서 가져옴 -->
 </div>
+
 <hr>
 <hr>
 <h3>배송정보</h3>
+<div>
 <label for="기존배송지">기존배송지</label><input id="기존배송지" onclick="original()" type="radio" name="address" value="기존배송지" checked>
 <label for="신규배송지">신규배송지</label><input id="신규배송지" onclick="test()" type="radio" name="address" value="신규배송지">  <br>
+</div>
+
 <div>
-수령인: <input id="order_name" name="order_name" value="${mvo.member_name}"><br> <!-- 멤버테이블에서 가져옴 -->
-전화번호: <input id="order_phone_number" name="order_phone_number" value="${mvo.member_phone_number}"><br> <!-- 멤버테이블에서 가져옴 -->
+수령인: <input id="receiver" name="receiver" value="${mvo.member_name}"><br> <!-- 멤버테이블에서 가져옴 -->
+전화번호: <input id="phone" name="member_phone_number" value="${mvo.member_phone_number}"><br> <!-- 멤버테이블에서 가져옴 -->
 주문자이메일: <input type="email" id="order_email" name="order_email" value="${mvo.member_email}"> <br> <!-- 멤버테이블에서 가져옴 -->
-배송지 주소: <input id="order_address" name="order_address" value="${mvo.member_address}"><br> <!-- 멤버테이블에서 가져옴 -->
-배송지 상세주소: <input id="order_detail_address" name="order_detail_address" value="${mvo.member_detail_address}"><br> <!-- 멤버테이블에서 가져옴 -->
+배송지 주소: <input id="address" name="member_address" value="${mvo.member_address}"><br> <!-- 멤버테이블에서 가져옴 -->
+배송지 상세주소: <input id="detail_address" name="member_detail_address" value="${mvo.member_detail_address}"><br> <!-- 멤버테이블에서 가져옴 -->
 </div>
 
 
 <hr>
-<hr>
+
 <h3>제품정보</h3>
-<div>
-<!--제품번호, 수량, 가격은 장바구니에 있는 정보를 가져옴 -->
-제품번호: <input name="item_no" id="item_no"> <br> <!-- 장바구니테이블에서 가져옴 -->
-카트번호: <input name="cart_no" id="cart_no"> <br>
-사이즈: <input name="item_size" id="item_size"> <br> <!-- 장바구니테이블에서 가져옴 -->
-수량: <input> <br> <!-- 장바구니테이블에서 가져옴 -->
-가격: <input> <br> <!-- 상품의 가격 * 장바구니테이블에서 가져온 수량 -->
-</div>
-<hr>
+<c:forEach items="${clist}" var="cVo">
+	<c:forEach items="${ilist}" var="iVo">
+		<c:if test="${iVo.item_no == cVo.item_no}" >
+			${iVo.item_name}
+			${iVo.item_price*(100-iVo.discount_percentage)/100}<br>
+		</c:if>
+	</c:forEach>
+</c:forEach>
 
-<%-- <h2>제품정보</h2>
-<c:forEach items="cvo" var="cvo">
-<input value="${cvo.item_no}"><br>
-<input value="${cvo.cart_quantity}"><br>
-<input value="${cvo.cart_price}"><br>
-
-</c:forEach> --%>
 
 <hr>
 <div>
-총수량: <input name="order_quantity" id="order_quantity"> <br>
-총가격: <input name="order_price" id="order_price">
+총수량: <input value="${total}"> <br>
+총가격: <input value="${sum}">
 </div>
 <hr>
+	<input type="hidden" name="ilist" value="${ilist}">
+	<input type="hidden" name="clist" value="${clist}">
  <input type="submit" value="결제완료"> <button type="button" id="cancel">결제취소</button>
 </form>
 <br>
@@ -82,19 +80,19 @@ order_no: <input readonly> <br>
 <script type="text/javascript">
 	
 	function original(){
-		document.getElementById("order_name").value = '${mvo.member_name}';
-		document.getElementById("order_phone_number").value = '${mvo.member_phone_number}';
+		document.getElementById("receiver").value = '${mvo.member_name}';
+		document.getElementById("phone").value = '${mvo.member_phone_number}';
 		document.getElementById("order_email").value = '${mvo.member_email}';
-		document.getElementById("order_address").value = '${mvo.member_address}';
-		document.getElementById("order_detail_address").value = '${mvo.member_detail_address}';
+		document.getElementById("address").value = '${mvo.member_address}';
+		document.getElementById("detail_address").value = '${mvo.member_detail_address}';
 	}
 
 	function test() {
-		document.getElementById("order_name").value = '';
-		document.getElementById("order_phone_number").value = '';
+		document.getElementById("receiver").value = '';
+		document.getElementById("phone").value = '';
 		document.getElementById("order_email").value = '';
-		document.getElementById("order_address").value = '';
-		document.getElementById("order_detail_address").value = '';
+		document.getElementById("address").value = '';
+		document.getElementById("detail_address").value = '';
 	}
 
 	$(document).ready(function() {
@@ -186,7 +184,7 @@ order_no: <input readonly> <br>
 			         alert(msg);
 			     }
 			  });
-			$("form").submit();
+			$("form").submit(); 
 		});
 
 		$("button#cancel").click(function() {
@@ -197,6 +195,6 @@ order_no: <input readonly> <br>
 	});
 </script>
 
-
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

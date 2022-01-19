@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.OrderDetailVO;
 import kr.co.domain.OrderVO;
+import kr.co.domain.OrdersVO;
 import kr.co.repository.OrderDAO;
 import kr.co.repository.OrderDetailDAO;
 
@@ -32,6 +35,18 @@ public class OrderServiceImpl implements OrderService{
 		odvo.setOrder_detail_price(vo.getOrder_price());
 		odDao.insert(odvo);
 	}
+
+	@Transactional
+	@Override
+	public void insert(List<OrdersVO> orderList) {
+		for(int i=0; i<orderList.size(); i++) {
+			OrdersVO ovo = orderList.get(i);
+			oDao.insert(ovo);
+		}
+	} 
+
+
+	
 
 
 
