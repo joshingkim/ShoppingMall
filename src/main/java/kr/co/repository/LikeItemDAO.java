@@ -6,4 +6,8 @@ public interface LikeItemDAO {
 
 	int insert(LikeItemVO vo);
 
+	int count(LikeItemVO vo);
+
+	int delete(LikeItemVO vo);
+
 }

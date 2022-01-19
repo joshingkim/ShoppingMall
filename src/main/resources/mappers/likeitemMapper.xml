@@ -6,11 +6,20 @@
 <mapper namespace="kr.co.likeitem">
 
 	<insert id="insert">
-		INSERT INTO like
-		VALUES
-		(seq_cart_no.NEXTVAL, #{member_id}, #{item_no}, #{cart_quantity}, #{cart_price}, #{money})
+				INSERT INTO like
+				VALUES
+				(seq_cart_no.NEXTVAL, #{member_id}, #{item_no}, #{cart_quantity}, #{cart_price}, #{money})
+				<selectKey keyProperty="like_no" order="AFTER" resultType="Integer">
+  					SELECT seq_cart_no.CURRVAL FROM DUAL
+  			</selectKey>
 	</insert>
 
-
+	<select id="count"	resultType="Integer">
+  				SELECT COUNT(*) FROM like_item WHERE item_no = #{item_no} AND member_id = #{member_id}
+  	</select>
+  	
+  	<delete id="delete">
+  				DELETE FROM like_item WHERE member_id = #{member_id} AND item_no = #{item_no}
+  		</delete>
 
 </mapper>
