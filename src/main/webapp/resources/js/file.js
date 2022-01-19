@@ -100,5 +100,14 @@ function uploadedItemForlist(filename, item_no, item_name){
 	`;
 	return msg;
 }
-
+function uploadedItemForAddItem(filename) {
+	var originalFilename = getOriginalFilename(filename);
+	var msg = `
+		<div class="uploadeditem col-sm-3">
+			<img src="${getImageUrl(filename)}">
+			<p class"uploadedItemP"><a style="white-space:nowrap;" target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}">${originalFilename}</a></p>
+		</div>
+	`;
+	return msg;
+}
 

@@ -26,6 +26,14 @@ public class ItemVO implements Serializable{
 	public ItemVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public ItemVO(int item_no, String item_name, String item_size, String item_color) {
+		super();
+		this.item_no = item_no;
+		this.item_name = item_name;
+		this.item_size = item_size;
+		this.item_color = item_color;
+	}
 
 	public ItemVO(int item_no, String item_name, String item_category, String item_size, String item_color,
 			int item_price, int discount_percentage, int item_amount, String item_regdate) {
@@ -219,7 +227,7 @@ public class ItemVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "{'item_no':" + item_no + ", 'item_name':'" + item_name + "', 'file_name': '"+file_name+"'}";
+		return "{'item_no':" + item_no + ", 'item_name':'" + item_name + "', 'file_name': '"+file_name+"', 'item_price':"+item_price+",'discount_percentage':"+discount_percentage+"}";
 	}
 
 }

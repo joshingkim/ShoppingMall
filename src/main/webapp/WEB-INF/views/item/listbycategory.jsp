@@ -21,7 +21,9 @@
 	<div class="container container-table">
 			<div class="uploadedList row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
 			</div>
+			<div style="margin-left: 40%">
 			<jsp:include page="page.jsp"/>
+			</div>
 	</div>
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">

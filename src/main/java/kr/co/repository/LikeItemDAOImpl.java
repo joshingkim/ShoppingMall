@@ -1,5 +1,9 @@
 package kr.co.repository;
 
+import java.util.Map;
+
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +11,7 @@ import kr.co.domain.LikeItemVO;
 
 @Repository
 public class LikeItemDAOImpl implements LikeItemDAO {
-	
+	@Inject
 	private SqlSession sqlSession;
 	private final String NS = "kr.co.likeitem";
 	

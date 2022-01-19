@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -27,5 +29,5 @@ public class LikeItemServiceImpl implements LikeItemService {
 		public int delete(LikeItemVO vo) {
 			return likeDao.delete(vo);
 		}
-		
+
 }

@@ -65,4 +65,8 @@
 	<select id="listofall" resultType="kr.co.domain.ItemVO">
 		SELECT * FROM item ORDER BY item_regdate ASC
 	</select>
+	<select id="getItme_no" resultType="Integer">
+		SELECT item_no FROM item where UPPER(item_name) = UPPER(#{item_name}) AND UPPER(item_size) = UPPER(#{item_size}) AND UPPER(item_color) = UPPER(#{item_color})
+	</select>
+	
 </mapper>

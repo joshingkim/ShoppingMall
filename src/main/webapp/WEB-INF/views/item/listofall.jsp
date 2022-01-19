@@ -48,14 +48,17 @@
 					<td>${vo.item_amount}</td>
 					<td>${vo.item_regdate}</td>
 					<td>
+						<a class="btn btn-outline-primary btn-sm" href="/item/addItem/${vo.item_no}">추가</a>
 						<a class="btn btn-outline-primary btn-sm" href="/item/update/${vo.item_no}">수정</a>
-						<a class="btn btn-outline-primary btn-sm" data-item_no="${vo.item_no}" class="delete" href="">삭제</a>
+						<a class="btn btn-outline-primary btn-sm" data-item_no="${vo.item_no}" class="delete" href="/item/delete/${vo.item_no}">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div style="margin-left: 40%">
 	<jsp:include page="pageofall.jsp" />
+	</div>
 </div>
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">
@@ -64,10 +67,10 @@
 		$('.delete').click(function() { 
 			var result = confirm('삭제 하시겠습니까?'); 
 			if(result) { 
-				var item_no = $(this).data("item_no");
-				location.assign("/item/delete/"+item_no);
-			}else{ 
-				
+				var link = $(this).href;
+				location.assign(link);
+			} else { 
+				event.preventDefault();
 			} 
 		}); 
 	});

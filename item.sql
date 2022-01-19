@@ -1,3 +1,16 @@
+CREATE TABLE cart(
+cart_no NUMBER,
+member_id VARCHAR2(15),
+item_no NUMBER NOT NULL,
+cart_quantity NUMBER NOT NULL,
+cart_price NUMBER NOT NULL,
+cart_date DATE DEFAULT SYSDATE,
+CONSTRAINT pk_cart_no PRIMARY KEY(cart_no),
+CONSTRAINT fk_cart_member_id FOREIGN KEY(member_id)  REFERENCES member(member_id) ON DELETE CASCADE,
+CONSTRAINT fk_cart_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE 
+)
+
+CREATE SEQUENCE seq_cart_no
 CREATE TABLE fnq(
    fnq_no NUMBER,
    manager_id VARCHAR2(15) NOT NULL,
@@ -36,14 +49,17 @@ INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item
 CREATE SEQUENCE seq_item_no
 ALTER TABLE item MODIFY item_name VARCHAR2(120)
 ALTER TABLE category MODIFY item_name VARCHAR2(120)
-
+SELECT item_no FROM item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' AND item_size = '8호' AND item_color = 'SILVER'
 drop table qna
 drop table item
+select * from board
 select * from item
 select * from review
 select * from member
 select * from search
-
+SELECT * FROM like_item
+insert into like_item (like_no ,item_no, member_id) values (1,72,'m001')
+SELECT COUNT(*) FROM like_item WHERE item_no = '72' AND member_id = 'm001'
 CREATE TABLE search(
    search_no NUMBER,
    member_id VARCHAR2(15),
@@ -53,7 +69,7 @@ CREATE TABLE search(
    CONSTRAINT pk_search_no PRIMARY KEY(search_no),
    CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
-
+SELECT COUNT(*) FROM like_item WHERE item_no = 72 AND member_id = 'm001'
 CREATE SEQUENCE seq_search_no
 
 select item_no from item_file 

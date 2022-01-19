@@ -13,7 +13,6 @@
 	</insert>
 
 	<select id="rankinglist" resultType="kr.co.domain.SearchVO">
-		SELECT RANK() OVER(ORDER BY COUNT(*)) Rank, keyword FROM search GROUP BY
-		keyword
+		SELECT ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) rank, keyword FROM search GROUP BY keyword ORDER BY  COUNT(*) DESC
 	</select>
 </mapper>

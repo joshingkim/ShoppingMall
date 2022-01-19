@@ -73,6 +73,7 @@ public class ItemServiceImpl implements ItemService {
 		int amount = iDao.getAmount();
 		pt.setAmount(amount);
 		pt.setPerPage(12);
+		
 		List<ItemVO> list = iDao.list(pt);
 		pt.setList(list);
 		
@@ -99,6 +100,7 @@ public class ItemServiceImpl implements ItemService {
 		int amount = iDao.getAmountbycategory(item_category);
 		pt.setAmount(amount);
 		pt.setPerPage(12);
+		
 		List<ItemVO> list = iDao.listbycategory(pt,item_category);
 		pt.setList(list);
 		
@@ -109,11 +111,34 @@ public class ItemServiceImpl implements ItemService {
 	public PageTO<ItemVO> listofall(PageTO<ItemVO> pt) {
 		int amount = iDao.getAmountOfAll();
 		pt.setAmount(amount);
-		pt.setPerPage(12);
+		
 		List<ItemVO> list = iDao.listofall(pt);
 		pt.setList(list);
 		
 		return pt;
+	}
+	@Override
+	public int getItme_no(ItemVO vo) {
+		// TODO Auto-generated method stub
+		return iDao.getItme_no(vo);
+	}
+	@Override
+	public void addItem(ItemVO ivo) {
+		int ori_item_no = ivo.getItem_no();
+		System.out.println(ori_item_no);
+		List<String> list = fDao.getFile(ori_item_no);
+		BoardVO bvo = bDao.readbyItme_no(ori_item_no);
+
+		iDao.insert(ivo);
+		
+		int item_no = ivo.getItem_no();
+		System.out.println(item_no);
+		bvo.setItem_no(item_no);
+		bDao.insert(bvo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("item_no", item_no);
+		map.put("file_name", list.get(0));
+		fDao.insert(map);
 	}
 
 
