@@ -34,6 +34,15 @@
 		package group by TO_CHAR(order_date, 'YYYY-MM-DD') ORDER BY
 		TO_CHAR(order_date, 'YYYY-MM-DD') ASC
 	</select>
+	
+	<select id="monthSale" resultType="Map">
+	SELECT TO_CHAR(sum(order_price), 'FM999,999,999') as ORDERPRICE, 
+		TO_CHAR(order_date, 'YYYY-MM') as THISMONTH FROM
+		package 
+		WHERE  TO_CHAR(order_date, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')
+		group by TO_CHAR(order_date, 'YYYY-MM') ORDER BY
+		TO_CHAR(order_date, 'YYYY-MM') ASC  
+	</select>
 
 	<select id="likeRank" resultType="Map">
 		SELECT count(item_no) as SUMITEMNO, item_no

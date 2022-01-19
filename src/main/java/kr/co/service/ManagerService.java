@@ -42,6 +42,8 @@ public interface ManagerService {
 
 		void update(ManagerVO vo);
 
+		List<Object> monthSale();
+
 		
 	
 	

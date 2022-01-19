@@ -1,5 +1,6 @@
 package kr.co.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -8,8 +9,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,7 +91,14 @@ public class ManagerController {
 		 List<Object> getName = mService.getName();
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
 			model.addAttribute("getName1",getName1);
+			List<Object> monthSale =  mService.monthSale();
+			String monthSale1 = new ObjectMapper().writeValueAsString(monthSale);
+			model.addAttribute("monthSale1", monthSale1);
+			model.addAttribute("monthSale", monthSale);
+			
+			
 	}
+	
 	
 	@RequestMapping(value = "/saleRank", method = RequestMethod.GET)
 	public void manager2(Model model) throws JsonProcessingException {
@@ -271,6 +284,46 @@ public class ManagerController {
 			
 			return "redirect:/manager/read/"+vo.getManager_id();
 		}
+		
+		
+		
+		@RequestMapping(value="excel", method = RequestMethod.GET)
+		public void downloadExcel(HttpServletResponse response) throws IOException {
+			 
+	        Workbook workbook = new HSSFWorkbook();
+	        Sheet sheet = workbook.createSheet("주문리스트");
+	        int rowNo = 0;
+	 
+	        Row headerRow = sheet.createRow(rowNo++);
+	        headerRow.createCell(0).setCellValue("오더 번호");
+	        headerRow.createCell(1).setCellValue("상품 번호");
+	        headerRow.createCell(2).setCellValue("수량");
+	        headerRow.createCell(3).setCellValue("가격");
+	        headerRow.createCell(4).setCellValue("주문한사람");
+	        headerRow.createCell(5).setCellValue("배송지");
+	 
+	        List<OrderVO> orderList = mService.list();
+	        for (OrderVO vo : orderList) {
+	            Row row = sheet.createRow(rowNo++);
+	            row.createCell(0).setCellValue(vo.getOrder_no());
+	            row.createCell(1).setCellValue(vo.getItem_no());
+	            row.createCell(2).setCellValue(vo.getOrder_quantity());
+	            row.createCell(3).setCellValue(vo.getOrder_price());
+	            row.createCell(4).setCellValue(vo.getMember_id());
+	            row.createCell(5).setCellValue(vo.getOrder_address());
+	            
+	        }
+	 
+	        response.setContentType("ms-vnd/excel");
+	        response.setHeader("Content-Disposition", "attachment;filename=orderList.xls");
+	 
+	        workbook.write(response.getOutputStream());
+	        workbook.close();
+	    }
+		
+		
+		
+		
 		
 		
 		

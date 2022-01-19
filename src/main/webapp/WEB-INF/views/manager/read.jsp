@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../manager/managerHeader.jsp" />
+	<jsp:include page="../manager/managerHeader.jsp" />
 	<div class="container mt-5 bg-light text-dark">
 		<table class="table">
 			<thead>
@@ -47,19 +47,21 @@
 
 
 							<div class="form-row align-items-center">
-							
-							
 
 
-<c:if test="${vo.manager_id == managerLogin.manager_id || managerLogin.manager_code == 2 }">
-	<a href="/manager/update/${vo.manager_id }" class="btn btn-warning btn-sm">수정</a> &nbsp;
+
+
+								<c:if
+									test="${vo.manager_id == managerLogin.manager_id || managerLogin.manager_code == 2 }">
+									<a href="/manager/update/${vo.manager_id }"
+										class="btn btn-warning btn-sm">수정</a> &nbsp;
 
 								<form action="/manager/managerDelete" method="post">
-									<input type="hidden" name="manager_pw"
-										value="${vo.manager_pw }"> <input type="hidden"
-										name="manager_id" value="${vo.manager_id }"> <input
-										type="submit" class="btn btn-danger btn-sm" value="탈퇴">
-								</form>
+										<input type="hidden" name="manager_pw"
+											value="${vo.manager_pw }"> <input type="hidden"
+											name="manager_id" value="${vo.manager_id }"> <input
+											type="submit" class="btn btn-danger btn-sm" value="탈퇴">
+									</form>
 								</c:if>
 							</div>
 
@@ -89,6 +91,6 @@
 
 		});
 	</script>
-<jsp:include page="../manager/managerFooter.jsp" />
+	<jsp:include page="../manager/managerFooter.jsp" />
 </body>
 </html>

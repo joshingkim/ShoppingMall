@@ -118,6 +118,12 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 
+	@Override
+	public List<Object> monthSale() {
+		
+		return mDAO.monthSale();
+	}
+
 
 
 }
