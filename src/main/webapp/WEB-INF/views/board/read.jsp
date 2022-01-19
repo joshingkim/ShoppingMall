@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -32,7 +34,7 @@ a {
 
 .quickmenu {
 	position: absolute;
-	width: 200px;
+	width: 100px;
 	top: 35%;
 	margin-top: -100px;
 	right: 20px;
@@ -84,68 +86,38 @@ a {
 
 </head>
 <body>
-	<div>
-		board_content : ${vo.board_content} <br>
-		board_regdate : ${vo.board_regdate } <br> 
-		board_updatedate : ${vo.board_updatedate } <br> 
-		board_viewcnt : ${vo.board_viewcnt } <br> 
+<div class="container">
+<br> 보드내용 : ${vo.board_content}
+	<br> 작성시간 : ${vo.board_regdate }
+	<br> 업데이트시간 : ${vo.board_updatedate }
+	<br> 조회수 : ${vo.board_viewcnt }<br>
 		<input type="button" value="리뷰쓰기" onclick="nwindow()" />
 		<button class="updateui">수정 화면</button>
+		<div style="margin-top: 20px;">
+		<h4 id="div3">REVIEW</h4>
+		</div>
+</div>
+	<div style="border: 1px solid #ddd; margin-right: 15%;" class="container-fluid"	>
+	
+		<div class="container-fluid">
 		<jsp:include page="../review/list.jsp" />
-		<div id="replies" class="mt-5"></div>
+		</div>
+		
 		<br>
-		<jsp:include page="../qna/list.jsp" />
+		
 	</div>
-
-	<div class="quickmenu">
-		<ul>
-			<li><button id="btn1">div1로 이동</button></li>
-			<li><a href="#">1:1문의</a></li>
-			<li><a href="#">후기</a></li>
-		</ul>
+	
+	<div class="quickmenu" >
+		
+			<button id="btn1" class=" btn btn-secondary btn-sm btn-block "> <i class="bi bi-chevron-bar-up" style="font-size: 20px"></i> </button> <br> <br>
+			<button id="btn3" class=" btn btn-secondary btn-sm btn-block">리뷰 <br>바로가기</button>
+			<button id="btn2" class=" btn btn-secondary btn-sm btn-block">QnA <br>바로가기</button> <br> <br>
+			<button id="btn4" class=" btn btn-secondary btn-sm btn-block "> <i class="bi bi-chevron-bar-down" style="font-size: 20px"></i> </button>
+		
 	</div>
 	<br>
+<jsp:include page="../qna/list.jsp" />
 
-	<!-- Modal -->
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-		data-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">
-						<span id="sp_reviewui_review_no">11</span>
-					</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p id="sp_reviewui_member_id">홍길동</p>
-					<div>
-						평점 : <select id="div_reviewui_review_grade">
-							<option value=5>5점</option>
-							<option value=4>4점</option>
-							<option value=3>3점</option>
-							<option value=2>2점</option>
-							<option value=1>1점</option>
-						</select><br>
-					</div>
-					<div class="form-group">
-						<input class="form-control" id="div_reviewui_review_content"
-							value="안녕하세요.">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal"
-						id="btn_reviewui_update">리뷰 수정 완료</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<script>
 		$(document).ready(function() {
 
@@ -164,10 +136,64 @@ a {
 		});
 	</script>
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		$('#btn1').click(function() {
+
+			var offset = $('#div1').offset(); //선택한 태그의 위치를 반환
+
+			//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+			$('html').animate({
+				scrollTop : offset.top
+			}, 400);
+
+		});
+
+		$('#btn2').click(function() {
+
+			var offset = $('#div2').offset(); //선택한 태그의 위치를 반환
+
+			//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+			$('html').animate({
+				scrollTop : offset.top
+			}, 400);
+
+		});
+		
+		$('#btn3').click(function() {
+
+			var offset = $('#div3').offset(); //선택한 태그의 위치를 반환
+
+			//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+			$('html').animate({
+				scrollTop : offset.top
+			}, 400);
+
+		});
+		
+		$('#btn4').click(function() {
+
+			var offset = $('#div4').offset(); //선택한 태그의 위치를 반환
+
+			//animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+			$('html').animate({
+				scrollTop : offset.top
+			}, 400);
+
+		});
+
+	});
+	
 	 function nwindow(){
          var url="../../board/reviewinsert/"+${vo.board_no};
          window.open(url,"","width=400,height=400,left=600");
      }
+	
 		var board_no = ${vo.board_no};
 		$(document).ready(function() {
 			$(document).ready(function() {
