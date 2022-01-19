@@ -72,7 +72,7 @@ public class ItemServiceImpl implements ItemService {
 	public PageTO<ItemVO> list(PageTO<ItemVO> pt) {
 		int amount = iDao.getAmount();
 		pt.setAmount(amount);
-		
+		pt.setPerPage(12);
 		List<ItemVO> list = iDao.list(pt);
 		pt.setList(list);
 		
@@ -98,17 +98,18 @@ public class ItemServiceImpl implements ItemService {
 	public PageTO<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category) {
 		int amount = iDao.getAmountbycategory(item_category);
 		pt.setAmount(amount);
-		
+		pt.setPerPage(12);
 		List<ItemVO> list = iDao.listbycategory(pt,item_category);
 		pt.setList(list);
 		
 		return pt;
 	}
+	
 	@Override
 	public PageTO<ItemVO> listofall(PageTO<ItemVO> pt) {
 		int amount = iDao.getAmountOfAll();
 		pt.setAmount(amount);
-		
+		pt.setPerPage(12);
 		List<ItemVO> list = iDao.listofall(pt);
 		pt.setList(list);
 		

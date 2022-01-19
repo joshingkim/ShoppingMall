@@ -27,23 +27,24 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private FileDAO fDao;
 
-//	@Transactional
-//	@Override
-//	public SearchPageTO<ItemVO> searchlist(SearchPageTO<ItemVO> spt) {
-//		String item_category = spt.getItem_category();
-//		if(item_category.equals("All")) {
-//			int amountAll = iDao.getAmountSearchAll(spt);
-//			List<ItemVO> listAll = iDao.searchitemAll(spt);
-//			spt.setAmount(amountAll);
-//			spt.setList(listAll);
-//		}else {
-//		int amount = iDao.getAmountSearch(spt);
-//		List<ItemVO> list = iDao.searchitem(spt);
-//		spt.setAmount(amount);
-//		spt.setList(list);
-//		}
-//		return spt;
-//	}
+	@Transactional
+	@Override
+	public SearchPageTO<ItemVO> searchlist(SearchPageTO<ItemVO> spt) {
+		String item_category = spt.getItem_category();
+		if(item_category.equals("All")) {
+			int amountAll = iDao.getAmountSearchAll(spt);
+			List<ItemVO> listAll = iDao.searchitemAll(spt);
+			spt.setAmount(amountAll);
+			spt.setList(listAll);
+		}else {
+		int amount = iDao.getAmountSearch(spt);
+		List<ItemVO> list = iDao.searchitem(spt);
+		spt.setAmount(amount);
+		spt.setList(list);
+		spt.setPerPage(12);
+		}
+		return spt;
+	}
 
 	@Override
 	public List<SearchVO> rankinglist() {

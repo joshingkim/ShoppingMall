@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
+import kr.co.domain.SearchPageTO;
 
 public interface ItemDAO {
 
@@ -22,8 +23,6 @@ public interface ItemDAO {
 
 	void delete(int item_no);
 
-	List<ItemVO> searchitem(Map<String, Object> map);
-
 	List<ItemVO> getItem_size(String item_name);
 
 	List<ItemVO> getItem_color(String item_name);
@@ -38,9 +37,13 @@ public interface ItemDAO {
 
 	List<ItemVO> listofall(PageTO<ItemVO> pt);
 	
-//	List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt);
-//
-//	int getAmountSearchAll(SearchPageTO<ItemVO> spt);
+	List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt);
+
+	int getAmountSearchAll(SearchPageTO<ItemVO> spt);
+
+	List<ItemVO> searchitem(SearchPageTO<ItemVO> spt);
+
+	int getAmountSearch(SearchPageTO<ItemVO> spt);
 
 
 }

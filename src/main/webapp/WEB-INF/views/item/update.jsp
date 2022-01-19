@@ -50,17 +50,17 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">price</span>
-								<input name="item_price" maxlength="10" value="${vo.item_price}" class="form-control">
+								<input name="item_price" type="number" value="${vo.item_price}" class="form-control">
 								<span class="input-group-text">원</span>
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">discount</span>
-								<input name="discount_percentage" value="${vo.discount_percentage}" class="form-control">
+								<input name="discount_percentage" type="number" value="${vo.discount_percentage}" class="form-control">
 								<span class="input-group-text">%</span>
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">Quantity</span>
-								<input name="item_amount" value="${vo.item_amount}" class="form-control">
+								<input name="item_amount" type="number" value="${vo.item_amount}" class="form-control">
 								<span class="input-group-text">EA</span>
 							</div>
 							<input type="submit" value="수정 완료">

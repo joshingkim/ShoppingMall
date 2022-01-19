@@ -15,6 +15,6 @@ public interface SearchService {
 
 	void search(SearchVO svo);
 
-//	SearchPageTO<ItemVO> searchlist(SearchPageTO<ItemVO> spt);
+	SearchPageTO<ItemVO> searchlist(SearchPageTO<ItemVO> spt);
 
 }

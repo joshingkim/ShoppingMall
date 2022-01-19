@@ -22,7 +22,7 @@
 	<jsp:include page="../sidebar.jsp" />
 	<div class="container" style=" font-size : small;">
 	<h4>카테고리 리스트</h4>
-	<a href="/category/insert">카테고리 등록</a>
+	<a class="btn btn-outline-primary btn-sm" style="float: right;" href="/category/insert">카테고리 등록</a>
 	<table class="table">
 		<thead>
 			<th scope="col">no</th>
@@ -36,7 +36,10 @@
 					<th scope="row">${status.count}</th>
 					<td>${vo.item_category}</td>
 					<td>${vo.item_name}</td>
-					<td><a href="/category/update/${vo.item_name}">수정</a>/<a class="category_delete" href="/category/delete/${vo.item_name}">삭제</a></td>
+					<td>
+						<a class="btn btn-outline-primary btn-sm" href="/category/update/${vo.item_name}">수정</a>
+						<a class="btn btn-outline-primary btn-sm category_delete" href="/category/delete/${vo.item_name}">삭제</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -60,18 +60,18 @@ public class SearchController {
 		sService.search(svo);
 		model.addAttribute("svo", svo);
 		
-//		spt = sService.searchlist(spt);
-//		List<ItemVO> list = new ArrayList<ItemVO>();
-//		for(int i = 0; i<spt.getList().size();i++) {
-//			int item_no = spt.getList().get(i).getItem_no();
-//			String item_name = spt.getList().get(i).getItem_name();
-//			String file_name = fService.getFile(item_no).get(0);
-//			list.add(new ItemVO(item_no,item_name,file_name));
-//		}
-//		spt.setList(list);
-//		spt.setItem_category(svo.getItem_category());
-//		spt.setKeyword(svo.getKeyword());
-//			model.addAttribute("spt", spt);
+		spt = sService.searchlist(spt);
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		for(int i = 0; i<spt.getList().size();i++) {
+			int item_no = spt.getList().get(i).getItem_no();
+			String item_name = spt.getList().get(i).getItem_name();
+			String file_name = fService.getFile(item_no).get(0);
+			list.add(new ItemVO(item_no,item_name,file_name));
+		}
+		spt.setList(list);
+		spt.setItem_category(svo.getItem_category());
+		spt.setKeyword(svo.getKeyword());
+			model.addAttribute("spt", spt);
 		return "/search/searchlist";
 	}
 }

@@ -1,5 +1,6 @@
 package kr.co.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
+import kr.co.domain.SearchPageTO;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -58,32 +60,27 @@ public class ItemDAOImpl implements ItemDAO {
 	public void delete(int item_no) {
 		sqlSession.delete(NS+".delete", item_no);
 	}
-
-	@Override
-	   public List<ItemVO> searchitem(Map<String, Object> map) {
-	      return sqlSession.selectList(NS + ".searchitem", map);
-	   }//이건 삭제 하셔야되요!!
 	
-//	@Override
-//	   public int getAmountSearch(SearchPageTO<ItemVO> spt) {
-//	      Map<String, Object> map = new HashMap<String, Object>();
-//	      String item_category = spt.getItem_category();
-//	      String item_name = spt.getKeyword();
-//	      map.put("item_name", item_name);
-//	      map.put("item_category", item_category);
-//	      return sqlSession.selectOne(NS + ".getAmountSearch", map);
-//	   }
-//
-//	   @Override
-//	   public List<ItemVO> searchitem(SearchPageTO<ItemVO> spt) {
-//	      Map<String, Object> map = new HashMap<String, Object>();
-//	      String item_category = spt.getItem_category();
-//	      String item_name = spt.getKeyword();
-//	      map.put("item_name", item_name);
-//	      map.put("item_category", item_category);
-//	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
-//	      return sqlSession.selectList(NS + ".searchitem", map, rbs);
-//	   }
+	@Override
+	   public int getAmountSearch(SearchPageTO<ItemVO> spt) {
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      String item_category = spt.getItem_category();
+	      String item_name = spt.getKeyword();
+	      map.put("item_name", item_name);
+	      map.put("item_category", item_category);
+	      return sqlSession.selectOne(NS + ".getAmountSearch", map);
+	   }
+	
+	@Override
+	   public List<ItemVO> searchitem(SearchPageTO<ItemVO> spt) {
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      String item_category = spt.getItem_category();
+	      String item_name = spt.getKeyword();
+	      map.put("item_name", item_name);
+	      map.put("item_category", item_category);
+	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
+	      return sqlSession.selectList(NS + ".searchitem", map, rbs);
+	   }
 
 
 	@Override
@@ -129,17 +126,17 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList(NS+".listofall", null, rbs);
 	}
 	
-//	@Override
-//	   public List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt) {
-//	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
-//	      String item_name = spt.getKeyword();
-//	      return sqlSession.selectList(NS + ".searchitemAll", item_name, rbs);
-//	   }
-//
-//	   @Override
-//	   public int getAmountSearchAll(SearchPageTO<ItemVO> spt) {
-//	      String item_name = spt.getKeyword();
-//	      return sqlSession.selectOne(NS + ".getAmountSearchAll", item_name);
-//	   }
+	@Override
+	   public List<ItemVO> searchitemAll(SearchPageTO<ItemVO> spt) {
+	      RowBounds rbs = new RowBounds(spt.getStartNum()-1, spt.getPerPage());
+	      String item_name = spt.getKeyword();
+	      return sqlSession.selectList(NS + ".searchitemAll", item_name, rbs);
+	   }
+
+	   @Override
+	   public int getAmountSearchAll(SearchPageTO<ItemVO> spt) {
+	      String item_name = spt.getKeyword();
+	      return sqlSession.selectOne(NS + ".getAmountSearchAll", item_name);
+	   }
 
 }

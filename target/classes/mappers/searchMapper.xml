@@ -6,11 +6,8 @@
 
 <mapper namespace="kr.co.search">
 	<insert id="search">
-		INSERT INTO search (search_no, item_category, keyword)
-		VALUES (seq_search_no.NEXTVAL, #{item_category}, #{keyword})
-
-		<selectKey keyProperty="search_no" resultType="Integer"
-			order="AFTER">
+		INSERT INTO search (search_no, item_category, keyword) VALUES (seq_search_no.NEXTVAL, #{item_category}, #{keyword})
+		<selectKey keyProperty="search_no" resultType="Integer" order="AFTER">
 			SELECT seq_search_no.CURRVAL FROM dual
 		</selectKey>
 	</insert>
