@@ -21,19 +21,34 @@
 	<jsp:include page="../header.jsp" />
 
 	<jsp:include page="../sidebar.jsp" />
-	<form action="/category/insert" method="post">
-		카테고리명 : 
-		<select id="item_category1" name="item_category1" >
-			<option>선택하세요</option>
-			<option value="direct">직접 입력</option>
-			<c:forEach items="${list}" var="list">
-				<option>${list.item_category}</option>
-			</c:forEach>
-		</select>
-		<input name="item_category" id="item_category" value="카테고리"><br>
-		아이템명 : <input name="item_name" maxlength="35"><br> 
-		<input type="submit" value="등록 완료">
-	</form>
+	<div class="row mb-2 container">
+		<div class="col-md-10">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<p class="card-text mb-auto">
+						<form action="/category/insert" method="post">
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">category</span>
+								<select id="item_category1" name="item_category1" >
+									<option>선택하세요</option>
+									<option value="direct">직접 입력</option>
+									<c:forEach items="${list}" var="list">
+										<option>${list.item_category}</option>
+									</c:forEach>
+								</select>
+								<input name="item_category" id="item_category" value="카테고리"><br>
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">item</span>
+								<input name="item_name" maxlength="35" class="form-control">
+							</div>
+							<input type="submit" value="등록 완료">
+						</form>
+						</p>
+					</div>
+			</div>
+		</div>
+	</div>
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function() {

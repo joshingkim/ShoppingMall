@@ -25,7 +25,7 @@
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
 	
-	<div class="row mb-2 container">
+	<div class="row mb-2 container" style="margin-left: 5%;">
     <div class="col-md-10">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="uploadedList"></div>

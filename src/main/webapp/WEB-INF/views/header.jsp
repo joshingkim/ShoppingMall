@@ -65,14 +65,14 @@ body {
 </style>
 <style type="text/css">
       
-.category-box {
+.cat-box {
 position : relative;
 width : 90px;
 height : 35px;
 cursor : pointer;
 }
 
-.category-box:after {
+.cat-box:after {
 content: '';
 display:block;
 width : 2px;
@@ -80,7 +80,7 @@ height : 100%;
 position : absolute;
 }
 
-.category-box .label {
+.cat-box .cat-label {
 display : flex;
 width : inherit;
 height : inherit;
@@ -88,29 +88,30 @@ align-items :center;
 cursor : pointer;
 }
 
-.category-box .menu {
+.cat-box .cat-menu {
 position : absolute;
 list-style-type : none;
 overflow : hidden;
 transition : .3s ease-in;
 }
 
-.category-box.active .menu {
+.cat-box.active .cat-menu {
 max-height : 500px;
 }
 
-.category-box .item {
+.cat-box .cat-item {
 transition : .1s;
 }
 
-.category-box .item:hover {
+.cat-box .cat-item:hover {
 background : rgb(175,93,93);
 }
 
-.category-box .item:last-child {
+.cat-box .cat-item:last-child {
 border-bottom:0 none;
 }
 </style>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="div1">
   <span class="navbar-brand mb-0 h1"><a class="nav-link text-light" href="/">DAPAN&DA</a></span>
@@ -119,42 +120,25 @@ border-bottom:0 none;
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link text-light" href="/">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link text-light" href="/404page">랭킹<span class="sr-only">(current)</span></a>
-      </li>
+      </li> -->
       <li class="nav-item">
-     <a class="nav-link text-light" href="/404page">이벤트</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/404page">순위:</a>
-      </li>
-      <li class="nav-item">
-       
       </li>
     </ul>
-   <div id="rolling"><div id="roll" ><ul><ol class="ranklist "></ol></ul></div></div>
   </div>
+  <div id="rolling"><div id="roll" ><ul><ol class="ranklist "></ol></ul></div></div>
     <form class="form-inline my-2 my-lg-0" action="/search/search">
     <div class="input-group mb-3 put">
-    <div class="category-box">
-    <button class="btn text-light label " type="button" data-toggle="dropdown" aria-expanded="false">category </button>
-    <div class="dropdown-menu menu">
-      <a class="dropdown-item item" href="#">watches</a>
-      <a class="dropdown-item item" href="#">necklaces</a>
-      <a class="dropdown-item item" href="#">rings</a>
-      <a class="dropdown-item item" href="#">braclets</a>
-      <a class="dropdown-item item" href="#">hairpins</a>
-      <a class="dropdown-item item" href="#">earings</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item item" href="#">else</a>
+    <div class="cat-box">
+    <button class="btn btn-outline-secondary cat-label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
+    <div class="dropdown-menu cat-menu">
+      <a class="dropdown-item cat-item" href="#">All</a>
 
     </div>
   </div>
-      <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
-      <button id="search_btn" class="btn text-light my-2 my-sm-0 btn_search mr-5" type="button">Search</button>
+      <input class="form-control mr-sm-2" id="query" name="keyword" type="search" placeholder="Search" aria-label="Search">
+      <button id="search_btn" class="btn btn-outline-white my-2 my-sm-0 btn_search" type="button">Search</button>
       </div>
     </form>
   
@@ -165,27 +149,45 @@ border-bottom:0 none;
       
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ml-5">
-        <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-        <li><a href="/404page" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        <li><a href="/404page" class="nav-link px-2 link-dark text-danger">좋아요
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-</svg>
-        <i class="bi bi-heart-fill"></i></a></li>
-        <li><a href="/404page" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
-        <li><a href="/404page" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+      <c:choose>
+          <c:when test="${empty login}">
+            <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
+			<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
+        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-danger">좋아요
+        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+			</svg>
+        	<i class="bi bi-heart-fill"></i></a></li>
+        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+          </c:when>
+          
+          <c:when test="${not empty login}">
+            <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
+			<li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
+        	<li><a href="/" class="nav-link px-2 link-dark text-danger">좋아요
+        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+			</svg>
+        	<i class="bi bi-heart-fill"></i></a></li>
+        	<li><a href="/" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+        	<li><a href="/" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+          </c:when>
+        </c:choose>
      
       </ul>
 
       <div class="col-md-3 text-end">
         <c:choose>
           <c:when test="${empty login}">
-            <a class="btn btn-outline-primary" href="/member/loginUI">로그인</a>
-            <a class="btn btn-outline-primary" href="/member/insert">회원가입</a>
+            <a class="btn btn-outline-primary btn-sm" href="/member/loginUI">로그인</a>
+            <a class="btn btn-outline-primary btn-sm" href="/member/insert">회원가입</a>
           </c:when>
           
           <c:when test="${not empty login}">
-            ${login.member_id} 님, 환영합니다. <a class="btn btn-outline-primary" href="/member/read/${login.member_id}">회원 정보 보기</a> <a class="btn btn-outline-primary" href="/member/logout">로그아웃</a>
+            ${login.member_id} 님, 환영합니다. 
+            <a class="btn btn-outline-primary btn-sm" href="/member/read/${login.member_id}">회원 정보 보기</a> 
+            <a class="btn btn-outline-primary btn-sm" href="/member/logout">로그아웃</a>
           </c:when>
         </c:choose>
       </div>
@@ -193,63 +195,80 @@ border-bottom:0 none;
     
     
     
-    <script type="text/javascript">
-	$(document).ready(function(){
-		
-		
-		 $(".btn_search").click(function(){
-	         var item_category = $(".label").text();
-	         $(".put").append("<input name='item_category' type='hidden' value='"+item_category+"'>");
-	         $("form").submit();
-	         });
-		
-	
-	$.getJSON("/search/rankinglist", function(result){
-		for(var i =0; i<10;i++){
-			var list = result[i];
-			
-			var pre = "<li><a href='#'>";
-			var sur = "</a></li>";
-			$(".ranklist").append(pre+list.keyword+sur);
-			rolltext();
-		}
-	});
-	
-	function rolltext(){
-		$(function() {
-			var count = $('#rolling li').length;
-			var height = $('#rolling li').height();
+     <script type="text/javascript">
+   $(document).ready(function(){
+      
+      $.getJSON("/category/categorylist", function(result) {
+         for (var i = 0; i < result.length; i++) {
+            var cat_items = result[i];
+            $(".cat-menu").append("<a class='dropdown-item cat-item' href='#'>"+cat_items.item_category+"</a>");
+            
+            const label = document.querySelector('.cat-label');
+               const items = document.querySelectorAll('.cat-item');
+               const handleSelect = function(eachitem) {
+                  label.innerHTML = eachitem.textContent;
+                  label.parentNode.classList.remove('active');
+               }
+               items.forEach(function(option){
+                  option.addEventListener('click', function(){
+                     handleSelect(option)})
+               });
+         }
+      });
+      
+       $(".btn_search").click(function(){
+            var item_category = $(".cat-label").text();
+            var keyword = $("#query").val();
+            if(keyword==''){
+               $("#query").focus();
+               alert("검색어를 입력해주세요");
+               return;
+            }
+            if(item_category=='category'){
+               $(".cat-label").focus();
+               alert("카테고리를 설정해 주세요");
+               return;
+            }
+            $(".put").append("<input name='item_category' type='hidden' value='"+item_category+"'>");
+            $("form").submit();
+            });
+      
+   
+   $.getJSON("/search/rankinglist", function(result){
+      for(var i =0; i<10;i++){
+         var list = result[i];
+         
+         $(".ranklist").append("<li><a href='#'>"+list.keyword+"</a></li>");
+         rolltext();
+      }
+   });
+   
+   function rolltext(){
+      $(function() {
+         var count = $('#rolling li').length;
+         var height = $('#rolling li').height();
 
-			function step(index) {
-				$('#rolling ol').delay(100).animate({
-					top : -height * index,
-				}, 300, function() {
-					step((index + 1) % count);
-				});
-			}
+         function step(index) {
+            $('#rolling ol').delay(100).animate({
+               top : -height * index,
+            }, 300, function() {
+               step((index + 1) % count);
+            });
+         }
 
-			step(1);
-		});
-	}
-	
-	const label = document.querySelector('.label');
-	   const items = document.querySelectorAll('.item');
-	   const handleSelect = function(eachitem) {
-	      label.innerHTML = eachitem.textContent;
-	      label.parentNode.classList.remove('active');
-	   }
-	   items.forEach(function(option){
-	      option.addEventListener('click', function(){
-	         handleSelect(option)})
-	   });
-	});
-	
-	
-	
-	
-	
-	
-	
-	
-	</script>
+         step(1);
+      });
+   }
+   
+   });
+   
+   
+   
+   
+   
+   
+   
+   
+   </script>
+
   

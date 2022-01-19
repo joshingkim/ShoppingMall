@@ -1,3 +1,24 @@
+CREATE TABLE fnq(
+   fnq_no NUMBER,
+   manager_id VARCHAR2(15) NOT NULL,
+   fnq_title VARCHAR2(300) NOT NULL,
+   fnq_content VARCHAR2(1200) NOT NULL,
+   fnq_regdate DATE DEFAULT SYSDATE,
+   fnq_updatedate DATE DEFAULT SYSDATE,
+   fnq_viewcnt NUMBER DEFAULT 0,
+   CONSTRAINT pk_fnq_no PRIMARY KEY(fnq_no),
+   CONSTRAINT fk_fnq_manager_id FOREIGN KEY(manager_id) REFERENCES manager(manager_id) ON DELETE CASCADE
+)
+CREATE TABLE manager(
+   manager_id VARCHAR2(15),
+   manager_pw VARCHAR2(15) NOT NULL,
+   manager_name VARCHAR2(25) NOT NULL,
+   manager_email VARCHAR2(30) NOT NULL,
+   manager_phone NUMBER NOT NULL,
+   manager_code INT NOT NULL,
+   CONSTRAINT pk_manager_id PRIMARY KEY(manager_id)
+)
+insert into manager (manager_id,manager_pw,manager_name,manager_email,manager_phone,manager_code) values ()
 CREATE TABLE item(
 	item_no NUMBER,
 	item_name VARCHAR2(120) NOT NULL,
@@ -21,7 +42,19 @@ drop table item
 select * from item
 select * from review
 select * from member
+select * from search
 
+CREATE TABLE search(
+   search_no NUMBER,
+   member_id VARCHAR2(15),
+   item_category VARCHAR2(60) NOT NULL,
+   keyword VARCHAR2(60) NOT NULL,
+   search_date DATE DEFAULT SYSDATE,
+   CONSTRAINT pk_search_no PRIMARY KEY(search_no),
+   CONSTRAINT fk_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
+)
+
+CREATE SEQUENCE seq_search_no
 
 select item_no from item_file 
 select item_no from item where item_name in (select distinct item_name from (select item_name,item_no from item group by item_name,item_no))

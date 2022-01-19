@@ -19,7 +19,7 @@
 	<jsp:include page="../sidebar.jsp" />
 <div class="container" style=" font-size : small;">
 	<h4>상품 리스트</h4>
-	<a href="/item/insert">상품등록</a>
+	<a class="btn btn-outline-primary btn-sm" style="float: right;" href="/item/insert">상품등록</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -39,7 +39,7 @@
 			<c:forEach items="${pt.list}" var="vo">
 				<tr>
 					<td scope="row">${vo.item_no}</td>
-					<td><a href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
+					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.item_category}</td>
 					<td>${vo.item_size}</td>
 					<td>${vo.item_color}</td>
@@ -47,12 +47,15 @@
 					<td>${vo.discount_percentage}</td>
 					<td>${vo.item_amount}</td>
 					<td>${vo.item_regdate}</td>
-					<td><a href="/item/update/${vo.item_no}">수정</a>/<a data-item_no="${vo.item_no}" class="delete" href="">삭제</a></td>
+					<td>
+						<a class="btn btn-outline-primary btn-sm" href="/item/update/${vo.item_no}">수정</a>
+						<a class="btn btn-outline-primary btn-sm" data-item_no="${vo.item_no}" class="delete" href="">삭제</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<jsp:include page="page.jsp" />
+	<jsp:include page="pageofall.jsp" />
 </div>
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">

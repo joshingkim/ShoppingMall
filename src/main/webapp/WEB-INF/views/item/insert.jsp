@@ -68,17 +68,17 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">price</span>
-								<input name="item_price" maxlength="10" class="form-control">
+								<input name="item_price" type="number" class="form-control">
 								<span class="input-group-text">원</span>
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">discount</span>
-								<input name="discount_percentage" class="form-control">
+								<input name="discount_percentage" type="number" class="form-control">
 								<span class="input-group-text">%</span>
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">Quantity</span>
-								<input name="item_amount" class="form-control">
+								<input name="item_amount" type="number" class="form-control">
 								<span class="input-group-text">EA</span>
 							</div>
 							<textarea cols="50" rows="5" name="board_content" placeholder="내용을 입력하세요."></textarea>
@@ -197,7 +197,6 @@
 					$("[name='item_amount']").focus();
 					return;
 				}
-
 				var board_title = $("[name='board_title']").val();
 				if (board_title == '') {
 					$("[name='board_title']").focus();
