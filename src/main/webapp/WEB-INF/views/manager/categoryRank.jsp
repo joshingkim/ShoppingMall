@@ -75,7 +75,7 @@
 			<thead>
 				<tr>
 					<th scope="col">카테고리명</th>
-					<th scope="col">제품명</th>
+					<th scope="col">1위 제품명</th>
 					<th scope="col">판매량</th>
 
 				</tr>

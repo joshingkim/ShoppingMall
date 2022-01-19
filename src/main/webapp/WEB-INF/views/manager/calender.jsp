@@ -63,7 +63,7 @@
 
 	<div class="container bg-light text-dark">
 		<br>
-		<div id="monthSale" class=" text-info font-weight-bord">
+		<div id="monthSale" class=" text-dark font-weight-bord">
 		
 		 <c:forEach items="${monthSale}" var="vo">
 		 <h3>이번 달(${vo.THISMONTH})  총 매출: ${vo.ORDERPRICE }원</h3>

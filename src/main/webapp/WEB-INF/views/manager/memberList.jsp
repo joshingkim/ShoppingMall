@@ -27,25 +27,28 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">관리자 아이디</th>
-					<th scope="col">관리자 이름</th>
-				
-					<th scope="col">코드</th>
+					<th scope="col">회원 아이디</th>
+					<th scope="col">회원 이름</th>
+					<th scope="col">회원 이메일</th>
+					<th scope="col">회원 핸드폰 번호</th>
+					<th scope="col">회원 주소</th>
+					<th scope="col">회원 세부 주소</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${managerList}" var="vo">
+				<c:forEach items="${memberList}" var="vo">
 					<tr>
-						<td>${vo.manager_id}<c:if
-								test="${vo.manager_id == managerLogin.manager_id || managerLogin.manager_code == 2}">
-								<a href="/manager/read/${vo.manager_id}"
+						<td>${vo.member_id}
+								<a href="/member/read/${vo.member_id}"
 									class="badge badge-info">자세히보기</a>
-							</c:if>
+						
 
 						</td>
-						<td>${vo.manager_name}</td>
-					
-						<td>${vo.manager_code } &nbsp;&nbsp;</td>
+						<td>${vo.member_name}</td>
+						<td>${vo.member_email}</td>
+						<td>${vo.member_phone_number}</td>
+						<td>${vo.member_address }</td>
+						<td>${vo.member_detail_address }</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -68,6 +68,8 @@ body {
 			<a class="btn btn-light btn-lg" href="/manager/logout">로그아웃</a> &nbsp; &nbsp;
   <a class="btn btn-light btn-lg" href="/manager/managerList">관리자
 				리스트</a> &nbsp; &nbsp;
+				<a class="btn btn-light btn-lg" href="/manager/memberList">회원
+				리스트</a> &nbsp; &nbsp;
   <a class="btn btn-light btn-lg" href="/manager/excel">주문 리스트(엑셀)
 				다운받기</a> &nbsp; &nbsp;
   </c:if>
@@ -85,7 +87,7 @@ body {
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="/resources/img/manager00.jpg" class="d-block w-100"
+				<img style="height: 550px;" src="/resources/img/manager00.jpg" class="d-block w-100"
 					alt="...">
 			</div>
 			<div class="carousel-item">
@@ -93,7 +95,7 @@ body {
 					class="d-block w-100" alt="...">
 			</div>
 			<div class="carousel-item">
-				<img src="/resources/img/manager03.png" class="d-block w-100"
+				<img style="height: 550px;" src="/resources/img/manager03.png" class="d-block w-100"
 					alt="...">
 			</div>
 		</div>

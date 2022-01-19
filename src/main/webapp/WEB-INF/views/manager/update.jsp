@@ -22,7 +22,7 @@
 </head>
 <body>
 	<jsp:include page="../manager/managerHeader.jsp" />
-
+<br><br>
 	<div class="container bg-light text-light">
 
 		<br>
@@ -60,9 +60,7 @@
 			</div>
 
 
-
-
-			<br> <input type="submit" class="btn btn-success" value="수정완료">
+			<br> <input type="submit" class="btn btn-outline-success float-right" value="수정완료"><br>
 		</form>
 
 

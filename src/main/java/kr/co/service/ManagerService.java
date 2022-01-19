@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import kr.co.domain.ManagerVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 
 public interface ManagerService {
@@ -43,6 +44,12 @@ public interface ManagerService {
 		void update(ManagerVO vo);
 
 		List<Object> monthSale();
+
+		List<MemberVO> memberList();
+
+	
+
+
 
 		
 	
