@@ -107,8 +107,22 @@ public class OrderController {
 		}
 		System.out.println(orderList);
 		oService.insert(orderList);
-		return "redirect:/";
+		return "redirect:/order/detail/"+vo.getMember_id();
 	}
+	
+	@RequestMapping(value = "/detail/{member_id}", method = RequestMethod.GET)
+	public String detail(@PathVariable("member_id") String member_id, Model model) {
+		
+		MemberVO mvo = mService.read(member_id);
+		model.addAttribute("mvo", mvo);
+		
+		List<OrdersVO> olist = oService.list(member_id);
+		model.addAttribute("olist", olist);
+		
+		return "order/detail";
+	}
+	
+	
 
 	@RequestMapping(value = "/detail/{order_item_no}/{order_detail_no}", method = RequestMethod.GET)
 	public String detail(@PathVariable("order_item_no") int order_item_no,

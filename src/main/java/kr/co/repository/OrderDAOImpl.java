@@ -33,6 +33,14 @@ public class OrderDAOImpl implements OrderDAO{
 		sqlSession.insert(NS+".insert", ovo);
 	}
 
+	@Override
+	public List<OrdersVO> list(String member_id) {
+		return sqlSession.selectList(NS+".list", member_id);
+	}
+
+	
+
+	
 	
 	
 	

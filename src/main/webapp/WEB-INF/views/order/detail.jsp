@@ -17,36 +17,42 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+	<jsp:include page="../header.jsp" />
 <body>
-
-<form action="order/detail/">
-<h1>회원정보</h1>
-각각의 주문번호: ${vo.order_item_no} <br>
-주문번호: ${odvo.order_detail_no}<br>
-회원아이디: ${vo.member_id}<br>
-수령자: ${vo.order_name} <br>
-회원이메일: ${vo.order_email} <br>
-핸드폰번호: ${vo.order_phone_number} <br>
-주소: ${vo.order_address} <br>
-상세주소: ${vo.order_detail_address} <br>
+<div>
+<h2>회원정보</h2>
+회원이름: ${mvo.member_name} <br>
+회원아이디: ${mvo.member_id}
+</div>
 <hr>
-<h2>배송정보</h2>
-상품번호:${vo.item_no}<br>
-상품수량:${vo.order_quantity}<br>
-결제가격:${vo.order_price}<br>
-결제시간: <fmt:formatDate value="${vo.order_date}" type="both" dateStyle="long" timeStyle="short"/> <br>
-배송상태: <a id="text"></a> <br> 
+<h2>주문내역</h2>
+	<div>
+		<c:forEach items="${olist}" var="ovo">
+			<table>
+				<tr>
+					<th>제품번호</th>
+					<th>제품수량</th>
+					<th>제품가격</th>
+					<th>배송상태</th>
+					<th>결제일</th>
+				</tr>
+				<tr>
+					<td>${ovo.item_no}</td>
+					<td>${ovo.ea}</td>
+					<td>${ovo.price}</td>
+					<td>${ovo.status}</td>
+					<td>${ovo.order_date}</td>
+				</tr>
+			</table>
+		</c:forEach>
+	</div>
 
-<input type="submit" value="확인"> <button id="status">배송중으로변경</button>
-<c:if test="${odvo.order_detail_code eq 2}"> 
-<button>후기작성</button>
-</c:if>
-</form>
 
 
 
 
-<script type="text/javascript">
+<jsp:include page="../footer.jsp" />
+	<!-- <script type="text/javascript">
 	var a = ${odvo.order_detail_code}
 
 $(document).ready(function() {
@@ -91,7 +97,7 @@ $(document).ready(function() {
 
 
 
-</script>
+</script> -->
 
 
 

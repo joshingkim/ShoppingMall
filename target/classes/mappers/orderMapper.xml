@@ -30,6 +30,11 @@
 	SELECT seq_order_id.CURRVAL FROM dual
 	</selectKey>
 	</insert>
+	
+	<select id="list" resultType="kr.co.domain.OrdersVO">
+	SELECT * FROM orders WHERE member_id = #{member_id}
+	</select>
+	
 
 
 </mapper>
