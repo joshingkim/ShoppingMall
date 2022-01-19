@@ -5,7 +5,7 @@
 
 <mapper namespace="kr.co.order">
 
-	<insert id="insert">
+	<insert id="insert1">
 	INSERT INTO package (order_item_no, order_no, member_id, item_no, cart_no,
 	order_quantity, order_price, order_email , order_name,
 	order_phone_number, order_address, order_detail_address)
@@ -21,6 +21,15 @@
 	<select id="detail" resultType="kr.co.domain.OrderVO">
 		SELECT * FROM package WHERE order_item_no = #{order_item_no}
 	</select>
+	
+	<insert id="insert">
+	INSERT INTO orders (order_id, item_no, member_id, ea, price, address, dAddress, phone, status, receiver)
+	VALUES
+	(seq_order_id.NEXTVAL, #{item_no}, #{member_id}, #{ea}, #{price}, #{address}, #{dAddress}, #{phone}, #{status}, #{receiver})
+	<selectKey order="AFTER" keyProperty="order_id" resultType="Integer">
+	SELECT seq_order_id.CURRVAL FROM dual
+	</selectKey>
+	</insert>
 
 
 </mapper>
