@@ -17,5 +17,15 @@ public class LikeItemServiceImpl implements LikeItemService {
 		public int insert(LikeItemVO vo) {
 			return likeDao.insert(vo);
 		}
+
+		@Override
+		public int count(LikeItemVO vo) {
+			return likeDao.count(vo);
+		}
+
+		@Override
+		public int delete(LikeItemVO vo) {
+			return likeDao.delete(vo);
+		}
 		
 }
