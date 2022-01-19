@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.ManagerVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.repository.ManagerDAO;
 
@@ -123,6 +124,14 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		return mDAO.monthSale();
 	}
+
+	@Override
+	public List<MemberVO> memberList() {
+		
+		return mDAO.memberList();
+	}
+
+	
 
 
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 
 import kr.co.domain.ManagerVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 
 
@@ -46,6 +47,10 @@ public interface ManagerDAO {
 	void update(ManagerVO vo);
 
 	List<Object> monthSale();
+
+	List<MemberVO> memberList();
+
+
 
 
 

@@ -69,7 +69,7 @@ body {
 	</nav>
 
 	<nav
-		class="navbar navbar-info sticky-top alert-dark flex-md-nowrap p-0 text-dark font-weight-bord">
+		class="navbar navbar-light bg-light sticky-top  flex-md-nowrap p-0 text-dark font-weight-bord">
 
 		<span class="navbar-brand ml-4 h3"> <c:if
 				test="${managerLogin.manager_id != null }">

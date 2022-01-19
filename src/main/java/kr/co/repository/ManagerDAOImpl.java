@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.ManagerVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 
 @Repository
@@ -121,6 +122,14 @@ public class ManagerDAOImpl implements ManagerDAO{
 			
 			return sqlSession.selectList(NS+".monthSale");
 		}
+
+		@Override
+		public List<MemberVO> memberList() {
+			
+			return sqlSession.selectList(NS+".memberList");
+		}
+
+		
 
 	
 	

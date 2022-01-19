@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
 import kr.co.domain.ManagerVO;
+import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.service.ManagerService;
 
@@ -323,11 +324,15 @@ public class ManagerController {
 		
 		
 		
+		@RequestMapping(value = "/memberList", method = RequestMethod.GET)
+		public void memberList(Model model) {
+			List<MemberVO> memberList = mService.memberList();
+			
+			model.addAttribute("memberList", memberList);
+		}	
 		
 		
-		
-		
-		
+	
 		
 		
 	}
