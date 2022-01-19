@@ -14,5 +14,8 @@ public interface OrderDAO {
 
 	public void insert(OrdersVO ovo);
 
+	public List<OrdersVO> list(String member_id);
+
+
 
 }

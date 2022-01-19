@@ -19,4 +19,9 @@ public interface OrderService {
 
 	public void insert(List<OrdersVO> orderList);
 
+
+	public List<OrdersVO> list(String member_id);
+
+
+
 }

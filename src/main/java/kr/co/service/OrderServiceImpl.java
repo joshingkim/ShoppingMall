@@ -43,7 +43,13 @@ public class OrderServiceImpl implements OrderService{
 			OrdersVO ovo = orderList.get(i);
 			oDao.insert(ovo);
 		}
-	} 
+	}
+
+	@Override
+	public List<OrdersVO> list(String member_id) {
+		return oDao.list(member_id);
+	}
+
 
 
 	
