@@ -27,10 +27,15 @@ public class QnaServiceImpl implements QnaService {
 	public List<QnaVO> list(PageTO<QnaVO> qpt, int board_no) {
 		int amount = qDao.getAmount(board_no);
 		qpt.setAmount(amount);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("qpt", qpt);
-		map.put("board_no", board_no);
-		return qDao.list(map);
+		if(amount == 0) {
+			return null;
+		}else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("qpt", qpt);
+			map.put("board_no", board_no);
+			return qDao.list(map);
+		}
+
 	}
 
 	@Override

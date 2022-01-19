@@ -20,6 +20,7 @@
 	
 	
 </head>
+
 <style>
 .qna_ctnt {
 	display: none;
@@ -34,24 +35,29 @@
 }
 </style>
 <body>
-	<div id="header">
+	<div id="div2" class="table-responsive" style="margin: 50px 0px 20px 20px;">
 		<h3>QnA</h3>
 	</div>
-<%-- 	<jsp:include page="../qna/insert.jsp" /> --%>
+	
+
 <input id="input_board_no" type="hidden" value="${vo.board_no}">
-<div class="wrap-qna-board">
-	<button type = "button" class='btn_insert' onclick="qnaInsert(); return false;">작성하기</button>
-<div>
-</div>
-	<table>
-		<thead>
+<div class="wrap-qna-board container">
+	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_showqna' 
+	onclick="qnaInsert(); return false;">QnA 작성하기</button>
+	</div>
+	<br>
+<div class="" style="float: left; width: 85%">
+	<table class="table table-hover table table-striped table table-bordered">
+	
+		<thead class="thead">
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일자</th>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일자</th>
 			</tr>
 		</thead>
+		
 		<tbody>
 		</tbody>
 	</table>

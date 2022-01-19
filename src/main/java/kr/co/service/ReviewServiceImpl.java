@@ -27,11 +27,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public PageTO<ReviewVO> getRepliesPage(PageTO<ReviewVO> pt, int board_no) {
 		int amount = rDao.getAmountReplyByBno(board_no);
 		pt.setAmount(amount);
-
+		if(amount ==0) {
+			return null;
+		}else {
 		List<ReviewVO> list = rDao.getRepliesPage(pt, board_no);
 		pt.setList(list);
 
 		return pt;
+		}
 	}
 
 	@Override
