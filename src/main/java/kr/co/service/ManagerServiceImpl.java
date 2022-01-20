@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
+import kr.co.domain.OrdersVO;
 import kr.co.repository.ManagerDAO;
 
 @Service
@@ -25,7 +26,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public List<OrderVO> list() {
+	public List<OrdersVO> list() {
 
 		return mDAO.list();
 	}
@@ -67,7 +68,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public List<OrderVO> managerList() {
+	public List<Object> managerList() {
 		
 		return mDAO.managerList();
 	}

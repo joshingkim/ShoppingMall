@@ -71,11 +71,11 @@
 					<h5>DAPAN&DA</h5>
 					<ul class="nav flex-column">
 						<li class="nav-item mb-2"><a href="/"
-							class="nav-link p-0 text-muted">Home</a></li>
+							class="nav-link p-0 text-light">Home</a></li>
 						<li class="nav-item mb-2"><a href="javascript:void(0)"
-							class="nav-link p-0 text-muted">고객센터</a></li>
+							class="nav-link p-0 text-light">고객센터</a></li>
 						<li class="nav-item mb-2"><a href="/fnq/list"
-							class="nav-link p-0 text-muted">FAQs</a></li>
+							class="nav-link p-0 text-light">FAQs</a></li>
 
 					</ul>
 				</div>
@@ -100,7 +100,7 @@
 			<div class="d-flex justify-content-between py-4 my-4 border-top">
 				<p>&copy; 2022 DAPAN&DA, Inc. All rights reserved.</p>
 				<ul class="list-unstyled d-flex">
-					<li class="ms-3"><a class="link-light"
+					<li class="ms-3"><a class="link-dark"
 						href="javascript:void(0)"><svg class="bi" width="24"
 								height="24">
 								<use xlink:href="#twitter" /></svg></a></li>

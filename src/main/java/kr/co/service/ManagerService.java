@@ -6,12 +6,13 @@ import java.util.List;
 import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
+import kr.co.domain.OrdersVO;
 
 public interface ManagerService {
 
 	void insert(ManagerVO vo);
 
-	List<OrderVO> list();
+	List<OrdersVO> list();
 
 	 List<Object> saleRank(); 
 
@@ -25,7 +26,7 @@ public interface ManagerService {
 
 		ManagerVO idcheck(String manager_id);
 
-		List<OrderVO> managerList();
+		List<Object> managerList();
 
 		void updateCode(ManagerVO vo);
 

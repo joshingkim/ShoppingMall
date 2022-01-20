@@ -88,12 +88,11 @@ $(tr[i]).show();
                                      <tr >
                                         <td class="title">
                                            ${vo.fnq_no }
+                                        <td class="title">
+                                            ${vo.fnq_title }
                                         </td>
                                         <td class="title">
                                            ${vo.manager_id }
-                                        </td>
-                                        <td class="title">
-                                            ${vo.fnq_title }
                                         </td>
                                     </tr>
                                     <tr >
@@ -108,13 +107,15 @@ $(tr[i]).show();
                                                    <img alt="답변" src="/resources/img/Q&A1.png">
                                                   답변: ${vo.fnq_content }  
                                         </td>
+                                        </td>
+                                        
                                     </tr></c:forEach>
                                                                                                  </tbody>
                             </table>
                         
 
 		<jsp:include page="page.jsp" />
-		<c:if test="${managerLogin.manager_code == 1 }">
+		<c:if test="${managerLogin.manager_code == 1 || managerLogin.manager_code == 2 }">
 			<a href="/fnq/insertui" class="btn btn-primary btn-sm float-right">글쓰기</a>
 		</c:if>
 	</div>
@@ -131,7 +132,6 @@ $(tr[i]).show();
 
 
 	
-
 
 
 
