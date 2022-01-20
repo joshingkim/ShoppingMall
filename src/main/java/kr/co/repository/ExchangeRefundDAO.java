@@ -4,7 +4,7 @@ import kr.co.domain.ExchangeRefundVO;
 
 public interface ExchangeRefundDAO {
 
-	void insert(ExchangeRefundVO exvo);
+	void insertExRefund(ExchangeRefundVO exvo);
 	
 
 }

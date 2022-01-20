@@ -14,12 +14,8 @@ public class ExchangeRefundDAOImpl implements ExchangeRefundDAO {
 	private String NS = "kr.co.exchangeRefund";
 	
 	@Override
-	public void insert(ExchangeRefundVO exvo) {
-		sqlSession.insert(NS + ".insert", exvo);
+	public void insertExRefund(ExchangeRefundVO exvo) {
+		sqlSession.insert(NS + ".insertExRefund", exvo);
 		
 	}
-
-	
-	
-	
 }

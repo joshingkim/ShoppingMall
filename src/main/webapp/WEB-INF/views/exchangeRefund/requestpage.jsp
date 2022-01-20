@@ -15,16 +15,17 @@
 </head>
 <body>
 
-<form action="/insert" method="POST">
-주문번호 : <input name="order_no" value="${ovo.order_no}" readonly>
-주문아이디 : <input name="member_id" value="${ovo.member_id}" readonly>
-주문일자 : <input value="${ovo.order_date}" readonly>
-주문수량 : <input value="${ovo.order_quantity}" readonly>
-가격 : <input value="${ovo_order_price}" readonly>
+<form action="/exchangeRefund/insertExRefund" method="POST">
+<h3>환불/교환 페이지</h3>
 <select name="exchange_refund_code">
-<option value="1">교환</option>
-<option value="2">환불</option>
+<option value="0">교환</option>
+<option value="1">환불</option>
 </select>
+주문번호 : <input name="order_id" value="${ovo.order_id}" readonly><br>
+주문아이디 : <input name="member_id" value="${ovo.member_id}" readonly><br>
+주문일자 : <input value="${ovo.order_date}" readonly><br>
+주문수량 : <input value="${ovo.ea}" readonly><br>
+가격 : <input value="${ovo.price}" readonly><br>
 <textarea name="exchange_refund_content" rows="5" maxlength="300"></textarea>
 
 <input type="submit" value="신청">
@@ -38,7 +39,7 @@ $(document).ready(function(){
 	var textval= $("[name='exchange_refund_content']").val();
 	if(textval == ''){
 		$("[name='exchange_refund_content']").focus();
-		alert("환불 사유를 작성해주세요. (300자 이내)");
+		alert("환불 및 교환 사유를 작성해주세요. (300자 이내)");
 		return;
 	}
 	$("form").submit();
