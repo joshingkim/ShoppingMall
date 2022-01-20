@@ -18,16 +18,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<jsp:include page="../header.jsp" />
+	<jsp:include page="../sidebar.jsp" />
 	<!-- 회원 배송 조회 -->
 	<c:if test="${mvo.member_id != null}">
-		<div>
+		<div class="container">
 			<h2>회원정보</h2>
 			회원이름: ${mvo.member_name} <br> 회원아이디: ${mvo.member_id}
 			<hr>
 			<h2>주문내역</h2>
 			<c:forEach items="${olist}" var="ovo">
-				<table class="table table-striped">
+				<table class="table">
 					<tr>
 						<th>제품번호</th>
 						<th>제품수량</th>
@@ -51,12 +52,12 @@
 	
 	<!-- 경영자, 운영자 배송조회 -->
 	<c:if test="${mvo.member_id == null}">
-	<div>
+	<div class="container">
 		<h3>회원 주문 내역</h3> 
 			<c:forEach items="${ovo}" var="vo">
 			<form action="order/manager/status">
 			<input name="status" value="${vo.status}" type="hidden">
-				<table class="table table-striped">
+				<table class="table">
 					<tr>
 						<th>회원아이디</th>
 						<th>제품번호</th>

@@ -45,6 +45,23 @@ CREATE TABLE item(
 	CONSTRAINT pk_item_no PRIMARY KEY(item_no),
 	CONSTRAINT fk_item_name FOREIGN KEY(item_name) REFERENCES category(item_name) ON DELETE CASCADE
 )
+create table orders(
+   order_id NUMBER NOT NULL,
+   item_no NUMBER,
+   member_id VARCHAR2(15) NOT NULL,
+   ea NUMBER,
+   price NUMBER,
+   address VARCHAR2(120) NOT NULL,
+   dAddress VARCHAR2(50) NOT NULL,
+   order_date DATE DEFAULT SYSDATE,
+   phone VARCHAR2(15) NOT NULL,
+   status VARCHAR2(30) default '상품 준비 중',
+   receiver VARCHAR2(15) NOT NULL,
+   CONSTRAINT pk_orderr_order_id PRIMARY KEY(order_id),
+   CONSTRAINT fk_orderr_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE,
+   CONSTRAINT fk_orderr_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
+)
+CREATE SEQUENCE seq_order_id
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) VALUES(1,'kimchi','kimchi','small','red',15000, 15, 15)
 CREATE SEQUENCE seq_item_no
 ALTER TABLE item MODIFY item_name VARCHAR2(120)
@@ -52,6 +69,7 @@ ALTER TABLE category MODIFY item_name VARCHAR2(120)
 SELECT item_no FROM item where item_name = '판도라 주얼리 노티드 하트 반지(198018)' AND item_size = '8호' AND item_color = 'SILVER'
 drop table qna
 drop table item
+select * from cart
 select * from board
 select * from item
 select * from review

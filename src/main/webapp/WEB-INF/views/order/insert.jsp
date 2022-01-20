@@ -98,7 +98,11 @@
 	<br>
 <jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
-	
+	 var clist = "${clist}";
+	 var member_id = "${mvo.member_id}";
+	 var item_no = "${item_no}";
+	   
+
 	function original(){
 		document.getElementById("receiver").value = '${mvo.member_name}';
 		document.getElementById("phone").value = '${mvo.member_phone_number}';
@@ -197,6 +201,11 @@
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        alert(msg);
+			        if(clist == null || clist == ""){
+			        	item_no = "${item_no}";
+	                    $("form").attr("action", "/order/insert/"+member_id+"/"+item_no);
+	                    $("form").submit(); 
+	                }
 			        $("form").submit(); 
 			     } else {
 			        var msg = '결제에 실패하였습니다.';

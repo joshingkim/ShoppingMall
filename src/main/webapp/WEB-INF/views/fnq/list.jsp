@@ -97,14 +97,12 @@ $(tr[i]).show();
                                     </tr>
                                     <tr >
                                         <td class="conts" colspan="3">
-                                                 <img alt="질문" src="/resources/img/Q&A1.png">
                                                  <c:if test="${managerLogin.manager_code == 1 }">
                                                    질문: <a href="/fnq/read/${vo.fnq_no}/${curPage}">${vo.fnq_title}</a><br><br>
                                                    </c:if>
                                                    <c:if test="${managerLogin.manager_code != 1 }">
                                                    질문: ${vo.fnq_title}<br><br>
                                                    </c:if>
-                                                   <img alt="답변" src="/resources/img/Q&A1.png">
                                                   답변: ${vo.fnq_content }  
                                         </td>
                                         </td>

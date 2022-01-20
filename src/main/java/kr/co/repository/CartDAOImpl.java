@@ -58,7 +58,8 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public int countCart(CartVO vo) {
-		return sqlSession.selectOne(NS+".countCart", vo);
+//		return sqlSession.selectOne(NS+".countCart", vo);
+		return 0;
 	}
 
 	@Override
