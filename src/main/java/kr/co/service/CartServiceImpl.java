@@ -7,8 +7,11 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.CartVO;
+import kr.co.domain.ItemVO;
+import kr.co.domain.PageTO;
 import kr.co.repository.CartDAO;
 
 @Service
@@ -22,12 +25,18 @@ public class CartServiceImpl implements CartService {
 		cDao.insert(vo);
 	}
 
+	@Transactional
 	@Override
-	public int countCart(int item_no, String member_id) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("item_no", item_no);
-		map.put("member_id", member_id);
-		return cDao.countCart(map);
+	public String countCart(CartVO vo) {
+		
+		int count = cDao.countCart(vo);
+		if (count == 0) {
+			cDao.insert(vo);
+			return "0";
+		} else {
+			cDao.update(vo);
+			return "1";
+		}
 	}
 
 	@Override
@@ -35,9 +44,17 @@ public class CartServiceImpl implements CartService {
 		cDao.update(vo);
 	}
 
+	@Transactional
 	@Override
-	public List<CartVO> readCart(String member_id) {
-		 return cDao.readCart(member_id);
+	public PageTO<CartVO> readCart(PageTO<CartVO> pt, String member_id) {
+		int amount = cDao.getAmount(member_id);
+		pt.setAmount(amount);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pt", pt);
+		map.put("member_id", member_id);
+		List<CartVO> list = cDao.readList(map);
+		pt.setList(list);
+		return pt;
 	}
 
 	@Override
@@ -46,8 +63,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void delete(int cart_no) {
-		cDao.delete(cart_no);
+	public int delete(int cart_no) {
+		return cDao.delete(cart_no);
 	}
 
 	@Override
@@ -56,13 +73,23 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<CartVO> list(CartVO vo) {
-		return cDao.list(vo);
+	public List<CartVO> list(String member_id) {
+		return cDao.list(member_id);
 	}
 
 	@Override
 	public void deleteAll(int cart_no) {
 		cDao.deleteAll(cart_no);
+	}
+
+	@Override
+	public List<ItemVO> getDiscount(String member_id) {
+		return cDao.getDiscount(member_id);
+	}
+	
+	@Override
+	public void updateQuantity(CartVO vo) {
+		cDao.updateQuantity(vo);
 	}
 
 }
