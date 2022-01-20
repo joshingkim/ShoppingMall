@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,12 +57,13 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "/read/{item_no}", method = RequestMethod.GET)
-	public String read(@PathVariable("item_no") int item_no, Model model) {
-		ItemVO ivo = iService.read(item_no);
-		
-		model.addAttribute("ivo", ivo);
+	public String read(@PathVariable("item_no") int item_no, Model model, HttpSession session) {
 		
 		int board_no = bService.selectBoard_no(item_no);
+		
+		ItemVO ivo = iService.read(item_no,board_no, session);
+		
+		model.addAttribute("ivo", ivo);
 		
 		BoardVO vo = bService.read(board_no);
 		

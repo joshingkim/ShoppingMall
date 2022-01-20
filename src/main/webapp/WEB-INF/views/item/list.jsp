@@ -20,11 +20,12 @@
 	<jsp:include page="../sidebar.jsp" />
 	
 	<div class="container container-table">
-			<div class="uploadedList row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
-			</div>
-			<div style="margin-left: 40%">
+		<h4>전체 상품 목록</h4>
+		<div class="uploadedList row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
+		</div>
+		<div style="margin-top : 100px; margin-bottom : 0px; margin-left: 40%;">
 			<jsp:include page="page.jsp"/>
-			</div>
+		</div>
 	</div>
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">

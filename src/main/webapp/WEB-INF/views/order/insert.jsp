@@ -66,7 +66,7 @@
 
 			<h3>제품정보</h3>
 			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
-			<%-- <c:if test="${clist} != null"> --%>
+			<c:if test="${not empty clist}">
 			<c:forEach items="${clist}" var="cVo">
 				<c:forEach items="${ilist}" var="iVo">
 					<c:if test="${iVo.item_no == cVo.item_no}">
@@ -75,13 +75,13 @@
 					</c:if>
 				</c:forEach>
 			</c:forEach>
-			<%-- </c:if> --%>
-			<%-- <c:if test="${clist} == null">
+			</c:if>
+			<c:if test="${empty clist}">
 				<c:forEach items="${ilist}" var="iVo">
-					${iVo.item_name}
-					${iVo.item_price*(100-iVo.discount_percentage)/100}<br>
+					<p style="display:inline">${iVo.item_name}</p>
+					<p style="display:inline">${iVo.item_price*(100-iVo.discount_percentage)/100}</p>
 				</c:forEach>
-			</c:if> --%>
+			</c:if>
 
 			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
 			<div>
