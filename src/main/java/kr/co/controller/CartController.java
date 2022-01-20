@@ -7,15 +7,20 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.domain.CartVO;
+import kr.co.domain.ItemVO;
+import kr.co.domain.PageTO;
 import kr.co.service.CartService;
 
 @Controller
@@ -25,10 +30,18 @@ public class CartController {
 		@Inject
 		private CartService cService;
 		
+		@RequestMapping(value = "/updateQuantity", method = RequestMethod.POST)
+		@ResponseBody
+		public String updateQuantity(CartVO vo) {
+			cService.updateQuantity(vo);
+			return "null";
+		}
+		
 		@RequestMapping(value = "/delete", method = RequestMethod.POST)
-		public String delete(@RequestParam int cart_no) {
-			cService.delete(cart_no);
-			return "redirect:/cart/read";
+		public int delete(@RequestParam int cart_no) {
+			int i = cService.delete(cart_no);
+			
+			return i;
 		}
 
 		@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -44,44 +57,57 @@ public class CartController {
 			return "redirect:/cart/read";
 		}
 		
+		@RequestMapping(value = "/read/{curPage}/{member_id}", method = RequestMethod.POST)
+		public ModelAndView read(@PathVariable("curPage") int curPage, @PathVariable("member_id") String member_id,
+				ModelAndView mav) {
+//			String member_id = (String) session.getAttribute("member_id");
+			PageTO<CartVO> pt = new PageTO<CartVO>(curPage);
+			Map<String, Object> map = new HashMap<String, Object>();
+			pt = cService.readCart(pt, member_id);
+			int sumMoney = cService.sumMoney(member_id);
+			map.put("pt", pt);
+			map.put("list", pt.getList());
+			map.put("count", pt.getList().size());
+			map.put("sumMoney", sumMoney);
+			mav.setViewName("/cart/read");
+			mav.addObject("pt", pt);
+			mav.addObject("list", pt.getList());
+			mav.addObject("count", pt.getList().size());
+			mav.addObject("sumMoney", sumMoney);
+			return mav;
+		}
+		
 		@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
-		public ModelAndView read(@PathVariable ("member_id") String member_id, ModelAndView mav) {
-			System.out.println(member_id);
+		public ModelAndView read(@PathVariable("member_id") String member_id, ModelAndView mav) {
+			PageTO<CartVO> pt = new PageTO<CartVO>();
 			Map<String, Object> map = new HashMap<String, Object>();
-			List<CartVO> list = cService.readCart(member_id);
-			int sumMoney = cService.sumMoney(member_id);
-			map.put("list", list);
-			map.put("count", list.size());
-			map.put("sumMoney", sumMoney);
+			pt = cService.readCart(pt, member_id);
+			List<ItemVO> ilist = cService.getDiscount(member_id);
+			map.put("pt", pt);
+			map.put("list", pt.getList());
+			map.put("count", pt.getList().size());
+			map.put("ilist", ilist);
 			mav.setViewName("/cart/read");
 			mav.addObject("map", map);
+			mav.addObject("pt", pt);
+			mav.addObject("list", pt.getList());
+			mav.addObject("member_id", pt.getList().get(0).getMember_id());
+			mav.addObject("count", pt.getList().size());
+			mav.addObject("ilist", ilist);
 			return mav;
 		}
-		@RequestMapping(value = "/read/", method = RequestMethod.GET)
-		public ModelAndView read(HttpSession session, ModelAndView mav) {
-			String member_id = (String) session.getAttribute("member_id");
-			System.out.println(member_id);
-			Map<String, Object> map = new HashMap<String, Object>();
-			List<CartVO> list = cService.readCart(member_id);
-			int sumMoney = cService.sumMoney(member_id);
-			map.put("list", list);
-			map.put("count", list.size());
-			map.put("sumMoney", sumMoney);
-			mav.setViewName("/cart/read");
-			mav.addObject("map", map);
-			return mav;
-		}
-		@RequestMapping(value = "/insert", method = RequestMethod.GET)
-		public String insert(@ModelAttribute CartVO vo, HttpSession session, String member_id) {
-//			String member_id = (String) session.getAttribute(member_id);
-			vo.setMember_id(member_id);
-			int count = cService.countCart(vo.getItem_no(), member_id);
-			if (count == 0) {
-				cService.insert(vo);
-			} else {
-				cService.update(vo);
+		
+		@RequestMapping(value = "/insert/{member_id}", method = RequestMethod.GET)
+		public ResponseEntity<String> insert(@PathVariable("member_id")String member_id, CartVO vo) {
+			ResponseEntity<String> entity = null;
+			try {
+				String checkCart = cService.countCart(vo);
+				entity = new ResponseEntity<String>(checkCart, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 			}
-			return "redirect:/cart/read/"+vo.getMember_id();
+			return entity;
 		}
 	
 }
