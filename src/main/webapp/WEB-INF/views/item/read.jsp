@@ -75,7 +75,7 @@
 				<br>
 				<div class="row">
 					<div style="margin-left: 10px;">
-						<a id="buy" style="width: 200px; height: 50px; text-align:center;" class="btn btn-dark btn-lg" href="">구매하기</a>
+						<a id="buy" style="width: 200px; height: 50px; text-align:center;" class="btn btn-dark btn-lg" href="/order/insert/${login.member_id}">구매하기</a>
 					</div>
 					<div style="width: 50px; height: 50px; text-align:center; margin-left: 10px;" class="border rounded border-dark">
 						<a id="heart" style="color: red;" href="">
@@ -207,7 +207,11 @@ var member_id = "${login.member_id}";
 				return;
 			}
 			$.getJSON("/item/getItme_no/"+item_name+"/"+item_size+"/"+item_color, function(item_no) {
-				console.log(item_no);
+				if(member_id == null || member_id == ""){
+					alert("로그인시 이용 가능합니다");
+					return;
+				}
+				location.assign("/order/insert/"+member_id+"/"+item_no);
 			});
 		});
 		

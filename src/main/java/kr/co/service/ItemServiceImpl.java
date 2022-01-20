@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,8 +53,19 @@ public class ItemServiceImpl implements ItemService {
 		
 	}
 	@Override
-	public ItemVO read(int item_no) {
+	public ItemVO read(int item_no, int board_no, HttpSession session) {
 		// TODO Auto-generated method stub
+		long update_time =0;
+	      if(session.getAttribute("update_time" +board_no) !=null){
+	         update_time =(long)session.getAttribute("update_time"+ board_no);   
+	      }
+	      long current_time =System.currentTimeMillis();
+	      if(current_time - update_time > 60*1000){
+	    	  bDao.increaseViewcnt(board_no);
+	         session.setAttribute("update_time"+board_no, current_time);
+	      }
+		
+		
 		return iDao.read(item_no);
 	}
 
@@ -139,6 +151,11 @@ public class ItemServiceImpl implements ItemService {
 		map.put("item_no", item_no);
 		map.put("file_name", list.get(0));
 		fDao.insert(map);
+	}
+	@Override
+	public ItemVO read(int item_no) {
+		// TODO Auto-generated method stub
+		return iDao.read(item_no);
 	}
 
 

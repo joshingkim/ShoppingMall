@@ -153,11 +153,7 @@ border-bottom:0 none;
           <c:when test="${empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
 			<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-danger">좋아요
-        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-			</svg>
-        	<i class="bi bi-heart-fill"></i></a></li>
+        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">좋아요
         	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
         	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
@@ -165,11 +161,7 @@ border-bottom:0 none;
           <c:when test="${not empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
 			<li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        	<li><a href="/" class="nav-link px-2 link-dark text-danger">좋아요
-        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-			</svg>
-        	<i class="bi bi-heart-fill"></i></a></li>
+        	<li><a href="/" class="nav-link px-2 link-dark text-dark">좋아요
         	<li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
         	<li><a href="/" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
