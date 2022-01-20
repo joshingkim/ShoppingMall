@@ -16,14 +16,16 @@ create table orders(
 )
 	CREATE SEQUENCE seq_order_id
 	
-select * from orders
+select * from orders where order_date = 2022-01-19
 
 
 alter table orders add order_date DATE DEFAULT SYSDATE
 
-select*from member
 select*from cart
 select*from item
+select*from orders
 
 update cart set member_id = 'm003' where cart_no = 4
+delete from orders where item_no = 3
+
 

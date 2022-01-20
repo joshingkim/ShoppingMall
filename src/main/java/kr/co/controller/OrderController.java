@@ -1,13 +1,18 @@
 package kr.co.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +29,12 @@ import kr.co.domain.CartVO;
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.MemberVO;
-import kr.co.domain.OrderDetailVO;
-import kr.co.domain.OrderVO;
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 import kr.co.service.CartService;
 import kr.co.service.CategoryService;
 import kr.co.service.ItemService;
 import kr.co.service.MemberService;
-import kr.co.service.OrderDetailService;
 import kr.co.service.OrderService;
 
 @Controller
@@ -47,11 +50,10 @@ public class OrderController {
 	@Autowired
 	private CartService cService;
 
-	@Autowired
-	private OrderDetailService odService;
-
 	@Inject
 	private ItemService iService;
+	
+	
 
 	@RequestMapping(value = "/insert/{member_id}", method = RequestMethod.GET)
 	public String insertui(@PathVariable("member_id") String member_id, Model model) {
@@ -81,6 +83,27 @@ public class OrderController {
 
 		return "order/insert";
 	}
+	
+	@RequestMapping(value = "/insert/{member_id}/{item_no}", method = RequestMethod.GET)
+	public String insertui(@PathVariable("member_id") String member_id,@PathVariable("item_no") int item_no,Model model) {
+
+		MemberVO mvo = mService.read(member_id);
+		model.addAttribute("mvo", mvo);
+
+		List<ItemVO> ilist = new ArrayList<ItemVO>();
+		int sum = 0;
+		ItemVO iVo = iService.read(item_no);
+		ilist.add(iVo);
+		int quantity = 1;
+		int price = (iVo.getItem_price() * (100 - iVo.getDiscount_percentage())/100);
+		sum = price * quantity;
+			
+		model.addAttribute("total", 1);
+		model.addAttribute("sum", sum);
+		model.addAttribute("ilist", ilist);
+
+		return "order/insert";
+	}
 
 	@RequestMapping(value = "/insert/{member_id}", method = RequestMethod.POST)
 	public String insert(MemberVO vo, String ilist, String clist, String receiver) throws Exception{
@@ -101,14 +124,26 @@ public class OrderController {
 							c.getCart_price(), vo.getMember_address(),
 							vo.getMember_detail_address(), vo.getMember_phone_number(), "배송 준비중", receiver, null));
 					/* (m.getItem_price() * (100 - m.getDiscount_percentage()) / 100) */
-					System.out.println(c.getCart_price());
 				}
 			}
 		}
-		System.out.println(orderList);
-		oService.insert(orderList);
-		return "redirect:/order/detail/"+vo.getMember_id();
+		String date = oService.insert(orderList);
+		
+		return "redirect:/order/mdetail/"+vo.getMember_id()+"/"+orderList.size();
 	}
+	
+	
+	@RequestMapping(value = "/mdetail/{member_id}/{count}", method = RequestMethod.GET)
+	public String mdetail(@PathVariable("member_id") String member_id,@PathVariable("count") int count , Model model) {
+		OrdersVO vo = new OrdersVO();
+		vo.setMember_id(member_id);
+		List<OrdersVO> olist = oService.mlist(vo, count);
+		model.addAttribute("olist", olist);
+		
+		return "order/mdetail";
+	}
+	
+	
 	
 	@RequestMapping(value = "/detail/{member_id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("member_id") String member_id, Model model) {
@@ -119,22 +154,36 @@ public class OrderController {
 		List<OrdersVO> olist = oService.list(member_id);
 		model.addAttribute("olist", olist);
 		
-		return "order/detail";
+		return "order/memberdetail";
 	}
 	
 	
-
-	@RequestMapping(value = "/detail/{order_item_no}/{order_detail_no}", method = RequestMethod.GET)
-	public String detail(@PathVariable("order_item_no") int order_item_no,
-			@PathVariable("order_detail_no") int order_detail_no, Model model) {
-
-		OrderVO vo = oService.detail(order_item_no);
-		OrderDetailVO odvo = odService.read(order_detail_no);
-
-		model.addAttribute("vo", vo);
-		model.addAttribute("odvo", odvo);
-
-		return "order/detail";
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(Model model) {
+		List<OrdersVO> vo = new ArrayList<OrdersVO>(); 
+		List<OrdersVO> ovo = oService.list_manager(vo);
+		model.addAttribute("ovo", ovo);
+		
+		return "order/managerdetail";
 	}
+	
+	
+	@RequestMapping(value = "/status/{status}/{order_id}", method = RequestMethod.POST)
+	public ResponseEntity<List<OrdersVO>> status(@PathVariable("status") String status, @PathVariable("order_id") int order_id) {
+		ResponseEntity<List<OrdersVO>> entity = null;
+		System.out.println(status);
+		OrdersVO vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
+		try {
+			oService.status(vo);
+			entity = new ResponseEntity<List<OrdersVO>>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<OrdersVO>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
+	
+
 
 }

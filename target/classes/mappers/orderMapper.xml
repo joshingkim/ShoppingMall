@@ -35,6 +35,26 @@
 	SELECT * FROM orders WHERE member_id = #{member_id}
 	</select>
 	
+	<select id="list_manager" resultType="kr.co.domain.OrdersVO">
+	SELECT * FROM orders ORDER BY order_date desc
+	</select>
+	
+	<update id="status">
+	UPDATE orders SET status = #{status} WHERE order_id = #{order_id}
+	</update>
+	
+	<select id="mlist2" resultType="kr.co.domain.OrdersVO">
+	SELECT * FROM orders WHERE member_id = #{member_id} ORDER BY order_date DESC
+	</select>
+	
+	<select id="getOrder_date" resultType="String">
+	SELECT order_date FROM orders WHERE order_id = #{order_id} 
+	</select>
+	
+	<select id="checkorder" resultType="kr.co.domain.OrdersVO">
+   SELECT * FROM orders WHERE order_id = #{order_id}
+   </select>
+	
 
 
 </mapper>

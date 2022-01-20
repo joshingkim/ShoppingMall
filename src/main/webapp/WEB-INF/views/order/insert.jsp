@@ -15,99 +15,87 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-  <style type="text/css">
-  div.aaa{
-  	position : absolute;
-  	left : 40%;
-  }
-  
-  </style>
 </head>
+
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
 
 <body>
+<div class="container mr-1">
 	<form action="/order/insert/${mvo.member_id}" method="post">
 			<h1>주문/결제</h1>
-		
-		
-			<hr>
-
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
+			<div class="input">
+			<div class="input-group input-group-sm mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+				<input style="width: 10px; height: 38px;" type="text" class="form-control"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+			</div>
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
 			<div>
 				<h3>회원정보</h3>
-
-				<hr>
-				회원아이디: <input name="member_id" id="member_id"
-					value="${mvo.member_id}" readonly><br>
-				<!-- 멤버테이블에서 가져옴 -->
+				<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
+				회원아이디: <input name="member_id" id="member_id" value="${mvo.member_id}" readonly><br>
 				주문자이름: <input value="${mvo.member_name}" readonly> <br>
-				<!-- 멤버테이블에서 가져옴 -->
 				전화번호: <input value="${mvo.member_phone_number}" readonly><br>
-				<!-- 멤버테이블에서 가져옴 -->
-				주문자이메일: <input name="member_email" value="${mvo.member_email}"
-					readonly> <br>
-				<!-- 멤버테이블에서 가져옴 -->
-				배송지 주소: <input value="${mvo.member_address}" readonly><br>
-				<!-- 멤버테이블에서 가져옴 -->
+				주문자이메일: <input name="member_email" value="${mvo.member_email}" readonly> <br>
+				배송지 주소: <input size="35" value="${mvo.member_address}" readonly><br>
 				배송지 상세주소: <input value="${mvo.member_detail_address}" readonly><br>
-				<!-- 멤버테이블에서 가져옴 -->
 			</div>
 
-			<hr>
-			<hr>
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
 			<h3>배송정보</h3>
+			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
 			<div>
-				<label for="기존배송지">기존배송지</label><input id="기존배송지"
-					onclick="original()" type="radio" name="address" value="기존배송지"
-					checked> <label for="신규배송지">신규배송지</label><input id="신규배송지"
-					onclick="test()" type="radio" name="address" value="신규배송지">
+				<label for="기존배송지">기존배송지</label><input id="기존배송지" onclick="original()" type="radio" name="address" value="기존배송지" checked> 
+				<label for="신규배송지">신규배송지</label><input id="신규배송지" onclick="test()" type="radio" name="address" value="신규배송지">
 				<br>
 			</div>
 
 			<div>
 				수령인: <input id="receiver" name="receiver" value="${mvo.member_name}"><br>
-				<!-- 멤버테이블에서 가져옴 -->
-				전화번호: <input id="phone" name="member_phone_number"
-					value="${mvo.member_phone_number}"><br>
-				<!-- 멤버테이블에서 가져옴 -->
-				주문자이메일: <input type="email" id="order_email" name="order_email"
-					value="${mvo.member_email}"> <br>
-				<!-- 멤버테이블에서 가져옴 -->
-				배송지 주소: <input id="address" name="member_address"
-					value="${mvo.member_address}"><br>
-				<!-- 멤버테이블에서 가져옴 -->
-				배송지 상세주소: <input id="detail_address" name="member_detail_address"
-					value="${mvo.member_detail_address}"><br>
-				<!-- 멤버테이블에서 가져옴 -->
+				전화번호: <input id="phone" name="member_phone_number" value="${mvo.member_phone_number}"><br>
+				주문자이메일: <input type="email" id="order_email" name="order_email" value="${mvo.member_email}"> <br>
+				배송지 주소: <input size="35" id="address" name="member_address" value="${mvo.member_address}"><br>
+				배송지 상세주소: <input id="detail_address" name="member_detail_address" value="${mvo.member_detail_address}"><br>
 			</div>
 
-
-			<hr>
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
 
 			<h3>제품정보</h3>
+			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
+			<%-- <c:if test="${clist} != null"> --%>
 			<c:forEach items="${clist}" var="cVo">
 				<c:forEach items="${ilist}" var="iVo">
 					<c:if test="${iVo.item_no == cVo.item_no}">
-			${iVo.item_name}
-			${iVo.item_price*(100-iVo.discount_percentage)/100}<br>
+						<p style="display:inline">${iVo.item_name}</p>
+						<p style="display:inline">${iVo.item_price*(100-iVo.discount_percentage)/100}</p>
 					</c:if>
 				</c:forEach>
 			</c:forEach>
+			<%-- </c:if> --%>
+			<%-- <c:if test="${clist} == null">
+				<c:forEach items="${ilist}" var="iVo">
+					${iVo.item_name}
+					${iVo.item_price*(100-iVo.discount_percentage)/100}<br>
+				</c:forEach>
+			</c:if> --%>
 
-
-			<hr>
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
 			<div>
-				총수량: <input value="${total}"> <br> 총가격: <input
-					value="${sum}">
+				총수량: <input value="${total}" readonly> <br> 
+				총가격: <input value="${sum}" readonly>
 			</div>
-			<hr>
-			<input type="hidden" name="ilist" value="${ilist}"> <input
-				type="hidden" name="clist" value="${clist}"> <input
-				type="submit" value="결제완료">
-			<button type="button" id="cancel">결제취소</button>
+			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
+			<input type="hidden" name="ilist" value="${ilist}"> 
+			<input type="hidden" name="clist" value="${clist}"> 
+			<input class="btn btn-success" type="submit" value="결제완료">
+			<button class="btn btn-dark" type="button" id="cancel">결제취소</button>
 	</form>
+	</div>
 	<br>
-
 <jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 	
@@ -216,7 +204,6 @@
 			         alert(msg);
 			     }
 			  });
-			$("form").submit(); 
 		});
 
 		$("button#cancel").click(function() {
