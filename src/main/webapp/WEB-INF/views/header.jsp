@@ -170,7 +170,7 @@ border-bottom:0 none;
   				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 			</svg>
         	<i class="bi bi-heart-fill"></i></a></li>
-        	<li><a href="/" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+        	<li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
         	<li><a href="/" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
         </c:choose>
@@ -234,14 +234,15 @@ border-bottom:0 none;
             });
       
    
-   $.getJSON("/search/rankinglist", function(result){
-      for(var i =0; i<10;i++){
-         var list = result[i];
-         
-         $(".ranklist").append("<li><a href='#'>"+list.keyword+"</a></li>");
-         rolltext();
-      }
-   });
+	$.getJSON("/search/rankinglist", function(result){
+		for(var i =0; i<result.length;i++){
+    	         if(i< 10){
+    	         var lists = result[i].keyword;
+    	         $("ol").append("<li><a href='#'>"+lists+"</a></li>");
+    	         rolltext();
+    	         }
+    	      }
+    });
    
    function rolltext(){
       $(function() {

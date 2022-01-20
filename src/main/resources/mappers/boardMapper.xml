@@ -20,7 +20,9 @@
 	<select id="read" resultType="kr.co.domain.BoardVO">
 		SELECT * FROM board WHERE board_no = #{board_no}
 	</select>
-
+	<select id="readbyItme_no" resultType="kr.co.domain.BoardVO">
+		SELECT * FROM board WHERE item_no = #{item_no}
+	</select>
 	<select id="updateUI" resultType="kr.co.domain.BoardVO">
 		SELECT * FROM board WHERE
 		board_no = #{board_no}

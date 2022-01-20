@@ -23,4 +23,6 @@ public interface BoardDAO {
 
 	int selectItem_no(int board_no);
 
+	BoardVO readbyItme_no(int ori_item_no);
+
 }

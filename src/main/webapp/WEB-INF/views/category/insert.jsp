@@ -23,9 +23,9 @@
 	<jsp:include page="../sidebar.jsp" />
 	<div class="row mb-2 container">
 		<div class="col-md-10">
-			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+			<div style="margin-top : 80px; margin-left: 30%;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<p class="card-text mb-auto">
+						<p class="card-text mb-auto"><h4>카테고리 등록</h4></p>
 						<form action="/category/insert" method="post">
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">category</span>
@@ -40,11 +40,10 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">item</span>
-								<input name="item_name" maxlength="35" class="form-control">
+								<input name="item_name" maxlength="35" style="width: 250px;">
 							</div>
 							<input type="submit" value="등록 완료">
 						</form>
-						</p>
 					</div>
 			</div>
 		</div>

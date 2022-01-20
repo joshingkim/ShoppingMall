@@ -91,6 +91,24 @@ public class ItemController {
 		return "redirect:/item/read/" + vo.getItem_no();
 	}
 	
+	@RequestMapping(value = "/addItem/{item_no}", method = RequestMethod.GET)
+	public String addItemUI(@PathVariable("item_no") int item_no, Model model) {
+		ItemVO vo = iService.updateUI(item_no);
+		
+		model.addAttribute("vo", vo);
+		
+		return "item/addItem";
+	}
+	
+	@RequestMapping(value = "/addItem", method = RequestMethod.POST)
+	public String addItem(ItemVO vo) {
+		int item_no = vo.getItem_no();
+		System.out.println(item_no);
+		iService.addItem(vo);
+		System.out.println(vo.getItem_no());
+		return "redirect:/item/read/" + vo.getItem_no();
+	}
+	
 	@RequestMapping(value = "/list/{curPage}", method = RequestMethod.GET)
 	public String list(@PathVariable("curPage") int curPage, PageTO<ItemVO> pt, Model model) {
 		
@@ -227,6 +245,23 @@ public class ItemController {
 		pt = iService.listofall(pt);
 		
 		model.addAttribute("pt", pt);
+	}
+	
+	@RequestMapping(value = "/getItme_no/{item_name}/{item_size}/{item_color}", method = RequestMethod.GET)
+	public ResponseEntity<Integer> getItme_no(@PathVariable("item_name") String item_name,@PathVariable("item_size") String item_size,@PathVariable("item_color") String item_color, Model model) {
+		ResponseEntity<Integer> entity = null;
+		
+		ItemVO vo = new ItemVO(0, item_name, item_size, item_color); 
+		try {
+			int item_no = iService.getItme_no(vo);
+			model.addAttribute("item_no", item_no);
+			entity = new ResponseEntity<Integer>(item_no, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
 	}
 
 }

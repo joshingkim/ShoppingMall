@@ -139,4 +139,10 @@ public class ItemDAOImpl implements ItemDAO {
 	      return sqlSession.selectOne(NS + ".getAmountSearchAll", item_name);
 	   }
 
+	@Override
+	public int getItme_no(ItemVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getItme_no", vo);
+	}
+
 }

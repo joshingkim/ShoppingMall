@@ -45,5 +45,7 @@ public interface ItemDAO {
 
 	int getAmountSearch(SearchPageTO<ItemVO> spt);
 
+	int getItme_no(ItemVO vo);
+
 
 }
