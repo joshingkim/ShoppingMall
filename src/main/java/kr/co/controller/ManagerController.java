@@ -33,6 +33,7 @@ import com.sun.org.glassfish.gmbal.ParameterNames;
 import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
+import kr.co.domain.OrdersVO;
 import kr.co.service.ManagerService;
 
 
@@ -54,7 +55,7 @@ public class ManagerController {
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
 			model.addAttribute("getName1",getName1);
 		  
-			List<OrderVO> list = mService.list();
+			List<OrdersVO> list = mService.list();
 			String list1 = new ObjectMapper().writeValueAsString(list);
 			model.addAttribute("list1", list1);
 		
@@ -155,10 +156,6 @@ public class ManagerController {
 	
 	
 	
-	@RequestMapping(value = "/manager", method = RequestMethod.GET)
-	public void manager() {
-		
-	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
@@ -208,7 +205,7 @@ public class ManagerController {
 		
 	@RequestMapping(value = "/managerList", method = RequestMethod.GET)
 	public void list(Model model) {
-		List<OrderVO> managerList = mService.managerList();
+		List<Object> managerList = mService.managerList();
 		
 		model.addAttribute("managerList", managerList);
 	}	
@@ -251,7 +248,7 @@ public class ManagerController {
 	            return "/manager/managerLogin";
 	        } else {
 	            session.setAttribute("managerLogin", managerLogin);
-	            return "redirect:/manager/main/";
+	            return "redirect:/manager/main/"+ managerLogin.getManager_id();
 	        }
 
 			
@@ -296,23 +293,32 @@ public class ManagerController {
 	        int rowNo = 0;
 	 
 	        Row headerRow = sheet.createRow(rowNo++);
-	        headerRow.createCell(0).setCellValue("오더 번호");
+	        headerRow.createCell(0).setCellValue("오더 아이디");
 	        headerRow.createCell(1).setCellValue("상품 번호");
-	        headerRow.createCell(2).setCellValue("수량");
-	        headerRow.createCell(3).setCellValue("가격");
-	        headerRow.createCell(4).setCellValue("주문한사람");
+	        headerRow.createCell(2).setCellValue("주문한 분");
+	        headerRow.createCell(3).setCellValue("수량");
+	        headerRow.createCell(4).setCellValue("가격");
 	        headerRow.createCell(5).setCellValue("배송지");
+	        headerRow.createCell(6).setCellValue("상세배송지");
+	        headerRow.createCell(7).setCellValue("구매자 번호");
+	        headerRow.createCell(8).setCellValue("상태");
+	        headerRow.createCell(9).setCellValue("받는 분");
+	        headerRow.createCell(10).setCellValue("주문한 날짜");
 	 
-	        List<OrderVO> orderList = mService.list();
-	        for (OrderVO vo : orderList) {
+	        List<OrdersVO> orderList = mService.list();
+	        for (OrdersVO vo : orderList) {
 	            Row row = sheet.createRow(rowNo++);
-	            row.createCell(0).setCellValue(vo.getOrder_no());
+	            row.createCell(0).setCellValue(vo.getOrder_id());
 	            row.createCell(1).setCellValue(vo.getItem_no());
-	            row.createCell(2).setCellValue(vo.getOrder_quantity());
-	            row.createCell(3).setCellValue(vo.getOrder_price());
-	            row.createCell(4).setCellValue(vo.getMember_id());
-	            row.createCell(5).setCellValue(vo.getOrder_address());
-	            
+	            row.createCell(2).setCellValue(vo.getMember_id());
+	            row.createCell(3).setCellValue(vo.getEa());
+	            row.createCell(4).setCellValue(vo.getPrice());
+	            row.createCell(5).setCellValue(vo.getAddress());
+	            row.createCell(6).setCellValue(vo.getdAddress());
+	            row.createCell(7).setCellValue(vo.getPhone());
+	            row.createCell(8).setCellValue(vo.getStatus());
+	            row.createCell(9).setCellValue(vo.getReceiver());
+	            row.createCell(10).setCellValue(vo.getOrder_date());
 	        }
 	 
 	        response.setContentType("ms-vnd/excel");

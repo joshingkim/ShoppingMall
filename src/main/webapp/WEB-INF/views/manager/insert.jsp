@@ -35,7 +35,7 @@
 
 		<br>
 		<br>
-		<h4 class="mb-3">DAPAN&DA 관리자 등록</h4>
+		<h4 class="mb-3">DAPAN&DA 관리자 계정 생성</h4>
 		<form action="/manager/insert" method="post">
 			<div class="col-sm-8 row">
 				<div class="col-sm-8">
@@ -81,7 +81,7 @@
 					placeholder="you@examplpe.com" required="required">
 			</div>
 			<input type="hidden" name="manager_code" value=1> <br> <input
-				type="submit" class="btn btn-success" value="관리자로 가입">
+				type="submit" class="btn btn-success ml-3" value="관리자 계정 생성">
 
 		</form>
 

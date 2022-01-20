@@ -16,8 +16,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 <style>
 h1 {
@@ -33,6 +33,9 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+
+
 </style>
 
 
@@ -53,14 +56,41 @@ body {
 			아래 메뉴 중 선택하십시오.
 		</p>
 
-		<a class="btn btn-light btn-lg" href="/">Home 바로가기</a> &nbsp; &nbsp;
+<div class="row">	<a class="btn btn-light btn-lg" href="/">Home 바로가기</a> &nbsp; &nbsp;
+
 
 		<c:if test="${managerLogin == null }">
-			<a class="btn btn-light btn-lg" href="/manager/managerLogin">관리자/경영자
-				로그인</a> &nbsp; &nbsp;
+			
+				
+				
+				<div class="dropdown">
+  <button class="btn btn-light btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+    관리자/경영자 로그인
+  </button>
+    <form class="dropdown-menu p-2 border-primary " aria-labelledby="dropdownMenu2" action="/manager/managerLogin", method="post">
+  <div class="form-group">
+    <label for="exampleDropdownFormEmail2">아이디</label>
+    <input type="text" class="form-control border-primary" id="exampleDropdownFormEmail2" name="manager_id" placeholder="ID" required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleDropdownFormPassword2">비밀번호</label>
+    <input type="password" class="form-control border-primary" id="exampleDropdownFormPassword2" name="manager_pw" placeholder="Password" required="required">
+  </div>
+ 
+  <button type="submit" class="btn btn-outline-primary btn-sm btn-block">로그인</button>
+</form>
+</div>
+		
+				
+				
+				
 				</c:if>
+				
+				
+				
+				
 				<c:if test="${managerLogin.manager_code == 2 }">
-  <a class="btn btn-light btn-lg" href="/manager/insert">관리자 등록하기</a> &nbsp; &nbsp;
+  <a class="btn btn-light btn-lg" href="/manager/insert">관리자 생성</a> &nbsp; &nbsp;
   
   </c:if>
 
@@ -71,18 +101,19 @@ body {
 				<a class="btn btn-light btn-lg" href="/manager/memberList">회원
 				리스트</a> &nbsp; &nbsp;
   <a class="btn btn-light btn-lg" href="/manager/excel">주문 리스트(엑셀)
-				다운받기</a> &nbsp; &nbsp;
+				다운</a> &nbsp; &nbsp;
   </c:if>
 
 		<c:if test="${managerLogin.manager_code == 2}">
 			<a class="btn btn-light btn-lg" href="/manager/managerPage">통계</a> &nbsp; &nbsp;
   </c:if>
 	</div>
+</div>	
 
-
 	<br>
 	<br>
 	<br>
+	
 	<div id="carouselExampleSlidesOnly " class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">

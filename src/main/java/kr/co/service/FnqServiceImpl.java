@@ -57,10 +57,14 @@ public class FnqServiceImpl implements FnqService{
 		// TODO Auto-generated method stub
 		int amount = fDAO.getAmount();
 		pt.setAmount(amount);
-		
-		List<FnqVO> list = fDAO.list(pt);
-		pt.setList(list);
+		if(amount == 0) {
+			return null;
+		}else {
+			List<FnqVO> list = fDAO.list(pt);
+			pt.setList(list);
 
-		return pt;
+			return pt;
+		}
+		
 	}
 }

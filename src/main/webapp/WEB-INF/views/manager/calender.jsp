@@ -50,9 +50,16 @@
 
 
 
-
 <title>매출 달력</title>
 </head>
+
+	
+	
+	
+	
+	
+
+
 <body>
 	<jsp:include page="../manager/managerHeader.jsp" />
 	<br>
@@ -70,7 +77,11 @@
 		 </c:forEach>
 		</div>
 		<br>
-		<div id='calendar'></div>
+		<div id='calendar'>
+		
+		
+		
+		</div>
 		<br>
 	</div>
 	

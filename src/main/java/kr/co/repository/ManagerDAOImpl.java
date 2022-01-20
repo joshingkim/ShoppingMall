@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
+import kr.co.domain.OrdersVO;
 
 @Repository
 public class ManagerDAOImpl implements ManagerDAO{
@@ -26,7 +27,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 	}
 
 	@Override
-	public List<OrderVO> list() {
+	public List<OrdersVO> list() {
 		return sqlSession.selectList(NS+".list");
 	}
 
@@ -66,7 +67,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 		}
 
 		@Override
-		public List<OrderVO> managerList() {
+		public List<Object> managerList() {
 			
 			return sqlSession.selectList(NS+".managerList");
 		}

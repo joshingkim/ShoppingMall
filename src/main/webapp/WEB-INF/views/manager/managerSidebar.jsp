@@ -83,14 +83,6 @@
 					</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item"><a
-							class="nav-link text-light font-weight-bord" href="/404page">
-								<span data-feather="file-text"></span> 공지사항
-						</a></li>
-						<li class="nav-item"><a
-							class="nav-link text-light font-weight-bord" href="/404page">
-								<span data-feather="file-text"></span> QnA 게시판
-						</a></li>
-						<li class="nav-item"><a
 							class="nav-link text-light font-weight-bord" href="/fnq/list">
 								<span data-feather="file-text"></span> 자주 묻는 질문
 						</a></li>
