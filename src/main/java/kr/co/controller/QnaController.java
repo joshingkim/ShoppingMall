@@ -30,6 +30,10 @@ public class QnaController {
 //	@Inject
 //	private BoardService bService;
 	
+	@RequestMapping(value="/answer", method=RequestMethod.GET)
+	public void answerui() {
+		
+	}
 	@RequestMapping(value="/answer", method=RequestMethod.POST)
 	public void answer(QnaVO vo) {
 		qService.answer(vo);

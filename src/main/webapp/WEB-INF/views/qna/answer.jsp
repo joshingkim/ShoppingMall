@@ -15,45 +15,31 @@
 </head>
 <body>
 <p>상품문의</p>
-게시글 번호: <input id="inputed_board_no" name="board_no" value="" readonly><br>
-작성자 : <input id="member_id" name="member_id"><br>
-제목 : <input id="qna_title" name="qna_title" maxlength="100"><br>
-내용 : <textarea id="qna_content" name="qna_content" rows="5" maxlength="300"></textarea><br>
-<input type="submit" value="문의하기">
+Q&A 번호: <input id="inputed_qna_no" name="qna_no" value="" readonly><br>
+내용 : <textarea id="qna_answer" name="qna_answer" rows="5" maxlength="300"></textarea><br>
+<input type="submit" value="답변하기">
 <script type="text/javascript">
-var bno = window.opener.document.getElementById("input_board_no").value;
-$("#inputed_board_no").attr("value", bno);
+var qno = window.opener.document.getElementById("qna_no").value;
+$("#inputed_qna_no").attr("value", qno);
 
 $(document).ready(function(){
-sty	
+	
 $("input[type='submit']").click(function(event){
 	event.preventDefault();
-var board_no = $("input[name='board_no']").val();
-var member_id = $("input[name=member_id]").val();
-var qna_title = $("input[name=qna_title]").val();
-var qna_content = $("[name='qna_content']").val();
+var qna_no = $("input[name='qna_no']").val();
+var qna_answer = $("[name='qna_answer']").val();
 
-	if($("#member_id").val() ==''){
-		$("#member_id").focus();
-		return;
-	}
-	if($("#qna_title").val() ==''){
-		$("#qna_title").focus();
-		return;
-	}
-	if($("#qna_content").val() ==''){
-		$("#qna_content").focus();
+	if($("#qna_answer").val() ==''){
+		$("#qna_answer").focus();
 		return;
 	}
 	$.ajax({
 		type : "post",
-		url : "/qna/insert",
+		url : "/qna/answer",
 		dataType : "text",
 		data : {
-			board_no : board_no,
-			member_id : member_id,
-			qna_title : qna_title,
-			qna_content : qna_content
+			qna_no : qna_no,
+			qna_answer : qna_answer
 		},
 		success : function(result){
 	window.opener.location.reload();

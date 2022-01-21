@@ -23,32 +23,59 @@
 
 <style>
 .qna_ctnt {
-	display: none;
+display: none;
 }
 
 .answer_show {
-	display: none;
+display: none;
 }
 
 .qna_answer {
-	display: none;
+display: none;
 }
+.area-answer {
+display: none;
+}
+
+tr {
+valign : baseline;
+text-align: center;
+}
+
+td {
+line-height : 100%;
+text-align: center;
+}
+.pagingline {
+display : table-row;
+justify-content: space-around;
+position: relative;
+top: 10px;
+left : 400px;
+}
+
 </style>
 <body>
 	<div id="div2" class="table-responsive" style="margin: 50px 0px 20px 20px;">
 		<h3>QnA</h3>
 	</div>
-	
-
+<form>
 <input id="input_board_no" type="hidden" value="${vo.board_no}">
+<input id="managerCode" type="hidden" value="${managerLogin.manager_code}">
 <div class="wrap-qna-board container">
-	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_showqna' 
-	onclick="qnaInsert(); return false;">QnA 작성하기</button>
+	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_showqna' onclick="qnaInsert(); return false;">QnA 작성하기</button>
+<!-- 	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_answerform'>답변 작성 보이기</button> -->
+	
 	</div>
 	<br>
-<div class="" style="float: left; width: 85%">
-	<table class="table table-hover table table-striped table table-bordered">
-	
+<div class="">
+	<table class="table">
+		<colgroup>
+			<col width="10%">
+			<col width="auto%">
+			<col width="15%">
+			<col width="25%">
+		</colgroup>
 		<thead class="thead">
 			<tr>
 				<th scope="col">번호</th>
@@ -59,16 +86,25 @@
 		</thead>
 		
 		<tbody>
+		
 		</tbody>
 	</table>
 	</div>
+	</form>
 	<script type="text/javascript">
-	var windowObj;
+	var mcode = $("#managerCode").val();
 	function qnaInsert(){
-		         var url="../../qna/insert"; //팝업창 열기
+		         var url="../../qna/insert"; //Q&A작성 팝업창 열기
 		         var settings = "width=400,height=400,left=600";
 		         
 		         window.open(url,"QnA작성",settings);
+		     }
+	
+	function qnaAnswer(){
+		         var url="../../qna/answer"; //Q&A답변 팝업창 열기
+		         var settings = "width=400,height=400,left=600";
+		         
+		         window.open(url,"QnA답변",settings);
 		     }
 		$(document).ready(function() {
 			
@@ -103,46 +139,39 @@
 				qnalist(board_no, curPage, $("tbody"));
 			});
 			
-		$("tbody").on("click",".btn_submit",function(event) {
+		$("tbody").on("click",".btn_answer",function(event) {
 			event.preventDefault();
-			var instIdx = $(".btn_submit").index($(this));
-			var qna_answer = $("[name='qna_answer']").eq(instIdx).val();
-			var qna_no = $("[name='qna_no']").eq(instIdx).val();
-			var curPage = $(this).text();
-			
-			if(qna_answer == ''){
-				$("[name='qna_answer']").eq(instIdx).focus();
-				return;
-			}
-			$.ajax({
-				type : "post",
-				url : "/qna/answer",
-				dataType : "text",
-				data : {
-					qna_answer : qna_answer,
-					qna_no : qna_no
-				}
-			});
-			qnalist(board_no,curPage,$("tbody"));
+			var qna_no = $(this).attr("data-qna_no");
+			$("#qna_no").attr("value", qna_no);
+			qnaAnswer();
 		});
+// 		$(".btn_answerform").click(function(){
+// 			var clkIdx = $(".btn_answerform").index($(this));
+// 			if ($(".area-answer").css("display") == "none"){
+// 				$(".area-answer").css("display","table-row")
+// 			} else {
+// 				$(".area-answer").css("display","none");
+// 			}
+// 		});
 		
 		$("tbody").on("click",".viewcontent",function() {
 			var clkIdx = $(".viewcontent").index($(this));
-			var qid = $(".qno").attr("id","q" + clkIdx);
-			var qno = qid.eq(clkIdx).text();
+			var val = $(".qa").eq(clkIdx).text();
+			
 			if ($(".qna_ctnt").eq(clkIdx).css("display") == "none"&& $(".qna_answer").eq(clkIdx).css("display") == "none") {
-				$(".qna_ctnt").eq(clkIdx).css("display","block");
-				$(".qna_answer").eq(clkIdx).css("display","block");
+				$(".qna_ctnt").eq(clkIdx).css("display","table-row");
+				if(val != 'null'){
+				$(".qna_answer").eq(clkIdx).css("display","table-row");
+				}
+				if(mcode ==1){
+					$(".area-answer").css("display", "inline-flex");
+				}
 			} else {
 				$(".qna_ctnt").eq(clkIdx).css("display","none");
 				$(".qna_answer").eq(clkIdx).css("display","none");
-					};
+			};
 			});
 		
-		$("tbody").on("click",".btn_answer",function() {
-			var btnIdx = $(".btn_answer").index($(this));
-				$(".answer_show").toggle();
-			});
 		});
 		
 	</script>
