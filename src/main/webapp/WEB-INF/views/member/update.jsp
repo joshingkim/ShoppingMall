@@ -1,111 +1,174 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+
+<style type="text/css">
+#warning {
+	width: 60%;
+	height: 60%;
+	position: relative;
+	text-align: center;
+	position: relative;
+	margin: 0 auto;
+}
+
+#warmen {
+	margin-top: 15px;
+}
+
+#backhome {
+	margin-top: 10px;
+}
+</style>
+
 <body>
 
 <jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
 
-<form action="/member/update" method="post">
-아이디: <input readonly name="member_id" value="${vo.member_id}"> <br>
-비밀번호: <input name="member_pw" type="password" maxlength="15" required><br>
-이름: <input readonly name="member_name" maxlength="10" value="${vo.member_name}" required ><br>
-생년월일: <input readonly value="${fn:substring(vo.member_birthday, 0, 10)}" required><br> 
-Email: <input name="member_email01" id="member_email01" type="text" value="${fn:substringBefore(vo.member_email, '@')}" required><br>
-	   <input name="member_email" id="member_email" type="hidden">
-	<select name="member_email02" id="member_email02">
-		<option selected>선택하세요</option>
-		<option value="@naver.com" >@naver.com</option> 
-		<option value="@hanmail.net">@hanmail.net</option>
-		<option value="@nate.com">@nate.com</option>
-		<option value="@gmail.com">@gmail.com</option>
-		<option value="direct">직접입력</option>
-	</select> <br>
-주소: <input id="member_address" name="member_address" value="${vo.member_address}" placeholder="클릭시주소검색이뜹니다"><br>
-상세주소: <input id="member_detail_address" name="member_detail_address" maxlength="10" value="${vo.member_detail_address}" required><br>
-전화번호: <input name="member_phone_number" maxlength="11" value="${vo.member_phone_number}" placeholder="숫자만입력하세요" required><br>
-<input type="submit" value="정보 수정 완료">
-</form>
+<c:if test="${vo.member_id == login.member_id}">
+	<div class="row mb-2 container">
+		<div class="col-md-10">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+				<div class="col p-4 d-flex flex-column position-static">
+
+					<form action="/member/update" method="post">
+						
+						<div class="input-group mb-2">
+							<span class="input-group-text">아이디</span> 
+							<input readonly class="form-control" name="member_id" maxlength="15" value="${vo.member_id}">
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">비밀번호</span> 
+							<input class="form-control" type="password" name="member_pw" maxlength="10" required>
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">이름</span> 
+							<input readonly class="form-control" name="member_name" maxlength="15" value="${vo.member_name}">
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">생년월일</span> 
+							<input readonly class="form-control" value="${fn:substring(vo.member_birthday, 0, 10)}" name="member_birthday">
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">이메일</span> 
+							<input class="form-control" id="member_email" name="member_email" value="${vo.member_email}" required>
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">주소</span> 
+							<input class="form-control" value="${vo.member_address}" id="member_address" name="member_address" required>
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">상세주소</span> 
+							<input class="form-control" value="${vo.member_detail_address}" id="member_detail_address" name="member_detail_address" maxlength="10" required>
+						</div>
+
+						<div class="input-group mb-2">
+							<span class="input-group-text">전화번호</span> 
+							<input class="form-control" value="${vo.member_phone_number}" name="member_phone_number" maxlength="13" required>
+						</div>
+
+						<button type="button" class="btn btn-secondary float-right" id="update">회원 정보 수정</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</c:if>
+
+<c:if test="${vo.member_id != login.member_id}">
+	<div id="warning">
+		<img src="../../../resources/img/ban.png" width="350" height="350" id="ban">
+			<div id="warmen">
+				<h4>다른 회원의 정보를 볼 수 없습니다</h4>
+			</div>
+		<button type="button" class="btn btn-danger" id="backhome">홈으로 되돌아가기</button>
+	</div>
+</c:if>
 
 <jsp:include page="../footer.jsp" />
 
+
+
 <script type="text/javascript">
 
-//이메일만 주출받는 코드
-var member_email = "${vo.member_email}";
-var arr = member_email.split("@");
-$("select").val("@" + arr[1]);
-
-
-document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
-    //카카오 지도 발생
-    new daum.Postcode({
-        oncomplete: function(data) { //선택시 입력값 세팅
-            document.getElementById("member_address").value = data.address; // 주소 넣기
-            document.querySelector("input[name=member_detail_address]").focus(); //상세입력 포커싱
-        }
-    }).open();
-});
+function emailcheck(emailString) {
+	const regEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+   	if (regEmail.test(emailString) === true) {
+   		return true;
+    }
+    return false;
+}
 
 $(document).ready(function() {
-	//주소 선택에 관한 ajax문	
-	$("#idcheck").click(function(event) {
-		event.preventDefault();
-		
-		var member_id = $("[name='member_id']").val();
-		
-		if(member_id == ''){
-			$("[name ='member_id']").focus();
-		}else{
-			$.ajax({
-				type : 'post',
-				url : '/member/idcheck',
-				data : {
-					'member_id' : member_id
-				},
-				dataType : 'text',
-				success : function(result) {
-					$("p#idCheckResult").text(result);					
-				}
-			});
-		}		
-	})	
 	
+
+	$("#member_email").on('change', function(event){
+		var emailString = $(this).val();
+		var validationResult = emailcheck(emailString);
+		if(validationResult == true){
+			return;
+		}
+		alert("이메일 형식이 올바르지 않습니다.")
+		});
 	
-	$("input[type='submit']").click(function(event) {
+	$("#backhome").click(function() {
+		$("form").attr("method", "get");
+		$("form").attr("action", "/");
+		$("form").submit();
+	});
+	
+	document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	    //카카오 지도 발생
+	    new daum.Postcode({
+	        oncomplete: function(data) { //선택시 입력값 세팅
+	            document.getElementById("#member_address").value = data.address; // 주소 넣기
+	            document.querySelector("input[name=member_detail_address]").focus(); //상세입력 포커싱
+	        }
+	    }).open();
+	});
+	
+	$("#update").click(function(event) {
 		event.preventDefault();		
 		//비밀번호를 입력하지 않으면 안바뀌게 하는 코드
 		var pw = $("[name='member_pw']").val();		
 		if(pw==''){
-			alert("비밀번호를 입력 해 주세요");
+			alert("비밀번호를 입력하여 주십시오");
 			return;
-		}		
-		
-		//이메일정보 받아서 합쳐주는 코드
-		var member_email01 = $("[name='member_email01']").val();
-		var member_email02 = $("[name='member_email02']").val();
-		$("[name='member_email']").val(member_email01 + member_email02);		
-		
+		}
 		$("form").submit();
 	});
 	
 	
 	
 	
+	
+	
 });
-
 </script>
 
 </body>

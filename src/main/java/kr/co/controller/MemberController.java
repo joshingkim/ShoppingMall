@@ -1,8 +1,6 @@
 package kr.co.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,7 +53,7 @@ public class MemberController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(MemberVO vo) {
 		mService.insertMember(vo);
-		return "redirect:/member/read/"+vo.getMember_id();
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
@@ -78,10 +76,11 @@ public class MemberController {
 		return "redirect:/member/read/"+vo.getMember_id();
 	}
 	
-	 @RequestMapping(value = "/delete/{member_id}", method = RequestMethod.POST)
+	 @RequestMapping(value = "/delete/{member_id}", method = RequestMethod.GET)
 	 public String deleteUI(@PathVariable("member_id") String member_id, Model model) { 
 		 MemberVO vo = mService.deleteUI(member_id); 
-		 model.addAttribute("vo", vo); 
+		 model.addAttribute("vo", vo);
+		 
 		 return "member/delete"; 
 	}
 	
@@ -97,6 +96,7 @@ public class MemberController {
 		int result = mService.passChk(vo);
 		return result;
 	}
+	
 	
 
 }
