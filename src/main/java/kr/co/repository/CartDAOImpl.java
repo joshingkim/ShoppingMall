@@ -38,7 +38,7 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public int delete(int cart_no) {
-		return sqlSession.delete(NS+".deleteCart", cart_no);
+		return sqlSession.delete(NS+".delete", cart_no);
 	}
 
 	@Override
@@ -88,6 +88,11 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public void updateQuantity(CartVO vo) {
 		sqlSession.update(NS+".updateQuantity", vo);
+	}
+
+	@Override
+	public List<Object> getName() {
+		return sqlSession.selectList(NS+".getName");
 	}
 	
 }

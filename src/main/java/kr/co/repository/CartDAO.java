@@ -35,4 +35,6 @@ public interface CartDAO {
 
 	void updateQuantity(CartVO vo);
 
+	List<Object> getName();
+
 }

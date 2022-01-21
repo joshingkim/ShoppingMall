@@ -92,4 +92,9 @@ public class CartServiceImpl implements CartService {
 		cDao.updateQuantity(vo);
 	}
 
+	@Override
+	public List<Object> getName() {
+		return cDao.getName();
+	}
+
 }

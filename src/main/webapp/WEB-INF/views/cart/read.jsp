@@ -31,7 +31,7 @@
 							<th id="t_head_1" colspan="10" style="text-align: left; padding-left: 10px;">장바구니 상품</th>
 						</tr>
 						<tr>
-							<th style="width: 500px"><span>상품정보</span></th>
+							<th  style="width: 500px"><span>상품명</span></th>
 							<th>할인가(판매가)</th>
 							<th>수량</th>
 							<th>합계</th>
@@ -44,7 +44,7 @@
 						<c:forEach items="${map.ilist}" var="item">
 							<c:set var="isTrue" value="true"/>
 							<tr>
-								<td>${item.item_no}</td>
+								<td><span class="itemnamez"></span></td>
 								<td><span> <c:forEach items="${map.list}" var="cart">
 											<c:if test="${cart.item_no==item.item_no && isTrue}">
 												<span class="dprice">${(100-item.discount_percentage)*item.item_price/100}</span>(${item.item_price})
@@ -104,6 +104,12 @@
 
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">
+		var getItemName ='${getItemName}';
+		var narr = eval(getItemName);
+		var itemsname = narr[0].ITEM_NAME;
+		console.log(itemsname);
+		$(".itemnamez").append(itemsname);
+		
 		var map = "${map}";
 		var list = "${map.list}";
 		var arr = eval(list);

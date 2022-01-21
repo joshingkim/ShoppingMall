@@ -30,6 +30,8 @@ public interface CartService {
 
 	List<ItemVO> getDiscount(String member_id);
 
+	List<Object> getName();
+
 	
 
 }

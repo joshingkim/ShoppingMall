@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.domain.CartVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
@@ -61,7 +64,7 @@ public class CartController {
 		}
 		
 		@RequestMapping(value = "/read/{member_id}/{curPage}", method = RequestMethod.GET)
-		public String list(@PathVariable("curPage") int curPage, @PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) {
+		public String list(@PathVariable("curPage") int curPage, @PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) throws JsonProcessingException {
 			pt.setCurPage(curPage);
 			Map<String, Object> map = new HashMap<String, Object>();
 			pt = cService.readCart(pt, member_id);
@@ -72,13 +75,18 @@ public class CartController {
 			map.put("ilist", ilist);
 			
 			model.addAttribute("map", map);
-			model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			if(pt.getList().size() != 0) {
+				model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			}
 			
+			List<Object> getName = cService.getName();
+			String getItemName = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getItemName", getItemName);
 			return "cart/read";
 		}
 		
 		@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
-		public String list(@PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) {
+		public String list(@PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) throws JsonProcessingException {
 			pt.setCurPage(1);
 			Map<String, Object> map = new HashMap<String, Object>();
 			pt = cService.readCart(pt, member_id);
@@ -89,7 +97,12 @@ public class CartController {
 			map.put("ilist", ilist);
 			
 			model.addAttribute("map", map);
-			model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			if(pt.getList().size() != 0) {
+				model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			}
+			List<Object> getName = cService.getName();
+			String getItemName = new ObjectMapper().writeValueAsString(getName);
+			model.addAttribute("getItemName", getItemName);
 			
 			return "cart/read";
 		}
@@ -109,5 +122,6 @@ public class CartController {
 			}
 			return entity;
 		}
+		
 	
 }
