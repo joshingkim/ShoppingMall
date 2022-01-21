@@ -12,127 +12,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<style>
-body.cart_body {
-	background-color: #f5f5f0;
-	font-size: 13pt;
-	min-width: 1480px;
-	width: 100%;
-	padding: 50px 0;
-}
-
-#frame {
-	width: 100%;
-	margin: 0 auto;
-	padding: 50px 50px;
-	background-color: #ffffff;
-}
-
-#frame2 {
-	border-bottom: solid 1px #e0e0eb;
-	padding-bottom: 10px;
-}
-
-table.cart_table_head {
-	clear: both;
-	border: solid 1px #e0e0eb;
-	border-collapse: collapse;
-	background-color: #f5f5f0;
-	width: 100%;
-	font-size: 10pt;
-}
-
-table.car_table_head tr { 
-
-}
-
-table.cart_table_head th {
-	border: solid 1px #e0e0eb;
-	padding: 10px 0;
-	text-align: center;
-}
-
-table.cart_table_head td {
-	border: solid 1px #e0e0eb;
-	text-align: center;
-}
-
-.home {
-	float: right;
-}
-
-input[type="checkbox"] {
-	box-sizing: border-box;
-	padding: 0;
-}
-
-.btn {
-	border: none;
-	color: white;
-	padding: 5px 10px;
-	font-size: 12px;
-	cursor: pointer;
-	border-radius: 5px;
-}
-
-.default {
-	background-color: #fff;
-	border: solid 1px gray;
-	color: black;
-}
-
-.default:hover {
-	background: 33ffff;
-}
-
-.backBtn {
-	background: #fff;
-	border: solid 1px gray;
-}
-
-table.cart_footer {
-	border: solid 1px #e0e0eb;
-	border-collapse: collapse;
-	background-color: #f5f5f0;
-	width: 100%;
-	font-size: 10pt;
-}
-
-table.cart_footer td {
-	border: solid 1px #e0e0eb;
-}
-
-table.cart_footer th {
-	border: solid 1px #e0e0eb;
-	text-align: center;
-}
-
- .totalprice {
-	font-size: 20pt;
-	font-weight: bold;
-	text-align: right;
-}
-
-.orderprice {
-	font-size: 20pt;
-	font-weight: bold;
-	text-align: right;
-}
-
-#order{
-	border-radius: 5px;
-	font-size: 30pt;
-	font-weight: 30pt;
-	text-align: right;
-	background-color: ddeeff;
-}
-
-</style>
-
 </head>
 <body class="cart_body">
-	<div id="frame">
+	<jsp:include page="../header.jsp" />
+	<jsp:include page="../sidebar.jsp" />
+	<div class="container" id="frame">
 		<form action="">
 			<div id="frame2">
 				<span style="font-size: 20pt; font-weight: bold;">장바구니</span> <span
@@ -141,7 +25,7 @@ table.cart_footer th {
 			<br />
 
 			<div>
-				<table class="cart_table_head">
+				<table class="table">
 					<thead>
 						<tr>
 							<th id="t_head_1" colspan="10" style="text-align: left; padding-left: 10px;">장바구니 상품</th>
@@ -157,7 +41,7 @@ table.cart_footer th {
 
 					<tbody>
 					
-						<c:forEach items="${ilist}" var="item">
+						<c:forEach items="${map.ilist}" var="item">
 							<c:set var="isTrue" value="true"/>
 							<tr>
 								<td>${item.item_no}</td>
@@ -210,32 +94,28 @@ table.cart_footer th {
 				</table>
 			</div>
 		</form>
+		<div style="margin-left: 80%">
+		<button id="order" class="order">주문하기</button>
+		</div>
+		<div style="margin-left: 40%">
+		<jsp:include page="page.jsp"></jsp:include>
+		</div>
 	</div>
 
-<button id="order" class="order">주문하기</button>
-
-
-<jsp:include page="page.jsp"></jsp:include>
-
+<jsp:include page="../footer.jsp" />
 <script type="text/javascript">
 		var map = "${map}";
-		var list = "${list}";
+		var list = "${map.list}";
 		var arr = eval(list);
 		var member_id = "${member_id}";
 		
-		var ilist = "${ilist}";
+		var ilist = "${map.ilist}";
 		var iarr = eval(ilist);
-		console.log(ilist);
-		for (var i = 0; i < arr.length; i++) {
-			var obj = arr[i];
-		}
 		
 		var carr = $(".isum");
 		var sum = 0;
+		var cart_no = ${cart.cart_no}
 		
-		for(var i = 0; i <carr.length;i++){
-			var val = $(carr[i]).text();
-		}
 		$("#totalprice").text(sum);
 		
 		$("input[name='cart_quantity']").on("input", function(event) {
@@ -270,27 +150,13 @@ table.cart_footer th {
 				},
 				dataType : "text",
 				success : function(data) {
-					alert(data);
 					$(delbtn).parent().parent().remove();
 				}
 			});
 		});
 		
 		$(".order").click(function() {
-			event.preventDefault();
-			$.ajax({
-				type : "post",
-				url : "/order/insert/{member_id}",
-				data : {
-					cart_no : cart_no,
-					member_id : member_id,
-					item_no : item_no
-				},
-				data : "text",
-				success : function(data) {
-					alert(data);
-				}
-			});
+			location.assign("/order/insert/"+member_id);
 		});
 </script>
 

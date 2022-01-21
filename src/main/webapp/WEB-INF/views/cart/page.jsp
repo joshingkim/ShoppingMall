@@ -5,15 +5,15 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="/cart/list/${pt.curPage>1?pt.curPage-1:1}" aria-label="Previous">
+      <a class="page-link" href="/cart/read/${member_id}/${map.pt.curPage>1?map.pt.curPage-1:1}" aria-label="Previous">
         	<span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-	    <c:forEach begin="${pt.beginPageNum}" end="${pt.endPageNum}" var="i">
-    		<li class="page-item ${pt.curPage==i?'active':'' }"><a class="page-link" href="/cart/list/${i}">${i}</a></li>
+	    <c:forEach begin="${map.pt.beginPageNum}" end="${map.pt.endPageNum}" var="i">
+    		<li class="page-item ${map.pt.curPage==i?'active':'' }"><a class="page-link" href="/cart/read/${member_id}/${i}">${i}</a></li>
 	    </c:forEach>
     <li class="page-item">
-      <a class="page-link" href="/cart/list/${pt.curPage<pt.totalPage?pt.curPage+1:pt.totalPage}" aria-label="Next">
+      <a class="page-link" href="/cart/read/${member_id}/${map.pt.curPage<map.pt.totalPage?map.pt.curPage+1:map.pt.totalPage}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

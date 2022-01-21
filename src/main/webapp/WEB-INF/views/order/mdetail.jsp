@@ -20,9 +20,9 @@
 <jsp:include page="../sidebar.jsp" />
 
 <body>
-	<div>
+	<div class="container">
 		<c:forEach items="${olist}" var="vo">
-			<table class="table table-striped">
+			<table class="table">
 				<tr>
 					<th>제품번호</th>
 					<th>제품수량</th>

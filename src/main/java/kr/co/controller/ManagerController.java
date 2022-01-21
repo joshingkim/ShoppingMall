@@ -157,7 +157,7 @@ public class ManagerController {
 	
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String main() {
 		return "manager/main";
 	}

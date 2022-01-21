@@ -18,64 +18,68 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 	<jsp:include page="../header.jsp" />
+	<jsp:include page="../sidebar.jsp" />
 <body>
-<div>
-<h2>회원정보</h2>
-회원이름: ${mvo.member_name} <br>
-회원아이디: ${mvo.member_id}
-</div>
-<hr>
-<h2>주문내역</h2>
-	<div>
-		<c:forEach items="${olist}" var="ovo">
+	<div class="container">
+		<h2>주문내역</h2>
+
+
 		<div class="wrap-detail">
-		<form action="/exchangeRefund/requestpage" >
-		<input type="hidden" name="member_id" value="${mvo.member_id}">
-		<input type="hidden" name="order_id" value="${ovo.order_id}">
-		<input type="hidden" name="price" value="${ovo.price}">
-		<input type="hidden" name="order_date" value="${ovo.order_date}">
-		<input type="hidden" name="ea" value="${ovo.ea}">
-			<table class="table table-striped">
-				<tr>
-					<th>제품번호</th>
-					<th>제품수량</th>
-					<th>제품가격</th>
-					<th>배송상태</th>
-					<th>결제일</th>
-					<th>비고</th>
-				</tr>
-				<tr class="stat">
-					<td>${ovo.item_no}</td>
-					<td>${ovo.ea}</td>
-					<td>${ovo.price}</td>
-					<td>${ovo.status}</td>
-					<td>${ovo.order_date}</td>
-					<td>
-					<c:if test="${ovo.status == '상품 준비 중'}">
-					<button data-ea ="${ovo.ea}" data-order_date ="${ovo.order_date}" data-price="${ovo.price}" data-member_id="${ovo.member_id}" data-order_id="${ovo.order_id}" class="btn_cancel">주문취소</button>
-					<button class="btn_ex_re">교환/환불</button>
-					</c:if>
-					<c:if test="${ovo.status == '교환' || ovo.status == '환불'}">
-					<p>진행중</p>
-					</c:if>
-					<c:if test="${ovo.status == '배송중' || ovo.status == '배송 완료'}">
-					<button class="btn_ex_re">교환/환불</button>
-					</c:if>
-					<c:if test="${ovo.status == '교환완료' || ovo.status == '환불완료' || ovo.status == '취소'}">
-					<p>완료</p>
-					</c:if>
-					</td>
-				</tr>
-			</table>
-		</form>
+			<form action="/exchangeRefund/requestpage">
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>제품번호</th>
+							<th>제품수량</th>
+							<th>제품가격</th>
+							<th>배송상태</th>
+							<th>결제일</th>
+							<th>비고</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${olist}" var="ovo">
+							<tr class="stat">
+
+								<input type="hidden" name="member_id" value="${mvo.member_id}">
+								<input type="hidden" name="order_id" value="${ovo.order_id}">
+								<input type="hidden" name="price" value="${ovo.price}">
+								<input type="hidden" name="order_date" value="${ovo.order_date}">
+								<input type="hidden" name="ea" value="${ovo.ea}">
+								<td>${ovo.item_no}</td>
+								<td>${ovo.ea}</td>
+								<td>${ovo.price}</td>
+								<td>${ovo.status}</td>
+								<td>${ovo.order_date}</td>
+								<td><c:if test="${ovo.status == '상품 준비 중'}">
+										<button data-ea="${ovo.ea}"
+											data-order_date="${ovo.order_date}" data-price="${ovo.price}"
+											data-member_id="${ovo.member_id}"
+											data-order_id="${ovo.order_id}" class="btn_cancel">주문취소</button>
+										<button class="btn_ex_re">교환/환불</button>
+									</c:if> <c:if test="${ovo.status == '교환' || ovo.status == '환불'}">
+										<p>진행중</p>
+									</c:if> <c:if test="${ovo.status == '배송중' || ovo.status == '배송 완료'}">
+										<button class="btn_ex_re">교환/환불</button>
+									</c:if> <c:if
+										test="${ovo.status == '교환완료' || ovo.status == '환불완료' || ovo.status == '취소'}">
+										<p>완료</p>
+									</c:if></td>
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
 		</div>
-		</c:forEach>
+
 	</div>
 
 
 
 
-<jsp:include page="../footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 	
 $(document).ready(function() {

@@ -163,7 +163,7 @@ border-bottom:0 none;
 			<li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
         	<li><a href="/" class="nav-link px-2 link-dark text-dark">좋아요
         	<li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
-        	<li><a href="/" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+        	<li><a href="/order/detail/${login.member_id}" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
         </c:choose>
      

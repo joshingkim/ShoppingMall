@@ -63,11 +63,12 @@ public class OrderController {
 
 		List<ItemVO> ilist = new ArrayList<ItemVO>();
 
-		List<CartVO> clist = cService.list(new CartVO(0, member_id, 0, 0, 0, null, 0));
+		List<CartVO> clist = cService.list(member_id);
 		int sum = 0;
 		int total = 0;
+		int item_no = 0;
 		for (int i = 0; i < clist.size(); i++) {
-			int item_no = clist.get(i).getItem_no();
+			item_no = clist.get(i).getItem_no();
 
 			ItemVO iVo = iService.read(item_no);
 			ilist.add(iVo);
@@ -80,6 +81,7 @@ public class OrderController {
 		model.addAttribute("sum", sum);
 		model.addAttribute("clist", clist);
 		model.addAttribute("ilist", ilist);
+		model.addAttribute("item_no", item_no);
 
 		return "order/insert";
 	}
@@ -101,6 +103,7 @@ public class OrderController {
 		model.addAttribute("total", 1);
 		model.addAttribute("sum", sum);
 		model.addAttribute("ilist", ilist);
+		model.addAttribute("item_no", item_no);
 
 		return "order/insert";
 	}
@@ -122,7 +125,7 @@ public class OrderController {
 
 					orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), c.getCart_quantity(),
 							c.getCart_price(), vo.getMember_address(),
-							vo.getMember_detail_address(), vo.getMember_phone_number(), "배송 준비중", receiver, null));
+							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
 					/* (m.getItem_price() * (100 - m.getDiscount_percentage()) / 100) */
 				}
 			}
@@ -132,6 +135,24 @@ public class OrderController {
 		return "redirect:/order/mdetail/"+vo.getMember_id()+"/"+orderList.size();
 	}
 	
+	@RequestMapping(value = "/insert/{member_id}/{item_no}", method = RequestMethod.POST)
+	   public String insert(MemberVO vo, String ilist, String receiver, @PathVariable("item_no") int item_no) throws Exception{
+
+	      ilist = ilist.replaceAll("'", "\"");
+	      ObjectMapper mapper = new ObjectMapper();
+	      List<ItemVO> itemlist = mapper.readValue(ilist, new TypeReference<ArrayList<ItemVO>>() {
+	      });
+	      
+	      List<OrdersVO> orderList = new ArrayList<OrdersVO>();
+	      for (ItemVO m : itemlist) {
+	         orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), 1,
+	               m.getItem_price(), vo.getMember_address(),
+	               vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
+	      }
+	      String date = oService.insert(orderList);
+	      
+	      return "redirect:/order/mdetail/"+vo.getMember_id()+"/"+orderList.size();
+	   }
 	
 	@RequestMapping(value = "/mdetail/{member_id}/{count}", method = RequestMethod.GET)
 	public String mdetail(@PathVariable("member_id") String member_id,@PathVariable("count") int count , Model model) {

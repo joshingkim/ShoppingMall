@@ -6,9 +6,9 @@
 <mapper namespace="kr.co.cart">
 
 	<insert id="insert">
-		INSERT INTO cart(cart_no, member_id, item_no, cart_quantity, cart_price, money) 
+		INSERT INTO cart(cart_no, member_id, item_no, cart_quantity, cart_price) 
 		VALUES
-		(seq_cart_no.NEXTVAL, #{member_id}, #{item_no}, #{cart_quantity}, #{cart_price}, #{money})
+		(seq_cart_no.NEXTVAL, #{member_id}, #{item_no}, 1, #{cart_price})
 	</insert>
 
 	<update id="update">
@@ -52,9 +52,9 @@ SELECT c.cart_no, c.member_id, i.item_no, m.member_name, i.item_name, c.cart_pri
   				SELECT * FROM cart WHERE member_id = #{member_id}
   		</select>
   		
-  		 <select id="countCart" resultType="Integer">
+<!--   		 <select id="countCart" resultType="Integer">
 				SELECT decode(COUNT(*), 0, 'false', 'true') FROM cart WHERE member_id = #{member_id} AND item_no = #{item_no}
-  		</select>
+  		</select> -->
   		
   		<select id="getAmount" resultType="Integer">
   				SELECT COUNT(cart_no) FROM cart WHERE member_id = #{member_id}

@@ -1,5 +1,6 @@
 package kr.co.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,7 @@ public class CartController {
 		}
 		
 		@RequestMapping(value = "/delete", method = RequestMethod.POST)
+		@ResponseBody
 		public int delete(@RequestParam int cart_no) {
 			int i = cService.delete(cart_no);
 			
@@ -57,29 +60,9 @@ public class CartController {
 			return "redirect:/cart/read";
 		}
 		
-		@RequestMapping(value = "/read/{curPage}/{member_id}", method = RequestMethod.POST)
-		public ModelAndView read(@PathVariable("curPage") int curPage, @PathVariable("member_id") String member_id,
-				ModelAndView mav) {
-//			String member_id = (String) session.getAttribute("member_id");
-			PageTO<CartVO> pt = new PageTO<CartVO>(curPage);
-			Map<String, Object> map = new HashMap<String, Object>();
-			pt = cService.readCart(pt, member_id);
-			int sumMoney = cService.sumMoney(member_id);
-			map.put("pt", pt);
-			map.put("list", pt.getList());
-			map.put("count", pt.getList().size());
-			map.put("sumMoney", sumMoney);
-			mav.setViewName("/cart/read");
-			mav.addObject("pt", pt);
-			mav.addObject("list", pt.getList());
-			mav.addObject("count", pt.getList().size());
-			mav.addObject("sumMoney", sumMoney);
-			return mav;
-		}
-		
-		@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
-		public ModelAndView read(@PathVariable("member_id") String member_id, ModelAndView mav) {
-			PageTO<CartVO> pt = new PageTO<CartVO>();
+		@RequestMapping(value = "/read/{member_id}/{curPage}", method = RequestMethod.GET)
+		public String list(@PathVariable("curPage") int curPage, @PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) {
+			pt.setCurPage(curPage);
 			Map<String, Object> map = new HashMap<String, Object>();
 			pt = cService.readCart(pt, member_id);
 			List<ItemVO> ilist = cService.getDiscount(member_id);
@@ -87,21 +70,38 @@ public class CartController {
 			map.put("list", pt.getList());
 			map.put("count", pt.getList().size());
 			map.put("ilist", ilist);
-			mav.setViewName("/cart/read");
-			mav.addObject("map", map);
-			mav.addObject("pt", pt);
-			mav.addObject("list", pt.getList());
-			mav.addObject("member_id", pt.getList().get(0).getMember_id());
-			mav.addObject("count", pt.getList().size());
-			mav.addObject("ilist", ilist);
-			return mav;
+			
+			model.addAttribute("map", map);
+			model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			
+			return "cart/read";
 		}
 		
-		@RequestMapping(value = "/insert/{member_id}", method = RequestMethod.GET)
+		@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
+		public String list(@PathVariable("member_id") String member_id, PageTO<CartVO> pt, Model model) {
+			pt.setCurPage(1);
+			Map<String, Object> map = new HashMap<String, Object>();
+			pt = cService.readCart(pt, member_id);
+			List<ItemVO> ilist = cService.getDiscount(member_id);
+			map.put("pt", pt);
+			map.put("list", pt.getList());
+			map.put("count", pt.getList().size());
+			map.put("ilist", ilist);
+			
+			model.addAttribute("map", map);
+			model.addAttribute("member_id", pt.getList().get(0).getMember_id());
+			
+			return "cart/read";
+		}
+		
+		@RequestMapping(value = "/insert/{member_id}", method = RequestMethod.POST)
 		public ResponseEntity<String> insert(@PathVariable("member_id")String member_id, CartVO vo) {
 			ResponseEntity<String> entity = null;
 			try {
 				String checkCart = cService.countCart(vo);
+				System.out.println(vo.getCart_price());
+				System.out.println(vo.getItem_no());
+				System.out.println(vo.getMember_id());
 				entity = new ResponseEntity<String>(checkCart, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();

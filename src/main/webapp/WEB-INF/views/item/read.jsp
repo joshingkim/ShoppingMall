@@ -102,7 +102,7 @@
 var item_no = ${ivo.item_no};
 var item_name = "${ivo.item_name}";
 var member_id = "${login.member_id}";
-
+var item_price = ${ivo.item_price};
  	$(document).ready(function(){
 		
  		if(member_id != null || member_id != ""){
@@ -150,7 +150,7 @@ var member_id = "${login.member_id}";
 				return;
 			}
 			$.getJSON("/likeitem/count/"+item_no+"/"+member_id, function(data) {
-		    	console.log(data);
+		    	
 	            if (data == 0) {
 	               $.ajax({
 	                  type : "post",
@@ -190,7 +190,25 @@ var member_id = "${login.member_id}";
 				return;
 			}
 			$.getJSON("/item/getItme_no/"+item_name+"/"+item_size+"/"+item_color, function(item_no) {
-				console.log(item_no);
+				$.ajax({
+	            	type : "post",
+	            	url : "/cart/insert/"+member_id,
+	            	dataType : "text",
+	            	data : {
+	                    item_no : item_no,
+	                    member_id : member_id,
+	             		cart_price : item_price
+	             	},
+	            	success : function() {
+	                	  
+	            	}
+	            });
+				var result = confirm('장바구니에 추가 되었습니다.이동하시겠습니까?'); 
+				if(result) { 
+					location.assign("/cart/read/"+member_id);
+				} else { 
+					
+				}
 			});
 		});
 		$('#buy').click(function(event) { 
