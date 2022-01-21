@@ -9,17 +9,23 @@ function qnalist(board_no, curPage, el) {
 		for (var i = 0; i < arr.length; i++) {
 			var obj = arr[i];
 			
-			msg = qnaform(obj["qna_no"],obj["qna_title"],obj["member_id"],obj["qna_regdate"],obj["qna_content"],obj["qna_answer"],obj["qna_updatedate"]);
+			msg = qnaform(obj["qna_no"],obj["qna_title"],obj["member_id"],obj["qna_regdate"]);
+			ctnt = qnacontent(obj["qna_no"],obj["qna_content"]);
+			ansr = qnaanswer(obj["qna_answer"],obj["qna_updatedate"])
+			
 			el.append(msg);
+			el.append(ctnt);
+			el.append(ansr);
 		}
 		var strPage = `
-		<nav aria-label="Page navigation example" id="qna_view_nav">
-  <ul class="pagination justify-content-center"	>
-    <li class="page-item">
-      <a class="page-link qna_page_left" href="${data['curPage']}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
+		<div class="pagingline">
+			<nav aria-label="Page navigation example">
+  				<ul class="pagination justify-content-center">
+    				<li class="page-item">
+    				  <a class="page-link qna_page_left" href="${data['curPage']}" aria-label="Previous">
+      				 	 <span aria-hidden="true">&laquo;</span>
+ 				   	  </a>
+   					 </li>
 		
 		`;
 		
@@ -29,51 +35,60 @@ function qnalist(board_no, curPage, el) {
 		}
 		
 		strPage +=`
-		    <li class="page-item">
-      <a class="page-link qna_page_right" href="${data['curPage']}" data-totalPage="${data['totalPage']}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+		  <li class="page-item">
+      				<a class="page-link qna_page_right" href="${data['curPage']}" data-totalPage="${data['totalPage']}" aria-label="Next">
+      			  <span aria-hidden="true">&raquo;</span>
+     		 </a>
+   		 </li>
+  		</ul>
+	</nav>
+</div>
 		`;
 		
-		el.append(strPage);
+			el.append(strPage);
 		
 	});
 }
 
-function qnaform(qna_no, qna_title, member_id, qna_regdate, qna_content, qna_answer, qna_updatedate) {
+function qnaform(qna_no, qna_title, member_id, qna_regdate) {
 	var msg = `
 					<tr>
-						<td>${qna_no}</td>
-						<td><a href="javascript:void(0)" class="viewcontent">${qna_title}</a></td>
-						<td>${member_id}</td>
-						<td>${qna_regdate}</td>
+						<div>
+							<td>${qna_no}</td>
+							<td><a href="javascript:void(0)" class="viewcontent">${qna_title}</a></td>
+							<td>${member_id}</td>
+							<td>${qna_regdate}</td>
+						</div>
 					</tr>
-					
-					<tr class="qna_ctnt">
-						<td colspan="6">
-							<p>${qna_content}
-								<button class="btn btn-primary btn_answer">답변달기</button>
-							</p>
-								<div class="answer_show">
-									<form>
-										<input name="qna_no" type="hidden" value="${qna_no}">
-										<textarea rows="3" name="qna_answer"></textarea>
-										<button class="btn_submit">답변</button>
-									</form>
-								</div>
-						</td>
-					</tr>
-				
-					<tr class="qna_answer">
-						<td>
-							<p>${qna_answer}</p>
-						</td>
-						<td>${qna_updatedate}</td>
-					
 				`;
 	return msg;
 }
-
+function qnacontent(qna_no, qna_content){
+	var ctnt = `
+					<tr class="qna_ctnt">
+						<div>
+							<td colspan="3">
+								<p>${qna_content}</p>
+							</td>
+							<td class="area-answer">
+								<input type="hidden" id ="qna_no" "name="qna_no" value="">
+								<button data-qna_no="${qna_no}" class="btn btn-primary btn-sm btn_answer" onclick="qnaAnswer(); return false;">답변달기</button>
+							</td>
+						</div>
+					</tr>
+				`;
+	return ctnt;
+}
+function qnaanswer(qna_answer, qna_updatedate){
+	var ansr= `
+					<tr class="qna_answer">
+						<td></td>
+						<td>
+							<p class="qa">${qna_answer}</p>
+						</td>
+						<td><p>판매자</p></td>
+						<td>${qna_updatedate}</td>
+					</tr>
+				`;
+	return ansr;
+}

@@ -28,8 +28,7 @@
 	</select>
 
 	<update id="answer">
-		UPDATE qna SET qna_answer = #{qna_answer}, qna_repStep = qna_repStep+1 WHERE
-		qna_no = #{qna_no}
+		UPDATE qna SET qna_answer = #{qna_answer}, qna_updatedate = SYSDATE WHERE qna_no = #{qna_no}
 	</update>
 
 </mapper>
