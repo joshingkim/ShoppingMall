@@ -1,6 +1,8 @@
 package kr.co.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -18,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.domain.ItemVO;
 import kr.co.domain.LikeItemVO;
 import kr.co.domain.MemberVO;
+import kr.co.domain.PageTO;
+import kr.co.service.ItemService;
 import kr.co.service.LikeItemService;
 
 @Controller
@@ -28,6 +33,44 @@ public class LikeItemController {
 	
 		@Inject
 		private LikeItemService likeService;
+		@Inject
+		private ItemService iService;
+		
+		@RequestMapping(value = "/list/{member_id}/{curPage}", method = RequestMethod.GET)
+		public String list(@PathVariable("member_id") String member_id,@PathVariable("curPage") int curPage, PageTO<LikeItemVO> pt, Model model) {
+			pt.setCurPage(1);
+			pt = likeService.list(pt, member_id);
+			List<ItemVO> ilist = new ArrayList<ItemVO>();
+			
+			List<LikeItemVO> llist = pt.getList();
+			for(int i=0; i<llist.size(); i++) {
+				int item_no = pt.getList().get(i).getItem_no();
+				ItemVO ivo = iService.read(item_no);
+				ilist.add(ivo);
+			}
+			model.addAttribute("pt", pt);
+			model.addAttribute("list", ilist);
+			return "likeitem/list";
+			}
+			
+
+		@RequestMapping(value = "/list/{member_id}", method = RequestMethod.GET)
+		public String list(@PathVariable("member_id") String member_id, PageTO<LikeItemVO> pt, Model model) {
+		System.out.println(member_id);
+		pt.setCurPage(1);
+		pt = likeService.list(pt, member_id);
+		List<ItemVO> ilist = new ArrayList<ItemVO>();
+		
+		List<LikeItemVO> llist = pt.getList();
+		for(int i=0; i<llist.size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			ItemVO ivo = iService.read(item_no);
+			ilist.add(ivo);
+		}
+		model.addAttribute("pt", pt);
+		model.addAttribute("list", ilist);
+		return "likeitem/list";
+		}
 		
 		@RequestMapping(value = "/delete", method = RequestMethod.POST)
 		public ResponseEntity<Integer> dislike(LikeItemVO vo) {

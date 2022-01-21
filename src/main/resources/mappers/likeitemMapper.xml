@@ -2,22 +2,36 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="kr.co.likeitem">
-
-	<insert id="insert">
-		insert into like_item (like_no ,item_no, member_id) values (seq_like_no.nextval,#{item_no},#{member_id})
-		<selectKey keyProperty="like_no" order="AFTER" resultType="Integer">
-  			SELECT seq_like_no.CURRVAL FROM DUAL
-  		</selectKey>
-	</insert>
-
-	<select id="count" resultType="Integer">
-  		SELECT COUNT(*) FROM like_item WHERE item_no = #{item_no} AND member_id = #{member_id}
-  	</select>
-  	
-  	<delete id="delete">
-  		DELETE FROM like_item WHERE member_id = #{member_id} AND item_no = #{item_no}
-  	</delete>
-
-</mapper>
+  
+  <mapper namespace="kr.co.likeitem">
+  
+  		<insert id="insert">
+  			INSERT INTO like_item(like_no, item_no, member_id)
+  			VALUES
+  			(seq_like_no.NEXTVAL, #{item_no}, #{member_id})
+  			<selectKey keyProperty="like_no" order="AFTER" resultType="Integer">
+  					SELECT seq_like_no.CURRVAL FROM DUAL
+  			</selectKey>
+  		</insert>
+  
+  		<delete id="delete">
+  				DELETE FROM like_item WHERE member_id = #{member_id} AND item_no = #{item_no}
+  		</delete>
+  		
+  		<select id="count"	resultType="Integer">
+  				SELECT COUNT(*) FROM like_item WHERE item_no = #{item_no} AND member_id = #{member_id}
+  		</select>
+  		
+  		<select id="test" resultType="kr.co.domain.LikeItemVO">
+  				SELECT item_no, member_id, likeCnt FROM like_item 
+  		</select> 
+  		
+  		<select id="list" resultType="kr.co.domain.LikeItemVO">
+				SELECT * FROM like_item WHERE member_id = #{member_id}  		
+  		</select>
+  		
+  		<select id="getAmount" resultType="Integer">
+  				SELECT COUNT(like_no) FROM like_item 
+  		</select>
+  		
+  </mapper>

@@ -183,7 +183,7 @@ height : 38px;
           <c:when test="${not empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
 			<li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        	<li><a href="/" class="nav-link px-2 link-dark text-dark">좋아요
+        	<li><a href="/likeitem/list/${login.member_id}" class="nav-link px-2 link-dark text-dark">좋아요
         	<li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
         	<li><a href="/order/detail/${login.member_id}" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
