@@ -106,6 +106,7 @@ public class ManagerController {
 	public void manager2(Model model) throws JsonProcessingException {
 		List<Object> saleRank = mService.saleRank();
 		String saleRank1 = new ObjectMapper().writeValueAsString(saleRank);
+		model.addAttribute("saleRank", saleRank);
 		model.addAttribute("saleRank1", saleRank1);
 		 List<Object> getName = mService.getName();
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
@@ -116,6 +117,7 @@ public class ManagerController {
 	public void manager3(Model model) throws JsonProcessingException {
 		 List<Object> likeRank = mService.likeRank();
 		String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
+		model.addAttribute("likeRank", likeRank);
 		  model.addAttribute("likeRank1", likeRank1);
 		  List<Object> getName = mService.getName();
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
@@ -126,6 +128,7 @@ public class ManagerController {
 	public void manager4(Model model) throws JsonProcessingException {
 		List<Object> keywordRank = mService.keywordRank();
 		String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
+		model.addAttribute("keywordRank",keywordRank);
 		model.addAttribute("keywordRank1",keywordRank1);
 		 List<Object> getName = mService.getName();
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);
@@ -136,6 +139,7 @@ public class ManagerController {
 	public void manager5(Model model) throws JsonProcessingException {
 		List<Object> ageRank = mService.ageRank();
 		String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
+		model.addAttribute("ageRank",ageRank);
 		model.addAttribute("ageRank1",ageRank1);
 		 List<Object> getName = mService.getName();
 		    String getName1 = new ObjectMapper().writeValueAsString(getName);

@@ -122,7 +122,9 @@
 			"title" : daySale1[i].ORDERPRICE + "원",
 			"start" : daySale1[i].ORDERDATE
 		});
-	};
+	}
+	
+
 </script>
 
 
