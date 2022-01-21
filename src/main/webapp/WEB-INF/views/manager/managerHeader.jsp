@@ -61,7 +61,7 @@ body {
 					href="/manager/managerList">관리자 리스트</a></li>
 				<li class="nav-item"><c:if
 						test="${managerLogin.manager_code == 2 }">
-						<a class="nav-link text-light" href="/manager/managerPage">전체
+						<a class="nav-link text-light" href="/manager/calendar">
 							통계</a>
 					</c:if></li>
 			</ul>

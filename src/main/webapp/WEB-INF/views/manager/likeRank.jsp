@@ -80,7 +80,7 @@
 		const myChart5 = new Chart(
 				ctx5,
 				{
-					type : 'doughnut',
+					type : 'polarArea',
 					data : {
 						labels : [
 								("1위 " + getName1[likeRank1[0].ITEM_NO - 1].ITEM_NAME),
