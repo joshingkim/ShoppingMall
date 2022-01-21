@@ -51,8 +51,12 @@ display : table-row;
 justify-content: space-around;
 position: relative;
 top: 10px;
-left : 400px;
+left : 365px;
 }
+.qna_page_no:active{
+background-color: 
+}
+
 
 </style>
 <body>
@@ -64,7 +68,7 @@ left : 400px;
 <input id="managerCode" type="hidden" value="${managerLogin.manager_code}">
 <div class="wrap-qna-board container">
 	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_showqna' onclick="qnaInsert(); return false;">QnA 작성하기</button>
-<!-- 	<button type = "button" class='btn_insert btn btn-secondary btn-sm btn_answerform'>답변 작성 보이기</button> -->
+
 	
 	</div>
 	<br>

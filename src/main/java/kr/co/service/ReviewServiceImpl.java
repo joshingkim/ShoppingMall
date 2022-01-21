@@ -36,11 +36,31 @@ public class ReviewServiceImpl implements ReviewService {
 		return pt;
 		}
 	}
+	
+	@Override
+	public PageTO<ReviewVO> getMyRepliesPage(PageTO<ReviewVO> pt, String member_id) {
+		int amount = rDao.getMyAmountReplyByBno(member_id);
+		pt.setAmount(amount);
+		if(amount ==0) {
+			return null;
+		}else {
+		List<ReviewVO> list = rDao.getMyRepliesPage(pt, member_id);
+		pt.setList(list);
+
+		return pt;
+		}
+	}
 
 	@Override
 	public List<ReviewVO> getAllReplies(int board_no) {
 
 		return rDao.getAllReplies(board_no);
+	}
+	
+	@Override
+	public List<ReviewVO> getMyAllReplies(String member_id) {
+		// TODO Auto-generated method stub
+		return rDao.getMyAllReplies(member_id);
 	}
 
 	@Override
@@ -52,5 +72,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(int review_no) {
 		rDao.deleteReview(review_no);
 	}
+
+
+
+
 
 }

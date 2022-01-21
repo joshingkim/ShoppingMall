@@ -10,7 +10,7 @@
 보드인설트
 
 <form action="/board/insert" method="post">
-아이템넘버 :<input name="item_no"> <br>
+아이템넘버 :<input name="item_no" readonly> <br>
 제목 :<input name="board_title"> <br>
 내용 :<br>
 <textarea rows="10" name="board_content"></textarea> <br>

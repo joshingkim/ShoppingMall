@@ -87,23 +87,26 @@ a {
 </head>
 <body>
 <div class="container">
-<br> 보드내용 : ${vo.board_content}
-	<br> 작성시간 : ${vo.board_regdate }
-	<br> 업데이트시간 : ${vo.board_updatedate }
-	<br> 조회수 : ${vo.board_viewcnt }<br>
+<p style="margin-left:75%; opacity: 0.6">조회수 : ${vo.board_viewcnt } </p>
+
+<hr style="margin-right: 15%">
+
+<br> <div class="container" style=" white-space: normal; white-space: pre;"> ${vo.board_content}</div>	
+
+	<br> <br>
+	<c:if test="${!empty managerLogin.manager_code}">
+	
 		<input type="button" value="리뷰쓰기" onclick="nwindow()" />
 		<button class="updateui">수정 화면</button>
-		<div style="margin-top: 20px;">
-		<h4 id="div3">REVIEW</h4>
-		</div>
+		</c:if>
 </div>
-	<div style="border: 1px solid #ddd; margin-right: 15%;" class="container-fluid"	>
+	<div style="border: 1px solid #ddd; margin-right: 15%; margin-bottom: 20px" class="container-fluid"	>
 	
-		<div class="container-fluid">
+		<div class="container-fluid" >
 		<jsp:include page="../review/list.jsp" />
 		</div>
 		
-		<br>
+		<br>	
 		
 	</div>
 	
@@ -116,8 +119,9 @@ a {
 		
 	</div>
 	<br>
+	<div style="border: 1px solid #ddd; float: left; width: 85%">
 <jsp:include page="../qna/list.jsp" />
-
+</div>
 	<script>
 		$(document).ready(function() {
 

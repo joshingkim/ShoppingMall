@@ -15,8 +15,8 @@
 </head>
 <body>
 <p>상품문의</p>
-게시글 번호: <input id="inputed_board_no" name="board_no" value="" readonly><br>
-작성자 : <input id="member_id" name="member_id"><br>
+<input id="inputed_board_no" name="board_no" value="" readonly hidden><br>
+<input id="member_id" name="member_id" value="${login.member_id}" hidden><br>
 제목 : <input id="qna_title" name="qna_title" maxlength="100"><br>
 내용 : <textarea id="qna_content" name="qna_content" rows="5" maxlength="300"></textarea><br>
 <input type="submit" value="문의하기">
@@ -25,7 +25,6 @@ var bno = window.opener.document.getElementById("input_board_no").value;
 $("#inputed_board_no").attr("value", bno);
 
 $(document).ready(function(){
-sty	
 $("input[type='submit']").click(function(event){
 	event.preventDefault();
 var board_no = $("input[name='board_no']").val();

@@ -18,15 +18,30 @@
 		SELECT
 		COUNT(review_no) FROM review WHERE board_no = #{board_no}
 	</select>
+	
+		<select id="getMyAmountReplyByBno" resultType="Integer">
+		SELECT
+		COUNT(review_no) FROM review WHERE member_id = #{member_id}
+	</select>
 
 	<select id="getRepliesPage" resultType="kr.co.domain.ReviewVO">
 		SELECT * FROM review
 		WHERE board_no = #{board_no} ORDER BY review_no DESC
 	</select>
+	
+		<select id="getMyRepliesPage" resultType="kr.co.domain.ReviewVO">
+		SELECT * FROM review
+		WHERE member_id = #{member_id} ORDER BY review_no DESC
+	</select>
 
 	<select id="getAllReplies" resultType="kr.co.domain.ReviewVO">
 		SELECT * FROM review WHERE
 		board_no = #{board_no} ORDER BY review_no DESC
+	</select>
+	
+		<select id="getMyAllReplies" resultType="kr.co.domain.ReviewVO">
+		SELECT * FROM review WHERE
+		member_id = #{member_id} ORDER BY review_no DESC
 	</select>
 
 	<update id="updateReview">
