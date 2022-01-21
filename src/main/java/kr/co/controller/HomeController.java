@@ -13,6 +13,11 @@ public class HomeController {
 		
 		return "home";
 	}
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String home1() {
+		
+		return "home";
+	}
 	
 	@RequestMapping(value = "/404page", method = RequestMethod.GET)
 	public void errorPage() {

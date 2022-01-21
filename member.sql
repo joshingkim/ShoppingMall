@@ -37,4 +37,4 @@ INSERT INTO member (member_id, member_pw, member_name, member_birthday, member_e
   	('m001', '1111', '홍길동', '1994-09-09', '1@naver.com', '서울', '서울', 010-8888-8888)
 
 
-
+CREATE SEQUENCE seq_error_no

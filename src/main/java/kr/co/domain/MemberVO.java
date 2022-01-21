@@ -129,17 +129,16 @@ public class MemberVO implements Serializable{
 	public void setMember_updatedate(String member_updatedate) {
 		this.member_updatedate = member_updatedate;
 	}
-
 	
 	@Override
 	public String toString() {
-		return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
-				+ ", member_birthday=" + member_birthday + ", member_email=" + member_email + ", member_address="
-				+ member_address + ", member_detail_address=" + member_detail_address + ", member_phone_number="
-				+ member_phone_number + ", member_regdate=" + member_regdate + ", member_updatedate="
-				+ member_updatedate + "]";
+		return "{'member_id' : '" + member_id + "', 'member_pw' : '" + member_pw + "', 'member_name' : '" + member_name + "', "
+				+ "'member_birthday' : '" + member_birthday + "', 'member_email' : '" + member_email + "', "
+				+ "'member_address' : '" + member_address + "', 'member_detail_address' : '" + member_detail_address + "', "
+				+ "'member_phone_number' : '" + member_phone_number + "', 'member_regdate' : '" + member_regdate + "', "
+				+ "'member_updatedate' : '"	+ member_updatedate + "'}";
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(member_id, member_pw);
