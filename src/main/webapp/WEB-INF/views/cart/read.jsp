@@ -44,7 +44,7 @@
 						<c:forEach items="${map.ilist}" var="item">
 							<c:set var="isTrue" value="true"/>
 							<tr>
-								<td><span class="itemnamez"></span></td>
+								<td class="itemnamez"><span ></span></td>
 								<td><span> <c:forEach items="${map.list}" var="cart">
 											<c:if test="${cart.item_no==item.item_no && isTrue}">
 												<span class="dprice">${(100-item.discount_percentage)*item.item_price/100}</span>(${item.item_price})
