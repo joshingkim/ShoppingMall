@@ -105,7 +105,7 @@ body {
   </c:if>
 
 		<c:if test="${managerLogin.manager_code == 2}">
-			<a class="btn btn-light btn-lg" href="/manager/managerPage">통계</a> &nbsp; &nbsp;
+			<a class="btn btn-light btn-lg" href="/manager/calendar">통계</a> &nbsp; &nbsp;
   </c:if>
 	</div>
 </div>	

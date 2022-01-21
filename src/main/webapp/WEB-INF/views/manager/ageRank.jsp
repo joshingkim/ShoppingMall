@@ -64,7 +64,7 @@
 	<script>
 		const ctx7 = document.getElementById('myChart7').getContext('2d');
 		const myChart7 = new Chart(ctx7, {
-			type : 'bar',
+			type : 'polarArea',
 			data : {
 				labels : [ ("00년생~09년생 "), ("90년생~99년생 "), ("80년생~89년생 "),
 						("70년생~79년생 "), ("60년생~69년생 "), ("50년생~59년생 "), ],

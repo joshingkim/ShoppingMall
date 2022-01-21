@@ -43,7 +43,7 @@
 					<ul class="nav flex-column">
 						<li class="nav-item"><a
 							class="nav-link active text-light font-weight-bord"
-							href="/manager/calender"> <span data-feather="home"></span>
+							href="/manager/calendar"> <span data-feather="home"></span>
 								매출 달력 <span class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a
