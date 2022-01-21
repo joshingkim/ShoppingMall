@@ -40,19 +40,19 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${olist}" var="ovo">
+							<input type="hidden" name="member_id" value="${mvo.member_id}">
+							<input type="hidden" name="order_id" value="${ovo.order_id}">
+							<input type="hidden" name="price" value="${ovo.price}">
+							<input type="hidden" name="order_date" value="${ovo.order_date}">
+							<input type="hidden" name="ea" value="${ovo.ea}">
 							<tr class="stat">
-
-								<input type="hidden" name="member_id" value="${mvo.member_id}">
-								<input type="hidden" name="order_id" value="${ovo.order_id}">
-								<input type="hidden" name="price" value="${ovo.price}">
-								<input type="hidden" name="order_date" value="${ovo.order_date}">
-								<input type="hidden" name="ea" value="${ovo.ea}">
+								
 								<td>${ovo.item_no}</td>
 								<td>${ovo.ea}</td>
 								<td>${ovo.price}</td>
 								<td>${ovo.status}</td>
 								<td>${ovo.order_date}</td>
-								<td><c:if test="${ovo.status == '상품 준비 중'}">
+								<td><c:if test="${ovo.status == '상품 준비중'}">
 										<button data-ea="${ovo.ea}"
 											data-order_date="${ovo.order_date}" data-price="${ovo.price}"
 											data-member_id="${ovo.member_id}"
@@ -60,7 +60,7 @@
 										<button class="btn_ex_re">교환/환불</button>
 									</c:if> <c:if test="${ovo.status == '교환' || ovo.status == '환불'}">
 										<p>진행중</p>
-									</c:if> <c:if test="${ovo.status == '배송중' || ovo.status == '배송 완료'}">
+									</c:if> <c:if test="${ovo.status == '배송완료'}">
 										<button class="btn_ex_re">교환/환불</button>
 									</c:if> <c:if
 										test="${ovo.status == '교환완료' || ovo.status == '환불완료' || ovo.status == '취소'}">

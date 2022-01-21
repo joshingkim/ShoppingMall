@@ -29,3 +29,8 @@ update cart set member_id = 'm003' where cart_no = 4
 delete from orders where item_no = 3
 
 
+insert into CART (cart_no, member_id, item_no, cart_quantity, cart_price)
+values
+(seq_cart_no.NEXTVAL, 'm003', 22, 1, 1000)
+
+update CART set item_no = 22 where member_id = 'm003'

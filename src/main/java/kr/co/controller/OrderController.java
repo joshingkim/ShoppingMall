@@ -125,7 +125,7 @@ public class OrderController {
 
 					orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), c.getCart_quantity(),
 							c.getCart_price(), vo.getMember_address(),
-							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
+							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비중", receiver, null));
 					/* (m.getItem_price() * (100 - m.getDiscount_percentage()) / 100) */
 				}
 			}
@@ -147,7 +147,7 @@ public class OrderController {
 	      for (ItemVO m : itemlist) {
 	         orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), 1,
 	               m.getItem_price(), vo.getMember_address(),
-	               vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
+	               vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비중", receiver, null));
 	      }
 	      String date = oService.insert(orderList);
 	      
