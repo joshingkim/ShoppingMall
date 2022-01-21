@@ -31,6 +31,6 @@ public class ExchangeRefundController {
 		
 		exService.insertExRefund(exvo);
 		String member_id = exvo.getMember_id();
-		return "redirect:/order/memberdetail/"+member_id;
+		return "redirect:/order/detail/"+member_id;
 	}
 }

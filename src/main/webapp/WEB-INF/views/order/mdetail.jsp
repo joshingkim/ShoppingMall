@@ -35,7 +35,7 @@
 					<td>${vo.ea}</td>
 					<td>${vo.price}</td>
 					<td>${vo.status}</td>
-					<td><fmt:formatDate value="${vo.order_date}" pattern="yyyy-MM-dd HH:ss"/></td>
+					<td><fmt:formatDate value="${vo.order_date}" pattern="yyyy-MM-dd HH:mm"/></td>
 					</tr>
 			
 			</table>
