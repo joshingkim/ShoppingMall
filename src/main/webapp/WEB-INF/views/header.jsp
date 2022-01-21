@@ -12,17 +12,13 @@ body {
 }
 
 #rolling {
-    margin: 20px;
-    padding: 10px;
-    color: black;
-    outline-color:  white;
-    outline-style: outset;
-    background-color: white;
+    outline-color: activeborder;
+    background-color: inherit;
     
 }
 
 #roll a {
-    color: black;
+    color: white;
     text-decoration: none;
  
 }
@@ -34,8 +30,8 @@ body {
 
 #roll {
     overflow: hidden;
-    width: 160px;
-    height: 20px;
+    width: 120px;
+    height: 38px;
     margin: 0;
     color: white;
 }
@@ -58,34 +54,38 @@ body {
 }
 
 #roll li {
-    height: 20px;
-    line-height: 20px;
+    height: 38px;
+    line-height: 38px;
     color: white;
+    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width : 100px;
 }
 </style>
 <style type="text/css">
       
 .cat-box {
 position : relative;
-width : 90px;
-height : 35px;
+height : 38px;
 cursor : pointer;
+background-color: inherit;
+
 }
 
 .cat-box:after {
 content: '';
 display:block;
-width : 2px;
 height : 100%;
 position : absolute;
 }
 
 .cat-box .cat-label {
-display : flex;
-width : inherit;
+color : white;
 height : inherit;
-align-items :center;
+width : 100px;
 cursor : pointer;
+outline: white;
 }
 
 .cat-box .cat-menu {
@@ -104,11 +104,27 @@ transition : .1s;
 }
 
 .cat-box .cat-item:hover {
-background : rgb(175,93,93);
+background : gray;
 }
 
 .cat-box .cat-item:last-child {
 border-bottom:0 none;
+}
+
+.area-search {
+margin-top : 18px;
+display: inline-table;
+}
+
+.put {
+margin-top : 15px;
+display: inline-block;
+}
+#search_btn {
+display : inline-block;
+background-color: white;
+height : 38px;
+
 }
 </style>
 
@@ -127,20 +143,26 @@ border-bottom:0 none;
       </li>
     </ul>
   </div>
-  <div id="rolling"><div id="roll" ><ul><ol class="ranklist "></ol></ul></div></div>
+  <div id="rolling"><div id="roll" ><ul><ol class="ranklist"></ol></ul></div></div>
     <form class="form-inline my-2 my-lg-0" action="/search/search">
-    <div class="input-group mb-3 put">
-    <div class="cat-box">
-    <button class="btn btn-outline-secondary cat-label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
-    <div class="dropdown-menu cat-menu">
-      <a class="dropdown-item cat-item" href="#">All</a>
+		<div class="input-group mb-3 put">
+			<div class="cat-box">
+				<input name="item_category" type="hidden" value="">
+				<button class="btn btn-outline-secondary cat-label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
+				<div class="dropdown-menu cat-menu">
+					<a class="dropdown-item cat-item" href="#">All</a>
 
-    </div>
-  </div>
-      <input class="form-control mr-sm-2" id="query" name="keyword" type="search" placeholder="Search" aria-label="Search">
-      <button id="search_btn" class="btn btn-outline-white my-2 my-sm-0 btn_search" type="button">Search</button>
-      </div>
-    </form>
+				</div>
+			</div>
+			<input id="area-search" type="text" name="keyword" class="form-control" maxlength="10" placeholder="검색어를 입력해 주세요." aria-label="Input group example" aria-describedby="basic-addon1">
+			<a href="javascript:void(0)" class="btn_search"><span class="input-group-text" id="search_btn"> 
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+ 				 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+				</svg>
+				</span> 
+			</a>
+		</div>
+	</form>
   
 </nav>
 
@@ -208,11 +230,12 @@ border-bottom:0 none;
          }
       });
       
-       $(".btn_search").click(function(){
+       $(".btn_search").click(function(event){
+    	   event.preventDefault();
             var item_category = $(".cat-label").text();
-            var keyword = $("#query").val();
+            var keyword = $("#area-search").val();
             if(keyword==''){
-               $("#query").focus();
+               $("#area-search").focus();
                alert("검색어를 입력해주세요");
                return;
             }
@@ -221,7 +244,7 @@ border-bottom:0 none;
                alert("카테고리를 설정해 주세요");
                return;
             }
-            $(".put").append("<input name='item_category' type='hidden' value='"+item_category+"'>");
+         	$("[name='item_category']").attr("value",item_category);
             $("form").submit();
             });
       
@@ -230,7 +253,7 @@ border-bottom:0 none;
 		for(var i =0; i<result.length;i++){
     	         if(i< 10){
     	         var lists = result[i].keyword;
-    	         $("ol").append("<li><a href='#'>"+lists+"</a></li>");
+    	         $("ol").append("<li><a href='#'>"+(i+1)+"위 :"+lists+"</a></li>");
     	         rolltext();
     	         }
     	      }
