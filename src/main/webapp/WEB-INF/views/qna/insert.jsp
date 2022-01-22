@@ -14,12 +14,35 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>상품문의</p>
-<input id="inputed_board_no" name="board_no" value="" readonly hidden><br>
+
+
+
+<div class="modal-dialog">
+<input id="inputed_board_no" name="board_no" value="" hidden><br>
 <input id="member_id" name="member_id" value="${login.member_id}" hidden><br>
-제목 : <input id="qna_title" name="qna_title" maxlength="100"><br>
-내용 : <textarea id="qna_content" name="qna_content" rows="5" maxlength="300"></textarea><br>
-<input type="submit" value="문의하기">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						<span>상품문의</span>
+					</h5>
+					
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						제목<input class="form-control" id="qna_title" name="qna_title">
+					</div>	
+					
+					 <div class="form-group">
+
+    내용<textarea class="form-control" id="qna_content" name="qna_content" rows="5"></textarea>
+  </div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" data-dismiss="modal"value="QnA 문의 완료">
+				</div>
+			</div>
+		</div>
+
 <script type="text/javascript">
 var bno = window.opener.document.getElementById("input_board_no").value;
 $("#inputed_board_no").attr("value", bno);
