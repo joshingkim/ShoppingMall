@@ -18,8 +18,8 @@ import kr.co.domain.ReviewVO;
 import kr.co.service.ReviewService;
 
 @RestController
-@RequestMapping("/replies")
-public class ReviewController {
+@RequestMapping("/Myreplies")
+public class MyReviewController {
 
 	@Inject
 	private ReviewService rService;
@@ -64,26 +64,26 @@ public class ReviewController {
 		}
 
 		return entity;
+	} 	 	
+
+
+	@RequestMapping(value = "{member_id}", method = RequestMethod.GET)
+	public List<ReviewVO> getMyAllReplies(@PathVariable("member_id") String member_id) {
+
+		return rService.getMyAllReplies(member_id);
 	}
-
-	@RequestMapping(value = "{board_no}", method = RequestMethod.GET)
-	public List<ReviewVO> getAllReplies(@PathVariable("board_no") int board_no) {
-
-		return rService.getAllReplies(board_no);
-	}
-
-	@RequestMapping(value = "{board_no}/{curPage}", method = RequestMethod.GET)
-	public PageTO<ReviewVO> getRepliesPage(@PathVariable("board_no") int board_no,
+	
+	@RequestMapping(value = "{member_id}/{curPage}", method = RequestMethod.GET)
+	public PageTO<ReviewVO> getMyRepliesPage(@PathVariable("member_id") String member_id,
 			@PathVariable("curPage") int curPage) {
 
 		PageTO<ReviewVO> pt = new PageTO<ReviewVO>(curPage);
 
-		pt = rService.getRepliesPage(pt, board_no);
+		pt = rService.getMyRepliesPage(pt, member_id);
 
 		return pt;
 	}
 	
-
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> insert(@RequestBody Map<String, Object> map) {

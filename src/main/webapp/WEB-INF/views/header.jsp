@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
@@ -58,9 +58,9 @@ body {
     line-height: 38px;
     color: white;
     text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	width : 100px;
+   white-space: nowrap;
+   overflow: hidden;
+   width : 100px;
 }
 </style>
 <style type="text/css">
@@ -144,25 +144,24 @@ height : 38px;
     </ul>
   </div>
   <div id="rolling"><div id="roll" ><ul><ol class="ranklist"></ol></ul></div></div>
-    <form class="form-inline my-2 my-lg-0" action="/search/search">
-		<div class="input-group mb-3 put">
-			<div class="cat-box">
-				<input name="item_category" type="hidden" value="">
-				<button class="btn btn-outline-secondary cat-label" type="button" data-toggle="dropdown" aria-expanded="false">category</button>
-				<div class="dropdown-menu cat-menu">
-					<a class="dropdown-item cat-item" href="#">All</a>
+    <form class="form-inline my-2 my-lg-0 f-search" action="/search/search">
+      <div class="input-group mb-3 put">
+         <div class="cat-box">
+            <button class="btn btn-outline-secondary cat-label" type="button" data-toggle="dropdown" aria-expanded="false">All</button>
+            <input id="cat-val" name="item_category" type="hidden" value="">
+            <div class="dropdown-menu cat-menu">
 
-				</div>
-			</div>
-			<input id="area-search" type="text" name="keyword" class="form-control" maxlength="10" placeholder="검색어를 입력해 주세요." aria-label="Input group example" aria-describedby="basic-addon1">
-			<a href="javascript:void(0)" class="btn_search"><span class="input-group-text" id="search_btn"> 
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
- 				 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-				</svg>
-				</span> 
-			</a>
-		</div>
-	</form>
+            </div>
+         </div>
+         <input id="area-search" type="text" name="keyword" class="form-control" maxlength="10" onkeypress="enter_f(event)" placeholder="검색어를 입력해 주세요." aria-label="Input group example" aria-describedby="basic-addon1" value="">
+         <a href="javascript:void(0)" class="btn_search"><span class="input-group-text" id="search_btn"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+            </span> 
+         </a>
+      </div>
+   </form>
   
 </nav>
 
@@ -174,18 +173,18 @@ height : 38px;
       <c:choose>
           <c:when test="${empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-			<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">좋아요
-        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
-        	<li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+         <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
+           <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">좋아요
+           <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+           <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
           
           <c:when test="${not empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-			<li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-        	<li><a href="/likeitem/list/${login.member_id}" class="nav-link px-2 link-dark text-dark">좋아요
-        	<li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
-        	<li><a href="/order/detail/${login.member_id}" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+         <li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
+           <li><a href="/" class="nav-link px-2 link-dark text-dark">좋아요
+           <li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
+           <li><a href="/order/detail/${login.member_id}" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
           </c:when>
         </c:choose>
      
@@ -207,56 +206,70 @@ height : 38px;
       </div>
     </header>
     
-    
-    
      <script type="text/javascript">
+      var item_category = $(".cat-label").text();
+     
+     
+      function enter_f(e){
+      var keyword = document.getElementById("area-search").value;
+         var code = e.keyCode;
+         if(code == 13 || code == 108){
+         $("#cat-val").attr("value",item_category);
+   
+         $("#area-search").attr("value",keyword);
+          if(keyword==''){
+             $("#area-search").focus();
+             alert("검색어를 입력해주세요");
+              e.preventDefault();
+              return;
+            }
+         }
+      }
+      function querySelect(){
+          const label = document.querySelector('.cat-label');
+             const items = document.querySelectorAll('.cat-item');
+             const handleSelect = function(eachitem) {
+                label.innerHTML = eachitem.textContent;
+                label.parentNode.classList.remove('active');
+             }
+             items.forEach(function(option){
+                option.addEventListener('click', function(){
+                   handleSelect(option)
+                   })
+             });
+    }
    $(document).ready(function(){
       
       $.getJSON("/category/categorylist", function(result) {
          for (var i = 0; i < result.length; i++) {
             var cat_items = result[i];
             $(".cat-menu").append("<a class='dropdown-item cat-item' href='#'>"+cat_items.item_category+"</a>");
-            
-            const label = document.querySelector('.cat-label');
-               const items = document.querySelectorAll('.cat-item');
-               const handleSelect = function(eachitem) {
-                  label.innerHTML = eachitem.textContent;
-                  label.parentNode.classList.remove('active');
-               }
-               items.forEach(function(option){
-                  option.addEventListener('click', function(){
-                     handleSelect(option)})
-               });
+            querySelect();
          }
       });
       
        $(".btn_search").click(function(event){
-    	   event.preventDefault();
-            var item_category = $(".cat-label").text();
-            var keyword = $("#area-search").val();
+          event.preventDefault();
+       var keyword = document.getElementById("area-search").value;
+       item_category = $(".cat-label").text();
             if(keyword==''){
                $("#area-search").focus();
                alert("검색어를 입력해주세요");
                return;
             }
-            if(item_category=='category'){
-               $(".cat-label").focus();
-               alert("카테고리를 설정해 주세요");
-               return;
-            }
-         	$("[name='item_category']").attr("value",item_category);
-            $("form").submit();
+            $("#cat-val").attr("value",item_category);
+            $(".f-search").submit();
             });
       
    
-	$.getJSON("/search/rankinglist", function(result){
-		for(var i =0; i<result.length;i++){
-    	         if(i< 10){
-    	         var lists = result[i].keyword;
-    	         $("ol").append("<li><a href='#'>"+(i+1)+"위 :"+lists+"</a></li>");
-    	         rolltext();
-    	         }
-    	      }
+   $.getJSON("/search/rankinglist", function(result){
+      for(var i =0; i<result.length;i++){
+                if(i< 10){
+                var lists = result[i].keyword;
+                $("ol").append("<li><a href='#'>"+(i+1)+"위 :"+lists+"</a></li>");
+                rolltext();
+                }
+             }
     });
    
    function rolltext(){
@@ -276,14 +289,8 @@ height : 38px;
       });
    }
    
+   
    });
-   
-   
-   
-   
-   
-   
-   
    
    </script>
 

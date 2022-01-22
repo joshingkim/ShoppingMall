@@ -6,6 +6,7 @@ function qnalist(board_no, curPage, el) {
 
 	$.getJSON("/qna/list/"+board_no+"/"+curPage, function(data) {
 		var arr = data["list"];
+		if(arr == null){return;}
 		for (var i = 0; i < arr.length; i++) {
 			var obj = arr[i];
 			
@@ -23,7 +24,7 @@ function qnalist(board_no, curPage, el) {
   				<ul class="pagination justify-content-center">
     				<li class="page-item">
     				  <a class="page-link qna_page_left" href="${data['curPage']}" aria-label="Previous">
-      				 	 <span aria-hidden="true">&laquo;</span>
+      				 	 <span aria-hidden="true" class="text-secondary">Previous</span>
  				   	  </a>
    					 </li>
 		
@@ -37,7 +38,7 @@ function qnalist(board_no, curPage, el) {
 		strPage +=`
 		  <li class="page-item">
       				<a class="page-link qna_page_right" href="${data['curPage']}" data-totalPage="${data['totalPage']}" aria-label="Next">
-      			  <span aria-hidden="true">&raquo;</span>
+      			  <span aria-hidden="true" class="text-secondary">Nest</span>
      		 </a>
    		 </li>
   		</ul>
@@ -76,7 +77,7 @@ function qnacontent(qna_no, qna_content){
 							</td>
 						</div>
 					</tr>
-				`;
+				`;	
 	return ctnt;
 }
 function qnaanswer(qna_answer, qna_updatedate){

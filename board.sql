@@ -41,6 +41,7 @@ CREATE TABLE qna(
 	qna_repRoot NUMBER,
 	qna_repStep NUMBER,
 	qna_repIndent NUMBER,
+	qna_answer VARCHAR2(150),
 	CONSTRAINT pk_board_qna_no PRIMARY KEY(qna_no),
 	CONSTRAINT fk_board_qna_board_no FOREIGN KEY(board_no) REFERENCES board(board_no) ON DELETE CASCADE,
 	CONSTRAINT fk_board_qna_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
@@ -52,6 +53,8 @@ CREATE SEQUENCE seq_board_qna_no
 select * from BOARD
 
 select * from qna
+
+DROP TABLE qna
 
 
 SELECT * FROM board WHERE board_no = 1
@@ -102,4 +105,21 @@ ALTER TABLE qna ADD qna_answer VARCHAR2(150)
 			
 SELECT * FROM qna WHERE board_no = 109	
 
+	SELECT
+		COUNT(review_no) FROM review WHERE member_id = 'm001'
 
+		SELECT * FROM review
+		WHERE member_id = 'm001' ORDER BY review_no DESC
+
+		
+		UPDATE review SET review_content = '123455',
+		review_regdate = SYSDATE ,review_grade = '5'
+		WHERE
+		member_id = 'm001'
+		
+		SELECT * FROM review
+		
+		UPDATE review SET review_content = '5464',
+		review_regdate = SYSDATE ,review_grade = '5'
+		WHERE
+		review_no = '161'

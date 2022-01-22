@@ -19,10 +19,12 @@
 
 
 
+<jsp:include page="../header.jsp" />
+
 
 	<div id="reviewContainer" >
 		<input hidden name="board_no" value="${board_no}">
-		작성자: <input name="member_id" id="member_id"><br> 
+		작성자: <input name="member_id" id="member_id" value="${login.member_id }" readonly><br> 
 		리뷰: <input name="review_content" id="review_content"><br> 
 		평점 : <select name="review_grade" id="review_grade">
 			<option value=5 selected>5점</option>
@@ -36,6 +38,7 @@
 
 
 
+<jsp:include page="../footer.jsp" />
 
 
 

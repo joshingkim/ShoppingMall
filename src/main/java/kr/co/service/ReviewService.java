@@ -18,4 +18,8 @@ public interface ReviewService {
 
 	void deleteReview(int review_no);
 
+	PageTO<ReviewVO> getMyRepliesPage(PageTO<ReviewVO> pt, String member_id);
+
+	List<ReviewVO> getMyAllReplies(String member_id);
+
 }

@@ -26,12 +26,33 @@ public class ReviewDAOImpl implements ReviewDAO {
 		sqlSession.insert(NS + ".insert", map);
 
 	}
+	
+	@Override
+	public int getMyAmountReplyByBno(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS + ".getMyAmountReplyByBno", member_id);
+	}
+
+	
+	@Override
+	public List<ReviewVO> getMyRepliesPage(PageTO<ReviewVO> pt, String member_id) {
+		RowBounds rbs = new RowBounds(pt.getStartNum() - 1, pt.getPerPage());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pt", pt);
+		map.put("member_id", member_id);
+		
+		return sqlSession.selectList(NS + ".getMyRepliesPage", map, rbs);
+	}
+	
+	
 
 	@Override
 	public int getAmountReplyByBno(int board_no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS + ".getAmountReplyByBno", board_no);
 	}
+	
 
 	@Override
 	public List<ReviewVO> getRepliesPage(PageTO<ReviewVO> pt, int board_no) {
@@ -49,6 +70,12 @@ public class ReviewDAOImpl implements ReviewDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NS + ".getAllReplies", board_no);
 	}
+	
+	@Override
+	public List<ReviewVO> getMyAllReplies(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS + ".getMyAllReplies", member_id);
+	}
 
 	@Override
 	public void updateReview(ReviewVO rvo) {
@@ -60,5 +87,11 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void deleteReview(int review_no) {
 		sqlSession.delete(NS + ".deleteReview", review_no);
 	}
+
+
+
+
+
+
 
 }

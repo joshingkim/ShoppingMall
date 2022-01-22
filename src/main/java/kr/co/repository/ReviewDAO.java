@@ -20,4 +20,10 @@ public interface ReviewDAO {
 
 	void deleteReview(int review_no);
 
+	int getMyAmountReplyByBno(String member_id);
+
+	List<ReviewVO> getMyRepliesPage(PageTO<ReviewVO> pt, String member_id);
+
+	List<ReviewVO> getMyAllReplies(String member_id);
+
 }

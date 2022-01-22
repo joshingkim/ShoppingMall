@@ -17,7 +17,7 @@
 <body>
 
 <form action="/board/update/${vo.board_no}/${curPage}" method="post">
-아이템넘버 :<input name="item_no" value="${vo.item_no}"> <br>
+아이템넘버 :<input name="item_no" value="${vo.item_no}" readonly> <br>
 제목 :<input name="board_title" value="${vo.board_title }"> <br>
 내용 :<br>
 <textarea rows="10" name="board_content">${vo.board_content }</textarea> <br>

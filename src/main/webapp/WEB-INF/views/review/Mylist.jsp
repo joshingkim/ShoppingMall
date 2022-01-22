@@ -23,10 +23,10 @@
 		<h4 id="div3">REVIEW</h4>
 		</div>
 		
-		<h6 style="opacity: 0.5">여러분의 소중한 리뷰를 작성해주세요.</h6>
+		<h6 style="opacity: 0.5">소중한 리뷰를 작성해주세요.</h6>
 	
 	
-	<div id="replies" class="mt-5">
+	<div id="Myreplies" class="mt-5">
 	
 	</div>
 	<br>
@@ -77,47 +77,50 @@
 	</div>
 
 	<script type="text/javascript">
-		var board_no = ${vo.board_no};
+		
+		var member_id = "${login.member_id}"
 
+		console.log(member_id);
+			
 		$(document).ready(function() {
 
-			getRepliesPage(board_no, 1, $("#replies"));
+			getMyRepliesPage(member_id, 1, $("#Myreplies"));
 
-			$("#replies").on("click", ".reply_page_left", function(event) {
+			$("#Myreplies").on("click", ".reply_page_left", function(event) {
 				event.preventDefault();
 				var curPage = $(this).attr("href");
 
 				if (curPage > 1) {
 
-					getRepliesPage(board_no, --curPage, $("#replies"));
+					getMyRepliesPage(member_id, --curPage, $("#Myreplies"));
 				}
 
 			});
 
-			$("#replies").on("click", ".reply_page_right", function(event) {
+			$("#Myreplies").on("click", ".reply_page_right", function(event) {
 				event.preventDefault();
 				var curPage = $(this).attr("href");
 				var totalPage = $(this).attr("data-totalPage");
 
 				if (curPage < totalPage) {
 
-					getRepliesPage(board_no, ++curPage, $("#replies"));
+					getMyRepliesPage(member_id, ++curPage, $("#Myreplies"));
 				}
 
 			});
 
-			$("#replies").on("click", ".reply_page_no", function() {
+			$("#Myreplies").on("click", ".reply_page_no", function() {
 				var curPage = $(this).text();
 
-				getRepliesPage(board_no, curPage, $("#replies"));
-			});
+				getMyRepliesPage(member_id, curPage, $("#Myreplies"));
+			});	
 
-			$("#replies").on("click", ".btn_review_delete", function() {
+			$("#Myreplies").on("click", ".btn_review_delete", function() {
 				var review_no = $(this).attr("data-review_no");
 
 				$.ajax({
 					type : "delete",
-					url : "/replies/" + review_no,
+					url : "/Myreplies/" + review_no,
 					headers : {
 						"Content-Type" : "application/json",
 						"X-HTTP-Method-Override" : "DELETE"
@@ -126,7 +129,7 @@
 					success : function(result) {
 						if (result == "SUCCESS") {
 							alert("삭제되었습니다.");
-							getAllReplies(board_no, $("#replies"));
+							getMyAllReplies(member_id, $("#Myreplies"));
 						}
 					}
 				});
@@ -143,7 +146,7 @@
 
 				$.ajax({
 					type : "put",
-					url : "/replies/" + review_no,
+					url : "/Myreplies/" + review_no,
 					headers : {
 						"Content-Type" : "application/json",
 						"X-HTTP-Method-Override" : "PUT"
@@ -157,13 +160,13 @@
 					success : function(result) {
 						if (result == "SUCCESS") {
 							alert("수정되었습니다.");
-							getAllReplies(board_no, $("#replies"));
+							getMyAllReplies(member_id, $("#Myreplies"));
 						}
 					}
 				});
 			});
 
-			$("#replies").on("click", ".btn_review_updateui_form", function() {
+			$("#Myreplies").on("click", ".btn_review_updateui_form", function() {
 
 				var review_no = $(this).attr("data-review_no");
 				$("#sp_reviewui_review_no").text(review_no);
@@ -180,6 +183,7 @@
 				console.log(review_grade);
 				console.log(review_content);
 
+				$("#staticBackdrop").modal("show");
 			});
 
 			$("#btn_review_input").click(function() {
@@ -204,7 +208,7 @@
 
 				$.ajax({
 					type : "post",
-					url : "/replies",
+					url : "/Myreplies",
 					headers : {
 						"Content-Type" : "application/json",
 						"X-HTTP-Method-Override" : "POST"
@@ -223,7 +227,7 @@
 							$("#review_grade").val("");
 							$("#reviewContainer").hide();
 
-							getAllReplies(board_no, $("#replies"));
+							getAllReplies(board_no, $("#Myreplies"));
 
 						}
 
