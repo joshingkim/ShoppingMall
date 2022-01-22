@@ -17,7 +17,7 @@ create table orders(
 	CREATE SEQUENCE seq_order_id
 	
 select * from orders where order_date = 2022-01-19
-
+INSERT INTO orders(order_id,item_no,member_id,ea,price,address,dAddress,phone,status,receiver) VALUES (seq_order_id.NEXTVAL, 83, 'm001', 1, 150000, '서울시','서울','010101010','상품 준비중','홍길동')
 
 alter table orders add order_date DATE DEFAULT SYSDATE
 

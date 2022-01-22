@@ -29,15 +29,15 @@ public class ExchangeRefundServiceImpl implements ExchangeRefundService {
 		if(checkCode == 0) {
 			status = "교환";
 			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
-//			oDao.status(vo);
+			oDao.status(vo);
 		}else if(checkCode == 1){
 			status = "환불";
 			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
-//			oDao.status(vo);
+			oDao.status(vo);
 		}else if(checkCode == 2) {
 			status = "취소";
 			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
-//			oDao.status(vo);
+			oDao.status(vo);
 		}
 	}
 }
