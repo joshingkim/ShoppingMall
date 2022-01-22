@@ -38,7 +38,8 @@
 	background: #7BB1C2;
 	color: #fff;
 }
-
+.radio{
+}
 table {
 	width: 50%;
 	border-collapse: separate;
@@ -47,6 +48,7 @@ table {
 
 th, td {
 	border-bottom: 1px solid #ddd;
+	padding: 15px;
 }
 
 div.total_price {
@@ -140,7 +142,7 @@ span.input-group-text{
 			<!-- 배송정보 -->
 			<h3>배송정보</h3>
 			<hr class="hr2" align="left">
-			<div>
+			<div class="radio">
 				<label class="box-radio-input"><input id="기존배송지"
 					onclick="original()" type="radio" name="address" value="기존배송지"
 					checked="checked"><span>기존배송지</span></label> <label
@@ -184,7 +186,7 @@ span.input-group-text{
 
 
 
-			<!-- 제품정보 -->
+			<!--장바구니 제품정보 -->
 			<h3>제품정보</h3>
 			<hr class="hr2" align="left">
 			<c:if test="${not empty clist}">
@@ -212,13 +214,22 @@ span.input-group-text{
 			</c:if>
 
 
-
+			<!-- 바로구매 제품정보 -->
 			<c:if test="${empty clist}">
+			<table>
+					<tr>
+						<th>제품명</th>
+						<th>수량</th>
+						<th>가격</th>
+					</tr>
 				<c:forEach items="${ilist}" var="iVo">
-					<input style="white-space: nowrap;" value="${iVo.item_name}">
-					<input style="display: inline"
-						value="${iVo.item_price*(100-iVo.discount_percentage)/100}">
+					<tr>
+						<td style="height:  50%">${iVo.item_name}</td>
+						<td>1개</td>
+						<td>${iVo.item_price*(100-iVo.discount_percentage)/100}원</td>
+					</tr>
 				</c:forEach>
+			</table>		
 			</c:if>
 			<hr class="hr1" align="left">
 

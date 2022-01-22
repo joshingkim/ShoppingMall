@@ -32,7 +32,7 @@
 	</insert>
 	
 	<select id="list" resultType="kr.co.domain.OrdersVO">
-	SELECT * FROM orders WHERE member_id = #{member_id}
+	SELECT * FROM orders WHERE member_id = #{member_id} ORDER BY order_date desc
 	</select>
 	
 	<select id="list_manager" resultType="kr.co.domain.OrdersVO">
