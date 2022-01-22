@@ -16,80 +16,59 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  .btn_status{
+  	border-radius: 5px;	
+  }
+  </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
-	<!-- 회원 배송 조회 -->
-	<c:if test="${mvo.member_id != null}">
-		<div class="container">
-			<h2>회원정보</h2>
-			회원이름: ${mvo.member_name} <br> 회원아이디: ${mvo.member_id}
-			<hr>
-			<h2>주문내역</h2>
-			<c:forEach items="${olist}" var="ovo">
-				<table class="table">
-					<tr>
-						<th>제품번호</th>
-						<th>제품수량</th>
-						<th>제품가격</th>
-						<th>배송상태</th>
-						<th>결제일</th>
-					</tr>
-					<tr>
-						<td>${ovo.item_no}</td>
-						<td>${ovo.ea}</td>
-						<td>${ovo.price}</td>
-						<td>${ovo.status}</td>
-						<td><fmt:formatDate value="${ovo.order_date}" pattern="yyyy-MM-dd HH:ss"/></td>
-					</tr>
-				</table>
-			</c:forEach>
-		</div>
-	</c:if>
+
 	
 	
 	
 	<!-- 경영자, 운영자 배송조회 -->
-	<c:if test="${mvo.member_id == null}">
 	<div class="container">
-		<h3>회원 주문 내역</h3> 
+		<h3>회원 주문 내역</h3>
+		<table class="table">
+			<tr>
+				<th>회원아이디</th>
+				<th>제품번호</th>
+				<th>제품수량</th>
+				<th>제품가격</th>
+				<th>배송상태</th>
+				<th>결제일</th>
+				<th>배송상태변경</th>
+			</tr>
 			<c:forEach items="${ovo}" var="vo">
-			<form action="order/manager/status">
-			<input name="status" value="${vo.status}" type="hidden">
-				<table class="table">
-					<tr>
-						<th>회원아이디</th>
-						<th>제품번호</th>
-						<th>제품수량</th>
-						<th>제품가격</th>
-						<th>배송상태</th>
-						<th>결제일</th>
-						<th>배송상태변경</th>
-					</tr>
+				<form action="order/manager/status">
+					<input name="status" value="${vo.status}" type="hidden">
+
 					<tr>
 						<td>${vo.member_id}</td>
 						<td>${vo.item_no}</td>
 						<td>${vo.ea}</td>
 						<td>${vo.price}</td>
 						<td>${vo.status}</td>
-						<td><fmt:formatDate value="${vo.order_date}" pattern="yyyy-MM-dd HH:ss"/></td>
-						<td>
-							<select name="status" class="form-select" >
- 								<option selected value="${vo.status}">${vo.status}</option>
- 								<option value="상품 준비중">상품준비중</option>
-  								<option value="배송중">배송중</option>
-  								<option value="배송완료">배송완료</option>
-  								<option value="교환완료">교환완료</option>
-  								<option value="환불완료">환불완료</option>
-							</select> <button data-order_id ="${vo.order_id}" class="btn_status">변경</button>
+						<td><fmt:formatDate value="${vo.order_date}"
+								pattern="yyyy-MM-dd HH:ss" /></td>
+						<td><select name="status" class="form-select">
+								<option selected value="${vo.status}">${vo.status}</option>
+								<option value="상품 준비중">상품준비중</option>
+								<option value="배송중">배송중</option>
+								<option value="배송완료">배송완료</option>
+								<option value="교환완료">교환완료</option>
+								<option value="환불완료">환불완료</option>
+						</select>
+							<button data-order_id="${vo.order_id}" type="button" class="btn_status btn-outline-secondary">변경</button>
 						</td>
 					</tr>
-				</table>
-			</form>
+				</form>
 			</c:forEach>
-		</div>
-	</c:if>
+		</table>
+	</div>
 
 
 	<jsp:include page="../footer.jsp" />

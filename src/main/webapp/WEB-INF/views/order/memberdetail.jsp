@@ -16,6 +16,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .btn_ex_re{
+  	border-radius: 5px;	
+  }
+  	.btn_cancel{
+  	border-radius: 5px;	
+  	}
+  </style>
 </head>
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
@@ -51,7 +59,7 @@
 								<td>${ovo.ea}</td>
 								<td>${ovo.price}</td>
 								<td>${ovo.status}</td>
-								<td>${ovo.order_date}</td>
+								<td><fmt:formatDate value="${ovo.order_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td><c:if test="${ovo.status == '상품 준비중'}">
 										<button data-ea="${ovo.ea}"
 											data-order_date="${ovo.order_date}" data-price="${ovo.price}"

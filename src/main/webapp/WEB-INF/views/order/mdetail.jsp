@@ -21,25 +21,27 @@
 
 <body>
 	<div class="container">
-		<c:forEach items="${olist}" var="vo">
-			<table class="table">
+		<h3>주문내역 확인</h3> <br>
+		<table class="table">
+			<tr>
+				<th>제품번호</th>
+				<th>제품수량</th>
+				<th>제품가격</th>
+				<th>배송상태</th>
+				<th>결제일</th>
+			</tr>
+			<c:forEach items="${olist}" var="vo">
+
 				<tr>
-					<th>제품번호</th>
-					<th>제품수량</th>
-					<th>제품가격</th>
-					<th>배송상태</th>
-					<th>결제일</th>
-				</tr>
-					<tr>
 					<td>${vo.item_no}</td>
 					<td>${vo.ea}</td>
 					<td>${vo.price}</td>
 					<td>${vo.status}</td>
-					<td><fmt:formatDate value="${vo.order_date}" pattern="yyyy-MM-dd HH:mm"/></td>
-					</tr>
-			
-			</table>
-		</c:forEach>
+					<td><fmt:formatDate value="${vo.order_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+				</tr>
+
+			</c:forEach>
+		</table>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>
