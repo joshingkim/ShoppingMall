@@ -20,7 +20,7 @@ public interface ManagerService {
 
 		 List<Object> likeRank();
 
-		List<Object> getName();
+		
 
 		List<Object> keywordRank();
 

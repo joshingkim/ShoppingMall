@@ -42,6 +42,7 @@
 	var getName1 = ${getName1};
 	console.log(saleRank1);
 	console.log(getName1);
+	
 </script>
 
 <title>이달의 판매량 순위</title>
@@ -67,23 +68,25 @@
 		const myChart4 = new Chart(
 				ctx4,
 				{
-					type : 'polarArea',
+					type : 'bar',
 					data : {
 						labels : [
-								("1위 " + getName1[saleRank1[0].ITEM_NO - 1].ITEM_NAME),
-								("2위 " + getName1[saleRank1[1].ITEM_NO - 1].ITEM_NAME),
-								("3위 " + getName1[saleRank1[2].ITEM_NO - 1].ITEM_NAME),
-								("4위 " + getName1[saleRank1[3].ITEM_NO - 1].ITEM_NAME),
-								("5위 " + getName1[saleRank1[4].ITEM_NO - 1].ITEM_NAME),
-								("6위 " + getName1[saleRank1[5].ITEM_NO - 1].ITEM_NAME), ],
+								"${saleRank[0].ITEM_NAME}",
+								"${saleRank[1].ITEM_NAME}" ,
+								"${saleRank[2].ITEM_NAME}" ,
+								"${saleRank[3].ITEM_NAME}" ,
+								"${saleRank[4].ITEM_NAME}" ,
+								"${saleRank[5].ITEM_NAME}" ,
+								],
 						datasets : [ {
 							label : (date.getMonth() + 1 + '월 판매량 순위'),
-							data : [ (saleRank1[0].ORDERQUNTITY),
-									(saleRank1[1].ORDERQUNTITY),
-									(saleRank1[2].ORDERQUNTITY),
-									(saleRank1[3].ORDERQUNTITY),
-									(saleRank1[4].ORDERQUNTITY),
-									(saleRank1[5].ORDERQUNTITY), ],
+							data : [ ${saleRank[0].ORDERQUNTITY},
+									${saleRank[1].ORDERQUNTITY},
+									${saleRank[2].ORDERQUNTITY},
+									${saleRank[3].ORDERQUNTITY},
+									${saleRank[4].ORDERQUNTITY},
+									${saleRank[5].ORDERQUNTITY},
+									],
 									backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 										'rgba(54, 162, 235, 0.2)',
 										'rgba(255, 206, 86, 0.2)',

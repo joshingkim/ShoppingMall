@@ -26,10 +26,15 @@
 	</select>
 
 	<select id="saleRank" resultType="Map">
-		SELECT sum(ea) as ORDERQUNTITY, item_no, 
-		TO_CHAR(order_date,'MM') as ORDERDATE 
-		FROM orders GROUP BY item_no, TO_CHAR(order_date,'MM') 
-		ORDER BY sum(ea) DESC
+		SELECT sum(orders.ea) as ORDERQUNTITY, item.item_no, 
+		TO_CHAR(orders.order_date,'MM') as ORDERDATE,
+		item.item_name as ITEM_NAME
+		FROM orders 
+		FULL OUTER JOIN item ON orders.item_no = item.item_no
+		GROUP BY item.item_no, 
+		TO_CHAR(orders.order_date,'MM'),
+		item.item_name
+		ORDER BY sum(orders.ea) DESC
 	</select>
 
 	<select id="daySale" resultType="Map">
@@ -49,14 +54,16 @@
 	</select>
 
 	<select id="likeRank" resultType="Map">
-		SELECT count(item_no) as SUMITEMNO, item_no
-		FROM like_item GROUP BY item_no 
-		ORDER BY count(item_no) DESC
+		SELECT count(like_item.item_no) as SUMITEMNO, 
+		item.item_no,
+		item.item_name
+		FROM like_item 
+		FULL OUTER JOIN item ON like_item.item_no = item.item_no
+		GROUP BY item.item_no, item.item_name
+		ORDER BY count(item.item_no) DESC
 	</select>
 
-	<select id="getName" resultType="Map">
-		SELECT item_name, item_no FROM item
-	</select>
+	
 
 	<select id="keywordRank" resultType="Map">
 		SELECT count(keyword) as COUNTKEYWORD, keyword FROM search

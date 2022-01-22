@@ -50,10 +50,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 return mDAO.likeRank(); 
 	 }
 
-	@Override
-	public List<Object> getName() {
-		return mDAO.getName();
-	}
+	
 
 	@Override
 	public List<Object> keywordRank() {

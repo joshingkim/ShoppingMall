@@ -80,23 +80,25 @@
 		const myChart5 = new Chart(
 				ctx5,
 				{
-					type : 'polarArea',
+					type : 'bar',
 					data : {
 						labels : [
-								("1위 " + getName1[likeRank1[0].ITEM_NO - 1].ITEM_NAME),
-								("2위 " + getName1[likeRank1[1].ITEM_NO - 1].ITEM_NAME),
-								("3위 " + getName1[likeRank1[2].ITEM_NO - 1].ITEM_NAME),
-								("4위 " + getName1[likeRank1[3].ITEM_NO - 1].ITEM_NAME),
-								("5위 " + getName1[likeRank1[4].ITEM_NO - 1].ITEM_NAME),
-								("6위 " + getName1[likeRank1[5].ITEM_NO - 1].ITEM_NAME), ],
+							"${likeRank[0].ITEM_NAME}",
+							"${likeRank[1].ITEM_NAME}",
+							"${likeRank[2].ITEM_NAME}",
+							"${likeRank[3].ITEM_NAME}",
+							"${likeRank[4].ITEM_NAME}",
+							"${likeRank[5].ITEM_NAME}", ],
 						datasets : [ {
 							label : '총 찜 횟수',
-							data : [ (likeRank1[0].SUMITEMNO),
-									(likeRank1[1].SUMITEMNO),
-									(likeRank1[2].SUMITEMNO),
-									(likeRank1[3].SUMITEMNO),
-									(likeRank1[4].SUMITEMNO),
-									(likeRank1[5].SUMITEMNO), ],
+							data : [  ${likeRank[0].SUMITEMNO},
+										${likeRank[1].SUMITEMNO},
+										${likeRank[2].SUMITEMNO},
+										${likeRank[3].SUMITEMNO},
+										${likeRank[4].SUMITEMNO},
+										${likeRank[5].SUMITEMNO}
+									],
+							
 							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
 									'rgba(255, 206, 86, 0.2)',

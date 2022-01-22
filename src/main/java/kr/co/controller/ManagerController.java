@@ -53,9 +53,7 @@ public class ManagerController {
 		List<Object> daySale =  mService.daySale();
 		String daySale1 = new ObjectMapper().writeValueAsString(daySale);
 		model.addAttribute("daySale1", daySale1);
-		 List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+	
 			List<Object> monthSale =  mService.monthSale();
 			String monthSale1 = new ObjectMapper().writeValueAsString(monthSale);
 			model.addAttribute("monthSale1", monthSale1);
@@ -69,40 +67,36 @@ public class ManagerController {
 	public void manager2(Model model) throws JsonProcessingException {
 		List<Object> saleRank = mService.saleRank();
 		String saleRank1 = new ObjectMapper().writeValueAsString(saleRank);
+		model.addAttribute("saleRank", saleRank);
 		model.addAttribute("saleRank1", saleRank1);
-		 List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+
 	}
 	
 	@RequestMapping(value = "/likeRank", method = RequestMethod.GET)
 	public void manager3(Model model) throws JsonProcessingException {
 		 List<Object> likeRank = mService.likeRank();
 		String likeRank1 = new ObjectMapper().writeValueAsString(likeRank);
-		  model.addAttribute("likeRank1", likeRank1);
-		  List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+		model.addAttribute("likeRank", likeRank);
+		model.addAttribute("likeRank1", likeRank1);
+		
 	}
 	
 	@RequestMapping(value = "/keywordRank", method = RequestMethod.GET)
 	public void manager4(Model model) throws JsonProcessingException {
 		List<Object> keywordRank = mService.keywordRank();
 		String keywordRank1 = new ObjectMapper().writeValueAsString(keywordRank);
+		model.addAttribute("keywordRank",keywordRank);
 		model.addAttribute("keywordRank1",keywordRank1);
-		 List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+		
 	}
 	
 	@RequestMapping(value = "/ageRank", method = RequestMethod.GET)
 	public void manager5(Model model) throws JsonProcessingException {
 		List<Object> ageRank = mService.ageRank();
 		String ageRank1 = new ObjectMapper().writeValueAsString(ageRank);
+		model.addAttribute("ageRank",ageRank);
 		model.addAttribute("ageRank1",ageRank1);
-		 List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+
 	}
 	
 	@RequestMapping(value = "/categoryRank", method = RequestMethod.GET)
@@ -111,9 +105,7 @@ public class ManagerController {
 		model.addAttribute("categoryRank", categoryRank);
 		String categoryRank1 = new ObjectMapper().writeValueAsString(categoryRank);
 		model.addAttribute("categoryRank1",categoryRank1);
-		 List<Object> getName = mService.getName();
-		    String getName1 = new ObjectMapper().writeValueAsString(getName);
-			model.addAttribute("getName1",getName1);
+
 	}
 	
 	

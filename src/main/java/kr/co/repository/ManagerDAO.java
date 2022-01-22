@@ -23,7 +23,7 @@ public interface ManagerDAO {
 
 	 List<Object> likeRank();
 
-	List<Object> getName();
+	
 
 	List<Object> keywordRank();
 

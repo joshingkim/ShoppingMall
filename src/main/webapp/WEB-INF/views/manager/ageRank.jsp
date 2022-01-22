@@ -64,18 +64,18 @@
 	<script>
 		const ctx7 = document.getElementById('myChart7').getContext('2d');
 		const myChart7 = new Chart(ctx7, {
-			type : 'polarArea',
+			type : 'bar',
 			data : {
 				labels : [ ("00년생~09년생 "), ("90년생~99년생 "), ("80년생~89년생 "),
 						("70년생~79년생 "), ("60년생~69년생 "), ("50년생~59년생 "), ],
 				datasets : [ {
 					label : '인원수',
-					data : [ (ageRank1[0].COUNTPEOPLE),
-							(ageRank1[1].COUNTPEOPLE),
-							(ageRank1[2].COUNTPEOPLE),
-							(ageRank1[3].COUNTPEOPLE),
-							(ageRank1[4].COUNTPEOPLE),
-							(ageRank1[5].COUNTPEOPLE), ],
+					data : [ ${ageRank[0].COUNTPEOPLE},
+							${ageRank[1].COUNTPEOPLE},
+							${ageRank[2].COUNTPEOPLE},
+							${ageRank[3].COUNTPEOPLE},
+							${ageRank[4].COUNTPEOPLE},
+							${ageRank[5].COUNTPEOPLE} ],
 					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 							'rgba(54, 162, 235, 0.2)',
 							'rgba(255, 206, 86, 0.2)',
