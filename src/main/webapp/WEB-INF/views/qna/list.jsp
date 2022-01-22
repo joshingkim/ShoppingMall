@@ -58,6 +58,7 @@ background-color:
 }
 
 
+
 </style>
 <body>
 	<div id="div2" class="table-responsive" style="margin: 50px 0px 20px 20px;">
@@ -99,7 +100,7 @@ background-color:
 	var mcode = $("#managerCode").val();
 	function qnaInsert(){
 		         var url="../../qna/insert"; //Q&A작성 팝업창 열기
-		         var settings = "width=400,height=400,left=600";
+		         var settings = "width=400,height=500,left=600";
 		         
 		         window.open(url,"QnA작성",settings);
 		     }

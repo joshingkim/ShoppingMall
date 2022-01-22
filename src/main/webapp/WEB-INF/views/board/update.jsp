@@ -16,16 +16,36 @@
 </head>
 <body>
 
-<form action="/board/update/${vo.board_no}/${curPage}" method="post">
-아이템넘버 :<input name="item_no" value="${vo.item_no}" readonly> <br>
-제목 :<input name="board_title" value="${vo.board_title }"> <br>
-내용 :<br>
-<textarea rows="10" name="board_content">${vo.board_content }</textarea> <br>
-	<input type="submit" value="글 수정 완료">
 
-</form>
+<div class="modal-dialog">
+<form action="/board/update/${vo.board_no}/${item_no}" method="post">
+			<div class="modal-content">
+				<div class="modal-header">	
+					<h5 class="modal-title">
+						<span>보드수정</span>
+					</h5>
+					
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						아이템넘버<input class="form-control" name="item_no" value="${vo.item_no}" readonly>
+					</div>	
+					<div class="form-group">
+						제목<input class="form-control" name="board_title" value="${vo.board_title }">
+					</div>	
+					
+					 <div class="form-group">
 
-
+    내용<textarea class="form-control" name="board_content" rows="5">${vo.board_content }</textarea>
+  </div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" data-dismiss="modal"
+							 value="보드 수정 완료">
+				</div>
+			</div>
+			</form>
+		</div>
 
 <script type="text/javascript">
 

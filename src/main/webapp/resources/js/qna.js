@@ -69,13 +69,13 @@ function qnacontent(qna_no, qna_content){
 					<tr class="qna_ctnt">
 						<div>
 							<td colspan="3">
-								<p>${qna_content}</p>
+								<p><span style="opacity: 0.5">내용:</span>${qna_content}</p>
 							</td>
 							<td class="area-answer">
 								<input type="hidden" id ="qna_no" "name="qna_no" value="">
 								<button data-qna_no="${qna_no}" class="btn btn-primary btn-sm btn_answer" onclick="qnaAnswer(); return false;">답변달기</button>
 							</td>
-						</div>
+						</div>	
 					</tr>
 				`;	
 	return ctnt;
@@ -85,6 +85,7 @@ function qnaanswer(qna_answer, qna_updatedate){
 					<tr class="qna_answer">
 						<td></td>
 						<td>
+							<p style="opacity: 0.5">판매자 답글입니다.</p>
 							<p class="qa">${qna_answer}</p>
 						</td>
 						<td><p>판매자</p></td>
