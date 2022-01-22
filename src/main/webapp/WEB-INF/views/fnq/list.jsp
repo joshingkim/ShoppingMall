@@ -79,7 +79,9 @@ $(tr[i]).show();
 
 	<div class="container">
                             <table id="contents" class="table" style="width: 100%;">
-
+<c:if test="${not empty managerLogin && empty login}">
+			<a href="/fnq/insertui" class="btn btn-outline-primary btn-sm float-right">글쓰기</a><br>
+		</c:if>
 
                                <h4>F&Q 게시판</h4>
                                 
@@ -97,12 +99,9 @@ $(tr[i]).show();
                                     </tr>
                                     <tr >
                                         <td class="conts" colspan="3">
-                                                 <c:if test="${managerLogin.manager_code == 1 }">
+                                                 
                                                    질문: <a href="/fnq/read/${vo.fnq_no}/${curPage}">${vo.fnq_title}</a><br><br>
-                                                   </c:if>
-                                                   <c:if test="${managerLogin.manager_code != 1 }">
-                                                   질문: ${vo.fnq_title}<br><br>
-                                                   </c:if>
+                                                   
                                                   답변: ${vo.fnq_content }  
                                         </td>
                                         </td>
@@ -113,9 +112,7 @@ $(tr[i]).show();
                         
 
 		<jsp:include page="page.jsp" />
-		<c:if test="${managerLogin.manager_code == 1 || managerLogin.manager_code == 2 }">
-			<a href="/fnq/insertui" class="btn btn-primary btn-sm float-right">글쓰기</a>
-		</c:if>
+		
 	</div>
 
 

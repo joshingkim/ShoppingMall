@@ -39,9 +39,9 @@
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">내용</label>
-    <textarea class="form-control " id="Textarea1" rows="10" required="required"></textarea>
+    <textarea class="form-control " name="fnq_content" id="Textarea1" rows="10" required="required"></textarea>
   </div>
-  <input type="submit" name="fnq_content" class="btn btn-outline-primary" value="작성 완료">
+  <input type="submit"  class="btn btn-outline-primary" value="작성 완료">
 </form>
 	
 	</div>

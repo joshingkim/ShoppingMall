@@ -25,6 +25,13 @@
 
 <div class="container">
 <a href="/fnq/list" class="btn btn-outline-success btn-sm">리스트로 돌아가기</a>
+<c:if test="${not empty managerLogin && empty login}">
+	<div class="row float-right"><a href="/fnq/updateui/${vo.fnq_no}/${curPage}" class="btn btn-outline-warning btn-sm">수정</a> &nbsp;
+	<form action="/fnq/delete/${vo.fnq_no}/${curPage}" method="post">
+		<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
+	</form>
+	</div>
+	</c:if>
 	<br><br>
 	<form action="/fnq/insert" method="post">
 	<div class="form-group">
@@ -45,13 +52,7 @@
   </div>
 </form>
 
-<c:if test="${managerLogin.manager_code == 1 }">
-	<div class="row float-right"><a href="/fnq/updateui/${vo.fnq_no}/${curPage}" class="btn btn-outline-warning btn-sm">수정</a> &nbsp;
-	<form action="/fnq/delete/${vo.fnq_no}/${curPage}" method="post">
-		<input type="submit" class="btn btn-outline-danger btn-sm" value="삭제">
-	</form>
-	</div>
-	</c:if>
+
 	
 	</div>
 
