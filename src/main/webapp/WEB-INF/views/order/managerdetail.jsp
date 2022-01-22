@@ -56,7 +56,6 @@
 								pattern="yyyy-MM-dd HH:ss" /></td>
 						<td><select name="status" class="form-select">
 								<option selected value="${vo.status}">${vo.status}</option>
-								<option value="상품 준비중">상품준비중</option>
 								<option value="배송중">배송중</option>
 								<option value="배송완료">배송완료</option>
 								<option value="교환완료">교환완료</option>
