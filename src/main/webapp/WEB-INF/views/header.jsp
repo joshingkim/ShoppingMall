@@ -213,10 +213,10 @@ height : 38px;
      
       function enter_f(e){
       var keyword = document.getElementById("area-search").value;
+      item_category = $(".cat-label").text();
          var code = e.keyCode;
          if(code == 13 || code == 108){
          $("#cat-val").attr("value",item_category);
-   
          $("#area-search").attr("value",keyword);
           if(keyword==''){
              $("#area-search").focus();
@@ -294,5 +294,3 @@ height : 38px;
    });
    
    </script>
-
-  
