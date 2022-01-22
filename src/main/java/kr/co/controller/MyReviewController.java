@@ -1,105 +1,79 @@
 package kr.co.controller;
 
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
+import kr.co.domain.BoardVO;
+import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
 import kr.co.domain.ReviewVO;
+import kr.co.service.BoardService;
 import kr.co.service.ReviewService;
 
-@RestController
+@Controller
 @RequestMapping("/Myreplies")
 public class MyReviewController {
 
 	@Inject
 	private ReviewService rService;
+	@Inject
+	private BoardService bService;
 
-	@RequestMapping(value = "{review_no}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteReview(@PathVariable("review_no") int review_no) {
-		ResponseEntity<String> entity = null;
-		try {
-
-			rService.deleteReview(review_no);
-
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
-	}
-
-	@RequestMapping(value = "{review_no}", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateReview(@PathVariable("review_no") int review_no,
-			@RequestBody Map<String, Object> map) {
-
-		ResponseEntity<String> entity = null;
-
-		try {
-			String review_content = (String) map.get("review_content");
-
-			int review_grade = Integer.parseInt(String.valueOf(map.get("review_grade")));
-
-			ReviewVO rvo = new ReviewVO(review_no, 0, null, review_content, null, null, review_grade);
-
-			rService.updateReview(rvo);
-
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
-	} 	 	
-
-
-	@RequestMapping(value = "{member_id}", method = RequestMethod.GET)
-	public List<ReviewVO> getMyAllReplies(@PathVariable("member_id") String member_id) {
-
-		return rService.getMyAllReplies(member_id);
+	@RequestMapping(value = "/list/{member_id}", method = RequestMethod.GET)
+	public String getMyAllReplies(@PathVariable("member_id") String member_id,PageTO<ReviewVO> pt, Model model) {
+		
+		pt.setCurPage(1);
+		
+		pt = rService.getMyRepliesPage(pt, member_id);
+		
+		model.addAttribute("pt", pt);
+		
+		return "review/Mylist";
 	}
 	
-	@RequestMapping(value = "{member_id}/{curPage}", method = RequestMethod.GET)
-	public PageTO<ReviewVO> getMyRepliesPage(@PathVariable("member_id") String member_id,
-			@PathVariable("curPage") int curPage) {
+	@RequestMapping(value = "/list/{member_id}/{curPage}", method = RequestMethod.GET)
+	public String getMyRepliesPage(@PathVariable("curPage") int curPage,@PathVariable("member_id") String member_id, PageTO<ReviewVO> pt, Model model) {
 
-		PageTO<ReviewVO> pt = new PageTO<ReviewVO>(curPage);
+		pt.setCurPage(curPage);
 
 		pt = rService.getMyRepliesPage(pt, member_id);
-
-		return pt;
+		
+		model.addAttribute("pt", pt);
+		
+		return "review/Mylist";
 	}
 	
-
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<String> insert(@RequestBody Map<String, Object> map) {
-		ResponseEntity<String> entity = null;
-
-		try {
-			
-			rService.insert(map);
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
-
+	@RequestMapping(value = "/listOfAll", method = RequestMethod.GET)
+	public String listOfAll(PageTO<ReviewVO> pt, Model model) {
+		
+		pt.setCurPage(1);
+		
+		pt = rService.listOfAll(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "review/Mylist";
 	}
+	
+	@RequestMapping(value = "/listOfAll/{curPage}", method = RequestMethod.GET)
+	public String listOfAll(@PathVariable("curPage") int curPage,PageTO<ReviewVO> pt, Model model) {
 
+		pt.setCurPage(curPage);
+
+		pt = rService.listOfAll(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "review/Mylist";
+	}
+	
 }

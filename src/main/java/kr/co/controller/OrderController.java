@@ -31,6 +31,7 @@ import kr.co.domain.ItemVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
+import kr.co.domain.ReviewVO;
 import kr.co.service.CartService;
 import kr.co.service.CategoryService;
 import kr.co.service.ItemService;
@@ -125,7 +126,7 @@ public class OrderController {
 
 					orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), c.getCart_quantity(),
 							m.getItem_price()*c.getCart_quantity(), vo.getMember_address(),
-							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비중", receiver, null));
+							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
 					/* (m.getItem_price() * (100 - m.getDiscount_percentage()) / 100) */
 				}
 			}
@@ -147,7 +148,7 @@ public class OrderController {
 	      for (ItemVO m : itemlist) {
 	         orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), 1,
 	               m.getItem_price(), vo.getMember_address(),
-	               vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비중", receiver, null));
+	               vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비 중", receiver, null));
 	      }
 	      String date = oService.insert(orderList);
 	      
@@ -167,27 +168,52 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/detail/{member_id}", method = RequestMethod.GET)
-	public String detail(@PathVariable("member_id") String member_id, Model model) {
+	public String detail(PageTO<OrdersVO> pt,@PathVariable("member_id") String member_id, Model model) {
 		
-		MemberVO mvo = mService.read(member_id);
-		model.addAttribute("mvo", mvo);
+		pt.setCurPage(1);
 		
-		List<OrdersVO> olist = oService.list(member_id);
-		model.addAttribute("olist", olist);
+		pt = oService.list(pt,member_id);
+		
+		model.addAttribute("pt", pt);
+		model.addAttribute("member_id", member_id);
 		
 		return "order/memberdetail";
 	}
 	
+	@RequestMapping(value = "/detail/{member_id}/{curPage}", method = RequestMethod.GET)
+	public String detail(PageTO<OrdersVO> pt,@PathVariable("curPage") int curPage,@PathVariable("member_id") String member_id, Model model) {
+		
+		pt.setCurPage(curPage);
+		
+		pt = oService.list(pt, member_id);
+		
+		model.addAttribute("pt", pt);
+		model.addAttribute("member_id", member_id);
+		
+		return "order/memberdetail";
+	}
 	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(Model model) {
-		List<OrdersVO> vo = new ArrayList<OrdersVO>(); 
-		List<OrdersVO> ovo = oService.list_manager(vo);
-		model.addAttribute("ovo", ovo);
+	@RequestMapping(value = "/detailAll", method = RequestMethod.GET)
+	public String detail(PageTO<OrdersVO> pt,Model model) {
+		pt.setCurPage(1);
+		
+		pt = oService.list_manager(pt);
+		
+		model.addAttribute("pt", pt);
 		
 		return "order/managerdetail";
 	}
 	
+	@RequestMapping(value = "/detailAll/{curPage}", method = RequestMethod.GET)
+	public String detail(@PathVariable("curPage") int curPage,PageTO<OrdersVO> pt,Model model) {
+		pt.setCurPage(curPage);
+		
+		pt = oService.list_manager(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "order/managerdetail";
+	}
 	
 	@RequestMapping(value = "/status/{status}/{order_id}", method = RequestMethod.POST)
 	public ResponseEntity<List<OrdersVO>> status(@PathVariable("status") String status, @PathVariable("order_id") int order_id) {

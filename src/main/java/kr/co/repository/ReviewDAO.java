@@ -26,4 +26,8 @@ public interface ReviewDAO {
 
 	List<ReviewVO> getMyAllReplies(String member_id);
 
+	int getAmount();
+
+	List<ReviewVO> listOfAll(PageTO<ReviewVO> pt);
+
 }

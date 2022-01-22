@@ -38,7 +38,7 @@
 					</ul>
 
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-						<span>Saved reports</span> <a
+						<span>Questions</span> <a
 							class="d-flex align-items-center text-muted" href="#"
 							aria-label="Add a new report"> <span
 							data-feather="plus-circle"></span>
@@ -48,14 +48,34 @@
 						<li class="nav-item"><a class="nav-link text-muted" href="/fnq/list">
 								<span data-feather="file-text"></span> 자주 묻는 질문
 						</a></li>
+					</ul>
+					<c:if test="${not empty managerLogin}">
+					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+						<span>Manager</span> <a
+							class="d-flex align-items-center text-muted" href="#"
+							aria-label="Add a new report"> <span
+							data-feather="plus-circle"></span>
+						</a>
+					</h6>
+					<ul class="nav flex-column mb-2">
+						
 						<li class="nav-item"><a class="nav-link text-muted" href="/category/list/">
 								<span data-feather="file-text"></span> 카테고리
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-muted" href="/item/listofall/">
 								<span data-feather="file-text"></span> 아이템
 						</a></li>
-						
+						<li class="nav-item"><a class="nav-link text-muted" href="/order/detailAll/1">
+								<span data-feather="file-text"></span> 주문 목록
+						</a></li>
+						<li class="nav-item"><a class="nav-link text-muted" href="/Myreplies/listOfAll">
+								<span data-feather="file-text"></span> 리뷰 목록
+						</a></li>
+						<li class="nav-item"><a class="nav-link text-muted" href="/qna/listOfAll">
+								<span data-feather="file-text"></span> QnA 목록
+						</a></li>
 					</ul>
+					</c:if>
 				</div>
 			</nav>
 			<script type="text/javascript">

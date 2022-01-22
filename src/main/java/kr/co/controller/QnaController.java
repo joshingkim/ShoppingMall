@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaVO;
+import kr.co.domain.ReviewVO;
 import kr.co.service.BoardService;
 import kr.co.service.QnaService;
 
@@ -68,5 +69,52 @@ public class QnaController {
 		return entity;
 	}
 	
+	@RequestMapping(value = "/listForMember/{member_id}", method = RequestMethod.GET)
+	public String getMyAllReplies(@PathVariable("member_id") String member_id,PageTO<QnaVO> pt, Model model) {
+		
+		pt.setCurPage(1);
+		
+		pt = qService.listForMember(pt, member_id);
+		
+		model.addAttribute("pt", pt);
+		
+		return "qna/listForMember";
+	}
+	
+	@RequestMapping(value = "/listForMember/{member_id}/{curPage}", method = RequestMethod.GET)
+	public String getMyRepliesPage(@PathVariable("curPage") int curPage,@PathVariable("member_id") String member_id, PageTO<QnaVO> pt, Model model) {
+
+		pt.setCurPage(curPage);
+
+		pt = qService.listForMember(pt, member_id);
+		
+		model.addAttribute("pt", pt);
+		
+		return "qna/listForMember";
+	}
+	
+	@RequestMapping(value = "/listOfAll", method = RequestMethod.GET)
+	public String listOfAll(PageTO<QnaVO> pt, Model model) {
+		
+		pt.setCurPage(1);
+		
+		pt = qService.listOfAll(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "qna/listOfAll";
+	}
+	
+	@RequestMapping(value = "/listOfAll/{curPage}", method = RequestMethod.GET)
+	public String listOfAll(@PathVariable("curPage") int curPage,PageTO<QnaVO> pt, Model model) {
+
+		pt.setCurPage(curPage);
+
+		pt = qService.listOfAll(pt);
+		
+		model.addAttribute("pt", pt);
+		
+		return "qna/listOfAll";
+	}
 
 }

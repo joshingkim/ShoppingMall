@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 
 public interface OrderService {
 
@@ -27,7 +28,9 @@ public interface OrderService {
 	public OrdersVO checkorder(int order_id);
 
 
+	public PageTO<OrdersVO> list_manager(PageTO<OrdersVO> pt);
 
 
+	public PageTO<OrdersVO> list(PageTO<OrdersVO> pt, String member_id);
 
 }

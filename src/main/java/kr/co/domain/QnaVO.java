@@ -18,6 +18,7 @@ public class QnaVO implements Serializable {
 	private int qna_repRoot;
 	private int qna_repStep;
 	private int qna_repIndent;
+	private int item_no;
 
 	public QnaVO() {
 	}
@@ -36,6 +37,24 @@ public class QnaVO implements Serializable {
 		this.qna_repRoot = qna_repRoot;
 		this.qna_repStep = qna_repStep;
 		this.qna_repIndent = qna_repIndent;
+	}
+	
+	public QnaVO(int qna_no, int board_no, String member_id, String qna_title, String qna_content, String qna_regdate,
+			String qna_updatedate, String qna_answer, int qna_repRoot, int qna_repStep, int qna_repIndent,
+			int item_no) {
+		super();
+		this.qna_no = qna_no;
+		this.board_no = board_no;
+		this.member_id = member_id;
+		this.qna_title = qna_title;
+		this.qna_content = qna_content;
+		this.qna_regdate = qna_regdate;
+		this.qna_updatedate = qna_updatedate;
+		this.qna_answer = qna_answer;
+		this.qna_repRoot = qna_repRoot;
+		this.qna_repStep = qna_repStep;
+		this.qna_repIndent = qna_repIndent;
+		this.item_no = item_no;
 	}
 
 	public int getQna_no() {
@@ -128,6 +147,16 @@ public class QnaVO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	
+	public int getItem_no() {
+		return item_no;
+	}
+
+	public void setItem_no(int item_no) {
+		this.item_no = item_no;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 import kr.co.repository.OrderDAO;
 
 @Service
@@ -54,6 +55,34 @@ public class OrderServiceImpl implements OrderService{
 	public OrdersVO checkorder(int order_id) {
 		// TODO Auto-generated method stub
 		return oDao.checkorder(order_id);
+	}
+
+	@Override
+	public PageTO<OrdersVO> list_manager(PageTO<OrdersVO> pt) {
+		int amount = oDao.getAmount();
+		pt.setAmount(amount);
+		if(amount ==0) {
+			return null;
+		}else {
+		List<OrdersVO> list = oDao.list_manager(pt);
+		pt.setList(list);
+		
+		return pt;
+		}
+	}
+
+	@Override
+	public PageTO<OrdersVO> list(PageTO<OrdersVO> pt, String member_id) {
+		int amount = oDao.getAmountMember(member_id);
+		pt.setAmount(amount);
+		if(amount ==0) {
+			return null;
+		}else {
+		List<OrdersVO> list = oDao.list(pt,member_id);
+		pt.setList(list);
+		
+		return pt;
+		}
 	}
 
 

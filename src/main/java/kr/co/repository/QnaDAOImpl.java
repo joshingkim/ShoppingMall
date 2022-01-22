@@ -43,4 +43,29 @@ public class QnaDAOImpl implements QnaDAO {
 		return sqlSession.selectOne(NS + ".getAmount", board_no);
 	}
 
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmountOfAll");
+	}
+
+	@Override
+	public List<QnaVO> listOfAll(PageTO<QnaVO> pt) {
+		RowBounds rbs = new RowBounds(pt.getStartNum() - 1, pt.getPerPage());
+		return sqlSession.selectList(NS +".listOfAll", null, rbs);
+	}
+
+	@Override
+	public int getAmountForMember(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmountForMember",member_id);
+	}
+
+	@Override
+	public List<QnaVO> listForMember(PageTO<QnaVO> pt, String member_id) {
+		RowBounds rbs = new RowBounds(pt.getStartNum() - 1, pt.getPerPage());
+		return sqlSession.selectList(NS +".listForMember", member_id, rbs);
+	}
+
+
 }

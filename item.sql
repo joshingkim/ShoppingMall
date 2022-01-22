@@ -61,6 +61,8 @@ create table orders(
    CONSTRAINT fk_orderr_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE,
    CONSTRAINT fk_orderr_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
+select item_size from item where item_name = '세이코 솔라 다이버 시계(SSC675J1)' group by item_size ORDER BY LPAD(item_size, 21, '0') 
+select * from user_tab_columns 
 CREATE SEQUENCE seq_order_id
 INSERT INTO item (item_no, item_name, item_category, item_size, item_color, item_price, discount_percentage, item_amount) VALUES(1,'kimchi','kimchi','small','red',15000, 15, 15)
 CREATE SEQUENCE seq_item_no

@@ -47,7 +47,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${olist}" var="ovo">
+						<c:forEach items="${pt.list}" var="ovo">
 							<input type="hidden" name="member_id" value="${mvo.member_id}">
 							<input type="hidden" name="order_id" value="${ovo.order_id}">
 							<input type="hidden" name="price" value="${ovo.price}">
@@ -60,7 +60,7 @@
 								<td>${ovo.price}</td>
 								<td>${ovo.status}</td>
 								<td><fmt:formatDate value="${ovo.order_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-								<td><c:if test="${ovo.status == '상품 준비중'}">
+								<td><c:if test="${ovo.status == '상품 준비 중'}">
 										<button data-ea="${ovo.ea}"
 											data-order_date="${ovo.order_date}" data-price="${ovo.price}"
 											data-member_id="${ovo.member_id}"
@@ -70,6 +70,7 @@
 										<p>진행중</p>
 									</c:if> <c:if test="${ovo.status == '배송완료'}">
 										<button class="btn_ex_re">교환/환불</button>
+										<input class="btn_review" data-item_no ="${ovo.item_no}" type="button" value="리뷰쓰기"/>
 									</c:if> <c:if
 										test="${ovo.status == '교환완료' || ovo.status == '환불완료' || ovo.status == '취소'}">
 										<p>완료</p>
@@ -81,7 +82,9 @@
 				</table>
 			</form>
 		</div>
-
+		<div style="margin-left: 40%">
+		<jsp:include page="pageForMember.jsp" />
+		</div>
 	</div>
 
 
@@ -122,6 +125,15 @@ $(document).ready(function() {
 	$(".btn_ex_re").click(function(){
 		$("form").submit;
 	});
+	
+	$(".btn_review").click(function(){
+		var item_no = $(this).attr("data-item_no");
+		$.getJSON("/board/getBoard_no/"+item_no, function(board_no) {
+			var url="../../board/reviewinsert/"+board_no;
+	        window.open(url,"","width=400,height=500,left=600");
+		});
+	});
+	
 	
 });
 

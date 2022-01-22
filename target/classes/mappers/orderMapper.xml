@@ -54,7 +54,11 @@
 	<select id="checkorder" resultType="kr.co.domain.OrdersVO">
    SELECT * FROM orders WHERE order_id = #{order_id}
    </select>
-	
-
+   <select id="getAmount" resultType="Integer">
+		SELECT COUNT(order_id) FROM orders
+	</select>
+	<select id="getAmountMember" resultType="Integer">
+		SELECT COUNT(order_id) FROM orders WHERE member_id = #{member_id}
+	</select>
 
 </mapper>

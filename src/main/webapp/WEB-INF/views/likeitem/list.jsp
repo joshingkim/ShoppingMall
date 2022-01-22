@@ -38,6 +38,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div style="margin-left: 40%">
+	<jsp:include page="page.jsp" />
+	</div>
 </div>
 	<jsp:include page="../footer.jsp" />
 

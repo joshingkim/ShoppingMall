@@ -97,6 +97,11 @@ public class MemberController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/mypage/{member_id}", method = RequestMethod.GET)
+	public String mypage(@PathVariable("member_id") String member_id) {
+		
+		return "member/mypage";
+	}
 	
 
 }

@@ -14,4 +14,8 @@ public interface QnaService {
 
 	List<QnaVO> list(PageTO<QnaVO> qpt, int board_no);
 
+	PageTO<QnaVO> listOfAll(PageTO<QnaVO> pt);
+
+	PageTO<QnaVO> listForMember(PageTO<QnaVO> pt, String member_id);
+
 }
