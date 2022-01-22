@@ -124,7 +124,7 @@ public class OrderController {
 				if (c.getItem_no() == m.getItem_no()) {
 
 					orderList.add(new OrdersVO(0, m.getItem_no(), vo.getMember_id(), c.getCart_quantity(),
-							c.getCart_price(), vo.getMember_address(),
+							m.getItem_price()*c.getCart_quantity(), vo.getMember_address(),
 							vo.getMember_detail_address(), vo.getMember_phone_number(), "상품 준비중", receiver, null));
 					/* (m.getItem_price() * (100 - m.getDiscount_percentage()) / 100) */
 				}

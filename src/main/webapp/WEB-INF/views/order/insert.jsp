@@ -53,6 +53,40 @@ div.total_price {
 	left: 300px;
 	right: -30px;
 }
+div.input-group{
+	height: 28px;
+} 
+span.input-group-text{
+	width: 135px;
+	background-color: #FCE7CC;
+	border: none;
+}
+.info {
+	width : 295px;
+	height: 38px;
+	background-color:#FEF3E5;
+	border: none;
+	border-radius: 5px;
+}
+.info2{
+	width: 100px; 
+	height: 38px; 
+	background-color:#FEF3E5; 
+	border: none;
+	border-radius: 5px;
+}
+.hr1{
+	width: 50%;
+	height:3px;
+	border:none;
+	background-color:#343a40;
+}
+.hr2{
+	width:50%;
+	height:2px;
+	border:none;
+	background-color:#F0E68C;
+}
 </style>
 </head>
 
@@ -60,94 +94,99 @@ div.total_price {
 	<jsp:include page="../sidebar.jsp" />
 
 <body>
-<div class="container mr-1">
-	<form action="/order/insert/${mvo.member_id}" method="post">
+	<div class="container mr-1">
+		<form action="/order/insert/${mvo.member_id}" method="post">
 
 			<!-- 회원정보 -->
 			<h1>주문/결제</h1>
-			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
-			
+			<hr class="hr1" align="left">
+
 			<h3>회원정보</h3>
-			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
+			<hr class="hr2" align="left">
 			<div class="col-md-5" style="left: 30px;">
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">회원아이디</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-labelledby="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 name="member_id" id="member_id" value="${mvo.member_id}" readonly>
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">회원이름</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 value="${mvo.member_name}" readonly>
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">전화번호</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 value="${mvo.member_phone_number}" readonly>
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">회원이메일</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-labelledby="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 name="member_email" value="${mvo.member_email}" readonly>
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">배송지 주소</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 value="${mvo.member_address}" readonly>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">회원아이디</span>
+					<input type="text" class="info" name="member_id" id="member_id"
+						value="${mvo.member_id}" readonly>
 				</div>
 				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">배송지 상세주소</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 value="${mvo.member_detail_address}" readonly>
+					<span class="input-group-text" id="inputGroup-sizing-sm">회원이름</span>
+					<input type="text" class="info" value="${mvo.member_name}" readonly>
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+					<input type="text" class="info" value="${mvo.member_phone_number}"
+						readonly>
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">회원이메일</span>
+					<input type="text" class="info" name="member_email"
+						value="${mvo.member_email}" readonly>
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
+						주소</span> <input type="text" class="info" value="${mvo.member_address}"
+						readonly>
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
+						상세주소</span> <input type="text" class="info"
+						value="${mvo.member_detail_address}" readonly>
 				</div>
 			</div>
-			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
-			
-			
+			<hr class="hr1" align="left">
+
+
 			<!-- 배송정보 -->
 			<h3>배송정보</h3>
-			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
+			<hr class="hr2" align="left">
 			<div>
-				<label class="box-radio-input"><input id="기존배송지" onclick="original()" type="radio" name="address" value="기존배송지" checked="checked"><span>기존배송지</span></label>
-				<label class="box-radio-input"><input id="신규배송지" onclick="test()" type="radio" name="address" value="신규배송지"><span>신규배송지</span></label>
+				<label class="box-radio-input"><input id="기존배송지"
+					onclick="original()" type="radio" name="address" value="기존배송지"
+					checked="checked"><span>기존배송지</span></label> <label
+					class="box-radio-input"><input id="신규배송지" onclick="test()"
+					type="radio" name="address" value="신규배송지"><span>신규배송지</span></label>
 			</div>
-			
-			
-			
+
+
+
 			<div class="col-md-5" style="left: 30px;">
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">수령인</span>
-					<input placeholder="수령인을 입력하세요" style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" 
-					 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="receiver" name="receiver" value="${mvo.member_name}">
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">전화번호</span>
-					<input placeholder="전화번호를 입력하세요" style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 id="phone" name="member_phone_number" value="${mvo.member_phone_number}">
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">주문자이메일</span>
-					<input placeholder="이메일을 입력하세요" style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-labelledby="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 type="email" id="order_email" name="order_email" name="member_email" value="${mvo.member_email}">
-				</div>
-				<div class="input-group input-group-sm mb-3" style="height: 28px">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">배송지 주소</span>
-					<input placeholder="배송지 주소를 입력하세요" style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 id="address" name="member_address" value="${mvo.member_address}">
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">수령인</span>
+					<input placeholder="수령인을 입력하세요" type="text" class="info"
+						id="receiver" name="receiver" value="${mvo.member_name}">
 				</div>
 				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">배송지 상세주소</span>
-					<input placeholder="배송지 상세주소를 입력하세요" style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					 id="detail_address" name="member_detail_address" value="${mvo.member_detail_address}">
+					<span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+					<input placeholder="전화번호를 입력하세요" type="text" class="info"
+						id="phone" name="member_phone_number"
+						value="${mvo.member_phone_number}">
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">주문자이메일</span>
+					<input placeholder="이메일을 입력하세요" type="text" class="info"
+						type="email" id="order_email" name="order_email"
+						name="member_email" value="${mvo.member_email}">
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
+						주소</span> <input placeholder="배송지 주소를 입력하세요" type="text" class="info"
+						id="address" name="member_address" value="${mvo.member_address}">
+				</div>
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
+						상세주소</span> <input placeholder="배송지 상세주소를 입력하세요" type="text" class="info"
+						id="detail_address" name="member_detail_address"
+						value="${mvo.member_detail_address}">
 				</div>
 			</div>
-			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
+			<hr class="hr1" align="left">
 
 
 
 			<!-- 제품정보 -->
 			<h3>제품정보</h3>
-			<hr align="left" style="width:50%;height:2px;border:none;background-color:#F0E68C;">
+			<hr class="hr2" align="left">
 			<c:if test="${not empty clist}">
 				<table>
 					<tr>
@@ -162,7 +201,7 @@ div.total_price {
 								<tr>
 									<td>${iVo.item_name}</td>
 									<td>${cVo.cart_quantity}</td>
-									<td>${iVo.item_price*(100-iVo.discount_percentage)/100} 원</td>
+									<td>${iVo.item_price*(100-iVo.discount_percentage)/100}원</td>
 								</tr>
 
 							</c:if>
@@ -177,33 +216,36 @@ div.total_price {
 			<c:if test="${empty clist}">
 				<c:forEach items="${ilist}" var="iVo">
 					<input style="white-space: nowrap;" value="${iVo.item_name}">
-					<input style="display:inline" value="${iVo.item_price*(100-iVo.discount_percentage)/100}">
+					<input style="display: inline"
+						value="${iVo.item_price*(100-iVo.discount_percentage)/100}">
 				</c:forEach>
 			</c:if>
-			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
-			
+			<hr class="hr1" align="left">
+
+
 			<!-- 총수량 및 총가격 -->
 			<div class="col-md-3" style="left: 300px;">
-			<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">총수량</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					  value="${total}개">
+				<div class="input-group input-group-sm mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-sm">총수량</span>
+					<input type="text" class="info2" value="${total}개">
 				</div>
 				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-sm" style="width: 135px; background-color:#FCE7CC; border: none;">총가격</span>
-					<input style="width: 10px; height: 38px; background-color:#FEF3E5; border: none" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-					  value="${sum}원">
+					<span class="input-group-text" id="inputGroup-sizing-sm">총가격</span>
+					<input type="text" class="info2" value="${sum}원">
 				</div>
 			</div>
-			<hr align="left" style="width:50%;height:3px;border:none;background-color:#343a40;">
-			<input type="hidden" name="ilist" value="${ilist}"> 
-			<input type="hidden" name="clist" value="${clist}"> 
-			<input class="btn btn-success" type="submit" value="결제완료">
-			<button class="btn btn-dark" type="button" id="cancel">결제취소</button>
-	</form>
+			<hr class="hr1" align="left">
+			<input type="hidden" name="ilist" value="${ilist}"> <input
+				type="hidden" name="clist" value="${clist}"> <input
+				class="btn btn-success" type="submit" value="결제완료">
+			<button class="btn btn-danger" type="button" id="cancel">결제취소</button>
+		</form>
 	</div>
-	<br>
-<jsp:include page="../footer.jsp" />
+
+
+	<jsp:include page="../footer.jsp" />
+
+
 	<script type="text/javascript">
 	 var clist = "${clist}";
 	 var member_id = "${mvo.member_id}";
