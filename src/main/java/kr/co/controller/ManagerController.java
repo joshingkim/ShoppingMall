@@ -222,6 +222,7 @@ public class ManagerController {
 	    @RequestMapping(value="/logout")
 	    public String logout(HttpSession session) {
 	        session.invalidate(); 
+	     
 	        return "redirect:/manager/main"; 
 	    }
 
