@@ -27,9 +27,8 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">상품 번호</th>
-				<th scope="col">리뷰</th>
-				<th scope="col">평점</th>
-				<th scope="col">리뷰 작성일</th>
+				<th scope="col">QnA</th>
+				<th scope="col">QnA 작성일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,16 +36,14 @@
 				<tr>
 					<td>${i.count}</td>
 					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_no}</a></td>
-					<td>${vo.review_content}</td>
-					<td>${vo.review_grade}</td>
-					<td>${vo.review_regdate}</td>
-					
+					<td>${vo.qna_title}</td>
+					<td>${vo.qna_regdate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div style="margin-left: 40%">
-	<jsp:include page="page.jsp" />
+	<jsp:include page="pageForMember.jsp" />
 	</div>
 </div>
 	<jsp:include page="../footer.jsp" />

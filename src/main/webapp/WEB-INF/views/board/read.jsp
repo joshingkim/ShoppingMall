@@ -92,11 +92,10 @@ a {
 <hr style="margin-right: 15%">
 
 <br> <div class="container" style=" white-space: normal; white-space: pre;"> ${vo.board_content}</div>	
-
 	<br> <br>
 	<c:if test="${!empty managerLogin.manager_code}">
 	
-		<input type="button" value="리뷰쓰기" onclick="nwindow()" />
+		
 		<button class="updateui">수정 화면</button>
 		</c:if>
 </div>
@@ -193,11 +192,6 @@ a {
 
 	});
 	
-	 function nwindow(){
-         var url="../../board/reviewinsert/"+${vo.board_no};
-         window.open(url,"","width=400,height=400,left=600");
-     }
-	
 		var board_no = ${vo.board_no};
 		$(document).ready(function() {
 			$(document).ready(function() {
@@ -210,7 +204,7 @@ a {
 				});
 			});
 			$("body").on("click", ".updateui", function() {
-				location.assign("/board/updateui/${vo.board_no}/${curPage}");
+				location.assign("/board/updateui/${vo.board_no}/${curPage}/${item_no}");
 			});
 
 		});

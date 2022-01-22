@@ -25,23 +25,23 @@
 				<div class="sidebar-sticky pt-3">
 
 					<ul class="nav flex-column mb-2">
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
+						<li class="nav-item"><a class="nav-link text-muted" href="/order/detail/${login.member_id}">
 								<span data-feather="file-text"></span> 주문/배송
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
+						<li class="nav-item"><a class="nav-link text-muted" href="">
 								<span data-feather="file-text"></span> 교환/환불
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
+						<li class="nav-item"><a class="nav-link text-muted" href="/cart/read/${login.member_id}">
 								<span data-feather="file-text"></span> 장바구니
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
-								<span data-feather="file-text"></span> 찜 목록
+						<li class="nav-item"><a class="nav-link text-muted" href="">
+								<span data-feather="file-text"></span> 좋아요
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
-								<span data-feather="file-text"></span> 리뷰작성
+						<li class="nav-item"><a class="nav-link text-muted" href="/Myreplies/${login.member_id}">
+								<span data-feather="file-text"></span> 리뷰 목록
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-muted" href="#">
-								<span data-feather="file-text"></span> QnA
+						<li class="nav-item"><a class="nav-link text-muted" href="">
+								<span data-feather="file-text"></span> QnA 목록
 						</a></li>
 					</ul>
 

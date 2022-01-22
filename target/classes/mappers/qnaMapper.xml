@@ -26,9 +26,19 @@
 	<select id="getAmount" resultType="Integer">
 		SELECT COUNT(*) FROM qna WHERE board_no = #{board_no}
 	</select>
-
+	<select id="getAmountOfAll" resultType="Integer">
+		SELECT COUNT(*) FROM qna
+	</select>
 	<update id="answer">
 		UPDATE qna SET qna_answer = #{qna_answer}, qna_updatedate = SYSDATE WHERE qna_no = #{qna_no}
 	</update>
-
+	<select id="listOfAll" resultType="kr.co.domain.QnaVO">
+		SELECT * FROM qna ORDER BY qna_no DESC
+	</select>
+	<select id="getAmountForMember" resultType="Integer">
+		SELECT COUNT(*) FROM qna WHERE member_id = #{member_id}
+	</select>
+	<select id="listForMember" resultType="kr.co.domain.QnaVO">
+		SELECT * FROM qna WHERE member_id = #{member_id} ORDER BY qna_no DESC
+	</select>
 </mapper>

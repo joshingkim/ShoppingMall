@@ -55,6 +55,11 @@
 	<delete id="deleteReview">
 		DELETE FROM review WHERE review_no = #{review_no}
 	</delete>
-
-
+	<select id="getAmount" resultType="Integer">
+		SELECT
+		COUNT(review_no) FROM review
+	</select>
+	<select id="listOfAll" resultType="kr.co.domain.ReviewVO">
+		SELECT * FROM review ORDER BY review_no DESC
+	</select>
 </mapper>

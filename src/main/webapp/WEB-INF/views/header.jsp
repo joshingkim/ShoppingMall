@@ -173,18 +173,19 @@ height : 38px;
       <c:choose>
           <c:when test="${empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-         <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">좋아요
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+           <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">리뷰 목록</a></li>
           </c:when>
           
           <c:when test="${not empty login}">
             <li><a href="/" class="nav-link px-2 link-secondary text-dark">Home</a></li>
-         <li><a href="/" class="nav-link px-2 link-dark text-dark" >마이페이지</a></li>
-           <li><a href="/" class="nav-link px-2 link-dark text-dark">좋아요
+           <li><a href="/likeitem/list/${login.member_id}" class="nav-link px-2 link-dark text-dark">좋아요
            <li><a href="/cart/read/${login.member_id}" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
            <li><a href="/order/detail/${login.member_id}" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
+           <li><a href="/Myreplies/list/${login.member_id}" class="nav-link px-2 link-dark text-dark">리뷰 목록</a></li>
+           <li><a href="/qna/listForMember/${login.member_id}" class="nav-link px-2 link-dark text-dark">QnA 목록</a></li>
           </c:when>
         </c:choose>
      

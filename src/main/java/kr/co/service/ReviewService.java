@@ -22,4 +22,6 @@ public interface ReviewService {
 
 	List<ReviewVO> getMyAllReplies(String member_id);
 
+	PageTO<ReviewVO> listOfAll(PageTO<ReviewVO> pt);
+
 }

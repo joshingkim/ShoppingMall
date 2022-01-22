@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO{
@@ -54,6 +55,30 @@ public class OrderDAOImpl implements OrderDAO{
 	@Override
 	public OrdersVO checkorder(int order_id) {
 		return sqlSession.selectOne(NS + ".checkorder", order_id);
+	}
+
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmount");
+	}
+
+	@Override
+	public List<OrdersVO> list_manager(PageTO<OrdersVO> pt) {
+		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
+		return sqlSession.selectList(NS+".list_manager", null, rbs);
+	}
+
+	@Override
+	public int getAmountMember(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmountMember", member_id);
+	}
+
+	@Override
+	public List<OrdersVO> list(PageTO<OrdersVO> pt, String member_id) {
+		RowBounds rbs = new RowBounds(pt.getStartNum()-1, pt.getPerPage());
+		return sqlSession.selectList(NS+".list", member_id, rbs);
 	}
 
 	

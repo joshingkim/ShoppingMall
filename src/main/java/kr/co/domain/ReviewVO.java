@@ -17,6 +17,7 @@ public class ReviewVO implements Serializable{
 	private String review_regdate;
 	private String review_updatedate;
 	private int review_grade;
+	private int item_no;
 	
 	public ReviewVO() {
 		// TODO Auto-generated constructor stub
@@ -45,6 +46,22 @@ public class ReviewVO implements Serializable{
 		this.review_regdate = review_regdate;
 		this.review_updatedate = review_updatedate;
 		this.review_grade = review_grade;
+	}
+
+
+
+
+	public ReviewVO(int review_no, int board_no, String member_id, String review_content, String review_regdate,
+			String review_updatedate, int review_grade, int item_no) {
+		super();
+		this.review_no = review_no;
+		this.board_no = board_no;
+		this.member_id = member_id;
+		this.review_content = review_content;
+		this.review_regdate = review_regdate;
+		this.review_updatedate = review_updatedate;
+		this.review_grade = review_grade;
+		this.item_no = item_no;
 	}
 
 
@@ -156,6 +173,20 @@ public class ReviewVO implements Serializable{
 
 	
 	
+
+	public int getItem_no() {
+		return item_no;
+	}
+
+
+
+
+	public void setItem_no(int item_no) {
+		this.item_no = item_no;
+	}
+
+
+
 
 	@Override
 	public String toString() {

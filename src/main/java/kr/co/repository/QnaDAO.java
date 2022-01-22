@@ -3,6 +3,7 @@ package kr.co.repository;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.QnaVO;
 
 public interface QnaDAO {
@@ -14,5 +15,14 @@ public interface QnaDAO {
 	void answer(QnaVO vo);
 
 	int getAmount(int board_no);
+
+	int getAmount();
+
+	List<QnaVO> listOfAll(PageTO<QnaVO> pt);
+
+	int getAmountForMember(String member_id);
+
+	List<QnaVO> listForMember(PageTO<QnaVO> pt, String member_id);
+
 
 }

@@ -24,9 +24,7 @@
 
 	<div style="width: 75%; float: right; margin-right:10px;">
 		<ul class="orderView">
-		<!-- 주문 내역 보이는 부분 -->
-			<!-- 이곳에 인클루드 하시면 됩니다 -->
-		<!-- 주문 내역 보이는 부분 -->
+		<jsp:include page="../review/Mylist.jsp" />
 		</ul>
 	</div>
 

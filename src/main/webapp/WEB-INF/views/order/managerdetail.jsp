@@ -42,7 +42,7 @@
 				<th>결제일</th>
 				<th>배송상태변경</th>
 			</tr>
-			<c:forEach items="${ovo}" var="vo">
+			<c:forEach items="${pt.list}" var="vo">
 				<form action="order/manager/status">
 					<input name="status" value="${vo.status}" type="hidden">
 
@@ -67,6 +67,9 @@
 				</form>
 			</c:forEach>
 		</table>
+		<div style="margin-left: 40%">
+		<jsp:include page="pageForManagerdetail.jsp" />
+		</div>
 	</div>
 
 

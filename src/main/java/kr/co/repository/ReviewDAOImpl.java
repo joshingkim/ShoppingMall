@@ -88,6 +88,18 @@ public class ReviewDAOImpl implements ReviewDAO {
 		sqlSession.delete(NS + ".deleteReview", review_no);
 	}
 
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".getAmount");
+	}
+
+	@Override
+	public List<ReviewVO> listOfAll(PageTO<ReviewVO> pt) {
+		RowBounds rbs = new RowBounds(pt.getStartNum() - 1, pt.getPerPage());
+		return sqlSession.selectList(NS +".listOfAll", null, rbs);
+	}
+
 
 
 
