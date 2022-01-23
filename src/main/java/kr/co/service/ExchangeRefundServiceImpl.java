@@ -3,6 +3,7 @@ package kr.co.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.ExchangeRefundVO;
 import kr.co.domain.OrdersVO;
@@ -17,7 +18,7 @@ public class ExchangeRefundServiceImpl implements ExchangeRefundService {
 	@Autowired
 	private OrderDAO oDao;
 
-	
+	@Transactional
 	@Override
 	public void insertExRefund(ExchangeRefundVO exvo) {
 		exDao.insertExRefund(exvo);

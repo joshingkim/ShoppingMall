@@ -15,6 +15,7 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" />
+<jsp:include page="../sidebar.jsp" />
 
 <c:choose>
 	<c:when test="${empty e}">

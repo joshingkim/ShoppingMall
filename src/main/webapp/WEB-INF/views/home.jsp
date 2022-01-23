@@ -16,7 +16,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="/resources/js/file.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -38,64 +38,35 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="row row-cols-1 row-cols-md-2">
-			<div class="col mb-4">
-				<div class="card">
-					<img src="/resources/img/manager04.png" class="card-img-top"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-4">
-				<div class="card">
-					<img src="/resources/img/manager05.png" class="card-img-top"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-4">
-				<div class="card">
-					<img src="/resources/img/manager06.png" class="card-img-top"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-4">
-				<div class="card">
-					<img src="/resources/img/manager08.png" class="card-img-top"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-					</div>
-				</div>
-			</div>
+		<div style="margin-top: 100px;">
+		<h4>전체 상품 랭킹</h4>
+		<div class="uploadedList row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
 		</div>
-
-
-
+		</div>
 	</div>
 
 
 
 	<jsp:include page="footer.jsp" />
-
+<script type="text/javascript">
+$(document).ready(function(){
+ 	var vo = "${list}";
+ 	console.log(vo);
+	var arr = eval(vo);
+	for (var i=0; i<arr.length; i++){
+		var item_no = arr[i].item_no;
+		var item_name = arr[i].item_name;
+		var file_name = arr[i].file_name;
+		var i = i;
+		console.log(item_no);
+		console.log(item_name);
+		console.log(file_name);
+		console.log(i);
+		var item = uploadedItemForRank(file_name,item_no,item_name,i);
+		$(".uploadedList").append(item);
+	
+	}
+});		
+</script>
 </body>
 </html>

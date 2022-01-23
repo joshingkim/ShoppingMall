@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.domain.BoardVO;
 import kr.co.domain.ItemVO;
+import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
 
 public interface ItemService {
@@ -35,5 +36,7 @@ public interface ItemService {
 	void addItem(ItemVO vo);
 
 	ItemVO read(int item_no);
+
+	List<OrdersVO> listForRank();
 
 }

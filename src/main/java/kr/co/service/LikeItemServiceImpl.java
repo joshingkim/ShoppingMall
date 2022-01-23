@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.LikeItemVO;
 import kr.co.domain.PageTO;
@@ -39,7 +40,7 @@ public class LikeItemServiceImpl implements LikeItemService {
 		public int delete(LikeItemVO vo) {
 			return likeDao.delete(vo);
 		}
-
+		@Transactional
 		@Override
 		public PageTO<LikeItemVO> list(PageTO<LikeItemVO> pt, String member_id) {
 			int amount = likeDao.getAmount();

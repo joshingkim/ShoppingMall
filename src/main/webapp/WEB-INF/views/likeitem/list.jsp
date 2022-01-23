@@ -55,15 +55,11 @@
 $(document).ready(function() {
 	var vo ="${pt.list}";
 	var arr = eval(vo);
-	console.log(arr);
 	for(var i=0; i<arr.length; i++){
 		var div_class = ".uploadedList"+i;
 		var item_no = $(div_class).attr("data-item_no");
 		var item_name = $(div_class).attr("data-item_name");
 		var file_name = $(div_class).attr("data-file_name");
-		console.log(item_no);
-		console.log(item_name);
-		console.log(file_name);
 		var item = uploadedItemForRead(file_name,item_no);
 		$(div_class).append(item);
 	}

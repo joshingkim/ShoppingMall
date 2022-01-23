@@ -71,4 +71,15 @@
 	<select id="getItem_name" resultType="String">
 		SELECT item_name FROM item WHERE item_no = #{item_no}
 	</select>
+	<select id="listForRank" resultType="kr.co.domain.OrdersVO">
+		SELECT item.item_no as item_no, 
+      TO_CHAR(add_months(sysdate, -1)) as ORDERDATE,
+      item.item_name as item_name
+      FROM orders 
+      FULL OUTER JOIN item ON orders.item_no = item.item_no
+      GROUP BY item.item_no, 
+      TO_CHAR(add_months(sysdate, -1)),
+      item.item_name
+      ORDER BY sum(orders.ea) desc NULLS LAST
+	</select>
 </mapper>

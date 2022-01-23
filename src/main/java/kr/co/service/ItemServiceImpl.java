@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.domain.BoardVO;
 import kr.co.domain.CategoryVO;
 import kr.co.domain.ItemVO;
+import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
 import kr.co.repository.BoardDAO;
 import kr.co.repository.FileDAO;
@@ -52,6 +53,7 @@ public class ItemServiceImpl implements ItemService {
 		}
 		
 	}
+	@Transactional
 	@Override
 	public ItemVO read(int item_no, int board_no, HttpSession session) {
 		// TODO Auto-generated method stub
@@ -106,7 +108,7 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		return iDao.getItem_color(item_name);
 	}
-
+	@Transactional
 	@Override
 	public PageTO<ItemVO> listbycategory(PageTO<ItemVO> pt, String item_category) {
 		int amount = iDao.getAmountbycategory(item_category);
@@ -118,7 +120,7 @@ public class ItemServiceImpl implements ItemService {
 		
 		return pt;
 	}
-	
+	@Transactional
 	@Override
 	public PageTO<ItemVO> listofall(PageTO<ItemVO> pt) {
 		int amount = iDao.getAmountOfAll();
@@ -134,6 +136,7 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		return iDao.getItme_no(vo);
 	}
+	@Transactional
 	@Override
 	public void addItem(ItemVO ivo) {
 		int ori_item_no = ivo.getItem_no();
@@ -156,6 +159,19 @@ public class ItemServiceImpl implements ItemService {
 	public ItemVO read(int item_no) {
 		// TODO Auto-generated method stub
 		return iDao.read(item_no);
+	}
+	@Transactional
+	@Override
+	public List<OrdersVO> listForRank() {
+		List<OrdersVO> list = iDao.listForRank();
+		
+		for(int i=0; i<list.size(); i++) {
+			int item_no = list.get(i).getItem_no();
+			String file_name = fDao.getFile(item_no).get(0);
+			list.get(i).setFile_name(file_name);
+		}
+		
+		return list;
 	}
 
 

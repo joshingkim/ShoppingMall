@@ -245,7 +245,7 @@ height : 38px;
       $.getJSON("/category/categorylist", function(result) {
          for (var i = 0; i < result.length; i++) {
             var cat_items = result[i];
-            $(".cat-menu").append("<a class='dropdown-item cat-item' href='#'>"+cat_items.item_category+"</a>");
+            $(".cat-menu").append("<a class='dropdown-item cat-item' javascript:void(0)>"+cat_items.item_category+"</a>");
             querySelect();
          }
       });
@@ -268,7 +268,7 @@ height : 38px;
       for(var i =0; i<result.length;i++){
                 if(i< 10){
                 var lists = result[i].keyword;
-                $("ol").append("<li><a href='#'>"+(i+1)+"위 :"+lists+"</a></li>");
+                $("ol").append("<li><a javascript:void(0)>"+(i+1)+"위 :"+lists+"</a></li>");
                 rolltext();
                 }
              }
