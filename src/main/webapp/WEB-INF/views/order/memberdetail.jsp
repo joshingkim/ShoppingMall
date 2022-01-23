@@ -63,7 +63,7 @@
 							<tr class="stat">
 								
 								
-								<td>${ovo.order_id}</td>
+								<td><a style="text-decoration: none; color: #000;" href="/order/orderpage/${ovo.order_id}">${ovo.order_id}</a></td>
 								<td><div data-item_no="${ovo.item_no}" data-item_name="${ovo.item_name}" data-file_name="${ovo.file_name}" class="uploadedList${i.index}"></div></td>
 								<td><a style="text-decoration: none; color: #000;" href="/item/read/${ovo.item_no}">${ovo.item_name}</a></td>
 								<td>${ovo.ea}</td>
