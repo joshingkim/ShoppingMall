@@ -34,10 +34,16 @@
 
 		<div class="wrap-detail">
 			<form action="/exchangeRefund/requestpage">
+							<input type="hidden" name="member_id" value="">
+							<input type="hidden" name="order_id" value="">
+							<input type="hidden" name="price" value="">
+							<input type="hidden" name="order_date" value="">
+							<input type="hidden" name="ea" value="">
 
 				<table class="table">
 					<thead>
 						<tr>
+							<th>주문번호</th>
 							<th>제품번호</th>
 							<th>제품수량</th>
 							<th>제품가격</th>
@@ -48,13 +54,10 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${pt.list}" var="ovo">
-							<input type="hidden" name="member_id" value="${mvo.member_id}">
-							<input type="hidden" name="order_id" value="${ovo.order_id}">
-							<input type="hidden" name="price" value="${ovo.price}">
-							<input type="hidden" name="order_date" value="${ovo.order_date}">
-							<input type="hidden" name="ea" value="${ovo.ea}">
 							<tr class="stat">
 								
+								
+								<td>${ovo.order_id}</td>
 								<td>${ovo.item_no}</td>
 								<td>${ovo.ea}</td>
 								<td>${ovo.price}</td>
@@ -65,11 +68,14 @@
 											data-order_date="${ovo.order_date}" data-price="${ovo.price}"
 											data-member_id="${ovo.member_id}"
 											data-order_id="${ovo.order_id}" class="btn_cancel">주문취소</button>
-										<button class="btn_ex_re">교환/환불</button>
+										
 									</c:if> <c:if test="${ovo.status == '교환' || ovo.status == '환불'}">
 										<p>진행중</p>
 									</c:if> <c:if test="${ovo.status == '배송완료'}">
-										<button class="btn_ex_re">교환/환불</button>
+										<button data-ea="${ovo.ea}"
+											data-order_date="${ovo.order_date}" data-price="${ovo.price}"
+											data-member_id="${ovo.member_id}"
+											data-order_id="${ovo.order_id}" class="btn_ex_re">교환/환불</button>
 										<input class="btn_review" data-item_no ="${ovo.item_no}" type="button" value="리뷰쓰기"/>
 									</c:if> <c:if
 										test="${ovo.status == '교환완료' || ovo.status == '환불완료' || ovo.status == '취소'}">
@@ -123,6 +129,17 @@ $(document).ready(function() {
 	});
 	
 	$(".btn_ex_re").click(function(){
+		var order_id = $(this).attr("data-order_id");
+		var member_id = $(this).attr("data-member_id");
+		var order_date = $(this).attr("data-order_date");
+		var price = $(this).attr("data-price");
+		var ea = $(this).attr("data-ea");
+		
+		$("[name='member_id']").attr("value",member_id);
+		$("[name='order_id']").attr("value",order_id);
+		$("[name='order_date']").attr("value",order_date);
+		$("[name='price']").attr("value",price);
+		$("[name='ea']").attr("value",ea);
 		$("form").submit;
 	});
 	

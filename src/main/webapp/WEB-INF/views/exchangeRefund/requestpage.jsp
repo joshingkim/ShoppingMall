@@ -15,33 +15,47 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 .refundpage{
-    width: 1000px;
+    width: 1250px;
     padding: 0;
     float: right;
 }
+
+.h-detail{
+	margin-top: 55px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #000000;
+}
+
 th{
 	width :150px;
 }
-.uploadedList{
-	align-content: center;
-}
+
 img{
 	width : 150px;
 	height : 150px;
 }
+
 table {
 	text-align: center;
     width: inherit;
 }
-.h-refund{
-	display : inline-block;
-}
+
 dt, dd {
 	float : left;
 }
+
 dd {
 	margin-right : 30px;
 }
+
+.h-refund{
+	display : inline-block;
+}
+
+.uploadedList{
+	align-content: center;
+}
+
 .refundpage{
     padding: 0;
     float: right;
@@ -54,12 +68,22 @@ dd {
 
 .sec-oredered-detail{
 	float : none;
+	width:50%;
+	height: 220px;
+    padding-right: 30px;
 }
 
 .sec-refund-detail{
+	width:50%;
+	height:220px;
 	position: absolute;
 	right: 0;
     top: 0;
+}
+
+.btn-resist-refund{
+ margin-top: 50px;
+ float : right;
 }
 </style>
 </head>
@@ -68,7 +92,7 @@ dd {
 	<jsp:include page="../sidebar.jsp" />
 
 	<section class="refundpage">
-						<header class="ex-head">
+						<header class="h-detail">
 							<h3 class="h-refund">환불/교환 주문정보</h3>
 						</header>
 						<table>
@@ -96,7 +120,7 @@ dd {
 						</table>
 				<div class="wrap-ordered-detail">
 					<section class="sec-oredered-detail">
-						<header class="ex-ordered-detail">
+						<header class="h-detail">
 							<h3 class="h-refund">배송지정보</h3>
 						</header>
 						
@@ -112,13 +136,13 @@ dd {
 								</tr>
 								<tr>
 								<th>배송지주소</th>
-								<td>${ovo.address},${dAddress}</td>
+								<td>${ovo.address},${ovo.dAddress}</td>
 								</tr>
 							</tbody>
 						</table>
 					</section>
 				<section class="sec-refund-detail">
-					<header class="ex-refund-detail">
+					<header class="h-detail">
 						<h3 class="h-refund">환불/교환 정보</h3>
 					</header>
 					
@@ -151,7 +175,7 @@ dd {
 					
 				<div class="form-reason">
 					<section class="sec-reason-detail">
-						<header class="reason-detail">
+						<header class="h-detail">
 							<h3 class="h-reason">환불/교환</h3>
 						</header>
 				<form action="/exchangeRefund/insertExRefund" method="POST">
@@ -161,7 +185,7 @@ dd {
 						<input id="refund" type="radio" name="exchange_refund_code" value="1"><label for="refund">환불</label>
 						<textarea name="exchange_refund_content" class="form-control"
 							rows="5" placeholder="환불사유를 입력해주세요." maxlength="300"></textarea>
-						<input type="submit" class="btn btn-primary" data-dismiss="modal"
+						<input type="submit" class="btn btn-primary btn-resist-refund" data-dismiss="modal"
 						value="신청">
 						</form>
 					</section>
