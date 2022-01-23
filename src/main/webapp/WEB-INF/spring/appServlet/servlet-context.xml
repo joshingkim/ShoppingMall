@@ -54,12 +54,16 @@
 			<mapping path="/board/**"/>
 			<exclude-mapping path="/board/list/**"/>
 			<exclude-mapping path="/board/read/**"/>
+			<exclude-mapping path="/board/updateui/**"/>
+			<exclude-mapping path="/board/update/**"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		
 				<interceptor>
 			<mapping path="/qna/**"/>
 			<exclude-mapping path="/qna/list/**"/>
+			<exclude-mapping path="/qna/answer/**"/>
+			<exclude-mapping path="/qna/listOfAll/**"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		

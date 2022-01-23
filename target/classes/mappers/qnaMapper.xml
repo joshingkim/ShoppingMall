@@ -6,11 +6,9 @@
 <mapper namespace="kr.co.qna">
 
 	<insert id="insert">
-		INSERT INTO qna (qna_no, board_no, member_id, qna_title, qna_content,
-		qna_repRoot, qna_repStep, qna_repIndent)
+		INSERT INTO qna (qna_no, board_no, member_id, qna_title, qna_content)
 		VALUES(seq_board_qna_no.NEXTVAL, #{board_no}, #{member_id},
-		#{qna_title}, #{qna_content}, seq_board_qna_no.CURRVAL,
-		#{qna_repStep}, #{qna_repIndent})
+		#{qna_title}, #{qna_content})
 
 		<selectKey order="AFTER" keyProperty="qna_no"
 			resultType="Integer">

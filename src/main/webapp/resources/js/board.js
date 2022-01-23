@@ -168,10 +168,10 @@ function replyform(member_id, review_updatedate, review_content, review_grade , 
 								
 					         <p class="card-text review_content font-weight-bold">${review_content}</p>
 							 
-
-					         <a data-member_id="${member_id}" data-review_no="${review_no}" href="#" class="btn btn-light btn-sm btn_review_updateui_form" data-toggle="modal" data-target="#staticBackdrop">수정</a> 
+							<div class="asd">
+					         <a data-member_id="${member_id}" data-review_no="${review_no}" href="#" class="btn btn-light btn-sm btn_review_updateui_form" data-toggle="modal" data-target="#staticBackdrop">수정</a>
 					         <a data-review_no="${review_no}" href="#" class="btn btn-light btn-sm btn_review_delete">삭제</a>
-
+							</div>
 
 					      
 					   </div>

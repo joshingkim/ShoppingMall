@@ -29,12 +29,12 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						제목<input class="form-control" id="qna_title" name="qna_title">
+						제목<input class="form-control" id="qna_title" name="qna_title" maxlength=60>
 					</div>	
 					
 					 <div class="form-group">
 
-    내용<textarea class="form-control" id="qna_content" name="qna_content" rows="5"></textarea>
+    내용<textarea class="form-control" id="qna_content" name="qna_content" rows="5" maxlength=200></textarea>
   </div>
 				</div>
 				<div class="modal-footer">
