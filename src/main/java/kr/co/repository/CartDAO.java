@@ -15,8 +15,6 @@ public interface CartDAO {
 
 	void update(CartVO vo);
 
-	int sumMoney(String member_id);
-
 	int delete(int cart_no);
 
 	void changeQuantity(CartVO vo);
@@ -35,6 +33,6 @@ public interface CartDAO {
 
 	void updateQuantity(CartVO vo);
 
-	List<Object> getName();
+	int sumMoney(PageTO<CartVO> pt, String member_id);
 
 }

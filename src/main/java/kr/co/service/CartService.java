@@ -16,8 +16,6 @@ public interface CartService {
 
 	PageTO<CartVO> readCart(PageTO<CartVO> pt, String member_id);
 
-	int sumMoney(String member_id);
-
 	int delete(int cart_no);
 	
 	void deleteAll(int cart_no);
@@ -30,7 +28,7 @@ public interface CartService {
 
 	List<ItemVO> getDiscount(String member_id);
 
-	List<Object> getName();
+	int sumMoney(PageTO<CartVO> pt, String member_id);
 
 	
 

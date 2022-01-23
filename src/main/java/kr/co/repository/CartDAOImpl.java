@@ -32,7 +32,7 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public int sumMoney(String member_id) {
+	public int sumMoney(PageTO<CartVO> pt, String member_id) {
 		return sqlSession.selectOne(NS+".sumMoney", member_id);
 	}
 	
@@ -90,9 +90,5 @@ public class CartDAOImpl implements CartDAO {
 		sqlSession.update(NS+".updateQuantity", vo);
 	}
 
-	@Override
-	public List<Object> getName() {
-		return sqlSession.selectList(NS+".getName");
-	}
 	
 }

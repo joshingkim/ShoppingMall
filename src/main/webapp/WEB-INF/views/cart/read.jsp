@@ -6,16 +6,32 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>장바구니</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+table .foot {
+	border-style: 30px;
+}
+
+</style>
+
+
 </head>
 <body class="cart_body">
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
+
+<c:choose>
+	<c:when test="${map.cart_no == 0}">
+		alert("장바구니가 비었습니다.");
+	</c:when>
+	
+	<c:otherwise>
 	<div class="container" id="frame">
 		<form action="">
 			<div id="frame2">
@@ -23,74 +39,40 @@
 					class="home">홈 > 장바구니</span>
 			</div>
 			<br />
-
 			<div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th id="t_head_1" colspan="10" style="text-align: left; padding-left: 10px;">장바구니 상품</th>
+							<th  colspan="10" style="text-align: left; padding-left: 10px;">장바구니 상품</th>
 						</tr>
 						<tr>
-							<th  style="width: 500px"><span>상품명</span></th>
-							<th>할인가(판매가)</th>
-							<th>수량</th>
-							<th>합계</th>
-							<th>선택</th>
+							<th scope="col"><span>상품명</span></th>
+							<th scope="col">할인가(판매가)</th>
+							<th scope="col">수량</th>
+							<th scope="col">합계</th>
+							<th scope="col">선택</th>
 						</tr>
 					</thead>
 
 					<tbody>
 					
-						<c:forEach items="${map.ilist}" var="item">
+						<c:forEach items="${map.list}" var="cart">
 							<c:set var="isTrue" value="true"/>
 							<tr>
-								<td class="itemnamez"><span ></span></td>
-								<td><span> <c:forEach items="${map.list}" var="cart">
-											<c:if test="${cart.item_no==item.item_no && isTrue}">
-												<span class="dprice">${(100-item.discount_percentage)*item.item_price/100}</span>(${item.item_price})
-													<c:set var="isTrue" value="false"/>
-                               			</c:if>
-										</c:forEach>
-								</span>원</td>
-								<td>
-									<c:set var="isTrue" value="true"/>
-								<c:forEach items="${map.list}" var="cart">
-										<c:if test="${cart.item_no==item.item_no && isTrue}">
-											<input name="cart_quantity" type="number"
-												data-itemno="${cart.item_no}" min="1" max="99" step="1"
-												value="${cart.cart_quantity}">
-											<br>
-											<c:set var="isTrue" value="false"/>
-										</c:if>
-									</c:forEach></td>
-
-								<td>
-								<c:set var="isTrue" value="true"/>
-								<c:forEach items="${map.list}" var="cart">
-										<c:if test="${cart.item_no==item.item_no && isTrue}">
-											<span class="isum">${((100-item.discount_percentage)*item.item_price/100)*cart.cart_quantity}</span>
-											<c:set var="isTrue" value="false"/>
-										</c:if>
-										
-									</c:forEach></td>
-								<td>
-								<c:set var="isTrue" value="true"/>
-									<c:forEach items="${map.list}" var="cart">
-										<c:if test="${cart.item_no==item.item_no && isTrue}">
-											<button data-citem_no="${cart.cart_no}" class="btn default del">삭제</button><br>
-									<c:set var="isTrue" value="false"/>
-								</c:if>
-									</c:forEach></td>
+								<td><span>${cart.item_name}</span></td>
+								<td><span class="dprice">${(100-cart.discount_percentage)*cart.item_price/100}</span>(${cart.item_price}) 원</td>
+								<td><input name="cart_quantity" type="number" data-itemno="${cart.item_no}" min="1" max="99" step="1" value="${cart.cart_quantity}"><br></td>
+								<td><span class="isum">${((100-cart.discount_percentage)*cart.item_price/100)*cart.cart_quantity}</span></td>
+								<td><button data-citem_no="${cart.cart_no}" class="btn btn-info del">삭제</button><br></td>
 							</tr>
 						</c:forEach>
+					<!-- 	<div id="reset">
+						<td scope="row" style="font-size: 15pt;; font-weight: bold; width:30%:"><span>결제금액</span></td>
+						<td></td><td></td><td></td>
+						<td> <span style="text-align: right;" class ="totalprice"> </span><span>원</span></td>
+						</div> -->
+						<c:set var="isTrue" value="false"/>		
 					</tbody>
-				</table>
-
-				<table class="cart_footer">
-					<tr>
-							<th style="padding: 20px 0; font-size: 15px; font-weight: bold;"><span>결제금액</span></th>
-							<td colspan="2"><span id ="totalprice">원</span></td>
-					</tr>
 				</table>
 			</div>
 		</form>
@@ -102,31 +84,37 @@
 		</div>
 	</div>
 
+	</c:otherwise>
+</c:choose>
 <jsp:include page="../footer.jsp" />
+
 <script type="text/javascript">
-		var getItemName ='${getItemName}';
-		var narr = eval(getItemName);
-		var itemsname = narr[0].ITEM_NAME;
-		console.log(itemsname);
-		$(".itemnamez").append(itemsname);
+		
+		
+		var item_no = $(this).attr("data-item_no");
 		
 		var map = "${map}";
 		var list = "${map.list}";
-		var arr = eval(list);
+	/* 	var arr = eval(list); */
 		var member_id = "${member_id}";
+		
+		var money = "${map.sumMoney}";
+		var sumMoney = eval(money);
+		$(".totalprice").append(sumMoney); 
 		
 		var ilist = "${map.ilist}";
 		var iarr = eval(ilist);
 		
-		var carr = $(".isum");
 		var sum = 0;
 		var cart_no = ${cart.cart_no}
+		
 		
 		$("#totalprice").text(sum);
 		
 		$("input[name='cart_quantity']").on("input", function(event) {
 					var qtag = $(this);
 					var update_quantity = $(this).val();
+					var totalprice = $(this).val();
 					var item_no = $(this).attr("data-itemno");
 					$.ajax({
 						type : "post",
@@ -138,7 +126,7 @@
 						},
 						dataType : "text",
 						success : function(data) {
-							var dprice = $(qtag).parent().prev("td").children("span").children("span.dprice").text();
+							var dprice = $(qtag).parent().prev("td").children("span.dprice").text();
 							$(qtag).parent().next("td").children("span").text(eval(dprice * update_quantity));
 						}
 					});
@@ -157,15 +145,25 @@
 				dataType : "text",
 				success : function(data) {
 					$(delbtn).parent().parent().remove();
+					
+					$.ajax({
+						
+					});
 				}
 			});
 		});
 		
-		$(".order").click(function() {
-			location.assign("/order/insert/"+member_id);
+		$(".order").click(function(event) {
+			if (cart_no == 0) {
+				alert("장바구니가 비었습니다.");
+				return; 
+			} else {
+				location.assign("/order/insert/"+member_id);
+			}
+			
 		});
+		
 </script>
-
 
 </body>
 </html>
