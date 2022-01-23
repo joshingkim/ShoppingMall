@@ -10,7 +10,7 @@ public class LikeItemVO implements Serializable{
 	private int like_no;
 	private int item_no;
 	private String member_id;
-	private Date like_date;
+	private String like_date;
 	private String item_name;
 	private String file_name;
 	
@@ -22,7 +22,7 @@ public class LikeItemVO implements Serializable{
 		this.member_id = member_id;
 	}
 
-	public LikeItemVO(int like_no, int item_no, String member_id, Date like_date) {
+	public LikeItemVO(int like_no, int item_no, String member_id, String like_date) {
 		this.like_no = like_no;
 		this.item_no = item_no;
 		this.member_id = member_id;
@@ -31,7 +31,7 @@ public class LikeItemVO implements Serializable{
 	
 	
 
-	public LikeItemVO(int like_no, int item_no, String member_id, Date like_date, String item_name, String file_name) {
+	public LikeItemVO(int like_no, int item_no, String member_id, String like_date, String item_name, String file_name) {
 		super();
 		this.like_no = like_no;
 		this.item_no = item_no;
@@ -81,11 +81,11 @@ public class LikeItemVO implements Serializable{
 		this.member_id = member_id;
 	}
 
-	public Date getLike_date() {
+	public String getLike_date() {
 		return like_date;
 	}
 
-	public void setLike_date(Date like_date) {
+	public void setLike_date(String like_date) {
 		this.like_date = like_date;
 	}
 

@@ -12,7 +12,7 @@ public class CartVO implements Serializable{
 	private int item_no;
 	private int cart_quantity;
 	private int cart_price;
-	private Date cart_date;
+	private String cart_date;
 	private int money;
 	private String item_name;
 	private int item_price;
@@ -21,7 +21,7 @@ public class CartVO implements Serializable{
 	
 	public CartVO() { }
 
-	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
+	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, String cart_date,
 			int money) {
 		this.cart_no = cart_no;
 		this.member_id = member_id;
@@ -31,7 +31,7 @@ public class CartVO implements Serializable{
 		this.cart_date = cart_date;
 	}
 	
-	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
+	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, String cart_date,
 			String item_name, int item_price, int discount_percentage) {
 		super();
 		this.cart_no = cart_no;
@@ -45,7 +45,7 @@ public class CartVO implements Serializable{
 		this.discount_percentage = discount_percentage;
 	}
 
-	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
+	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, String cart_date,
 			int money, String item_name, int item_price, int discount_percentage, String file_name) {
 		super();
 		this.cart_no = cart_no;
@@ -109,11 +109,11 @@ public class CartVO implements Serializable{
 		this.cart_price = cart_price;
 	}
 
-	public Date getCart_date() {
+	public String getCart_date() {
 		return cart_date;
 	}
 
-	public void setCart_date(Date cart_date) {
+	public void setCart_date(String cart_date) {
 		this.cart_date = cart_date;
 	}
 
