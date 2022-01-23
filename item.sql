@@ -61,6 +61,16 @@ create table orders(
    CONSTRAINT fk_orderr_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE,
    CONSTRAINT fk_orderr_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
+SELECT sum(orders.ea) as ORDERQUNTITY, item.item_no, 
+		TO_CHAR(add_months(sysdate, -1)) as ORDERDATE,
+		item.item_name as ITEM_NAME
+		FROM orders 
+		FULL OUTER JOIN item ON orders.item_no = item.item_no
+		GROUP BY item.item_no, 
+		TO_CHAR(add_months(sysdate, -1)),
+		item.item_name
+		ORDER BY sum(orders.ea) desc NULLS LAST
+select item_no, count from (select item_no, sum(ea) count from orders where order_date >= to_date(add_months(sysdate, -1)) group by item_no) order by count desc
 select item_size from item where item_name = '세이코 솔라 다이버 시계(SSC675J1)' group by item_size ORDER BY LPAD(item_size, 21, '0') 
 select * from user_tab_columns 
 CREATE SEQUENCE seq_order_id

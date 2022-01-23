@@ -19,6 +19,8 @@ public class QnaVO implements Serializable {
 	private int qna_repStep;
 	private int qna_repIndent;
 	private int item_no;
+	private String item_name;
+	private String file_name;
 
 	public QnaVO() {
 	}
@@ -39,9 +41,11 @@ public class QnaVO implements Serializable {
 		this.qna_repIndent = qna_repIndent;
 	}
 	
+
+
 	public QnaVO(int qna_no, int board_no, String member_id, String qna_title, String qna_content, String qna_regdate,
-			String qna_updatedate, String qna_answer, int qna_repRoot, int qna_repStep, int qna_repIndent,
-			int item_no) {
+			String qna_updatedate, String qna_answer, int qna_repRoot, int qna_repStep, int qna_repIndent, int item_no,
+			String item_name, String file_name) {
 		super();
 		this.qna_no = qna_no;
 		this.board_no = board_no;
@@ -55,6 +59,8 @@ public class QnaVO implements Serializable {
 		this.qna_repStep = qna_repStep;
 		this.qna_repIndent = qna_repIndent;
 		this.item_no = item_no;
+		this.item_name = item_name;
+		this.file_name = file_name;
 	}
 
 	public int getQna_no() {
@@ -148,9 +154,23 @@ public class QnaVO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public String getItem_name() {
+		return item_name;
+	}
 
-	
-	
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+
 	public int getItem_no() {
 		return item_no;
 	}
@@ -173,8 +193,13 @@ public class QnaVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "QnaVO [qna_no=" + qna_no + ", board_no=" + board_no + ", member_id=" + member_id + ", qna_title="
-				+ qna_title + "]";
+		return "{'qna_no':" + qna_no + ", 'board_no':" + board_no + ", 'member_id':'" + member_id + "', 'qna_title':'"
+				+ qna_title + "', 'qna_content':'" + qna_content + "', 'qna_regdate':'" + qna_regdate + "', 'qna_updatedate':'"
+				+ qna_updatedate + "', 'qna_answer':'" + qna_answer + "', 'qna_repRoot':'" + qna_repRoot + "', 'qna_repStep':'"
+				+ qna_repStep + "', 'qna_repIndent':'" + qna_repIndent + "', 'item_no':" + item_no + ", 'item_name':'" + item_name
+				+ "', 'file_name':'" + file_name + "'}";
 	}
+
+
 
 }

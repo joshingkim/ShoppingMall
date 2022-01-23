@@ -23,6 +23,8 @@ public class OrdersVO implements Serializable{
 	private String status;
 	private String receiver;
 	private Date order_date;
+	private String item_name;
+	private String file_name;
 	
 	public OrdersVO() {}
 
@@ -44,6 +46,25 @@ public class OrdersVO implements Serializable{
 	}
 
 	
+
+	public OrdersVO(int order_id, int item_no, String member_id, int ea, int price, String address, String dAddress,
+			String phone, String status, String receiver, Date order_date, String item_name, String file_name) {
+		super();
+		this.order_id = order_id;
+		this.item_no = item_no;
+		this.member_id = member_id;
+		this.ea = ea;
+		this.price = price;
+		this.address = address;
+		this.dAddress = dAddress;
+		this.phone = phone;
+		this.status = status;
+		this.receiver = receiver;
+		this.order_date = order_date;
+		this.item_name = item_name;
+		this.file_name = file_name;
+	}
+
 
 	public Date getOrder_date() {
 		return order_date;
@@ -139,6 +160,26 @@ public class OrdersVO implements Serializable{
 		return serialVersionUID;
 	}
 
+	public String getItem_name() {
+		return item_name;
+	}
+
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(item_no, member_id);
@@ -156,11 +197,13 @@ public class OrdersVO implements Serializable{
 		return item_no == other.item_no && Objects.equals(member_id, other.member_id);
 	}
 
+
 	@Override
 	public String toString() {
-		return "{'order_id':" + order_id + ", 'item_no':" + item_no + ", 'member_id':" + member_id + ", 'ea':"
-				+ ea + ", 'price':" + price + ", 'address':"+ address+", 'dAddress':"+dAddress+", 'phone':" +phone+",'status':"+status+", 'receiver':"+receiver+", 'order_date':"+order_date+"}";
+		return "{'order_id':" + order_id + ", 'item_no':" + item_no + ", 'member_id':'" + member_id + "', 'item_name':'"
+				+ item_name + "', 'file_name':'" + file_name + "'}";
 	}
-	
+
+
 	
 }

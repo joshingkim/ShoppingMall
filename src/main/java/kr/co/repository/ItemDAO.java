@@ -47,5 +47,7 @@ public interface ItemDAO {
 
 	int getItme_no(ItemVO vo);
 
+	String getItem_name(int item_no);
+
 
 }

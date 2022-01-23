@@ -71,9 +71,9 @@
 					$("[name='item_name']").focus();
 					return;
 				}
-				var item_category = $("[name='item_category']").val();
+				var item_category = $("#item_category").val();
 				if (item_category == '') {
-					$("[name='item_category']").focus();
+					$("#item_category").focus();
 					return;
 				}
 				if (item_category == '카테고리') {

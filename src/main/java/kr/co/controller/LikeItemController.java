@@ -38,37 +38,27 @@ public class LikeItemController {
 		
 		@RequestMapping(value = "/list/{member_id}/{curPage}", method = RequestMethod.GET)
 		public String list(@PathVariable("member_id") String member_id,@PathVariable("curPage") int curPage, PageTO<LikeItemVO> pt, Model model) {
-			pt.setCurPage(1);
-			pt = likeService.list(pt, member_id);
-			List<ItemVO> ilist = new ArrayList<ItemVO>();
 			
-			List<LikeItemVO> llist = pt.getList();
-			for(int i=0; i<llist.size(); i++) {
-				int item_no = pt.getList().get(i).getItem_no();
-				ItemVO ivo = iService.read(item_no);
-				ilist.add(ivo);
-			}
+			pt.setCurPage(curPage);
+			
+			pt = likeService.list(pt, member_id);
+			
+			
 			model.addAttribute("pt", pt);
-			model.addAttribute("list", ilist);
+			
 			return "likeitem/list";
 			}
 			
 
 		@RequestMapping(value = "/list/{member_id}", method = RequestMethod.GET)
 		public String list(@PathVariable("member_id") String member_id, PageTO<LikeItemVO> pt, Model model) {
-		System.out.println(member_id);
-		pt.setCurPage(1);
-		pt = likeService.list(pt, member_id);
-		List<ItemVO> ilist = new ArrayList<ItemVO>();
 		
-		List<LikeItemVO> llist = pt.getList();
-		for(int i=0; i<llist.size(); i++) {
-			int item_no = pt.getList().get(i).getItem_no();
-			ItemVO ivo = iService.read(item_no);
-			ilist.add(ivo);
-		}
+		pt.setCurPage(1);
+		
+		pt = likeService.list(pt, member_id);
+		
 		model.addAttribute("pt", pt);
-		model.addAttribute("list", ilist);
+		
 		return "likeitem/list";
 		}
 		

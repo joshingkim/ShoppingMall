@@ -77,7 +77,7 @@
 						"${keywordRank[4].KEYWORD}",
 					 "${keywordRank[5].KEYWORD}", ],
 				datasets : [ {
-					label : '총 찜 횟수',
+					label : '검색 횟수',
 					data : [ ${keywordRank[0].COUNTKEYWORD},
 						${keywordRank[1].COUNTKEYWORD},
 						${keywordRank[2].COUNTKEYWORD},

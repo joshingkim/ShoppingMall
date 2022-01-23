@@ -68,5 +68,7 @@
 	<select id="getItme_no" resultType="Integer">
 		SELECT item_no FROM item where UPPER(item_name) = UPPER(#{item_name}) AND UPPER(item_size) = UPPER(#{item_size}) AND UPPER(item_color) = UPPER(#{item_color})
 	</select>
-	
+	<select id="getItem_name" resultType="String">
+		SELECT item_name FROM item WHERE item_no = #{item_no}
+	</select>
 </mapper>

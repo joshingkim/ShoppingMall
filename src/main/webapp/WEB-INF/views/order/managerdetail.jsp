@@ -16,11 +16,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <style type="text/css">
-  .btn_status{
-  	border-radius: 5px;	
-  }
-  </style>
+<script src="/resources/js/file.js" type="text/javascript"></script>
+<style type="text/css">
+	.btn_status{
+  		border-radius: 5px;	
+	}
+	img {
+	width: 100px;
+	height: 100px;
+	}
+</style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
@@ -30,25 +35,27 @@
 	
 	
 	<!-- 경영자, 운영자 배송조회 -->
-	<div class="container">
+	<div class="container" style=" font-size : small;">
 		<h3>회원 주문 내역</h3>
 		<table class="table">
 			<tr>
-				<th>회원아이디</th>
-				<th>제품번호</th>
-				<th>제품수량</th>
-				<th>제품가격</th>
-				<th>배송상태</th>
-				<th>결제일</th>
-				<th>배송상태변경</th>
+				<th scope="col">회원아이디</th>
+				<th scope="col">이미지</th>
+				<th scope="col">상품명</th>
+				<th scope="col">제품수량</th>
+				<th scope="col">제품가격</th>
+				<th scope="col">배송상태</th>
+				<th scope="col">결제일</th>
+				<th scope="col">배송상태변경</th>
 			</tr>
-			<c:forEach items="${pt.list}" var="vo">
+			<c:forEach items="${pt.list}" var="vo" varStatus="i">
 				<form action="order/manager/status">
 					<input name="status" value="${vo.status}" type="hidden">
 
 					<tr>
 						<td>${vo.member_id}</td>
-						<td>${vo.item_no}</td>
+						<td><div data-item_no="${vo.item_no}" data-item_name="${vo.item_name}" data-file_name="${vo.file_name}" class="uploadedList${i.index}"></div></td>
+						<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 						<td>${vo.ea}</td>
 						<td>${vo.price}</td>
 						<td>${vo.status}</td>
@@ -77,6 +84,17 @@
 <script type="text/javascript">
 	var status = "";
 	$(document).ready(function() {
+		var vo ="${pt.list}";
+		
+		for(var i=0; i<vo.length; i++){
+			var div_class = ".uploadedList"+i;
+			var item_no = $(div_class).attr("data-item_no");
+			var item_name = $(div_class).attr("data-item_name");
+			var file_name = $(div_class).attr("data-file_name");
+			var item = uploadedItemForRead(file_name,item_no);
+			$(div_class).append(item);
+		}
+		
 		$("select[name=status]").change(function() {
 			status = $(this).val();
 		});

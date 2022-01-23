@@ -85,6 +85,15 @@ function uploadedItemForRead(filename){
 	return msg;
 }
 
+function uploadedItemlist(filename,item_no){
+	var msg =`
+		<div class="uploadeditem">
+			<p><a target="_blank" href="/item/read/${item_no}"><img src="${getImageUrl2(filename)}"></a></p>
+		</div>
+	`;
+	return msg;
+}
+
 function uploadedItemForlist(filename, item_no, item_name){
 	var msg =`
 		<div class="col" style="margin: 10px;">
