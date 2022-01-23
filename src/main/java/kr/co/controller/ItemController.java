@@ -164,8 +164,10 @@ public class ItemController {
 			String file_name = fService.getFile(item_no).get(0);
 			list.add(new ItemVO(item_no,item_name,file_name));
 		}
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pt", pt);
+		model.addAttribute("item_category", item_category);
 		return "item/listbycategory";
 	}
 	
@@ -186,6 +188,7 @@ public class ItemController {
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("pt", pt);
+		model.addAttribute("item_category", item_category);
 		
 		return "item/listbycategory";
 	}
