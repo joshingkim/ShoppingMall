@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.remoting.rmi.JndiRmiServiceExporter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -92,7 +93,6 @@ public class CartController {
 				pt.getList().get(i).setItem_name(item_name);
 				pt.getList().get(i).setItem_price(item_price);
 				pt.getList().get(i).setDiscount_percentage(discount_percentage);
-				
 			}
 			
 			model.addAttribute("map", map);

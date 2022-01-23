@@ -51,7 +51,7 @@ public class FnqServiceImpl implements FnqService{
 	public void delete(int fnq_no) {
 		fDAO.delete(fnq_no);
 	}
-
+	@Transactional
 	@Override
 	public PageTO<FnqVO> list(PageTO<FnqVO> pt) {
 		// TODO Auto-generated method stub

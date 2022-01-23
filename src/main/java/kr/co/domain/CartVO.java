@@ -17,7 +17,8 @@ public class CartVO implements Serializable{
 	private String item_name;
 	private int item_price;
 	private int discount_percentage;
-
+	private String file_name;
+	
 	public CartVO() { }
 
 	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
@@ -42,6 +43,30 @@ public class CartVO implements Serializable{
 		this.item_name = item_name;
 		this.item_price = item_price;
 		this.discount_percentage = discount_percentage;
+	}
+
+	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
+			int money, String item_name, int item_price, int discount_percentage, String file_name) {
+		super();
+		this.cart_no = cart_no;
+		this.member_id = member_id;
+		this.item_no = item_no;
+		this.cart_quantity = cart_quantity;
+		this.cart_price = cart_price;
+		this.cart_date = cart_date;
+		this.money = money;
+		this.item_name = item_name;
+		this.item_price = item_price;
+		this.discount_percentage = discount_percentage;
+		this.file_name = file_name;
+	}
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 
 	public int getCart_no() {
@@ -151,7 +176,7 @@ public class CartVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "{'cart_no':" + cart_no + ", 'member_id':'" + member_id + "', 'item_no':" + item_no + ", 'cart_quantity':"
+		return "{'file_name':'"+file_name+"','cart_no':" + cart_no + ", 'member_id':'" + member_id + "', 'item_no':" + item_no + ", 'cart_quantity':"
 				+ cart_quantity + ", cart_price=" + cart_price + ", cart_date=" + cart_date + ", money=" + money
 				+ ", 'item_name':'" + item_name + "', 'item_price':" + item_price + ", 'discount_percentage':"+ discount_percentage+"}";
 	}

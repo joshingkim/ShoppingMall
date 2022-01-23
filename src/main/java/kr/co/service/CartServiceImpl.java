@@ -13,12 +13,15 @@ import kr.co.domain.CartVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.PageTO;
 import kr.co.repository.CartDAO;
+import kr.co.repository.FileDAO;
 
 @Service
 public class CartServiceImpl implements CartService {
 
 	@Inject
 	private CartDAO cDao;
+	@Inject
+	private FileDAO fDao;
 	
 	@Override
 	public void insert(CartVO vo) {
@@ -54,6 +57,16 @@ public class CartServiceImpl implements CartService {
 		map.put("member_id", member_id);
 		List<CartVO> list = cDao.readList(map);
 		pt.setList(list);
+		
+		list = pt.getList();
+		
+		for(int i=0; i<list.size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+		}
+		
+		
 		return pt;
 	}
 

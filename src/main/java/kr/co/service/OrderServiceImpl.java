@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return oDao.checkorder(order_id);
 	}
-
+	@Transactional
 	@Override
 	public PageTO<OrdersVO> list_manager(PageTO<OrdersVO> pt) {
 		int amount = oDao.getAmount();
@@ -87,7 +87,7 @@ public class OrderServiceImpl implements OrderService{
 		return pt;
 		}
 	}
-
+	@Transactional
 	@Override
 	public PageTO<OrdersVO> list(PageTO<OrdersVO> pt, String member_id) {
 		int amount = oDao.getAmountMember(member_id);

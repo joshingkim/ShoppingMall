@@ -61,6 +61,15 @@ create table orders(
    CONSTRAINT fk_orderr_item_no FOREIGN KEY(item_no) REFERENCES item(item_no) ON DELETE CASCADE,
    CONSTRAINT fk_orderr_member_id FOREIGN KEY(member_id) REFERENCES member(member_id) ON DELETE CASCADE
 )
+SELECT item.item_no as item_no, 
+      TO_CHAR(add_months(sysdate, -1)) as ORDERDATE,
+      item.item_name as item_name
+      FROM orders 
+      FULL OUTER JOIN item ON orders.item_no = item.item_no
+      GROUP BY item.item_no, 
+      TO_CHAR(add_months(sysdate, -1)),
+      item.item_name
+      ORDER BY sum(orders.ea) desc NULLS LAST
 SELECT sum(orders.ea) as ORDERQUNTITY, item.item_no, 
 		TO_CHAR(add_months(sysdate, -1)) as ORDERDATE,
 		item.item_name as ITEM_NAME

@@ -120,3 +120,21 @@ function uploadedItemForAddItem(filename) {
 	return msg;
 }
 
+function uploadedItemForRank(filename, item_no, item_name, i){
+	var msg =`
+		<div class="col" style="margin: 25px;">
+			<div class="card-header">
+    			${i+1} 위
+  			</div>
+			<div class="card shadow-sm uploadeditem">
+					<img class="card-img-top" src="${getImageUrl(filename)}">
+				<div class="card-body">
+					<p class="card-text">
+						<a style="text-decoration: none; font-size : small; color: #000;" href="/item/read/${item_no}">${item_name}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	`;
+	return msg;
+}

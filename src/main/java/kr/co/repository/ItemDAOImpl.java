@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.ItemVO;
+import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
 import kr.co.domain.SearchPageTO;
 
@@ -150,5 +151,12 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+".getItem_name", item_no);
 	}
+
+	@Override
+	public List<OrdersVO> listForRank() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+".listForRank");
+	}
+
 
 }

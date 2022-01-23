@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.domain.ItemVO;
+import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
 import kr.co.domain.SearchPageTO;
 
@@ -48,6 +49,10 @@ public interface ItemDAO {
 	int getItme_no(ItemVO vo);
 
 	String getItem_name(int item_no);
+
+	List<OrdersVO> listForRank();
+
+	
 
 
 }
