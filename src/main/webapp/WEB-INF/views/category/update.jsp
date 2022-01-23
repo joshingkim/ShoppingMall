@@ -29,7 +29,7 @@
 						<p class="card-text mb-auto"><h4>카테고리 수정</h4></p>
 						<form action="/category/update" method="post">
 							<div class="input-group mb-2"> 
-								<span class="input-group-text">item</span>
+								<span class="input-group-text">category</span>
 								<input name="item_category" maxlength="20" style="width: 250px;" value="${vo.item_category}" readonly="readonly">
 							</div>
 							<div class="input-group mb-2"> 
