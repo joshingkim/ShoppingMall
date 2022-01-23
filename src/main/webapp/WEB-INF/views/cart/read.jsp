@@ -158,9 +158,6 @@ var vo ="${map.list}";
 				success : function(data) {
 					$(delbtn).parent().parent().remove();
 					
-					$.ajax({
-						
-					});
 				}
 			});
 		});

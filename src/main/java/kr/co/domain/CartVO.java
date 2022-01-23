@@ -177,7 +177,7 @@ public class CartVO implements Serializable{
 	@Override
 	public String toString() {
 		return "{'file_name':'"+file_name+"','cart_no':" + cart_no + ", 'member_id':'" + member_id + "', 'item_no':" + item_no + ", 'cart_quantity':"
-				+ cart_quantity + ", cart_price=" + cart_price + ", cart_date=" + cart_date + ", money=" + money
+				+ cart_quantity + ", cart_price=" + cart_price + ", 'cart_date':'" + cart_date + "', money=" + money
 				+ ", 'item_name':'" + item_name + "', 'item_price':" + item_price + ", 'discount_percentage':"+ discount_percentage+"}";
 	}
 	
