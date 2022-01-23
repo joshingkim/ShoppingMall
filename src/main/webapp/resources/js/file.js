@@ -13,6 +13,69 @@ function uploadedItem(filename) {
 	return msg;
 }
 
+function uploadedItemForRead(filename){
+	var msg =`
+		<div class="uploadeditem col-sm-3">
+			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}"><img src="${getImageUrl2(filename)}"></a></p>
+		</div>
+	`;
+	return msg;
+}
+
+function uploadedItemlist(filename,item_no){
+	var msg =`
+		<div class="uploadeditem">
+			<p><a target="_blank" href="/item/read/${item_no}"><img src="${getImageUrl2(filename)}"></a></p>
+		</div>
+	`;
+	return msg;
+}
+
+function uploadedItemForlist(filename, item_no, item_name){
+	var msg =`
+		<div class="col" style="margin: 10px;">
+			<div class="card shadow-sm uploadeditem">
+					<img class="card-img-top" src="${getImageUrl(filename)}">
+				<div class="card-body">
+					<p class="card-text">
+						<a style="text-decoration: none; font-size : small; color: #000;" href="/item/read/${item_no}">${item_name}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	`;
+	return msg;
+}
+function uploadedItemForAddItem(filename) {
+	var originalFilename = getOriginalFilename(filename);
+	var msg = `
+		<div class="uploadeditem col-sm-3">
+			<img src="${getImageUrl(filename)}">
+			<p class"uploadedItemP"><a style="white-space:nowrap;" target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}">${originalFilename}</a></p>
+		</div>
+	`;
+	return msg;
+}
+
+function uploadedItemForRank(filename, item_no, item_name, i){
+	var msg =`
+		<div class="col" style="margin: 25px;">
+			<div class="card-header">
+    			${i+1} 위
+  			</div>
+			<div class="card shadow-sm uploadeditem">
+					<img class="card-img-top" src="${getImageUrl(filename)}">
+				<div class="card-body">
+					<p class="card-text">
+						<a style="text-decoration: none; font-size : small; color: #000;" href="/item/read/${item_no}">${item_name}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	`;
+	return msg;
+}
+
 function getOriginalFilename(filename) {
 	var idx = 0;
 	if (checkImageFile(filename)) {
@@ -76,65 +139,4 @@ function deleteFile(filename) {
 	return msg;
 }
 
-function uploadedItemForRead(filename){
-	var msg =`
-		<div class="uploadeditem col-sm-3">
-			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}"><img src="${getImageUrl2(filename)}"></a></p>
-		</div>
-	`;
-	return msg;
-}
 
-function uploadedItemlist(filename,item_no){
-	var msg =`
-		<div class="uploadeditem">
-			<p><a target="_blank" href="/item/read/${item_no}"><img src="${getImageUrl2(filename)}"></a></p>
-		</div>
-	`;
-	return msg;
-}
-
-function uploadedItemForlist(filename, item_no, item_name){
-	var msg =`
-		<div class="col" style="margin: 10px;">
-			<div class="card shadow-sm uploadeditem">
-					<img class="card-img-top" src="${getImageUrl(filename)}">
-				<div class="card-body">
-					<p class="card-text">
-						<a style="text-decoration: none; font-size : small; color: #000;" href="/item/read/${item_no}">${item_name}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	`;
-	return msg;
-}
-function uploadedItemForAddItem(filename) {
-	var originalFilename = getOriginalFilename(filename);
-	var msg = `
-		<div class="uploadeditem col-sm-3">
-			<img src="${getImageUrl(filename)}">
-			<p class"uploadedItemP"><a style="white-space:nowrap;" target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}">${originalFilename}</a></p>
-		</div>
-	`;
-	return msg;
-}
-
-function uploadedItemForRank(filename, item_no, item_name, i){
-	var msg =`
-		<div class="col" style="margin: 25px;">
-			<div class="card-header">
-    			${i+1} 위
-  			</div>
-			<div class="card shadow-sm uploadeditem">
-					<img class="card-img-top" src="${getImageUrl(filename)}">
-				<div class="card-body">
-					<p class="card-text">
-						<a style="text-decoration: none; font-size : small; color: #000;" href="/item/read/${item_no}">${item_name}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	`;
-	return msg;
-}

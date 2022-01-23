@@ -53,7 +53,7 @@ $(document).ready(function(){
  	var vo = "${list}";
  	console.log(vo);
 	var arr = eval(vo);
-	for (var i=0; i<arr.length; i++){
+	for (var i=0; i<8; i++){
 		var item_no = arr[i].item_no;
 		var item_name = arr[i].item_name;
 		var file_name = arr[i].file_name;

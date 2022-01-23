@@ -168,7 +168,7 @@ background-color:
 				if(val != 'null'){
 				$(".qna_answer").eq(clkIdx).css("display","table-row");
 				}
-				if(mcode ==1){
+				if(mcode ==1 || mcode == 2){
 					$(".area-answer").css("display", "inline-flex");
 				}
 			} else {

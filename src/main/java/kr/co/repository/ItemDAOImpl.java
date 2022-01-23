@@ -158,5 +158,10 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList(NS+".listForRank");
 	}
 
+	@Override
+	public void updateQuantity(int item_no) {
+		sqlSession.update(NS+".updateQuantity", item_no);
+	}
+
 
 }

@@ -82,4 +82,7 @@
       item.item_name
       ORDER BY sum(orders.ea) desc NULLS LAST
 	</select>
+	<update id="updateQuantity">
+		UPDATE item SET item_amount=item_amount-1 WHERE item_no = #{item_no}
+	</update>
 </mapper>

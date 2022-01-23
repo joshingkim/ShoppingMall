@@ -21,12 +21,29 @@
 	<jsp:include page="../header.jsp" />
 
 	<jsp:include page="../sidebar.jsp" />
-	<form action="/category/update" method="post">
-		카테고리명 : <input name="item_category" maxlength="20" value="${vo.item_category}"><br> 
-		아이템명 : <input name="item_name" maxlength="40" value="${vo.item_name}"><br>
-		<input type="hidden" name="ori_item_name" value="${vo.item_name}">
-		<input type="submit" value="등록 완료">
-	</form>
+	
+		<div class="row mb-2 container">
+		<div class="col-md-10">
+			<div style="margin-top : 80px; margin-left: 30%;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<p class="card-text mb-auto"><h4>카테고리 수정</h4></p>
+						<form action="/category/update" method="post">
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">item</span>
+								<input name="item_category" maxlength="20" style="width: 250px;" value="${vo.item_category}" readonly="readonly">
+							</div>
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">item</span>
+								<input name="item_name" maxlength="40" style="width: 250px;" value="${vo.item_name}">
+							</div>
+							<input type="hidden" name="ori_item_name" value="${vo.item_name}">
+							<input type="submit" value="수정 완료">
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+	
 	<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -37,9 +54,9 @@
 					$("[name='item_name']").focus();
 					return;
 				}
-				var item_category = $("[name='item_category']").val();
+				var item_category = $("#item_category").val();
 				if (item_category == '') {
-					$("[name='item_category']").focus();
+					$("#item_category").focus();
 					return;
 				}
 				$("form").submit();

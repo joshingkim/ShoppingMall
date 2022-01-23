@@ -38,7 +38,7 @@ function qnalist(board_no, curPage, el) {
 		strPage +=`
 		  <li class="page-item">
       				<a class="page-link qna_page_right" href="${data['curPage']}" data-totalPage="${data['totalPage']}" aria-label="Next">
-      			  <span aria-hidden="true" class="text-secondary">Nest</span>
+      			  <span aria-hidden="true" class="text-secondary">Next</span>
      		 </a>
    		 </li>
   		</ul>

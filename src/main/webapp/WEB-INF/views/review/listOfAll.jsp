@@ -32,7 +32,7 @@ img {
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">이미지</th>
+				<!-- <th scope="col">이미지</th> -->
 				<th scope="col">상품명</th>
 				<th scope="col">리뷰</th>
 				<th scope="col">평점</th>
@@ -43,7 +43,7 @@ img {
 			<c:forEach items="${pt.list}" var="vo" varStatus="i">
 				<tr>
 					<td>${i.count}</td>
-					<td><div data-item_no="${vo.item_no}" data-item_name="${vo.item_name}" data-file_name="${vo.file_name}" class="uploadedList${i.index}"></div></td>
+					<%-- <td><div data-item_no="${vo.item_no}" data-item_name="${vo.item_name}" data-file_name="${vo.file_name}" class="uploadedList${i.index}"></div></td> --%>
 					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.review_content}</td>
 					<td>${vo.review_grade}</td>
@@ -62,7 +62,7 @@ img {
 $(document).ready(function(){
 	var vo ="${pt.list}";
 	
-	for(var i=0; i<vo.length; i++){
+/* 	for(var i=0; i<vo.length; i++){
 		var div_class = ".uploadedList"+i;
 		var item_no = $(div_class).attr("data-item_no");
 		var item_name = $(div_class).attr("data-item_name");
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		var item = uploadedItemlist(file_name,item_no);
 		console.log(item);
 		$(div_class).append(item);
-	}
+	} */
 	
 });
 </script>

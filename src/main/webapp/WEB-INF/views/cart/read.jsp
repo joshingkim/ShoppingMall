@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="/resources/js/file.js" type="text/javascript"></script>
+	<script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 
 table .foot {
@@ -50,7 +49,7 @@ table .foot {
 							<th  colspan="10" style="text-align: left; padding-left: 10px;">장바구니 상품</th>
 						</tr>
 						<tr>
-							<th scope="col">상품 이미지</th>
+							<!-- <th scope="col">상품 이미지</th> -->
 							<th scope="col"><span>상품명</span></th>
 							<th scope="col">할인가(판매가)</th>
 							<th scope="col">수량</th>
@@ -64,7 +63,7 @@ table .foot {
 						<c:forEach items="${map.list}" var="cart" varStatus="i">
 							<c:set var="isTrue" value="true"/>
 							<tr>
-								<td><div data-item_no="${cart.item_no}" data-item_name="${cart.item_name}" data-file_name="${cart.file_name}" class="uploadedList${i.index}"></div></td>
+								<%-- <td><div data-item_no="${cart.item_no}" data-item_name="${cart.item_name}" data-file_name="${cart.file_name}" class="uploadedList${i.index}"></div></td> --%>
 								<td><a style="text-decoration: none; color: #000;" href="/item/read/${cart.item_no}">${cart.item_name}</a></td>
 								<td><span class="dprice">${(100-cart.discount_percentage)*cart.item_price/100}</span>(${cart.item_price}) 원</td>
 								<td><input name="cart_quantity" type="number" data-itemno="${cart.item_no}" min="1" max="99" step="1" value="${cart.cart_quantity}"><br></td>
@@ -97,13 +96,13 @@ table .foot {
 <script type="text/javascript">
 var vo ="${map.list}";
 
-for(var i=0; i<vo.length; i++){
+/* for(var i=0; i<vo.length; i++){
 	var div_class = ".uploadedList"+i;
 	var item_no = $(div_class).attr("data-item_no");
 	var file_name = $(div_class).attr("data-file_name");
-	var item = uploadedItemForRead(file_name,item_no);
+	var item = uploadedItemlist(file_name,item_no);
 	$(div_class).append(item);
-}
+}; */
 		
 		var item_no = $(this).attr("data-item_no");
 		
@@ -120,7 +119,6 @@ for(var i=0; i<vo.length; i++){
 		var iarr = eval(ilist);
 		
 		var sum = 0;
-		var cart_no = ${cart.cart_no}
 		
 		
 		$("#totalprice").text(sum);
@@ -168,7 +166,7 @@ for(var i=0; i<vo.length; i++){
 		});
 		
 		$(".order").click(function(event) {
-			if (cart_no == 0) {
+			if (list.length == 0) {
 				alert("장바구니가 비었습니다.");
 				return; 
 			} else {

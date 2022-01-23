@@ -69,12 +69,15 @@ public class CategoryServiceImpl implements CategoryService {
 		String item_name = vo.getItem_name();
 		String item_category = vo.getItem_category();
 		String ori_item_name = vo.getOri_item_name();
-
+		
 		ItemVO ivo = new ItemVO(item_name, item_category, ori_item_name);
-		
-		iDao.updatebycategory(ivo);
-		
-		cDao.delete(ori_item_name);
+		if(item_name == ori_item_name) {
+			cDao.update(vo);
+		}else {
+			iDao.updatebycategory(ivo);
+			
+			cDao.delete(ori_item_name);
+		}
 	}
 
 

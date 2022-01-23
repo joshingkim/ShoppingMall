@@ -44,12 +44,12 @@
 
 						<div class="input-group mb-2">
 							<span class="input-group-text">생년월일</span> 
-							<input class="form-control" type="date" name="member_birthday" required>
+							<input class="form-control" type="date" min="1901-01-01" max="2100-12-31" name="member_birthday" required>
 						</div>
 
 						<div class="input-group mb-2">
 							<span class="input-group-text">이메일</span> 
-							<input class="form-control" id="member_email" name="member_email" placeholder="사용하시는 이메일 주소를 넣어주세요" required>
+							<input class="form-control" id="member_email" maxlength="30" name="member_email" placeholder="사용하시는 이메일 주소를 넣어주세요" required>
 						</div>
 
 						<div class="input-group mb-2">
@@ -64,7 +64,7 @@
 
 						<div class="input-group mb-2">
 							<span class="input-group-text">전화번호</span> 
-							<input class="form-control" name="member_phone_number" maxlength="13" required>
+							<input class="form-control" name="member_phone_number"  placeholder="숫자만 입력하여 주십시오" maxlength="15" maxlength="13" required>
 						</div>
 
 						<input type="submit" id="signup" value="회원 등록">
@@ -130,7 +130,53 @@ function emailcheck(emailString) {
 		
 		$("#signup").click(function(event) {
 			event.preventDefault();
+			if($("#member_id").val()==""){
+				alert("사용하실 아이디를 입력해주세요.");
+				$("#member_id").focus();
+				return false;
+			}
 			
+			if($("#member_pw").val()==""){
+				alert("사용하실 비밀번호를 입력해주세요.");
+				$("#member_pw").focus();
+				return false;
+			}
+			
+			if($("#member_name").val()==""){
+				alert("이름을 입력해주세요.");
+				$("#member_name").focus();
+				return false;
+			}
+			
+			if($("#member_birthday").val()==""){
+				alert("생년월일을 입력해주세요.");
+				$("#member_birthday").focus();
+				return false;
+			}
+			
+			if($("#member_email").val()==""){
+				alert("사용중인 이메일을 입력해주세요.");
+				$("#member_email").focus();
+				return false;
+			}
+			
+			if($("#member_address").val()==""){
+				alert("주소를 검색하여 입력해주세요.");
+				$("#member_address").focus();
+				return false;
+			}
+			
+			if($("#member_detail_address").val()==""){
+				alert("상세주소를 입력해주세요.");
+				$("#member_detail_address").focus();
+				return false;
+			}
+			
+			if($("#member_phone_number").val()==""){
+				alert("사용중인 전화번호를 입력해주세요.");
+				$("#member_phone_number").focus();
+				return false;
+			}
 			var str = $('#insertform').serialize();
 			if(str != ""){
 				alert("정삭적으로 회원가입이 되었습니다. 다시 로그인 하여주십시오.")
