@@ -8,11 +8,14 @@ import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaVO;
 import kr.co.domain.ReviewVO;
 import kr.co.repository.BoardDAO;
+import kr.co.repository.FileDAO;
+import kr.co.repository.ItemDAO;
 import kr.co.repository.QnaDAO;
 
 @Service
@@ -24,12 +27,18 @@ public class QnaServiceImpl implements QnaService {
 	@Inject
 	private BoardDAO bDao;
 	
+	@Inject
+	private FileDAO fDao;
+	
+	@Inject
+	private ItemDAO iDao;
+	
 	@Override
 	public void insert(QnaVO qvo) {
 		qDao.insert(qvo);
 
 	}
-
+	@Transactional
 	@Override
 	public List<QnaVO> list(PageTO<QnaVO> qpt, int board_no) {
 		int amount = qDao.getAmount(board_no);
@@ -50,7 +59,7 @@ public class QnaServiceImpl implements QnaService {
 		qDao.answer(vo);
 
 	}
-
+	@Transactional
 	@Override
 	public PageTO<QnaVO> listOfAll(PageTO<QnaVO> pt) {
 		int amount = qDao.getAmount();
@@ -66,12 +75,16 @@ public class QnaServiceImpl implements QnaService {
 			int boad_no = pt.getList().get(i).getBoard_no();
 			int item_no = bDao.selectItem_no(boad_no);
 			pt.getList().get(i).setItem_no(item_no);
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
 		}
 		
 		return pt;
 		}
 	}
-
+	@Transactional
 	@Override
 	public PageTO<QnaVO> listForMember(PageTO<QnaVO> pt, String member_id) {
 		int amount = qDao.getAmountForMember(member_id);
@@ -87,6 +100,10 @@ public class QnaServiceImpl implements QnaService {
 			int boad_no = pt.getList().get(i).getBoard_no();
 			int item_no = bDao.selectItem_no(boad_no);
 			pt.getList().get(i).setItem_no(item_no);
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
 		}
 		
 		return pt;

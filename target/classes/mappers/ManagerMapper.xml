@@ -27,14 +27,14 @@
 
 	<select id="saleRank" resultType="Map">
 		SELECT sum(orders.ea) as ORDERQUNTITY, item.item_no, 
-		TO_CHAR(orders.order_date,'MM') as ORDERDATE,
+		TO_CHAR(add_months(sysdate, -1)) as ORDERDATE,
 		item.item_name as ITEM_NAME
 		FROM orders 
 		FULL OUTER JOIN item ON orders.item_no = item.item_no
 		GROUP BY item.item_no, 
-		TO_CHAR(orders.order_date,'MM'),
+		TO_CHAR(add_months(sysdate, -1)),
 		item.item_name
-		ORDER BY sum(orders.ea) DESC
+		ORDER BY sum(orders.ea) desc NULLS LAST
 	</select>
 
 	<select id="daySale" resultType="Map">
@@ -60,7 +60,7 @@
 		FROM like_item 
 		FULL OUTER JOIN item ON like_item.item_no = item.item_no
 		GROUP BY item.item_no, item.item_name
-		ORDER BY count(item.item_no) DESC
+		ORDER BY count(like_item.item_no) DESC
 	</select>
 
 	

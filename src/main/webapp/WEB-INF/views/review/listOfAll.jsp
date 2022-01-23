@@ -27,15 +27,16 @@ img {
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
 <div class="container" style=" font-size : small;">
-<h4>QnA 목록</h4>
+<h4>리뷰 목록</h4>
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">이미지</th>
 				<th scope="col">상품명</th>
-				<th scope="col">QnA</th>
-				<th scope="col">QnA 작성일</th>
+				<th scope="col">리뷰</th>
+				<th scope="col">평점</th>
+				<th scope="col">리뷰 작성일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,22 +45,24 @@ img {
 					<td>${i.count}</td>
 					<td><div data-item_no="${vo.item_no}" data-item_name="${vo.item_name}" data-file_name="${vo.file_name}" class="uploadedList${i.index}"></div></td>
 					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
-					<td>${vo.qna_title}</td>
-					<td>${vo.qna_regdate}</td>
+					<td>${vo.review_content}</td>
+					<td>${vo.review_grade}</td>
+					<td>${vo.review_regdate}</td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div style="margin-left: 40%">
-	<jsp:include page="pageForMember.jsp" />
+	<jsp:include page="pageOfAll.jsp" />
 	</div>
 </div>
 	<jsp:include page="../footer.jsp" />
 <script type="text/javascript">
 $(document).ready(function(){
 	var vo ="${pt.list}";
-	var arr = eval(vo);
-	for(var i=0; i<arr.length; i++){
+	
+	for(var i=0; i<vo.length; i++){
 		var div_class = ".uploadedList"+i;
 		var item_no = $(div_class).attr("data-item_no");
 		var item_name = $(div_class).attr("data-item_name");

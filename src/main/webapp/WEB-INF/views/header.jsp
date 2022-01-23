@@ -177,6 +177,7 @@ height : 38px;
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">장바구니</a></li>
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">주문배송조회</a></li>
            <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">리뷰 목록</a></li>
+           <li><a href="/member/loginUI" class="nav-link px-2 link-dark text-dark">QnA 목록</a></li>
           </c:when>
           
           <c:when test="${not empty login}">

@@ -5,7 +5,7 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="/Myreplies/list/${member_id}/${pt.curPage>1?pt.curPage-1:1}" aria-label="Previous">
+      <a class="page-link" href="/Myreplies/listOfAll/${pt.curPage>1?pt.curPage-1:1}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -13,12 +13,12 @@
     
     <c:forEach begin="${pt.beginPageNum}" end="${pt.endPageNum}" var="i">
 
-    <li class="page-item ${pt.curPage==i?'active':'' }"><a class="page-link" href="/Myreplies/list/${member_id}/${i}">${i}</a></li>
+    <li class="page-item ${pt.curPage==i?'active':'' }"><a class="page-link" href="/Myreplies/listOfAll/${i}">${i}</a></li>
     
     </c:forEach>
     
     <li class="page-item">
-      <a class="page-link" href="/Myreplies/list/${member_id}/${pt.curPage<pt.totalPage?pt.curPage+1:pt.totalPage}" aria-label="Next">
+      <a class="page-link" href="/Myreplies/listOfAll/${pt.curPage<pt.totalPage?pt.curPage+1:pt.totalPage}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

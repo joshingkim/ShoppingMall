@@ -11,6 +11,8 @@ public class LikeItemVO implements Serializable{
 	private int item_no;
 	private String member_id;
 	private Date like_date;
+	private String item_name;
+	private String file_name;
 	
 	public LikeItemVO() { }
 	
@@ -25,6 +27,34 @@ public class LikeItemVO implements Serializable{
 		this.item_no = item_no;
 		this.member_id = member_id;
 		this.like_date = like_date;
+	}
+	
+	
+
+	public LikeItemVO(int like_no, int item_no, String member_id, Date like_date, String item_name, String file_name) {
+		super();
+		this.like_no = like_no;
+		this.item_no = item_no;
+		this.member_id = member_id;
+		this.like_date = like_date;
+		this.item_name = item_name;
+		this.file_name = file_name;
+	}
+
+	public String getItem_name() {
+		return item_name;
+	}
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 
 	public int getLike_no() {
@@ -82,10 +112,11 @@ public class LikeItemVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "LikeItemDAO {'like_no':" + like_no + ", 'item_no':" + item_no + ", 'member_id':'" + member_id + "', 'like_date':"
-				+ like_date + "}";
+		return "{'like_no':" + like_no + ", 'item_no':" + item_no + ", 'member_id':'" + member_id + "', 'like_date':'"
+				+ like_date + "', 'item_name':'" + item_name + "', 'file_name':'" + file_name + "'}";
 	}
-	
+
+
 	
 	
 }

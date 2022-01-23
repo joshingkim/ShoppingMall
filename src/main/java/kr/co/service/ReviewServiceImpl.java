@@ -6,11 +6,14 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.BoardVO;
 import kr.co.domain.PageTO;
 import kr.co.domain.ReviewVO;
 import kr.co.repository.BoardDAO;
+import kr.co.repository.FileDAO;
+import kr.co.repository.ItemDAO;
 import kr.co.repository.ReviewDAO;
 
 @Service
@@ -22,12 +25,18 @@ public class ReviewServiceImpl implements ReviewService {
 	@Inject
 	private BoardDAO bDao;
 	
+	@Inject
+	private FileDAO fDao;
+	
+	@Inject
+	private ItemDAO iDao;
+	
 	@Override
 	public void insert(Map<String, Object> map) {
 		rDao.insert(map);
 
 	}
-
+	@Transactional
 	@Override
 	public PageTO<ReviewVO> getRepliesPage(PageTO<ReviewVO> pt, int board_no) {
 		int amount = rDao.getAmountReplyByBno(board_no);
@@ -41,7 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return pt;
 		}
 	}
-	
+	@Transactional
 	@Override
 	public PageTO<ReviewVO> getMyRepliesPage(PageTO<ReviewVO> pt, String member_id) {
 		int amount = rDao.getMyAmountReplyByBno(member_id);
@@ -57,6 +66,10 @@ public class ReviewServiceImpl implements ReviewService {
 			int boad_no = pt.getList().get(i).getBoard_no();
 			int item_no = bDao.selectItem_no(boad_no);
 			pt.getList().get(i).setItem_no(item_no);
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
 		}
 		
 		return pt;
@@ -84,7 +97,8 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(int review_no) {
 		rDao.deleteReview(review_no);
 	}
-
+	
+	@Transactional
 	@Override
 	public PageTO<ReviewVO> listOfAll(PageTO<ReviewVO> pt) {
 		int amount = rDao.getAmount();
@@ -100,6 +114,10 @@ public class ReviewServiceImpl implements ReviewService {
 			int boad_no = pt.getList().get(i).getBoard_no();
 			int item_no = bDao.selectItem_no(boad_no);
 			pt.getList().get(i).setItem_no(item_no);
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
 		}
 		
 		return pt;

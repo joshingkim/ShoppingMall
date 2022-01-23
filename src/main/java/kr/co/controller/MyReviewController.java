@@ -25,8 +25,6 @@ public class MyReviewController {
 
 	@Inject
 	private ReviewService rService;
-	@Inject
-	private BoardService bService;
 
 	@RequestMapping(value = "/list/{member_id}", method = RequestMethod.GET)
 	public String getMyAllReplies(@PathVariable("member_id") String member_id,PageTO<ReviewVO> pt, Model model) {
@@ -61,7 +59,7 @@ public class MyReviewController {
 		
 		model.addAttribute("pt", pt);
 		
-		return "review/Mylist";
+		return "review/listOfAll";
 	}
 	
 	@RequestMapping(value = "/listOfAll/{curPage}", method = RequestMethod.GET)
@@ -73,7 +71,7 @@ public class MyReviewController {
 		
 		model.addAttribute("pt", pt);
 		
-		return "review/Mylist";
+		return "review/listOfAll";
 	}
 	
 }

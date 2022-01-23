@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
+import kr.co.repository.FileDAO;
+import kr.co.repository.ItemDAO;
 import kr.co.repository.OrderDAO;
 
 @Service
@@ -18,6 +20,11 @@ public class OrderServiceImpl implements OrderService{
 	@Inject 
 	private OrderDAO oDao;
 	
+	@Inject
+	private FileDAO fDao;
+	
+	@Inject
+	private ItemDAO iDao;
 
 	@Transactional
 	@Override
@@ -67,6 +74,16 @@ public class OrderServiceImpl implements OrderService{
 		List<OrdersVO> list = oDao.list_manager(pt);
 		pt.setList(list);
 		
+		list = pt.getList();
+		
+		for(int i=0; i<list.size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
+		}
+		
 		return pt;
 		}
 	}
@@ -80,6 +97,16 @@ public class OrderServiceImpl implements OrderService{
 		}else {
 		List<OrdersVO> list = oDao.list(pt,member_id);
 		pt.setList(list);
+		
+		list = pt.getList();
+		
+		for(int i=0; i<list.size(); i++) {
+			int item_no = pt.getList().get(i).getItem_no();
+			String file_name = fDao.getFile(item_no).get(0);
+			pt.getList().get(i).setFile_name(file_name);
+			String item_name = iDao.getItem_name(item_no);
+			pt.getList().get(i).setItem_name(item_name);
+		}
 		
 		return pt;
 		}

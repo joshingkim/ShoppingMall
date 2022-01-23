@@ -16,6 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
   <style type="text/css">
     .btn_ex_re{
   	border-radius: 5px;	
@@ -23,12 +24,16 @@
   	.btn_cancel{
   	border-radius: 5px;	
   	}
+  	img {
+	width: 100px;
+	height: 100px;
+	}
   </style>
 </head>
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
 <body>
-	<div class="container">
+	<div class="container" style=" font-size : small;">
 		<h2>주문내역</h2>
 
 
@@ -43,22 +48,24 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>주문번호</th>
-							<th>제품번호</th>
-							<th>제품수량</th>
-							<th>제품가격</th>
-							<th>배송상태</th>
-							<th>결제일</th>
-							<th>비고</th>
+							<th scope="col">주문번호</th>
+							<th scope="col">이미지</th>
+							<th scope="col">상품명</th>
+							<th scope="col">제품수량</th>
+							<th scope="col">제품가격</th>
+							<th scope="col">배송상태</th>
+							<th scope="col">결제일</th>
+							<th scope="col">비고</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${pt.list}" var="ovo">
+						<c:forEach items="${pt.list}" var="ovo" varStatus="i">
 							<tr class="stat">
 								
 								
 								<td>${ovo.order_id}</td>
-								<td>${ovo.item_no}</td>
+								<td><div data-item_no="${ovo.item_no}" data-item_name="${ovo.item_name}" data-file_name="${ovo.file_name}" class="uploadedList${i.index}"></div></td>
+								<td><a style="text-decoration: none; color: #000;" href="/item/read/${ovo.item_no}">${ovo.item_name}</a></td>
 								<td>${ovo.ea}</td>
 								<td>${ovo.price}</td>
 								<td>${ovo.status}</td>
@@ -100,7 +107,17 @@
 	<script type="text/javascript">
 	
 $(document).ready(function() {
-
+	var vo ="${pt.list}";
+	var arr = eval(vo);
+	for(var i=0; i<arr.length; i++){
+		var div_class = ".uploadedList"+i;
+		var item_no = $(div_class).attr("data-item_no");
+		var item_name = $(div_class).attr("data-item_name");
+		var file_name = $(div_class).attr("data-file_name");
+		var item = uploadedItemForRead(file_name,item_no);
+		$(div_class).append(item);
+	}
+	
 	$("table").on("click", ".btn_cancel",function(event){
 		event.preventDefault();
 		var order_id = $(this).attr("data-order_id");
