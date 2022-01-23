@@ -14,7 +14,10 @@ public class CartVO implements Serializable{
 	private int cart_price;
 	private Date cart_date;
 	private int money;
-	
+	private String item_name;
+	private int item_price;
+	private int discount_percentage;
+
 	public CartVO() { }
 
 	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
@@ -25,7 +28,20 @@ public class CartVO implements Serializable{
 		this.cart_quantity = cart_quantity;
 		this.cart_price = cart_price;
 		this.cart_date = cart_date;
-		this.money = money;
+	}
+	
+	public CartVO(int cart_no, String member_id, int item_no, int cart_quantity, int cart_price, Date cart_date,
+			String item_name, int item_price, int discount_percentage) {
+		super();
+		this.cart_no = cart_no;
+		this.member_id = member_id;
+		this.item_no = item_no;
+		this.cart_quantity = cart_quantity;
+		this.cart_price = cart_price;
+		this.cart_date = cart_date;
+		this.item_name = item_name;
+		this.item_price = item_price;
+		this.discount_percentage = discount_percentage;
 	}
 
 	public int getCart_no() {
@@ -84,13 +100,38 @@ public class CartVO implements Serializable{
 		this.money = money;
 	}
 
+	public int getDiscount_percentage() {
+		return discount_percentage;
+	}
+
+	public void setDiscount_percentage(int discount_percentage) {
+		this.discount_percentage = discount_percentage;
+	}
+
+	public String getItem_name() {
+		return item_name;
+	}
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+	public int getItem_price() {
+		return item_price;
+	}
+
+	public void setItem_price(int item_price) {
+		this.item_price = item_price;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cart_date, cart_no, cart_price, cart_quantity, item_no, member_id, money);
+		return Objects.hash(cart_date, cart_no, cart_price, cart_quantity, discount_percentage, item_name, item_no,
+				item_price, member_id);
 	}
 
 	@Override
@@ -103,14 +144,16 @@ public class CartVO implements Serializable{
 			return false;
 		CartVO other = (CartVO) obj;
 		return Objects.equals(cart_date, other.cart_date) && cart_no == other.cart_no && cart_price == other.cart_price
-				&& cart_quantity == other.cart_quantity && item_no == other.item_no
-				&& Objects.equals(member_id, other.member_id) && money == other.money;
+				&& cart_quantity == other.cart_quantity && discount_percentage == other.discount_percentage
+				&& Objects.equals(item_name, other.item_name) && item_no == other.item_no
+				&& item_price == other.item_price && Objects.equals(member_id, other.member_id);
 	}
-	
+
 	@Override
 	public String toString() {
-	return " {'cart_no':" + cart_no + ", 'member_id':'" + member_id + "', 'item_no':" + item_no + ", 'cart_quantity':"
-	+ cart_quantity + ", 'cart_price':" + cart_price + ", 'money':"+ money+"}";
+		return "{'cart_no':" + cart_no + ", 'member_id':'" + member_id + "', 'item_no':" + item_no + ", 'cart_quantity':"
+				+ cart_quantity + ", cart_price=" + cart_price + ", cart_date=" + cart_date + ", money=" + money
+				+ ", 'item_name':'" + item_name + "', 'item_price':" + item_price + ", 'discount_percentage':"+ discount_percentage+"}";
 	}
 	
 	

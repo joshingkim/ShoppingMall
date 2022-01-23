@@ -57,10 +57,6 @@ public class CartServiceImpl implements CartService {
 		return pt;
 	}
 
-	@Override
-	public int sumMoney(String member_id) {
-		return cDao.sumMoney(member_id);
-	}
 
 	@Override
 	public int delete(int cart_no) {
@@ -93,8 +89,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Object> getName() {
-		return cDao.getName();
+	public int sumMoney(PageTO<CartVO> pt, String member_id) {
+		return cDao.sumMoney(pt, member_id);
 	}
+
 
 }
