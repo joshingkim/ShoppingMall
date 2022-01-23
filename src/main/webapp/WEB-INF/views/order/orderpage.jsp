@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환불/교환 페이지</title>
+<title>주문정보 페이지</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -93,7 +93,7 @@ dd {
 
 	<section class="refundpage">
 						<header class="h-detail">
-							<h3 class="h-refund">환불/교환 주문정보</h3>
+							<h3 class="h-refund">상품정보</h3>
 						</header>
 						<table>
 							<thead>
@@ -104,6 +104,7 @@ dd {
 									<th>색상</th>
 									<th>할인률</th>
 									<th>가격</th>
+									<th>주문상태</th>
 								</tr>
 							</thead>
 
@@ -115,6 +116,7 @@ dd {
 									<td>${ivo.item_color}</td>
 									<td>${ivo.discount_percentage}%</td>
 									<td>${ivo.item_price}원</td>
+									<td>${ovo.status}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -143,7 +145,7 @@ dd {
 					</section>
 				<section class="sec-refund-detail">
 					<header class="h-detail">
-						<h3 class="h-refund">환불/교환 정보</h3>
+						<h3 class="h-refund">주문정보</h3>
 					</header>
 					
 					<table>
@@ -172,24 +174,6 @@ dd {
 					</table>
 				</section>
 			</div>
-					
-				<div class="form-reason">
-					<section class="sec-reason-detail">
-						<header class="h-detail">
-							<h3 class="h-reason">환불/교환</h3>
-						</header>
-				<form action="/exchangeRefund/insertExRefund" method="POST">
-						<input name="member_id" type="hidden" value="${ovo.member_id}">
-						<input name="order_id" type="hidden" value="${ovo.order_id}">
-						<input id="exchange" type="radio" name="exchange_refund_code" value="0"><label for="exchange">교환</label>
-						<input id="refund" type="radio" name="exchange_refund_code" value="1"><label for="refund">환불</label>
-						<textarea name="exchange_refund_content" class="form-control"
-							rows="5" placeholder="환불사유를 입력해주세요." maxlength="300"></textarea>
-						<input type="submit" class="btn btn-primary btn-resist-refund" data-dismiss="modal"
-						value="신청">
-						</form>
-					</section>
-				</div>
 			</section>
 	<script type="text/javascript">
 	
