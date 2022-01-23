@@ -165,7 +165,16 @@ public class OrderController {
 		return "order/mdetail";
 	}
 	
-	
+	@RequestMapping(value="/orderpage/{order_id}", method=RequestMethod.GET)
+	public String requestpage(@PathVariable("order_id") int order_id, Model model) {
+		OrdersVO ovo = oService.checkorder(order_id);
+		int item_no = ovo.getItem_no();
+		model.addAttribute("ovo", ovo);
+		
+		ItemVO ivo = iService.read(item_no);
+		model.addAttribute("ivo", ivo);
+		return "order/orderpage";
+	}
 	
 	@RequestMapping(value = "/detail/{member_id}", method = RequestMethod.GET)
 	public String detail(PageTO<OrdersVO> pt,@PathVariable("member_id") String member_id, Model model) {
