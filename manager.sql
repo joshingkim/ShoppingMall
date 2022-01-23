@@ -26,7 +26,7 @@ CREATE TABLE manager(
 )
 DROP TABLE manager
 INSERT INTO manager VALUES ('a001', 1111, '관리자', 'a001@naver.com', 12341234, 1)
-
+INSERT INTO manager VALUES ('a002', 1111, '경영자', 'a001@naver.com', 12341234, 2)
 
 아이템 테이블
 CREATE TABLE item(

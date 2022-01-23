@@ -45,7 +45,7 @@
 					
 					 <div class="form-group">
 
-    리뷰<textarea class="form-control" name="review_content" id="review_content" rows="5"></textarea>
+    리뷰<textarea class="form-control" name="review_content" id="review_content" rows="5" maxlength=200></textarea>
   </div>
 				</div>
 				<div class="modal-footer">

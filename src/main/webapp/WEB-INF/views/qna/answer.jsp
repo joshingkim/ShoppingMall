@@ -14,10 +14,31 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>상품문의</p>
-Q&A 번호: <input id="inputed_qna_no" name="qna_no" value="" readonly><br>
-내용 : <textarea id="qna_answer" name="qna_answer" rows="5" maxlength="300"></textarea><br>
-<input type="submit" value="답변하기">
+
+<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						<span>상품답변</span>
+					</h5>
+					
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						Q&A 번호<input class="form-control" id="inputed_qna_no" name="qna_no" value="" readonly>
+					</div>	
+					
+					 <div class="form-group">
+
+    내용<textarea class="form-control" id="qna_answer" name="qna_answer" rows="5"></textarea>
+  </div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" data-dismiss="modal"value="QnA 답변 완료">
+				</div>
+			</div>
+		</div>
+
 <script type="text/javascript">
 var qno = window.opener.document.getElementById("qna_no").value;
 $("#inputed_qna_no").attr("value", qno);

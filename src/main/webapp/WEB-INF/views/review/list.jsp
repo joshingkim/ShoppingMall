@@ -16,20 +16,27 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 </head>
+<style>
+.asd{
+display: none;
+}
+
+</style>
 <body>
 
-
+<input id="managerCode" type="hidden" value="${managerLogin.manager_code}">
 <div style="margin-top: 20px;">
 		<h4 id="div3">REVIEW</h4>
 		</div>
 		
 		<h6 style="opacity: 0.5">여러분의 소중한 리뷰를 작성해주세요.</h6>
-	
-	
+	<c:if test="${!empty managerLogin.manager_code}">
+	<button class="qwe">리뷰관리</button>
+	</c:if>
 	<div id="replies" class="mt-5">
 	
 	</div>
-	<br>
+	<br>	
 
 
 	
@@ -78,10 +85,25 @@
 
 	<script type="text/javascript">
 		var board_no = ${vo.board_no};
+		var loginmember_id = "${login.member_id}"
+		console.log(loginmember_id);	
+		var mcode = $("#managerCode").val();
+		console.log(mcode);
+		
 
+		
 		$(document).ready(function() {
+			
+
+		
 
 			getRepliesPage(board_no, 1, $("#replies"));
+			
+			$("body").on("click", ".qwe", function() {
+				if(mcode==1 || mcode ==2){
+					$(".asd").css("display","table-row");
+					}	
+			});
 
 			$("#replies").on("click", ".reply_page_left", function(event) {
 				event.preventDefault();
@@ -239,8 +261,12 @@
 			$("body").on("click", ".updateui", function() {
 				location.assign("/board/updateui/${vo.board_no}/${curPage}");
 			});
+			
+		
+
 
 		});
+
 	</script>
 
 

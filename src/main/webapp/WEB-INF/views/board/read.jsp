@@ -93,6 +93,7 @@ a {
 
 <br> <div class="container" style=" white-space: normal; white-space: pre;"> ${vo.board_content}</div>	
 	<br> <br>
+	
 	<c:if test="${!empty managerLogin.manager_code}">
 	
 		

@@ -107,7 +107,7 @@ background-color:
 	
 	function qnaAnswer(){
 		         var url="../../qna/answer"; //Q&A답변 팝업창 열기
-		         var settings = "width=400,height=400,left=600";
+		         var settings = "width=400,height=500,left=600";
 		         
 		         window.open(url,"QnA답변",settings);
 		     }

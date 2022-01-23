@@ -100,7 +100,7 @@ INSERT INTO qna (qna_no, board_no, member_id, qna_title, qna_content, qna_repRoo
 ALTER TABLE qna ADD qna_answer VARCHAR2(150)
 			
 			
-	SELECT * FROM qna		
+	SELECT * FROM review		
 			
 			
 SELECT * FROM qna WHERE board_no = 109	
