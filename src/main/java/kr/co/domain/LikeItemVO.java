@@ -27,11 +27,8 @@ public class LikeItemVO implements Serializable{
 		this.member_id = member_id;
 		this.like_date = like_date;
 	}
-	
-	
 
 	public LikeItemVO(int like_no, int item_no, String member_id, String like_date, String item_name, String file_name) {
-		super();
 		this.like_no = like_no;
 		this.item_no = item_no;
 		this.member_id = member_id;
