@@ -73,12 +73,12 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">discount</span>
-								<input name="discount_percentage" type="number" class="form-control">
+								<input name="discount_percentage" type="number" class="form-control" max="100">
 								<span class="input-group-text">%</span>
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">Quantity</span>
-								<input name="item_amount" type="number" class="form-control">
+								<input name="item_amount" type="number" class="form-control" max="100000">
 								<span class="input-group-text">EA</span>
 							</div>
 							<textarea cols="50" rows="5" name="board_content" placeholder="내용을 입력하세요."></textarea>

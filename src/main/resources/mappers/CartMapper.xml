@@ -23,7 +23,7 @@
 	
 	  		<select id="readCart" resultType="kr.co.domain.CartVO">
   			<![CDATA[ 
-SELECT c.cart_no, c.member_id, i.item_no, m.member_name, i.item_name, c.cart_price, c.cart_quantity, c.cart_date, (item_price * cart_quantity) money
+SELECT c.cart_no, c.member_id, i.item_no, m.member_name, i.item_name, c.cart_price, c.cart_quantity, (item_price * cart_quantity) money
             FROM member m, item i, cart c 
             WHERE m.member_id = c.member_id AND i.item_no = c.item_no AND c.member_id = #{member_id} ORDER BY c.cart_no
 ]]>

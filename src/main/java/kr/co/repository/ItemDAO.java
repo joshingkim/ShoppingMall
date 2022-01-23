@@ -52,6 +52,8 @@ public interface ItemDAO {
 
 	List<OrdersVO> listForRank();
 
+	void updateQuantity(int item_no);
+
 	
 
 

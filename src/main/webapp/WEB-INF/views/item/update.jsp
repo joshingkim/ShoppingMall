@@ -60,7 +60,7 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">Quantity</span>
-								<input name="item_amount" type="number" value="${vo.item_amount}" class="form-control">
+								<input name="item_amount" type="number" value="${vo.item_amount}" maxlength="9" class="form-control">
 								<span class="input-group-text">EA</span>
 							</div>
 							<input type="submit" value="수정 완료">
@@ -138,9 +138,9 @@
 			$("input[type='submit']").click(function(event) {
 				event.preventDefault();
 				
-				var item_category = $("[name='item_category']").val();
+				var item_category = $("#item_category").val();
 				if (item_category == '') {
-					$("[name='item_category']").focus();
+					$("#item_category").focus();
 					return;
 				}
 				var item_name = $("[name='item_name']").val();

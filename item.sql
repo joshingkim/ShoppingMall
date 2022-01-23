@@ -22,6 +22,7 @@ CREATE TABLE fnq(
    CONSTRAINT pk_fnq_no PRIMARY KEY(fnq_no),
    CONSTRAINT fk_fnq_manager_id FOREIGN KEY(manager_id) REFERENCES manager(manager_id) ON DELETE CASCADE
 )
+UPDATE item SET item_amount=item_amount-1 WHERE item_no = 85
 CREATE TABLE manager(
    manager_id VARCHAR2(15),
    manager_pw VARCHAR2(15) NOT NULL,

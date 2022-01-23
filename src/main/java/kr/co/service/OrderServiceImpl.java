@@ -33,6 +33,8 @@ public class OrderServiceImpl implements OrderService{
 		for(int i=0; i<orderList.size(); i++) {
 			ovo = orderList.get(i);
 			oDao.insert(ovo);
+			int item_no= ovo.getItem_no();
+			iDao.updateQuantity(item_no);
 		}
 		String date = oDao.getOrder_date(ovo.getOrder_id());
 		return date;
