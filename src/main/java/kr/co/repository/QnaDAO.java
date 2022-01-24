@@ -24,5 +24,11 @@ public interface QnaDAO {
 
 	List<QnaVO> listForMember(PageTO<QnaVO> pt, String member_id);
 
+	QnaVO updateUI(int qna_no);
+
+	void update(QnaVO vo);
+
+	void delete(int qna_no);
+
 
 }

@@ -171,24 +171,31 @@ left : 365px;
 // 		});
 		
 		$("tbody").on("click",".viewcontent",function() {
-			var clkIdx = $(".viewcontent").index($(this));
-			var val = $(".qa").eq(clkIdx).text();
-			
-			if ($(".qna_ctnt").eq(clkIdx).css("display") == "none"&& $(".qna_answer").eq(clkIdx).css("display") == "none") {
-				$(".qna_ctnt").eq(clkIdx).css("display","table-row");
-				if(val != 'null'){
-				$(".qna_answer").eq(clkIdx).css("display","table-row");
-				}
-				if(mcode ==1 || mcode == 2){
-					$(".area-answer").css("display", "inline-flex");
-				}
-			} else {
-				$(".qna_ctnt").eq(clkIdx).css("display","none");
-				$(".qna_answer").eq(clkIdx).css("display","none");
-			};
-			});
-		
-		});
+	         var clkIdx = $(".viewcontent").index($(this));
+	         var val = $(".qa").eq(clkIdx).text();
+	         
+	         if ($(".qna_ctnt").eq(clkIdx).css("display") == "none"&& $(".qna_answer").eq(clkIdx).css("display") == "none") {
+	            $(".qna_ctnt").eq(clkIdx).css("display","table-row");
+	            if(val != 'null'){
+	            $(".qna_answer").eq(clkIdx).css("display","table-row");
+	            }
+	            if(mcode > 0 ){
+	               $(".area-answer").css("display", "inline-flex");
+	               if(val != 'null'){
+	               $(".btn_answer").eq(clkIdx).text("답변수정");
+	               console.log(val);
+	               }else{
+	                  
+	               }
+	               
+	            }
+	         } else {
+	            $(".qna_ctnt").eq(clkIdx).css("display","none");
+	            $(".qna_answer").eq(clkIdx).css("display","none");
+	         };
+	         });
+	      
+	      });
 		
 	</script>
 </body>

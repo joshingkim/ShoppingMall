@@ -16,7 +16,7 @@ function uploadedItem(filename) {
 function uploadedItemForRead(filename){
 	var msg =`
 		<div class="uploadeditem col-sm-3">
-			<p><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}"><img src="${getImageUrl2(filename)}"></a></p>
+			<div><a target="_blank" href="/file/downloadorshow?linkurl=${getLinkUrl(filename)}"><img src="${getImageUrl2(filename)}"></a></div>
 		</div>
 	`;
 	return msg;
@@ -116,7 +116,7 @@ function getLinkUrl(filename) {
 	return filename;
 }
 
-function checkImageFile(filename) {console.log(filename);
+function checkImageFile(filename) {
 	var idx = filename.indexOf("s_");
 	if (idx == 12) {
 		return true;

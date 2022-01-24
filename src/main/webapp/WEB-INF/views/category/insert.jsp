@@ -40,7 +40,7 @@
 							</div>
 							<div class="input-group mb-2"> 
 								<span class="input-group-text">item</span>
-								<input name="item_name" maxlength="35" style="width: 250px;">
+								<input name="item_name" maxlength="30" style="width: 250px;">
 							</div>
 							<input type="submit" value="등록 완료">
 						</form>

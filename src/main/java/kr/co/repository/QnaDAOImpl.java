@@ -67,5 +67,21 @@ public class QnaDAOImpl implements QnaDAO {
 		return sqlSession.selectList(NS +".listForMember", member_id, rbs);
 	}
 
+	@Override
+	public QnaVO updateUI(int qna_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+".updateUI", qna_no);
+	}
+
+	@Override
+	public void update(QnaVO vo) {
+		sqlSession.update(NS+".update",vo);
+	}
+
+	@Override
+	public void delete(int qna_no) {
+		sqlSession.delete(NS+".delete", qna_no);
+	}
+
 
 }

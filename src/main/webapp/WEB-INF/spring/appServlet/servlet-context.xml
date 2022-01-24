@@ -64,6 +64,7 @@
 			<exclude-mapping path="/qna/list/**"/>
 			<exclude-mapping path="/qna/answer/**"/>
 			<exclude-mapping path="/qna/listOfAll/**"/>
+			<exclude-mapping path="/qna/update/**"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		

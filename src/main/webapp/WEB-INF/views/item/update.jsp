@@ -15,9 +15,11 @@
   <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 	.fileDrop{
-		height: 200px;
+		width: 300px;
+		height: 300px;
 		border: 1px solid red;
 		margin-top: 20px;
+		
 	}
 </style>
 </head>
@@ -26,7 +28,7 @@
 <jsp:include page="../sidebar.jsp" />
 <div class="row mb-2 container">
 		<div class="col-md-10">
-			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+			<div style="margin-left: 13%;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="fileDrop"><div style="text-align: center;" class="uploadedList row"></div></div>
 					<div class="col p-4 d-flex flex-column position-static">
 						<p class="card-text mb-auto">

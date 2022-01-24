@@ -109,5 +109,22 @@ public class QnaServiceImpl implements QnaService {
 		return pt;
 		}
 	}
+	@Override
+	public QnaVO updateUI(int qna_no) {
+		// TODO Auto-generated method stub
+		return qDao.updateUI(qna_no);
+	}
+	@Override
+	public void update(QnaVO vo) {
+		qDao.update(vo);
+		
+	}
+
+	@Override
+	public void delete(int qna_no) {
+		System.out.println(qna_no);
+		qDao.delete(qna_no);
+		
+	}
 
 }

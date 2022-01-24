@@ -113,8 +113,17 @@ var item_price = ${ivo.item_price};
  			});
  		}
  		
+ 		$.getJSON("/file/getFile/"+item_no, function(data) {
+			/* for(var i=0; i<data.length; i++){ */
+				var item = uploadedItemForRead(data[0]);
+				$(".uploadedList").append(item);
+			/* } */
+		});
+ 		
 		$.getJSON("/item/getItem_size/"+item_name, function(data) {
+			
 			for(var i=0; i<data.length; i++){
+				console.log(data[i]);
 				var msg = "<option>"+data[i]+"</option>";
 				$("#item_size").append(msg);
 			}
@@ -122,17 +131,13 @@ var item_price = ${ivo.item_price};
 		
 		$.getJSON("/item/getItem_color/"+item_name, function(data) {
 			for(var i=0; i<data.length; i++){
+				console.log(data[i]);
 				var msg = "<option>"+data[i]+"</option>";
 				$("#item_color").append(msg);
 			}
 		});
 		
-		$.getJSON("/file/getFile/"+item_no, function(data) {
-			/* for(var i=0; i<data.length; i++){ */
-				var item = uploadedItemForRead(data[0]);
-				$(".uploadedList").append(item);
-			/* } */
-		});
+		
 		
 		$('#delete').click(function() { 
 			var result = confirm('삭제 하시겠습니까?'); 
