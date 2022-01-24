@@ -15,6 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
 .box-radio-input input[type="radio"] {
 	display: none;
@@ -156,30 +157,30 @@ span.input-group-text{
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">수령인</span>
 					<input placeholder="수령인을 입력하세요" type="text" class="info"
-						id="receiver" name="receiver" value="${mvo.member_name}">
+						id="receiver" name="receiver" value="${mvo.member_name}" readonly maxlength="5">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
 					<input placeholder="전화번호를 입력하세요" type="text" class="info"
 						id="phone" name="member_phone_number"
-						value="${mvo.member_phone_number}">
+						value="${mvo.member_phone_number}" readonly maxlength="11">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">주문자이메일</span>
-					<input placeholder="이메일을 입력하세요" type="text" class="info"
+					<input placeholder="이메일을 입력하세요" class="info"
 						type="email" id="order_email" name="order_email"
-						name="member_email" value="${mvo.member_email}">
+						name="member_email" value="${mvo.member_email}" readonly>
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
 						주소</span> <input placeholder="배송지 주소를 입력하세요" type="text" class="info"
-						id="address" name="member_address" value="${mvo.member_address}">
+						id="address" name="member_address" value="${mvo.member_address}" readonly maxlength="40" >
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">배송지
 						상세주소</span> <input placeholder="배송지 상세주소를 입력하세요" type="text" class="info"
 						id="detail_address" name="member_detail_address"
-						value="${mvo.member_detail_address}">
+						value="${mvo.member_detail_address}" readonly maxlength="16">
 				</div>
 			</div>
 			<hr class="hr1" align="left">
@@ -238,11 +239,11 @@ span.input-group-text{
 			<div class="col-md-3" style="left: 300px;">
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">총수량</span>
-					<input type="text" class="info2" value="${total}개">
+					<input type="text" class="info2" value="${total}개" readonly>
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">총가격</span>
-					<input type="text" class="info2" value="${sum}원">
+					<input type="text" class="info2" value="${sum}원" readonly>
 				</div>
 			</div>
 			<hr class="hr1" align="left">
@@ -261,7 +262,16 @@ span.input-group-text{
 	 var clist = "${clist}";
 	 var member_id = "${mvo.member_id}";
 	 var item_no = "${item_no}";
-	   
+	  
+	  
+	 document.getElementById("address").addEventListener("click", function() {//주소입력칸을 클릭하면
+			new daum.Postcode({
+				oncomplete: function(data) {//선택시 입력값 세팅
+					document.getElementById("address").value = data.address; // 주소 넣기
+					document.querySelector("input[name=member_detail_address]").focus(); //상세입력 포커싱
+				}
+			}).open();
+		}); 
 
 	function original(){
 		document.getElementById("receiver").value = '${mvo.member_name}';
