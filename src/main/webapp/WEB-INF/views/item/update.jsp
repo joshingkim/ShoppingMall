@@ -163,8 +163,18 @@
 					$("[name='item_price']").focus();
 					return;
 				}
+				if (item_price > 100000000) {
+					alert("금액이 초과하였습니다.");
+					$("[name='item_price']").focus();
+					return;
+				}
 				var discount_percentage = $("[name='discount_percentage']").val();
 				if (discount_percentage == '') {
+					$("[name='discount_percentage']").focus();
+					return;
+				}
+				if (discount_percentage > 99) {
+					alert("할인률은 99까지 선택할 수 있습니다.");
 					$("[name='discount_percentage']").focus();
 					return;
 				}
@@ -173,7 +183,11 @@
 					$("[name='item_amount']").focus();
 					return;
 				}
-				
+				if (item_amount > 9999) {
+					alert("재고 수량은 9999개까지 선택할 수 있습니다.");
+					$("[name='item_amount']").focus();
+					return;
+				}
 				for(filename in objFormData){
 					var msg = insertFile(filename);
 					$("form").prepend(msg);

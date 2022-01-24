@@ -164,11 +164,19 @@ public class ReviewVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "{'review_no':" + review_no + ", 'board_no':" + board_no + ", 'member_id':'" + member_id
-				+ "', 'review_content':'" + review_content + "', 'review_regdate':'" + review_regdate + "', 'review_updatedate':'"
-				+ review_updatedate + "', 'review_grade':" + review_grade + ", 'item_no'=" + item_no + ", 'item_name':'"
-				+ item_name + "', 'file_name':'" + file_name + "'}";
+		return "{'item_no':" + item_no + ", 'file_name':'" + file_name + "'}";
 	}
+
+
+//	@Override
+//	public String toString() {
+//		return "{\"review_no\":" + review_no + ", \"board_no\":" + board_no + ", \"member_id\":\"" + member_id
+//				+ "\", \"review_content\":\"" + review_content + "\", \"review_regdate\":\"" + review_regdate + "\", \"review_updatedate\":\""
+//				+ review_updatedate + "\", \"review_grade\":" + review_grade + ", \"item_no\"=" + item_no + ", \"item_name\":\""
+//				+ item_name + "\", \"file_name\":\"" + file_name + "\"}";
+//	}
+	
+	
 
 	
 }
