@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.domain.ExchangeRefundVO;
 import kr.co.domain.ItemVO;
 import kr.co.domain.OrdersVO;
@@ -40,6 +42,10 @@ public class ExchangeRefundController {
 		
 		ItemVO ivo = iService.read(item_no);
 		model.addAttribute("ivo", ivo);
+		
+		ExchangeRefundVO exList = exService.exList(order_id);
+		model.addAttribute("exList", exList);
+		
 	}
 	@RequestMapping(value="/insertExRefund", method = RequestMethod.POST)
 	public String insertExRefund(ExchangeRefundVO exvo) {

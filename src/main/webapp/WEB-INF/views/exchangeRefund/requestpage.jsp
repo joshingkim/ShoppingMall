@@ -178,16 +178,38 @@ dd {
 						<header class="h-detail">
 							<h3 class="h-reason">환불/교환</h3>
 						</header>
+						<c:if test="${managerLogin == null }">
 				<form action="/exchangeRefund/insertExRefund" method="POST">
 						<input name="member_id" type="hidden" value="${ovo.member_id}">
 						<input name="order_id" type="hidden" value="${ovo.order_id}">
-						<input id="exchange" type="radio" name="exchange_refund_code" value="0"><label for="exchange">교환</label>
-						<input id="refund" type="radio" name="exchange_refund_code" value="1"><label for="refund">환불</label>
+						<input id="exchange" type="radio" name="exchange_refund_code" value="3"><label for="exchange">교환</label>
+						<input id="refund" type="radio" name="exchange_refund_code" value="4"><label for="refund">환불</label>
 						<textarea name="exchange_refund_content" class="form-control"
-							rows="5" placeholder="환불사유를 입력해주세요." maxlength="300"></textarea>
+							rows="5" placeholder="교환/환불사유를 입력해주세요." maxlength="100"></textarea>
 						<input type="submit" class="btn btn-primary btn-resist-refund" data-dismiss="modal"
 						value="신청">
 						</form>
+						</c:if>
+						<c:if test="${managerLogin != null }">
+				
+							<table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">환불/교환 사유</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>${exList.exchange_refund_content}</td>
+    </tr>
+  </tbody>
+</table>
+				
+	
+						
+						</c:if>
 					</section>
 				</div>
 			</section>

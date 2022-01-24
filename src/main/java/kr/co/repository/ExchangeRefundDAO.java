@@ -6,5 +6,5 @@ public interface ExchangeRefundDAO {
 
 	void insertExRefund(ExchangeRefundVO exvo);
 	
-
+	ExchangeRefundVO exList(int order_id);
 }
