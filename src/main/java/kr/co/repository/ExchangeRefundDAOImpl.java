@@ -18,4 +18,10 @@ public class ExchangeRefundDAOImpl implements ExchangeRefundDAO {
 		sqlSession.insert(NS + ".insertExRefund", exvo);
 		
 	}
+	
+	@Override
+	public ExchangeRefundVO exList(int order_id) {
+		
+		return sqlSession.selectOne(NS+".exList", order_id);
+	}
 }

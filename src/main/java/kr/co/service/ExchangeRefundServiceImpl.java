@@ -39,6 +39,25 @@ public class ExchangeRefundServiceImpl implements ExchangeRefundService {
 			status = "취소";
 			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
 			oDao.status(vo);
+		}else if(checkCode == 3) {
+			status = "교환신청중";
+			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
+			oDao.status(vo);
+		}else if(checkCode == 4) {
+			status = "환불신청중";
+			vo = new OrdersVO(order_id, 0, null, 0, 0, null, null, null, status, null, null);
+			oDao.status(vo);
 		}
 	}
+	
+	@Override
+	public ExchangeRefundVO exList(int order_id) {
+		
+		return exDao.exList(order_id);
+	}
+	
+	
+	
+	
+	
 }

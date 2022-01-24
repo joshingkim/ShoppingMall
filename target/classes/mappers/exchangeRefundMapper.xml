@@ -10,4 +10,7 @@
 		VALUES (seq_exchange_refund_no.NEXTVAL, #{member_id}, #{order_id}, #{exchange_refund_content}, #{exchange_refund_code})
 	</insert>
 
+	<select id="exList" resultType="kr.co.domain.ExchangeRefundVO">
+	 SELECT * FROM exchange_refund WHERE order_id = #{order_id}
+	</select>
 </mapper>
