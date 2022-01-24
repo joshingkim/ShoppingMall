@@ -56,7 +56,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/read/{member_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/read/{member_id}", method = RequestMethod.POST)
 	public String read(@PathVariable("member_id") String member_id, Model model) {
 		MemberVO vo = mService.read(member_id);		
 		model.addAttribute("vo", vo);

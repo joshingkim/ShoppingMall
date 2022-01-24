@@ -7,6 +7,7 @@ import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 
 public interface ManagerService {
 
@@ -47,6 +48,8 @@ public interface ManagerService {
 		List<Object> monthSale();
 
 		List<MemberVO> memberList();
+
+		PageTO<MemberVO> memberList(PageTO<MemberVO> pt);
 
 	
 

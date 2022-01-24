@@ -35,11 +35,11 @@
   </div>
   <div class="form-group">
     <label for="put2">제목</label>
-    <input type="text" name="fnq_title" class="form-control " id="put2" required="required">
+    <input type="text" name="fnq_title" class="form-control " id="put2" required="required" maxlength="300">
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">내용</label>
-    <textarea class="form-control " name="fnq_content" id="Textarea1" rows="10" required="required"></textarea>
+    <textarea class="form-control " name="fnq_content" id="Textarea1" rows="10" required="required" maxlength="1200"></textarea>
   </div>
   <input type="submit"  class="btn btn-outline-primary" value="작성 완료">
 </form>

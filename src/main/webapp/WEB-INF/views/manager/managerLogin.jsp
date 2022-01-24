@@ -37,7 +37,7 @@
 				<div class="col-sm-8">
 					<label for="manager_id" class="form-label">아이디 </label> <input
 						type="text" name="manager_id" class="form-control"
-						placeholder="id" required="required" autofocus="autofocus">
+						placeholder="id" required="required" autofocus="autofocus" maxlength="15">
 				</div>
 
 			</div>
@@ -47,7 +47,7 @@
 
 					<label for="manager_pw" class="form-label">비밀번호</label> <input
 						type="password" class="form-control" name="manager_pw"
-						placeholder="password" required="required">
+						placeholder="password" required="required" maxlength="15">
 
 				</div>
 			</div>

@@ -43,7 +43,7 @@
 					<button id="idcheck" class="btn btn-info btn-sm">중복검사</button>
 					<p id="idCheckResult"></p>
 					<input type="text" name="manager_id" class="form-control"
-						placeholder="id">
+						placeholder="id" maxlength="15">
 				</div>
 
 
@@ -56,29 +56,29 @@
 				<div class="input-group has-validation">
 
 					<input type="password" class="form-control" name="manager_pw"
-						placeholder="password" required="required">
+						placeholder="password" required="required" maxlength="15">
 
 				</div>
 			</div>
 
 			<div class="col-8">
-				<label for="email" class="form-label">이름 </label> <input
-					type="email" class="form-control" name="manager_name"
-					placeholder="name" required="required">
+				<label for="text" class="form-label">이름 </label> <input
+					type="text" class="form-control" name="manager_name"
+					placeholder="name" required="required" maxlength="25">
 
 			</div>
 
 			<div class="col-8">
 				<label for="address" class="form-label">핸드폰 번호</label> <input
 					type="tel" class="form-control" name="manager_phone"
-					placeholder="- 제외하고 숫자만" required="required">
+					placeholder="- 제외하고 숫자만" required="required" >
 
 			</div>
 
 			<div class="col-8">
 				<label for="address2" class="form-label">이메일</label> <input
 					type="email" class="form-control" name="manager_email"
-					placeholder="you@examplpe.com" required="required">
+					placeholder="you@examplpe.com" required="required" maxlength="30">
 			</div>
 			<input type="hidden" name="manager_code" value=1> <br> <input
 				type="submit" class="btn btn-success ml-3" value="관리자 계정 생성">
