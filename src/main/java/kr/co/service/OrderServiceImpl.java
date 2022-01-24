@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.OrdersVO;
 import kr.co.domain.PageTO;
+import kr.co.repository.CartDAO;
 import kr.co.repository.FileDAO;
 import kr.co.repository.ItemDAO;
 import kr.co.repository.OrderDAO;
@@ -25,6 +26,8 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Inject
 	private ItemDAO iDao;
+	@Inject
+	private CartDAO cDao;
 
 	@Transactional
 	@Override
@@ -35,6 +38,8 @@ public class OrderServiceImpl implements OrderService{
 			oDao.insert(ovo);
 			int item_no= ovo.getItem_no();
 			iDao.updateQuantity(item_no);
+			String member_id = ovo.getMember_id();
+			cDao.deleteCart(member_id);
 		}
 		String date = oDao.getOrder_date(ovo.getOrder_id());
 		return date;
