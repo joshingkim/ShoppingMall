@@ -22,6 +22,9 @@
 </head>
 
 <style>
+table {
+table-layout: fixed;
+}
 .qna_ctnt {
 display: none;
 }
@@ -35,6 +38,7 @@ display: none;
 }
 .area-answer {
 display: none;
+width : auto;
 }
 
 tr {
@@ -42,9 +46,20 @@ valign : baseline;
 text-align: center;
 }
 
-td {
-line-height : 100%;
-text-align: center;
+.table td {
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+}
+
+tr, .qna_ctnt{
+width : 250px;
+}
+p {
+text-overflow: ellipsis;
+overflow: hidden;
+white-space : pre-line;
+word-break: break-all;
 }
 .pagingline {
 display : table-row;
@@ -53,10 +68,6 @@ position: relative;
 top: 10px;
 left : 365px;
 }
-.qna_page_no:active{
-background-color: 
-}
-
 
 
 </style>
