@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 
 @Repository
 public class ManagerDAOImpl implements ManagerDAO{
@@ -125,6 +127,21 @@ public class ManagerDAOImpl implements ManagerDAO{
 			
 			return sqlSession.selectList(NS+".memberList");
 		}
+
+		@Override
+		public List<MemberVO> memberList(PageTO<MemberVO> to) {
+			RowBounds rbs = new RowBounds(to.getStartNum()-1, to.getPerPage());
+			
+			return sqlSession.selectList(NS+".memberList", null, rbs);
+		}
+
+		@Override
+		public int getAmount() {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne(NS+".getAmount");
+		}
+
+		
 
 		
 

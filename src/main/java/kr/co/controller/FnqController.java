@@ -25,8 +25,6 @@ public class FnqController {
 	@Inject
 	private FnqService fService;
 	
-	@Inject
-	private SearchService sService;
 	
 	
 	
