@@ -45,9 +45,7 @@ public class LikeItemServiceImpl implements LikeItemService {
 		public PageTO<LikeItemVO> list(PageTO<LikeItemVO> pt, String member_id) {
 			int amount = likeDao.getAmount();
 			pt.setAmount(amount);
-			if(amount ==0) {
-				return null;
-			}else {
+			
 			List<LikeItemVO> list = likeDao.list(pt, member_id);
 			pt.setList(list);
 			
@@ -61,7 +59,7 @@ public class LikeItemServiceImpl implements LikeItemService {
 				pt.getList().get(i).setItem_name(item_name);
 			}
 			return pt;
-			}
+			
 		}
 
 }

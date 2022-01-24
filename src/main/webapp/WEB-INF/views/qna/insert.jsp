@@ -17,31 +17,31 @@
 
 
 
-<div class="modal-dialog">
+<<div class="modal-dialog">
 <input id="inputed_board_no" name="board_no" value="" hidden><br>
 <input id="member_id" name="member_id" value="${login.member_id}" hidden><br>
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">
-						<span>상품문의</span>
-					</h5>
-					
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						제목<input class="form-control" id="qna_title" name="qna_title" maxlength=60>
-					</div>	
-					
-					 <div class="form-group">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">
+                  <span>상품문의</span>
+               </h5>
+               
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  제목<input class="form-control" id="qna_title" name="qna_title" maxlength="33">
+               </div>   
+               
+                <div class="form-group">
 
-    내용<textarea class="form-control" id="qna_content" name="qna_content" rows="5" maxlength=200></textarea>
+    내용<textarea class="form-control" id="qna_content" name="qna_content" rows="5" maxlength="100"></textarea>
   </div>
-				</div>
-				<div class="modal-footer">
-					<input type="submit" class="btn btn-primary" data-dismiss="modal"value="QnA 문의 완료">
-				</div>
-			</div>
-		</div>
+            </div>
+            <div class="modal-footer">
+               <input type="submit" class="btn btn-primary" data-dismiss="modal"value="QnA 문의 완료">
+            </div>
+         </div>
+      </div>
 
 <script type="text/javascript">
 var bno = window.opener.document.getElementById("input_board_no").value;
