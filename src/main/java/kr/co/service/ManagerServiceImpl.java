@@ -12,6 +12,7 @@ import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 import kr.co.repository.ManagerDAO;
 
 @Service
@@ -20,6 +21,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Inject
 	private ManagerDAO mDAO;
 
+	@Transactional
 	@Override
 	public void insert(ManagerVO vo) {
 		mDAO.insert(vo);
@@ -127,6 +129,21 @@ public class ManagerServiceImpl implements ManagerService {
 	public List<MemberVO> memberList() {
 		
 		return mDAO.memberList();
+	}
+
+	@Transactional
+	@Override
+	public PageTO<MemberVO> memberList(PageTO<MemberVO> pt) {
+		
+		int amount = mDAO.getAmount();
+		pt.setAmount(amount);
+		if(amount==0) {
+			return null;
+		} else {
+			List<MemberVO> memberList = mDAO.memberList(pt);
+			pt.setList(memberList);
+			return pt;
+		}
 	}
 
 	

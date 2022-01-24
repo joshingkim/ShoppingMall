@@ -42,21 +42,21 @@
 			<div class="col-8">
 				<label for="manager_name" class="form-label">이름 </label> <input
 					type="text" class="form-control" name="manager_name"
-					value="${vo.manager_name }" required="required">
+					value="${vo.manager_name }" required="required" maxlength="25">
 
 			</div>
 
 			<div class="col-8">
 				<label for="manager_email" class="form-label">이메일</label> <input
 					type="tel" class="form-control" name="manager_email"
-					value="${vo.manager_email }" required="required">
+					value="${vo.manager_email }" required="required" maxlength="30">
 
 			</div>
 
 			<div class="col-8">
 				<label for="manager_phone" class="form-label">핸드폰번호</label> <input
-					type="tel" class="form-control" name="manager_phone"
-					value="${vo.manager_phone }" required="required">
+					type="number" class="form-control" name="manager_phone"
+					value="${vo.manager_phone }" required="required" min='9' max='15'>
 			</div>
 
 

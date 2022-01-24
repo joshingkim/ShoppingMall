@@ -30,10 +30,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
+import kr.co.domain.FnqVO;
 import kr.co.domain.ManagerVO;
 import kr.co.domain.MemberVO;
 import kr.co.domain.OrderVO;
 import kr.co.domain.OrdersVO;
+import kr.co.domain.PageTO;
 import kr.co.service.ManagerService;
 
 
@@ -158,12 +160,7 @@ public class ManagerController {
 		}
 	}
 		
-	@RequestMapping(value = "/managerList", method = RequestMethod.GET)
-	public void list(Model model) {
-		List<Object> managerList = mService.managerList();
-		
-		model.addAttribute("managerList", managerList);
-	}	
+	
 		
 	
 		
@@ -286,17 +283,34 @@ public class ManagerController {
 		
 		
 		
-		@RequestMapping(value = "/memberList", method = RequestMethod.GET)
-		public void memberList(Model model) {
-			List<MemberVO> memberList = mService.memberList();
+		
+		
+		
+		@RequestMapping(value = "/memberList/{curPage}", method = RequestMethod.GET)
+		public String list(@PathVariable("curPage") int curPage, PageTO<MemberVO> pt, Model model) {
+			pt.setCurPage(curPage);
 			
-			model.addAttribute("memberList", memberList);
+			pt = mService.memberList(pt);
+			
+			model.addAttribute("pt", pt);
+			
+			return "/manager/memberList";
+		}
+		
+		
+		@RequestMapping(value = "/memberList", method = RequestMethod.GET)
+		public void list(PageTO<MemberVO> pt, Model model) {
+			pt = mService.memberList(pt);
+			
+			model.addAttribute("pt", pt);
+		}
+		
+		@RequestMapping(value = "/managerList", method = RequestMethod.GET)
+		public void list(Model model) {
+			List<Object> managerList = mService.managerList();
+			
+			model.addAttribute("managerList", managerList);
 		}	
-		
-		
-	
-		
-		
 	}
 	
 

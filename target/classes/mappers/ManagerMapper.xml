@@ -21,9 +21,7 @@
 		SELECT * FROM orders
 	</select>
 	
-	<select id="memberList" resultType="kr.co.domain.MemberVO">
-		SELECT * FROM member
-	</select>
+	
 
 	<select id="saleRank" resultType="Map">
 		SELECT sum(orders.ea) as ORDERQUNTITY, item.item_no, 
@@ -123,6 +121,14 @@
 		UPDATE manager SET manager_name = #{manager_name}, manager_email = #{manager_email}, manager_phone = #{manager_phone}
 		WHERE manager_id = #{manager_id} 
 	</update>
+
+	<select id="getAmount" resultType="Integer">
+		SELECT COUNT(member_id) FROM member
+	</select>
+
+	<select id="memberList" resultType="kr.co.domain.MemberVO">
+		SELECT * FROM member ORDER BY member_id DESC
+	</select>
 
 
 </mapper>

@@ -36,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${memberList}" var="vo">
+				<c:forEach items="${pt.list}" var="vo">
 					<tr>
 						<td>${vo.member_id}
 								<a href="/member/read/${vo.member_id}"
@@ -53,7 +53,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
+<jsp:include page="page.jsp" /><br>
 	</div>
 
 
