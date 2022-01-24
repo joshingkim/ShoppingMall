@@ -35,4 +35,6 @@ public interface CartDAO {
 
 	int sumMoney(PageTO<CartVO> pt, String member_id);
 
+	void deleteCart(String member_id);
+
 }

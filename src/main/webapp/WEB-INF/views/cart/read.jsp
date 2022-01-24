@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="/resources/js/file.js" type="text/javascript"></script>
+  <script src="/resources/js/file.js" type="text/javascript"></script>
 <style type="text/css">
 
 table .foot {
@@ -29,12 +29,12 @@ table .foot {
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../sidebar.jsp" />
 
-<c:choose>
-	<c:when test="${map.cart_no == 0}">
+<%-- <c:choose>
+	<c:when test="${vo == null}">
 		alert("장바구니가 비었습니다.");
-	</c:when>
-	
-	<c:otherwise>
+	</c:when> 
+
+	<c:otherwise> --%>
 	<div class="container" id="frame">
 		<form action="">
 			<div id="frame2">
@@ -68,29 +68,29 @@ table .foot {
 								<td><span class="dprice">${(100-cart.discount_percentage)*cart.item_price/100}</span>(${cart.item_price}) 원</td>
 								<td><input name="cart_quantity" type="number" data-itemno="${cart.item_no}" min="1" max="99" step="1" value="${cart.cart_quantity}"><br></td>
 								<td><span class="isum">${((100-cart.discount_percentage)*cart.item_price/100)*cart.cart_quantity}</span></td>
-								<td><button data-citem_no="${cart.cart_no}" class="btn btn-info del">삭제</button><br></td>
+								<td><button data-citem_no="${cart.cart_no}" class="btn btn-outline-info btn-sm del">삭제</button><br></td>
 							</tr>
 						</c:forEach>
-					<!-- 	<div id="reset">
+					 	<div id="reset">
 						<td scope="row" style="font-size: 15pt;; font-weight: bold; width:30%:"><span>결제금액</span></td>
 						<td></td><td></td><td></td>
 						<td> <span style="text-align: right;" class ="totalprice"> </span><span>원</span></td>
-						</div> -->
+						</div> 
 						<c:set var="isTrue" value="false"/>		
 					</tbody>
 				</table>
 			</div>
 		</form>
 		<div style="margin-left: 80%">
-		<button id="order" class="order">주문하기</button>
+		<button class=" btn btn-outline-success btn-lg order">주문하기</button>
 		</div>
 		<div style="margin-left: 40%">
 		<jsp:include page="page.jsp"></jsp:include>
 		</div>
 	</div>
 
-	</c:otherwise>
-</c:choose>
+<%-- 	</c:otherwise>
+</c:choose> --%>
 <jsp:include page="../footer.jsp" />
 
 <script type="text/javascript">
@@ -126,6 +126,11 @@ var vo ="${map.list}";
 		$("input[name='cart_quantity']").on("input", function(event) {
 					var qtag = $(this);
 					var update_quantity = $(this).val();
+					if (update_quantity > 99) {
+						alert("제품은 한번에 99개까지 선택할 수 있습니다.");
+						qtag.val(99);
+						update_quantity=99;
+					}
 					var totalprice = $(this).val();
 					var item_no = $(this).attr("data-itemno");
 					$.ajax({
@@ -140,6 +145,14 @@ var vo ="${map.list}";
 						success : function(data) {
 							var dprice = $(qtag).parent().prev("td").children("span.dprice").text();
 							$(qtag).parent().next("td").children("span").text(eval(dprice * update_quantity));
+							   var arr = $(".isum");
+			                     var sum = 0;
+			                     for(var i=0;i<arr.length;i++){
+			                        sum = sum + eval($(arr[i]).text());
+			                        console.log(sum);
+			                     }
+			                     
+			                     $(".totalprice").text(sum);
 						}
 					});
 				});
@@ -157,15 +170,22 @@ var vo ="${map.list}";
 				dataType : "text",
 				success : function(data) {
 					$(delbtn).parent().parent().remove();
-					
+					 var arr = $(".isum");
+                     var sum = 0;
+                     for(var i=0;i<arr.length;i++){
+                        sum = sum + eval($(arr[i]).text());
+                        console.log(sum);
+                     }
+                     
+                     $(".totalprice").text(sum);
 				}
 			});
 		});
 		
 		$(".order").click(function(event) {
-			if (list.length == 0) {
+			
+			if (money == 0) {
 				alert("장바구니가 비었습니다.");
-				return; 
 			} else {
 				location.assign("/order/insert/"+member_id);
 			}

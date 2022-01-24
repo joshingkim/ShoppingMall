@@ -90,5 +90,10 @@ public class CartDAOImpl implements CartDAO {
 		sqlSession.update(NS+".updateQuantity", vo);
 	}
 
+	@Override
+	public void deleteCart(String member_id) {
+		sqlSession.delete(NS+".deleteCart", member_id);
+	}
+
 	
 }
