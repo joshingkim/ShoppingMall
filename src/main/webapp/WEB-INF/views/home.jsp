@@ -51,17 +51,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
  	var vo = "${list}";
- 	console.log(vo);
 	var arr = eval(vo);
 	for (var i=0; i<8; i++){
 		var item_no = arr[i].item_no;
 		var item_name = arr[i].item_name;
 		var file_name = arr[i].file_name;
 		var i = i;
-		console.log(item_no);
-		console.log(item_name);
-		console.log(file_name);
-		console.log(i);
 		var item = uploadedItemForRank(file_name,item_no,item_name,i);
 		$(".uploadedList").append(item);
 	

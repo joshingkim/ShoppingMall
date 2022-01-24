@@ -162,9 +162,9 @@
 			$("input[type='submit']").click(
 				function(event) {event.preventDefault();
 
-				var item_category = $("[name='item_category']").val();
+				var item_category = $("#item_category").val();
 				if (item_category == '선택하세요') {
-					$("[name='item_category']").focus();
+					$("#item_category").focus();
 					return;
 				}
 				var item_name = $("[name='item_name']").val();
@@ -187,13 +187,28 @@
 					$("[name='item_price']").focus();
 					return;
 				}
+				if (item_price > 100000000) {
+					alert("금액이 초과하였습니다.");
+					$("[name='item_price']").focus();
+					return;
+				}
 				var discount_percentage = $("[name='discount_percentage']").val();
 				if (discount_percentage == '') {
 					$("[name='discount_percentage']").focus();
 					return;
 				}
+				if (discount_percentage > 99) {
+					alert("할인률은 99까지 선택할 수 있습니다.");
+					$("[name='discount_percentage']").focus();
+					return;
+				}
 				var item_amount = $("[name='item_amount']").val();
 				if (item_amount == '') {
+					$("[name='item_amount']").focus();
+					return;
+				}
+				if (item_amount > 9999) {
+					alert("재고 수량은 9999개까지 선택할 수 있습니다.");
 					$("[name='item_amount']").focus();
 					return;
 				}

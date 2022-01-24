@@ -37,7 +37,7 @@
 <jsp:include page="../header.jsp" />
 <jsp:include page="../sidebar.jsp" />
 
-<c:if test="${vo.member_id == login.member_id}">
+<c:if test="${vo.member_id == login.member_id || not empty managerLogin}">
 <div class="row mb-2 container">
 	<div class="col-md-11">
 		<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -86,7 +86,7 @@
 </div>
 </c:if>	
 
-<c:if test="${vo.member_id != login.member_id}">
+<c:if test="${vo.member_id != login.member_id && empty managerLogin}">
 	<div  id="warning">
 		<img src="../../../resources/img/ban.png" width="350" height="350" id="ban">
 		<div id="warmen">

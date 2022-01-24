@@ -104,6 +104,12 @@
 					return;
 				}
 				
+				if (item_amount > 9999) {
+					alert("재고 수량은 9999개까지 선택할 수 있습니다.");
+					$("[name='item_amount']").focus();
+					return;
+				}
+				
 				$("form").submit();
 			});
 		});
