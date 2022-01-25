@@ -15,6 +15,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="/resources/js/file.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style type="text/css">
 img {
 	width: 100px;
@@ -36,6 +37,7 @@ img {
 				<th scope="col">상품명</th>
 				<th scope="col">QnA</th>
 				<th scope="col">QnA 작성일</th>
+				<th scope="col">비고</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,6 +48,10 @@ img {
 					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.qna_title}</td>
 					<td>${vo.qna_regdate}</td>
+					<td>
+						<a class="btn btn-outline-primary btn-sm" href="/qna/update/${vo.qna_no}">수정</a>
+						<a class="btn btn-outline-primary btn-sm" class="delete" href="/qna/delete/${vo.qna_no}">삭제</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -67,6 +73,16 @@ $(document).ready(function(){
 		var item = uploadedItemForRead(file_name,item_no);
 		$(div_class).append(item);
 	}
+	
+	$('.delete').click(function() { 
+		var result = confirm('삭제 하시겠습니까?'); 
+		if(result) { 
+			var link = $(this).href;
+			location.assign(link);
+		} else { 
+			event.preventDefault();
+		} 
+	}); 
 	
 });
 </script>

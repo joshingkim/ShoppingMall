@@ -15,6 +15,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="/resources/js/file.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style type="text/css">
 img {
 	width: 100px;
@@ -36,6 +37,7 @@ img {
 				<th scope="col">상품명</th>
 				<th scope="col">QnA</th>
 				<th scope="col">QnA 작성일</th>
+				<th scope="col">상태</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,6 +48,10 @@ img {
 					<td><a style="text-decoration: none; color: #000;" href="/item/read/${vo.item_no}">${vo.item_name}</a></td>
 					<td>${vo.qna_title}</td>
 					<td>${vo.qna_regdate}</td>
+					<c:if test="${vo.qna_answer == null}">
+					<td>답변 준비중</td></c:if>
+					<c:if test="${vo.qna_answer != null}">
+					<td>답변 완료</td></c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

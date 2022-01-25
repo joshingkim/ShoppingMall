@@ -26,17 +26,21 @@
 		<div class="col-md-10">
 			<div style="margin-top : 80px; margin-left: 30%;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<p class="card-text mb-auto"><h4>카테고리 수정</h4></p>
-						<form action="/category/update" method="post">
+						<p class="card-text mb-auto"><h4>QnA 수정</h4></p>
+						<form action="/qna/update" method="post">
 							<div class="input-group mb-2"> 
-								<span class="input-group-text">category</span>
-								<input id="item_category" name="item_category" maxlength="20" style="width: 250px;" value="${vo.item_category}" readonly="readonly">
+								<span class="input-group-text">title</span>
+								<input name="qna_title" maxlength="20" style="width: 250px;" value="${vo.qna_title}" readonly="readonly">
 							</div>
 							<div class="input-group mb-2"> 
-								<span class="input-group-text">item</span>
-								<input name="item_name" maxlength="40" style="width: 250px;" value="${vo.item_name}">
+								<span class="input-group-text">content</span>
+								<input name="qna_content" maxlength="100" style="width: 250px;" value="${vo.qna_content}">
 							</div>
-							<input type="hidden" name="ori_item_name" value="${vo.item_name}">
+							<div class="input-group mb-2"> 
+								<span class="input-group-text">answer</span>
+								<input name="qna_answer" maxlength="50" style="width: 250px;" value="${vo.qna_answer}">
+							</div>
+							<input name="qna_no" value="${vo.qna_no}" type="hidden">
 							<input type="submit" value="수정 완료">
 						</form>
 					</div>
@@ -49,16 +53,22 @@
 		$(document).ready(function() {
 			$("input[type='submit']").click(function(event) {
 				event.preventDefault();
-				var item_name = $("[name='item_name']").val();
-				if (item_name == '') {
-					$("[name='item_name']").focus();
+				var qna_title = $("[name='qna_title']").val();
+				if (qna_title == '') {
+					$("[name='qna_title']").focus();
 					return;
 				}
-				var item_category = $("#item_category").val();
-				if (item_category == '') {
-					$("#item_category").focus();
+				var qna_content = $("[name='qna_content']").val();
+				if (qna_content == '') {
+					$("[name='qna_content']").focus();
 					return;
 				}
+				var qna_answer = $("[name='qna_answer']").val();
+				if (qna_answer == '') {
+					$("[name='qna_answer']").focus();
+					return;
+				}
+				
 				$("form").submit();
 			});
 		});

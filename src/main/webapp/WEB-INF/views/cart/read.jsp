@@ -164,6 +164,7 @@ for(var i=0; i<vo.length; i++){
                         console.log(sum);
                      }
                      $(".totalprice").text(sum);
+                     window.location.reload();
 				}
 			});
 		});

@@ -39,4 +39,13 @@
 	<select id="listForMember" resultType="kr.co.domain.QnaVO">
 		SELECT * FROM qna WHERE member_id = #{member_id} ORDER BY qna_no DESC
 	</select>
+	<select id="updateUI" resultType="kr.co.domain.QnaVO">
+		SELECT * FROM qna WHERE qna_no = #{qna_no}
+	</select>
+	<update id="update">
+		UPDATE qna SET qna_content=#{qna_content},qna_answer=#{qna_answer} WHERE qna_no=#{qna_no}
+	</update>
+	<delete id="delete">
+		DELETE FROM qna WHERE qna_no = #{qna_no}
+	</delete>
 </mapper>

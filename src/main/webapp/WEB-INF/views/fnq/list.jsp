@@ -90,7 +90,7 @@ $(tr[i]).show();
                                      <tr >
                                         <td class="title">
                                            ${vo.fnq_no }
-                                        <td class="title">
+                                        <td style="cursor:pointer" class="title">
                                             ${vo.fnq_title }
                                         </td>
                                         <td class="title">
